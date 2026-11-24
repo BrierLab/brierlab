@@ -19,8 +19,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..700&family=Doto:wght@700;900&family=Martian+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-/* Tokens, header and buttons match index.html. The film plays on a dark
-   stage; everything around it is the white bench. */
+/* Tokens, header and buttons match index.html. */
 :root {
   --bench: #ECEEEA; --panel: #FFFFFF; --ink: #0B1210; --rule: #CDD3CC; --mute: #5B6760;
   --fluo: #B4F02A; --rhod: #FF3D7F;
@@ -42,7 +41,7 @@ body {
   font: 400 17px/1.55 var(--sans); -webkit-font-smoothing: antialiased;
 }
 a { color: inherit; }
-:focus-visible { outline: 2px solid var(--fluo); outline-offset: 2px; }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
 .wrap { padding: 0 var(--pad); }
 header { position: sticky; top: 0; z-index: 20; background: rgba(236, 238, 234, 0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--ink); }
 header .wrap { display: flex; align-items: center; gap: 28px; height: 60px; }
@@ -67,8 +66,8 @@ h2 em, .cap h1 em { font-style: normal; color: var(--ink); background: linear-gr
 
 /* The film: a tall scroll track with one screen pinned inside it. Scrolling
    moves through the six chapters. */
-.film { position: relative; height: 760vh; background: var(--ink); }
-.screen { position: sticky; top: var(--head); height: calc(100svh - var(--head)); overflow: hidden; background: var(--ink); color: #fff; }
+.film { position: relative; height: 760vh; }
+.screen { position: sticky; top: var(--head); height: calc(100svh - var(--head)); overflow: hidden; }
 .screen canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
 .caps { position: absolute; inset: 0; pointer-events: none; }
 .cap {
@@ -76,30 +75,29 @@ h2 em, .cap h1 em { font-style: normal; color: var(--ink); background: linear-gr
   transform: translateY(calc(-50% + 14px)); opacity: 0; transition: opacity .45s ease, transform .6s cubic-bezier(.2, .7, .2, 1);
 }
 .cap.on { opacity: 1; transform: translateY(-50%); }
-.cap .no { font: 400 10.5px/1 var(--mono); color: var(--fluo); letter-spacing: 0.06em; margin-bottom: 18px; }
+.cap .no { font: 500 10.5px/1 var(--mono); color: var(--ink); letter-spacing: 0.06em; margin-bottom: 18px; }
 .cap h1 { font-size: clamp(36px, 4.2vw, 68px); line-height: 0.98; }
-.cap p { margin: 20px 0 0; font-size: 17px; line-height: 1.5; color: #C9D1CB; }
-.cap small { display: block; margin-top: 14px; font: 400 10.5px/1.6 var(--mono); color: #8E9A93; text-transform: uppercase; letter-spacing: 0.06em; }
+.cap p { margin: 20px 0 0; font-size: 17px; line-height: 1.5; color: #2A3530; }
+.cap small { display: block; margin-top: 14px; font: 400 10.5px/1.6 var(--mono); color: var(--mute); text-transform: uppercase; letter-spacing: 0.06em; }
 
 .rail {
   position: absolute; left: 50%; bottom: clamp(14px, 3vh, 28px); transform: translateX(-50%);
   display: flex; align-items: center; gap: 4px; padding: 5px; border-radius: 10px; max-width: calc(100% - 24px);
-  border: 1px solid rgba(255, 255, 255, 0.28); background: rgba(11, 18, 16, 0.82);
-  -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+  border: 1px solid var(--ink); background: var(--panel); box-shadow: 0 2px 0 var(--ink);
 }
 .rail button {
-  position: relative; overflow: hidden; border: 0; background: transparent; color: #8E9A93; cursor: pointer;
+  position: relative; overflow: hidden; border: 0; background: transparent; color: var(--mute); cursor: pointer;
   font: 500 13.5px/1 var(--sans); padding: 10px 13px; border-radius: 6px; white-space: nowrap; transition: color .2s, background .2s;
 }
 .rail button i { font: 400 10px/1 var(--mono); font-style: normal; margin-right: 7px; opacity: .8; }
-.rail button:hover { color: #fff; }
-.rail button.on { color: #fff; background: rgba(255, 255, 255, 0.1); }
+.rail button:hover { color: var(--ink); }
+.rail button.on { color: var(--fluo); background: var(--ink); }
 /* A thin bar along the bottom of the current chapter shows how far through it you are. */
-.rail button::after { content: ""; position: absolute; left: 0; bottom: 0; height: 2px; width: calc(var(--fill, 0) * 100%); background: var(--fluo); }
-.rail .play { width: 38px; height: 34px; padding: 0; display: grid; place-items: center; color: var(--ink); background: var(--fluo); margin-right: 4px; }
+.rail button::after { content: ""; position: absolute; left: 0; bottom: 0; height: 2px; width: calc(var(--fill, 0) * 100%); background: var(--fluo); border-top: 1px solid var(--ink); height: 4px; }
+.rail .play { width: 38px; height: 34px; padding: 0; display: grid; place-items: center; color: var(--ink); background: var(--fluo); border: 1px solid var(--ink); margin-right: 4px; }
 .rail .play:hover { color: var(--ink); }
 .rail .play svg { width: 13px; height: 13px; }
-.hint { position: absolute; right: var(--pad); bottom: clamp(24px, 4vh, 40px); font: 400 10.5px/1 var(--mono); color: #8E9A93; letter-spacing: 0.06em; text-transform: uppercase; transition: opacity .4s; }
+.hint { position: absolute; right: var(--pad); bottom: clamp(24px, 4vh, 40px); font: 400 10.5px/1 var(--mono); color: var(--mute); letter-spacing: 0.06em; text-transform: uppercase; transition: opacity .4s; }
 
 /* Scoring calculator */
 .try { padding: clamp(64px, 9vw, 120px) 0; border-top: 1px solid var(--ink); }
@@ -257,7 +255,8 @@ h2 em, .cap h1 em { font-style: normal; color: var(--ink); background: linear-gr
   const cv = $("cv");
   const ctx = cv.getContext("2d");
   const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const LIME = "180, 240, 42", MINT = "143, 243, 180", CYAN = "111, 227, 242", PAPER = "241, 238, 230", WARM = "255, 61, 127", GREY = "140, 151, 143";
+  const LIME = "79, 125, 0", MINT = "56, 132, 44", CYAN = "74, 95, 224", PAPER = "11, 18, 16", WARM = "214, 28, 96", GREY = "91, 103, 96";
+  const FLUO = "180, 240, 42", WHITE = "255, 255, 255";
   const FONT = { mono: '"Martian Mono", ui-monospace, monospace', serif: '"Bricolage Grotesque", serif', sans: '"Bricolage Grotesque", sans-serif' };
   const cl = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
   const seg = (u, a, b) => cl((u - a) / (b - a));
@@ -285,7 +284,7 @@ h2 em, .cap h1 em { font-style: normal; color: var(--ink); background: linear-gr
   }
 
   function text(s, x, y, { font = "mono", size = 12, color = PAPER, a = 1, align = "left" } = {}) {
-    ctx.font = `${size * U}px ${FONT[font]}`;
+    ctx.font = `${font === "serif" ? "600 " : ""}${size * U}px ${FONT[font]}`;
     ctx.fillStyle = rgba(color, a);
     ctx.textAlign = align;
     ctx.textBaseline = "middle";
@@ -294,17 +293,13 @@ h2 em, .cap h1 em { font-style: normal; color: var(--ink); background: linear-gr
   function panel(x, y, w, h, a, edge = PAPER) {
     ctx.beginPath();
     ctx.roundRect(x, y, w, h, 12 * U);
-    ctx.fillStyle = `rgba(19, 24, 22, ${0.94 * a})`;
+    ctx.fillStyle = rgba(WHITE, 0.97 * a);
     ctx.fill();
-    ctx.strokeStyle = rgba(edge, 0.2 * a);
+    ctx.strokeStyle = rgba(edge, 0.9 * a);
     ctx.lineWidth = 1;
     ctx.stroke();
-    const g = ctx.createLinearGradient(x, 0, x + w, 0);
-    g.addColorStop(0, rgba(LIME, a));
-    g.addColorStop(0.5, rgba(MINT, a));
-    g.addColorStop(1, rgba(CYAN, a));
-    ctx.fillStyle = g;
-    ctx.fillRect(x + 14 * U, y, w - 28 * U, 2);
+    ctx.fillStyle = rgba(FLUO, a);
+    ctx.fillRect(x + 14 * U, y + 1, w - 28 * U, 3);
   }
   function glow(x, y, r, c, a) {
     const g = ctx.createRadialGradient(x, y, 0, x, y, r);
@@ -322,25 +317,25 @@ h2 em, .cap h1 em { font-style: normal; color: var(--ink); background: linear-gr
     ctx.fill();
   }
   function seal(x, y, r, a) {
-    // The Brier Lab mark: a grid of dim trials with one lit signal, on a dark disc.
-    dot(x, y, r * 1.12, "12, 15, 13", a * 0.92);
+    // The Brier Lab mark: a plate of dim wells with one lit, on a white disc.
+    dot(x, y, r * 1.12, WHITE, a);
+    ctx.strokeStyle = rgba(PAPER, a);
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.arc(x, y, r * 1.12, 0, 6.283);
+    ctx.stroke();
     const step = r * 0.56;
     for (let i = -1; i <= 1; i++) {
       for (let j = -1; j <= 1; j++) {
         if (i === 1 && j === -1) continue;
-        dot(x + i * step, y + j * step, r * 0.15, PAPER, a * 0.45);
+        dot(x + i * step, y + j * step, r * 0.15, PAPER, a * 0.28);
       }
     }
     const sx = x + step, sy = y - step;
-    const g = ctx.createLinearGradient(sx - r * 0.3, sy - r * 0.3, sx + r * 0.3, sy + r * 0.3);
-    g.addColorStop(0, rgba(LIME, a));
-    g.addColorStop(0.5, rgba(MINT, a));
-    g.addColorStop(1, rgba(CYAN, a));
-    glow(sx, sy, r * 0.9, MINT, 0.3 * a);
-    ctx.fillStyle = g;
+    dot(sx, sy, r * 0.32, FLUO, a);
     ctx.beginPath();
     ctx.arc(sx, sy, r * 0.32, 0, 6.283);
-    ctx.fill();
+    ctx.stroke();
   }
 
   // The registration record, as a card whose rows arrive one by one.
@@ -369,7 +364,7 @@ h2 em, .cap h1 em { font-style: normal; color: var(--ink); background: linear-gr
       const sy = t + scan * h;
       const g = ctx.createLinearGradient(0, sy - 46 * U, 0, sy);
       g.addColorStop(0, rgba(LIME, 0));
-      g.addColorStop(1, rgba(LIME, 0.16 * a));
+      g.addColorStop(1, rgba(FLUO, 0.45 * a));
       ctx.fillStyle = g;
       ctx.fillRect(l, Math.max(t, sy - 46 * U), w, Math.min(46 * U, sy - t));
       ctx.fillStyle = rgba(LIME, 0.9 * a);
@@ -380,14 +375,14 @@ h2 em, .cap h1 em { font-style: normal; color: var(--ink); background: linear-gr
 
   // The model: rotating rings around a number.
   function core(x, y, R, a, now, energy) {
-    glow(x, y, R * 2.3, MINT, 0.1 * a * (0.7 + energy * 0.6));
+    glow(x, y, R * 2.3, FLUO, 0.28 * a * (0.7 + energy * 0.6));
     for (let j = 0; j < 4; j++) {
       const r = R * (0.72 + j * 0.2);
       const spin = (now / (2600 + j * 900)) * (j % 2 ? -1 : 1);
       ctx.lineWidth = (j === 0 ? 2 : 1.2) * U;
       for (let k = 0; k < 3; k++) {
         const s = spin + (k * 6.283) / 3;
-        ctx.strokeStyle = rgba([LIME, MINT, CYAN][(j + k) % 3], (0.75 - j * 0.15) * a);
+        ctx.strokeStyle = rgba([PAPER, LIME, CYAN][(j + k) % 3], (0.9 - j * 0.17) * a);
         ctx.beginPath();
         ctx.arc(x, y, r, s, s + 1.1 + 0.35 * Math.sin(now / 1700 + j));
         ctx.stroke();
@@ -448,8 +443,9 @@ h2 em, .cap h1 em { font-style: normal; color: var(--ink); background: linear-gr
         const show = l === 0 ? out(seg(grow, 0.1 + i * 0.012, 0.2 + i * 0.012)) : seg(grow, 0.42 + (l - 1) * 0.13, 0.46 + (l - 1) * 0.13);
         if (show <= 0) continue;
         const n = pos(l, i), onPath = mine >> l === i, s = (l === 4 ? 7 : l === 0 ? 4.5 : 4) * U;
-        ctx.fillStyle = rgba(onPath ? LIME : PAPER, (onPath ? 1 : 0.5) * a * show);
+        ctx.fillStyle = rgba(onPath ? FLUO : PAPER, (onPath ? 1 : 0.5) * a * show);
         ctx.fillRect(n.x - s, n.y - s, s * 2, s * 2);
+        if (onPath) { ctx.strokeStyle = rgba(PAPER, a * show); ctx.lineWidth = 1; ctx.strokeRect(n.x - s, n.y - s, s * 2, s * 2); }
         if (l === 0 && !narrow) text(scramble(4, i + 3), n.x, n.y + 16 * U, { size: 7.5, color: onPath ? LIME : GREY, a: a * show * 0.9, align: "center" });
       }
     }
@@ -482,20 +478,20 @@ h2 em, .cap h1 em { font-style: normal; color: var(--ink); background: linear-gr
     ctx.moveTo(p.x1, p.lineY);
     ctx.lineTo(x, p.lineY);
     ctx.stroke();
-    glow(x, p.lineY, 22 * U, MINT, 0.35 * a);
-    dot(x, p.lineY, (5 + Math.sin(now / 300)) * U, LIME, a);
+    glow(x, p.lineY, 22 * U, FLUO, 0.5 * a);
+    dot(x, p.lineY, (5 + Math.sin(now / 300)) * U, PAPER, a);
   }
 
   function sealedCard(p, a, tampered, now, k = 1) {
-    const w = 330 * U * k, h = 150 * U * k, l = p.card.x - w / 2, t = p.card.y - h / 2;
+    const w = 400 * U * k, h = 150 * U * k, l = p.card.x - w / 2, t = p.card.y - h / 2;
     panel(l, t, w, h, a, tampered ? WARM : PAPER);
     seal(l + 46 * U * k, t + h / 2, 24 * U * k, a * (tampered ? 0.35 : 1));
     const tx = l + 88 * U * k;
     text("SEALED FORECAST", tx, t + 30 * U * k, { size: 9 * k, color: GREY, a });
     const jit = tampered ? (rnd(Math.floor(now / 70)) - 0.5) * 3 : 0;
     text(tampered ? "80%" : pct(T.researched), tx + jit, t + 72 * U * k, { font: "serif", size: 56 * k, color: tampered ? WARM : PAPER, a });
-    text(tampered ? scramble(14, Math.floor(now / 70)) : ROOT, tx + 110 * U * k, t + 62 * U * k, { size: 9 * k, color: tampered ? WARM : GREY, a });
-    text(T.nct, tx + 110 * U * k, t + 82 * U * k, { size: 9 * k, color: GREY, a });
+    text(tampered ? scramble(14, Math.floor(now / 70)) : ROOT, tx + 158 * U * k, t + 62 * U * k, { size: 9 * k, color: tampered ? WARM : GREY, a });
+    text(T.nct, tx + 158 * U * k, t + 82 * U * k, { size: 9 * k, color: GREY, a });
     text(tampered ? "FINGERPRINT NO LONGER MATCHES" : "FINGERPRINT MATCHES", tx, t + 122 * U * k, { size: 9 * k, color: tampered ? WARM : LIME, a });
   }
 
@@ -506,8 +502,7 @@ h2 em, .cap h1 em { font-style: normal; color: var(--ink); background: linear-gr
     const p = P();
 
     // Backdrop: a slow field of points, and a wash behind the picture.
-    glow(F.x, F.y, Math.max(W, H) * 0.5, CYAN, 0.05);
-    glow(F.x - 120 * U, F.y - 60 * U, Math.max(W, H) * 0.34, LIME, 0.045);
+    glow(F.x, F.y, Math.max(W, H) * 0.42, WHITE, 0.9);
     for (let i = 0; i < 90; i++) {
       const x = (rnd(i, 1) * W + now * 0.004 * (0.3 + rnd(i, 2))) % W;
       const y = rnd(i, 3) * H;
@@ -534,7 +529,7 @@ h2 em, .cap h1 em { font-style: normal; color: var(--ink); background: linear-gr
         const q = 1 - ph;
         const x = q * q * sx + 2 * q * ph * mx + ph * ph * p.core.x;
         const y = q * q * sy + 2 * q * ph * my + ph * ph * p.core.y;
-        dot(x, y, (1.2 + rnd(i, 7) * 1.4) * U, [LIME, MINT, CYAN][i % 3], Math.sin(ph * 3.1416) * flow);
+        dot(x, y, (1.2 + rnd(i, 7) * 1.4) * U, [PAPER, LIME, CYAN][i % 3], Math.sin(ph * 3.1416) * flow);
       }
       core(p.core.x, p.core.y, p.R, ca, now, ch === 1 ? seg(u, 0.3, 0.9) : 1);
       if (ch === 1) {
@@ -547,7 +542,7 @@ h2 em, .cap h1 em { font-style: normal; color: var(--ink); background: linear-gr
           if (a <= 0) return;
           const ang = -1.5708 + (i * 6.283) / SOURCES.length + now / 14000;
           const x = p.core.x + Math.cos(ang) * orbit, y = p.core.y + Math.sin(ang) * orbit * (narrow ? 1 : 0.86);
-          ctx.strokeStyle = rgba(MINT, 0.22 * a);
+          ctx.strokeStyle = rgba(PAPER, 0.3 * a);
           ctx.lineWidth = 1;
           ctx.beginPath();
           ctx.moveTo(x, y);
@@ -559,14 +554,14 @@ h2 em, .cap h1 em { font-style: normal; color: var(--ink); background: linear-gr
           const tw = ctx.measureText(label).width + 20 * U;
           ctx.beginPath();
           ctx.roundRect(x - tw / 2, y - 12 * U, tw, 24 * U, 6 * U);
-          ctx.fillStyle = `rgba(19, 24, 22, ${0.96 * a})`;
+          ctx.fillStyle = rgba(WHITE, a);
           ctx.fill();
-          ctx.strokeStyle = rgba(PAPER, 0.25 * a);
+          ctx.strokeStyle = rgba(PAPER, 0.9 * a);
           ctx.stroke();
           text(label, x, y, { size: 8.5, a, align: "center" });
         });
         // A disc behind the number keeps it readable over the beams.
-        dot(p.core.x, p.core.y, p.R * 0.66, "12, 15, 13", 0.9);
+        dot(p.core.x, p.core.y, p.R * 0.66, WHITE, 0.94);
         const shift = io(seg(u, 0.4, 0.85));
         figure(p.core.x, p.core.y, mix(T.base, T.researched, shift), shift > 0.02 ? "WITH EVIDENCE" : "FROM THE RECORD", 1, narrow ? 0.6 : 0.82);
       }
@@ -628,14 +623,15 @@ h2 em, .cap h1 em { font-style: normal; color: var(--ink); background: linear-gr
         const a = out(seg(u, 0.12 + i * 0.1, 0.4 + i * 0.1));
         const x = F.x + side * off, l = x - w / 2, t = p.card.y - h / 2 + (1 - a) * 24;
         const good = score < 0.25;
-        panel(l, t, w, h, a, good ? MINT : WARM);
+        panel(l, t, w, h, a, good ? PAPER : WARM);
         text(label, l + 20 * U, t + 30 * U, { size: 8.5, color: GREY, a });
         const grow = out(seg(u, 0.3 + i * 0.1, 0.8 + i * 0.1));
         text((score * grow).toFixed(2), l + 20 * U, t + 84 * U, { font: "serif", size: 58, color: good ? PAPER : WARM, a });
-        ctx.fillStyle = rgba(PAPER, 0.1 * a);
-        ctx.fillRect(l + 20 * U, t + 128 * U, w - 40 * U, 3 * U);
-        ctx.fillStyle = rgba(good ? MINT : WARM, a);
-        ctx.fillRect(l + 20 * U, t + 128 * U, (w - 40 * U) * score * grow, 3 * U);
+
+        ctx.fillStyle = rgba(good ? FLUO : WARM, a);
+        ctx.fillRect(l + 20 * U, t + 126 * U, (w - 40 * U) * score * grow, 7 * U);
+        ctx.strokeStyle = rgba(PAPER, a); ctx.lineWidth = 1;
+        ctx.strokeRect(l + 20 * U, t + 126 * U, w - 40 * U, 7 * U);
         text(good ? "BETTER THAN A COIN FLIP" : "WORSE THAN A COIN FLIP", l + 20 * U, t + 152 * U, { size: 8.5, color: good ? MINT : WARM, a });
       });
     }
