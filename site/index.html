@@ -14,283 +14,300 @@
 <meta property="og:description" content="Forecasts of whether drug trials will meet their primary endpoint, sealed before the result is known and scored in public.">
 <meta property="og:image" content="https://brierlab.com/og.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#0C0F0D">
+<meta name="theme-color" content="#ECEEEA">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..700&family=Doto:wght@700;900&family=Martian+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root {
-  --ink: #0C0F0D;
-  --plate: #131816;
-  --deep: #080A09;
-  --rule: #262E29;
-  --engrave: #8C978F;
-  --paper: #F1EEE6;
-  --accent: #D4F36B;
-  --warm: #FF8F66;
-  --serif: "Instrument Serif", "Times New Roman", serif;
-  --sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", monospace;
-  --wrap: 100%;
-  --grad: linear-gradient(120deg, #D4F36B 0%, #8FF3B4 52%, #6FE3F2 100%);
+  /* A lab bench: enamel white, ink, and three fluorescent dyes. */
+  --bench: #ECEEEA;
+  --panel: #FFFFFF;
+  --ink: #0B1210;
+  --rule: #CDD3CC;
+  --soft: #E1E5DF;
+  --mute: #5B6760;
+  --fluo: #B4F02A;
+  --fluo-deep: #5E9400;
+  --rhod: #FF3D7F;
+  --dapi: #5468E8;
+  --amber: #F2A100;
+  --sans: "Bricolage Grotesque", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "Martian Mono", ui-monospace, "SFMono-Regular", monospace;
+  --dots: "Doto", "Martian Mono", monospace;
+  --pad: clamp(16px, 2.6vw, 44px);
+  --cols: minmax(0, 0.78fr) minmax(0, 1.22fr);
+  --gap: clamp(24px, 3vw, 56px);
 }
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+html { scroll-behavior: smooth; scroll-padding-top: 76px; }
 body {
-  margin: 0;
-  background: var(--ink);
-  color: var(--paper);
-  font: 400 17px/1.6 var(--sans);
+  margin: 0; color: var(--ink);
+  background-color: var(--bench);
+  /* Graph paper: a fine grid with a heavier line every fifth square. */
+  background-image:
+    linear-gradient(rgba(11, 18, 16, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(11, 18, 16, 0.055) 1px, transparent 1px),
+    linear-gradient(rgba(11, 18, 16, 0.028) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(11, 18, 16, 0.028) 1px, transparent 1px);
+  background-size: 120px 120px, 120px 120px, 24px 24px, 24px 24px;
+  font: 400 17px/1.55 var(--sans);
   -webkit-font-smoothing: antialiased;
 }
 a { color: inherit; }
-.wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 clamp(20px, 3.4vw, 56px); }
-.mono { font-family: var(--mono); }
-.lit { color: var(--accent); }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+.wrap { padding: 0 var(--pad); }
+.label { font: 400 10.5px/1.3 var(--mono); text-transform: uppercase; letter-spacing: 0.06em; color: var(--mute); }
 
 /* Header */
-header {
-  position: sticky; top: 0; z-index: 20;
-  background: rgba(12, 15, 13, 0.88);
-  backdrop-filter: blur(14px);
-  border-bottom: 1px solid var(--rule);
-}
-header .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
-.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font: 400 29px/1 var(--serif); color: var(--paper); }
-.brand svg { width: 32px; height: 32px; }
-nav { display: flex; align-items: center; gap: 28px; }
-nav a { text-decoration: none; font-size: 15px; color: var(--engrave); transition: color .15s; }
-nav a:hover { color: var(--paper); }
-nav a:not(.btn) { font: 400 12.5px/1 var(--mono); text-transform: uppercase; letter-spacing: 0.1em; }
+header { position: sticky; top: 0; z-index: 20; background: rgba(236, 238, 234, 0.9); backdrop-filter: blur(12px); border-bottom: 1px solid var(--ink); }
+header .wrap { display: flex; align-items: center; gap: 28px; height: 60px; }
+.brand, nav a, .btn { white-space: nowrap; }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font: 700 23px/1 var(--sans); letter-spacing: -0.03em; }
+.brand svg { width: 28px; height: 28px; }
+nav { display: flex; align-items: center; gap: 24px; margin-left: auto; }
+nav a:not(.btn) { text-decoration: none; font: 400 10.5px/1 var(--mono); text-transform: uppercase; letter-spacing: 0.06em; color: var(--mute); }
+nav a:not(.btn):hover { color: var(--ink); }
+.chips { display: flex; align-items: center; gap: 8px; }
+.chip { display: inline-flex; align-items: center; gap: 8px; height: 30px; padding: 0 10px; border: 1px solid var(--rule); border-radius: 6px; background: var(--panel); font: 400 10.5px/1 var(--mono); letter-spacing: 0.02em; white-space: nowrap; color: var(--ink); text-decoration: none; }
+.led { width: 8px; height: 8px; border-radius: 50%; background: var(--mute); flex: none; }
+.led.wait { background: var(--amber); animation: blink 1.6s steps(2) infinite; }
+.led.ok { background: var(--fluo); box-shadow: 0 0 0 1px var(--fluo-deep); }
+@keyframes blink { 50% { opacity: 0.25; } }
 
 .btn {
-  display: inline-flex; align-items: center; justify-content: center;
-  height: 46px; padding: 0 22px;
-  border-radius: 12px; border: 1px solid rgba(241, 238, 230, 0.16);
-  /* Glass: a translucent pane that blurs what is behind it, lit along the top edge. */
-  background: linear-gradient(180deg, rgba(241, 238, 230, 0.11), rgba(241, 238, 230, 0.03));
-  -webkit-backdrop-filter: blur(16px) saturate(170%);
-  backdrop-filter: blur(16px) saturate(170%);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), inset 0 -1px 0 rgba(0, 0, 0, 0.35), 0 10px 28px -10px rgba(0, 0, 0, 0.6);
-  color: var(--paper);
-  font: 500 15px/1 var(--sans); text-decoration: none; cursor: pointer;
-  transition: border-color .2s, background-position .5s ease, transform .2s, box-shadow .2s;
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  height: 46px; padding: 0 20px; border: 1px solid var(--ink); border-radius: 8px;
+  background: var(--panel); color: var(--ink); font: 600 15px/1 var(--sans); text-decoration: none; cursor: pointer;
+  box-shadow: 0 2px 0 var(--ink); transition: transform .12s, box-shadow .12s, background .12s;
 }
-.btn:hover { border-color: rgba(241, 238, 230, 0.4); transform: translateY(-1px); }
-.btn.solid {
-  background: var(--grad); background-size: 190% 100%; background-position: 0 0;
-  color: var(--ink); font-weight: 600; border-color: rgba(255, 255, 255, 0.4);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6), inset 0 -3px 8px rgba(12, 15, 13, 0.16), 0 12px 34px -10px rgba(143, 243, 180, 0.55);
-}
-.btn.solid:hover { background-position: 100% 0; border-color: rgba(255, 255, 255, 0.7); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7), inset 0 -3px 8px rgba(12, 15, 13, 0.16), 0 16px 40px -10px rgba(111, 227, 242, 0.65); }
-.btn.small { height: 38px; padding: 0 16px; font-size: 14px; border-radius: 10px; }
-nav .btn.solid { color: var(--ink); }
+.btn:hover { transform: translateY(-1px); box-shadow: 0 3px 0 var(--ink); }
+.btn:active { transform: translateY(2px); box-shadow: 0 0 0 var(--ink); }
+.btn.solid { background: var(--fluo); }
+.btn.solid:hover { background: #C4FF3D; }
+.btn.small { height: 34px; padding: 0 14px; font-size: 13.5px; border-radius: 6px; }
+.btn[disabled] { opacity: 0.55; cursor: default; transform: none; }
 
-/* Hero */
-/* The hero fills the first screen: headline on top, the field takes the rest. */
-.hero { position: relative; overflow: hidden; }
-.hero::before {
-  content: ""; position: absolute; inset: -20% -10% auto -10%; height: 90%; pointer-events: none;
-  background:
-    radial-gradient(38% 55% at 78% 30%, rgba(111, 227, 242, 0.13), transparent 70%),
-    radial-gradient(34% 50% at 16% 20%, rgba(212, 243, 107, 0.10), transparent 70%);
-}
-.hero .wrap { position: relative; display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(28px, 3.6vw, 72px); align-items: stretch; min-height: calc(100svh - 65px); padding-top: clamp(24px, 4.5vh, 48px); padding-bottom: clamp(20px, 3.5vh, 36px); }
-.hero-top { display: flex; flex-direction: column; justify-content: center; gap: clamp(20px, 3.4vh, 34px); }
-.live { display: inline-flex; align-items: center; gap: 10px; font: 400 13px/1 var(--mono); color: var(--engrave); margin-bottom: 22px; text-transform: uppercase; letter-spacing: 0.08em; }
-.dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px rgba(212, 243, 107, 0.14); flex: none; }
-h1, h2 { font-family: var(--serif); font-weight: 400; margin: 0; }
-h1 { font-size: clamp(46px, min(5.3vw, 13.5vh), 108px); line-height: 0.96; letter-spacing: -0.02em; }
-h1 em { display: block; }
-h1 em, h2 em { font-style: italic; color: var(--accent); }
-h2 { font-size: clamp(40px, 5vw, 64px); line-height: 1; letter-spacing: -0.015em; }
-.hero p.lede { font-size: 19px; line-height: 1.5; margin: 0 0 26px; max-width: 520px; color: #D8D6CD; }
-.actions { display: flex; gap: 12px; flex-wrap: wrap; }
-/* A plain statement of where the lab stands. */
-.lab-status { margin: 26px 0 0; max-width: 520px; padding: 12px 16px; border: 1px solid var(--rule); border-left: 2px solid var(--warm); border-radius: 0 8px 8px 0; background: rgba(8, 10, 9, 0.5); font: 400 12.5px/1.65 var(--mono); color: var(--engrave); }
-.lab-status b { color: var(--paper); font-weight: 500; }
-/* The scrubber under the field moves the sweep by hand. */
-.scrub { display: flex; align-items: center; gap: 14px; padding: 9px 16px; border-top: 1px solid var(--rule); font: 400 11.5px/1 var(--mono); color: var(--engrave); text-transform: uppercase; letter-spacing: 0.08em; }
-.scrub input { flex: 1; min-width: 0; accent-color: #8FF3B4; height: 20px; }
-.scrub button { border: 1px solid var(--rule); border-radius: 6px; background: none; color: var(--engrave); font: inherit; letter-spacing: inherit; text-transform: inherit; padding: 6px 10px; cursor: pointer; }
-.scrub button[aria-pressed="true"] { background: var(--grad); color: var(--ink); border-color: transparent; }
-.scrub #f-date { min-width: 150px; text-align: right; color: var(--paper); }
-/* Lab notebook */
-.log { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--rule); }
-.log li { display: grid; grid-template-columns: 104px 136px minmax(0, 1fr); gap: 20px; padding: 22px 0; border-bottom: 1px solid var(--rule); align-items: baseline; }
-.log time { font: 400 12.5px/1.4 var(--mono); color: var(--engrave); }
-.log .kind { display: inline-flex; align-items: center; gap: 9px; font: 400 11.5px/1.4 var(--mono); text-transform: uppercase; letter-spacing: 0.1em; color: var(--paper); }
-.log .kind::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--engrave); flex: none; }
-.log .sealed { color: var(--accent); } .log .sealed::before { background: var(--accent); }
-.log .negative { color: var(--warm); } .log .negative::before { background: var(--warm); }
-.log .open { color: var(--engrave); } .log .open::before { background: none; border: 1.5px solid var(--engrave); }
-.log p { margin: 0; font-size: 16.5px; line-height: 1.55; color: #D8D6CD; max-width: 860px; }
+/* Type */
+h1, h2, h3 { font-family: var(--sans); margin: 0; }
+h1 { font-weight: 600; font-size: clamp(40px, min(4.5vw, 10.5vh), 100px); line-height: 0.92; letter-spacing: -0.045em; }
+h2 { font-weight: 600; font-size: clamp(36px, 4.4vw, 68px); line-height: 0.96; letter-spacing: -0.04em; }
+/* The key phrase gets a pass of highlighter, as in a lab notebook. */
+h1 em, h2 em { font-style: normal; background: linear-gradient(transparent 12%, var(--fluo) 12% 90%, transparent 90%); padding: 0 0.12em; margin: 0 -0.12em; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+h1 em { display: inline-block; }
 
-/* The forecast field: every trial as a moving dot. */
-.field {
-  flex: 1; display: flex; flex-direction: column;
-  margin: 0; border: 1px solid rgba(241, 238, 230, 0.12); border-radius: 14px; overflow: hidden;
-  background: rgba(8, 10, 9, 0.62);
-  -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07), 0 30px 80px -30px rgba(0, 0, 0, 0.8);
-}
-.field-plot { position: relative; flex: 1; min-height: 220px; }
-.field-bar { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 11px 16px; border-bottom: 1px solid var(--rule); font: 400 12.5px/1.3 var(--mono); color: var(--engrave); }
-.field-bar b { white-space: nowrap; font-weight: 400; color: var(--paper); text-transform: uppercase; letter-spacing: 0.08em; }
-.field-bar #f-now { text-align: right; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
-.field canvas { position: absolute; inset: 0; display: block; width: 100%; height: 100%; cursor: crosshair; }
-.field figcaption { display: flex; gap: 22px; flex-wrap: wrap; padding: 11px 16px; border-top: 1px solid var(--rule); font-size: 13px; color: var(--engrave); }
-.key { display: inline-flex; align-items: center; gap: 8px; }
-.key::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: rgba(241, 238, 230, 0.4); }
-.key.bright::before { background: var(--accent); }
-.key.hollow::before { background: none; border: 1.5px solid var(--warm); }
+/* Hero: copy and a live readout on the left, the plate on the right. */
+.hero .wrap { display: grid; grid-template-columns: var(--cols); gap: var(--gap); align-items: stretch; min-height: calc(100svh - 61px); padding-top: clamp(16px, 3vh, 36px); padding-bottom: clamp(16px, 3vh, 32px); }
+.hero-copy { display: flex; flex-direction: column; justify-content: space-between; gap: clamp(14px, 2.4vh, 28px); min-width: 0; }
+.lede { font-size: clamp(16px, 1.25vw, 19px); line-height: 1.45; margin: clamp(14px, 2.2vh, 24px) 0 clamp(14px, 2.2vh, 24px); max-width: 30em; color: #2A3530; }
+.actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.lab-status { margin: 0; font: 400 11px/1.6 var(--mono); color: var(--mute); max-width: 46em; }
+.lab-status b { color: var(--ink); font-weight: 500; }
+
+.panel { background: var(--panel); border: 1px solid var(--ink); border-radius: 10px; overflow: hidden; }
+.p-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 9px 14px; border-bottom: 1px solid var(--ink); font: 400 10.5px/1.3 var(--mono); text-transform: uppercase; letter-spacing: 0.06em; }
+.p-head i { font-style: normal; color: var(--mute); margin-left: 10px; }
+.p-head > span:last-child { color: var(--mute); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+
+/* The well readout: whichever trial the reader head, or the pointer, is on. */
+.readout .r-main { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 16px; align-items: center; padding: 12px 14px; }
+.readout b { font: 900 clamp(46px, 4.6vw, 76px)/0.85 var(--dots); letter-spacing: -0.02em; min-width: 2.3ch; white-space: nowrap; }
+.readout b small { font: 500 0.26em/1 var(--mono); letter-spacing: 0; margin-left: 0.25em; vertical-align: 0.2em; }
+.readout .r-title { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; font-size: 14.5px; line-height: 1.3; font-weight: 500; min-height: 2.6em; }
+.readout .r-sub { display: block; margin-top: 4px; font: 400 10.5px/1.4 var(--mono); color: var(--mute); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.readout dl { display: grid; grid-template-columns: 1fr 1.2fr 1.5fr; margin: 0; border-top: 1px solid var(--rule); }
+.readout dl div { padding: 8px 14px 10px; border-right: 1px solid var(--rule); min-width: 0; }
+.readout dl div:last-child { border-right: 0; }
+.readout dt { font: 400 9.5px/1.3 var(--mono); text-transform: uppercase; letter-spacing: 0.06em; color: var(--mute); margin-bottom: 4px; }
+.readout dd { margin: 0; font: 500 11.5px/1.3 var(--mono); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.swatch { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 7px; border: 1px solid var(--ink); background: var(--panel); vertical-align: -1px; }
+.swatch.screened { background: var(--fluo); }
+.swatch.unscreened { background: #AEBBFF; }
+.swatch.public { background: var(--rhod); }
+
+/* The plate: every trial is a well, filled to its chance of success. */
+.plate { display: flex; flex-direction: column; margin: 0; min-width: 0; }
+.plate-view { position: relative; flex: 1; min-height: 300px; background:
+  radial-gradient(60% 70% at 50% 55%, #FFFFFF 0%, #F6F8F4 60%, #EFF2EC 100%); }
+.plate canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; cursor: grab; touch-action: pan-y; }
+.plate canvas.dragging { cursor: grabbing; }
+.hud { position: absolute; display: flex; gap: 8px; pointer-events: none; }
+.hud > * { pointer-events: auto; }
+.hud.tl { top: 12px; left: 14px; gap: 22px; pointer-events: none; }
+.hud.tl > * { pointer-events: none; }
+.hud.tr { top: 10px; right: 12px; }
+.hud.bl { bottom: 10px; left: 14px; }
+.tally b { display: block; font: 900 clamp(24px, 2.2vw, 34px)/0.9 var(--dots); }
+.tally span { font: 400 9.5px/1.3 var(--mono); text-transform: uppercase; letter-spacing: 0.06em; color: var(--mute); }
+.switch { display: inline-flex; border: 1px solid var(--ink); border-radius: 6px; overflow: hidden; background: var(--panel); }
+.switch button, .scrub button { border: 0; background: none; color: var(--ink); font: 400 10.5px/1 var(--mono); text-transform: uppercase; letter-spacing: 0.06em; padding: 8px 10px; cursor: pointer; }
+.switch button + button { border-left: 1px solid var(--ink); }
+.switch button[aria-pressed="true"], .scrub button[aria-pressed="true"] { background: var(--ink); color: var(--fluo); }
+.scrub { display: flex; align-items: center; gap: 12px; padding: 8px 14px; border-top: 1px solid var(--ink); font: 400 10.5px/1 var(--mono); text-transform: uppercase; letter-spacing: 0.06em; }
+.scrub button { border: 1px solid var(--ink); border-radius: 6px; }
+.scrub input { flex: 1; min-width: 0; accent-color: var(--ink); height: 20px; }
+.scrub #f-date { min-width: 190px; text-align: right; }
+.plate figcaption .hint { margin-left: auto; }
+.plate figcaption { display: flex; gap: 20px; flex-wrap: wrap; padding: 9px 14px; border-top: 1px solid var(--rule); font-size: 13px; color: var(--mute); }
 
 /* Sections */
-section { padding: 110px 0; }
-/* Every section splits at the same line as the hero: heading on the left,
-   content on the right. */
-section + section { border-top: 1px solid var(--rule); }
-.sec-head { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(28px, 3.6vw, 72px); align-items: end; margin-bottom: 48px; }
-.split { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(28px, 3.6vw, 72px); align-items: start; }
-.split > .sec-head { display: block; margin: 0; position: sticky; top: 104px; }
-.split > .sec-head p { margin-top: 22px; }
-/* In the narrow heading column the italic phrase takes its own line. */
-.split h2 em, .verify h2 em { display: block; }
-.sec-head p { margin: 0; font-size: 18px; color: var(--engrave); max-width: 520px; }
+section { padding: clamp(56px, 7vw, 96px) 0; border-top: 1px solid var(--ink); }
+.sec-head { display: grid; grid-template-columns: var(--cols); gap: var(--gap); align-items: end; margin-bottom: 40px; }
+.split { display: grid; grid-template-columns: var(--cols); gap: var(--gap); align-items: start; }
+.split > .sec-head { display: block; margin: 0; position: sticky; top: 96px; }
+.split > .sec-head p { margin-top: 20px; }
+.split h2 em, .verify h2 em { display: inline-block; }
+.sec-head p { margin: 0; font-size: 18px; color: var(--mute); max-width: 30em; }
 
-.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
-.step { border-top: 1px solid var(--rule); padding-top: 22px; }
-.step .num { font: 400 13px/1 var(--mono); color: var(--accent); margin-bottom: 30px; letter-spacing: 0.08em; }
-.step h3 { font: 400 30px/1.1 var(--serif); margin: 0 0 12px; }
-.step p { margin: 0; font-size: 15.5px; color: var(--engrave); max-width: 320px; }
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.step { background: var(--panel); border: 1px solid var(--ink); border-radius: 10px; padding: 16px 18px 22px; }
+.step .num { font: 900 34px/1 var(--dots); margin-bottom: 44px; }
+.step h3 { font: 600 24px/1.1 var(--sans); letter-spacing: -0.03em; margin: 0 0 10px; }
+.step p { margin: 0; font-size: 15px; color: var(--mute); }
 
-/* Rows (method) */
-.rows { border-top: 1px solid var(--rule); }
-.split .rows, .split .log, .split .steps { margin-top: 8px; }
-.row { display: flex; justify-content: space-between; align-items: center; gap: 32px; padding: 32px 0; border-bottom: 1px solid var(--rule); }
-.row h3 { font: 500 19px/1.3 var(--sans); margin: 0 0 4px; }
-.row p { margin: 0; font-size: 15.5px; color: var(--engrave); max-width: 470px; }
-.row .fig { font: 400 clamp(38px, 4.4vw, 56px)/1 var(--serif); white-space: nowrap; }
-.row .fig small { font: 400 12.5px/1 var(--mono); color: var(--engrave); margin-left: 10px; text-transform: uppercase; letter-spacing: 0.08em; }
+.rows, .log { background: var(--panel); border: 1px solid var(--ink); border-radius: 10px; overflow: hidden; }
+.row { display: flex; justify-content: space-between; align-items: center; gap: 32px; padding: 24px 22px; border-bottom: 1px solid var(--rule); }
+.row:last-child, .log li:last-child { border-bottom: 0; }
+.row h3 { font: 600 19px/1.3 var(--sans); letter-spacing: -0.02em; margin: 0 0 4px; }
+.row p { margin: 0; font-size: 15px; color: var(--mute); max-width: 31em; }
+.row .fig { font: 900 clamp(34px, 4vw, 54px)/1 var(--dots); white-space: nowrap; }
+.row .fig small { font: 400 10.5px/1 var(--mono); color: var(--mute); margin-left: 10px; text-transform: uppercase; letter-spacing: 0.06em; }
+.lit { background: var(--fluo); padding: 0 0.1em; }
+
+.log { list-style: none; margin: 0; padding: 0; }
+.log li { display: grid; grid-template-columns: 96px 132px minmax(0, 1fr); gap: 18px; padding: 18px 22px; border-bottom: 1px solid var(--rule); align-items: baseline; }
+.log time { font: 400 10.5px/1.5 var(--mono); color: var(--mute); }
+.log .kind { display: inline-flex; align-items: center; gap: 8px; font: 500 10.5px/1.5 var(--mono); text-transform: uppercase; letter-spacing: 0.06em; }
+.log .kind::before { content: ""; width: 8px; height: 8px; border-radius: 50%; border: 1px solid var(--ink); background: var(--dapi); flex: none; }
+.log .sealed::before { background: var(--fluo); }
+.log .negative::before { background: var(--rhod); }
+.log .open::before { background: var(--panel); }
+.log p { margin: 0; font-size: 16px; line-height: 1.5; max-width: 46em; }
 
 /* Record */
-.ledger { background: var(--plate); border: 1px solid var(--rule); border-radius: 8px; overflow: hidden; }
-.stats { display: grid; grid-template-columns: repeat(3, 1fr); border-bottom: 1px solid var(--rule); }
-.stat { padding: 22px 24px; border-right: 1px solid var(--rule); }
+.ledger { background: var(--panel); border: 1px solid var(--ink); border-radius: 10px; overflow: hidden; }
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); border-bottom: 1px solid var(--ink); }
+.stat { padding: 18px 22px; border-right: 1px solid var(--rule); }
 .stat:last-child { border-right: 0; }
-.stat span { font: 400 12.5px/1 var(--mono); color: var(--engrave); text-transform: uppercase; letter-spacing: 0.08em; }
-.stat b { display: block; font: 400 52px/1.1 var(--serif); margin-top: 6px; }
-.tools { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 14px 24px; border-bottom: 1px solid var(--rule); flex-wrap: wrap; }
-.seg { display: inline-flex; border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; }
-.seg button { border: 0; background: transparent; color: var(--engrave); font: 500 14px/1 var(--sans); padding: 11px 16px; cursor: pointer; }
-.seg button + button { border-left: 1px solid var(--rule); }
-.seg button[aria-pressed="true"] { background: var(--grad); color: var(--ink); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5); }
-.search { background: var(--deep); border: 1px solid var(--rule); border-radius: 6px; color: var(--paper); font: 400 14px/1 var(--sans); padding: 0 14px; height: 38px; width: 290px; max-width: 100%; outline: none; }
-.search:focus { border-color: var(--engrave); }
-.search::placeholder { color: #5E6861; }
-.scroller { max-height: 620px; overflow-y: auto; }
-.scroller, pre { scrollbar-color: var(--rule) transparent; scrollbar-width: thin; }
+.stat span { font: 400 10.5px/1 var(--mono); color: var(--mute); text-transform: uppercase; letter-spacing: 0.06em; }
+.stat b { display: block; font: 900 52px/1 var(--dots); margin-top: 8px; }
+.tools { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 12px 22px; border-bottom: 1px solid var(--rule); flex-wrap: wrap; }
+.seg { display: inline-flex; border: 1px solid var(--ink); border-radius: 6px; overflow: hidden; }
+.seg button { border: 0; background: var(--panel); color: var(--ink); font: 500 14px/1 var(--sans); padding: 10px 14px; cursor: pointer; }
+.seg button + button { border-left: 1px solid var(--ink); }
+.seg button[aria-pressed="true"] { background: var(--ink); color: var(--fluo); }
+.search { background: var(--bench); border: 1px solid var(--rule); border-radius: 6px; color: var(--ink); font: 400 14px/1 var(--sans); padding: 0 14px; height: 38px; width: 300px; max-width: 100%; outline: none; }
+.search:focus { border-color: var(--ink); background: var(--panel); }
+.search::placeholder { color: var(--mute); }
+.scroller { max-height: 620px; overflow-y: auto; scrollbar-width: thin; scrollbar-color: var(--rule) transparent; }
 table { width: 100%; border-collapse: collapse; }
-th { position: sticky; top: 0; background: var(--plate); text-align: left; font: 400 12px/1 var(--mono); color: var(--engrave); text-transform: uppercase; letter-spacing: 0.08em; padding: 14px 12px; border-bottom: 1px solid var(--rule); z-index: 1; }
-td { padding: 14px 12px; border-bottom: 1px solid rgba(38, 46, 41, 0.7); vertical-align: middle; font-size: 15px; }
-th:first-child, td:first-child { padding-left: 24px; }
-th:last-child, td:last-child { padding-right: 24px; text-align: right; }
+th { position: sticky; top: 0; background: var(--panel); text-align: left; font: 400 10.5px/1 var(--mono); color: var(--mute); text-transform: uppercase; letter-spacing: 0.06em; padding: 13px 12px; border-bottom: 1px solid var(--ink); z-index: 1; }
+td { padding: 13px 12px; border-bottom: 1px solid var(--soft); vertical-align: middle; font-size: 15px; }
+th:first-child, td:first-child { padding-left: 22px; }
+th:last-child, td:last-child { padding-right: 22px; text-align: right; }
 tr.trial { cursor: pointer; }
-tr.trial:hover td { background: rgba(255, 255, 255, 0.02); }
-.t-title { display: block; max-width: 760px; line-height: 1.35; }
-.t-sub { display: block; font-size: 13px; color: var(--engrave); margin-top: 3px; }
-.t-sub a { font-family: var(--mono); font-size: 12.5px; }
-td.num { font-family: var(--mono); font-size: 13.5px; white-space: nowrap; }
+tr.trial:hover td { background: #F4F7F0; }
+.t-title { display: block; max-width: 760px; line-height: 1.3; font-weight: 500; }
+.t-sub { display: block; font-size: 13px; color: var(--mute); margin-top: 3px; }
+.t-sub a { font: 400 11px/1 var(--mono); }
+td.num { font: 400 11.5px/1.3 var(--mono); white-space: nowrap; }
 .prob { display: flex; align-items: center; gap: 10px; white-space: nowrap; }
-.prob b { font: 500 15px/1 var(--mono); width: 38px; }
-.bar { width: 84px; height: 3px; background: #222A25; overflow: hidden; }
-.bar i { display: block; height: 100%; background: var(--grad); }
-.tag { display: inline-flex; align-items: center; gap: 7px; font-size: 13px; color: var(--engrave); white-space: nowrap; }
-.tag::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #4B564F; }
-.tag.screened::before { background: var(--accent); }
-.tag.public::before { background: var(--warm); }
-tr.detail td { background: var(--deep); text-align: left; padding: 18px 24px 22px; font-size: 14.5px; line-height: 1.6; color: #CDCBC2; }
-tr.detail p { margin: 0 0 8px; max-width: 860px; }
-tr.detail small { color: var(--engrave); font-size: 13px; }
-.empty { padding: 40px 24px; color: var(--engrave); text-align: center; }
-.ledger-foot { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 14px 24px; font-size: 13.5px; color: var(--engrave); border-top: 1px solid var(--rule); flex-wrap: wrap; }
+.prob b { font: 900 22px/1 var(--dots); width: 52px; }
+.bar { width: 92px; height: 8px; border: 1px solid var(--ink); border-radius: 4px; overflow: hidden; background: var(--panel); }
+.bar i { display: block; height: 100%; background: var(--fluo); border-right: 1px solid var(--ink); }
+.tag { display: inline-flex; align-items: center; gap: 7px; font-size: 13px; color: var(--mute); white-space: nowrap; }
+.tag::before { content: ""; width: 8px; height: 8px; border-radius: 50%; border: 1px solid var(--ink); background: #AEBBFF; }
+.tag.screened::before { background: var(--fluo); }
+.tag.public::before { background: var(--rhod); }
+tr.detail td { background: var(--bench); text-align: left; padding: 16px 22px 20px; font-size: 14.5px; line-height: 1.55; }
+tr.detail p { margin: 0 0 8px; max-width: 54em; }
+tr.detail small { color: var(--mute); font-size: 13px; }
+.empty { padding: 40px 24px; color: var(--mute); text-align: center; }
+.ledger-foot { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 12px 22px; font-size: 13.5px; color: var(--mute); border-top: 1px solid var(--rule); flex-wrap: wrap; }
 .ledger-foot span:first-child { display: inline-flex; align-items: center; gap: 10px; }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--fluo); border: 1px solid var(--ink); flex: none; }
 
 /* Verify */
-.verify { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(28px, 3.6vw, 72px); align-items: start; }
-.verify p { color: var(--engrave); font-size: 18px; margin: 24px 0 28px; max-width: 420px; }
-.root-line { font: 400 12.5px/1.6 var(--mono); color: var(--engrave); word-break: break-all; margin-top: 26px; max-width: 420px; }
-.root-line b { display: block; font: 400 12px/1.4 var(--mono); text-transform: uppercase; letter-spacing: 0.08em; color: var(--engrave); margin-bottom: 4px; }
-.root-line span { color: var(--paper); }
-.root-line.plain span { font: 400 14px/1.5 var(--sans); word-break: normal; }
-.root-line a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
-.code { background: var(--deep); border: 1px solid var(--rule); border-radius: 8px; overflow: hidden; margin-top: 12px; }
-.code-bar { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; border-bottom: 1px solid var(--rule); font: 400 13px/1 var(--mono); color: var(--engrave); }
-.code-bar button { border: 0; background: none; color: var(--paper); font: 500 13px/1 var(--sans); cursor: pointer; }
-pre { margin: 0; padding: 22px 20px; overflow-x: auto; font: 400 13.5px/1.7 var(--mono); color: #DAD8CF; }
-pre .k { color: var(--warm); }
-pre .s { color: var(--accent); }
-pre .c { color: #5E6861; }
+.verify { display: grid; grid-template-columns: var(--cols); gap: var(--gap); align-items: start; }
+.verify p { color: var(--mute); font-size: 18px; margin: 20px 0 24px; max-width: 26em; }
+.checker { margin-top: 26px; }
+.checker canvas { display: block; width: 100%; height: 220px; }
+.checker .result { padding: 11px 14px; border-top: 1px solid var(--rule); font: 400 11px/1.6 var(--mono); min-height: 40px; }
+.checker .result.ok { background: var(--fluo); border-top-color: var(--ink); }
+.checker .result.bad { background: var(--rhod); color: #fff; border-top-color: var(--ink); }
+.root-line { font: 400 11px/1.7 var(--mono); word-break: break-all; margin-top: 22px; max-width: 46em; }
+.root-line b { display: block; font: 400 10.5px/1.4 var(--mono); text-transform: uppercase; letter-spacing: 0.06em; color: var(--mute); margin-bottom: 4px; }
+.root-line.plain span { font: 400 14.5px/1.5 var(--sans); word-break: normal; }
+.root-line a { text-decoration: underline; text-decoration-color: var(--fluo-deep); text-decoration-thickness: 2px; text-underline-offset: 3px; }
+/* The code stays dark: it is the one terminal on a white bench. */
+.code { background: var(--ink); border: 1px solid var(--ink); border-radius: 10px; overflow: hidden; margin-top: 12px; }
+.code-bar { display: flex; justify-content: space-between; align-items: center; padding: 11px 16px; border-bottom: 1px solid #26302B; font: 400 11px/1 var(--mono); color: #8E9A93; }
+.code-bar button { border: 0; background: none; color: #fff; font: 500 13px/1 var(--sans); cursor: pointer; }
+pre { margin: 0; padding: 20px 18px; overflow-x: auto; font: 400 12px/1.8 var(--mono); color: #E6EAE4; scrollbar-width: thin; scrollbar-color: #26302B transparent; }
+pre .k { color: #FF7FA8; }
+pre .s { color: var(--fluo); }
+pre .c { color: #70807A; }
 
-/* Closing */
-.closing { text-align: center; padding: 130px 0; border-top: 1px solid var(--rule); }
-.closing h2 { font-size: clamp(48px, 7.4vw, 96px); max-width: 820px; margin: 0 auto; }
-.closing p { color: var(--engrave); font-size: 18px; max-width: 520px; margin: 26px auto 34px; }
+.closing { text-align: center; padding: clamp(80px, 11vw, 150px) 0; border-top: 1px solid var(--ink); background: var(--ink); color: #fff; }
+.closing h2 { font-size: clamp(44px, 7vw, 104px); max-width: 11em; margin: 0 auto; }
+.closing h2 em { color: var(--ink); }
+.closing p { color: #A9B4AD; font-size: 18px; max-width: 30em; margin: 24px auto 30px; }
 .closing .actions { justify-content: center; }
+.closing .btn { border-color: #fff; box-shadow: 0 2px 0 #fff; }
+.closing .btn:not(.solid) { background: var(--ink); color: #fff; }
 
-footer { border-top: 1px solid var(--rule); padding: 40px 0 56px; font-size: 13.5px; color: var(--engrave); }
-footer .top { display: flex; align-items: center; gap: 34px; margin-bottom: 22px; }
-footer .top { flex-wrap: wrap; }
-footer .top a:not(.brand) { text-decoration: none; font: 400 12.5px/1 var(--mono); text-transform: uppercase; letter-spacing: 0.1em; }
-footer p { margin: 0 0 8px; max-width: 900px; }
+footer { border-top: 1px solid var(--ink); padding: 32px 0 48px; font-size: 13.5px; color: var(--mute); }
+footer .top { display: flex; align-items: center; gap: 28px; margin-bottom: 18px; flex-wrap: wrap; }
+footer .top a:not(.brand) { text-decoration: none; font: 400 10.5px/1 var(--mono); text-transform: uppercase; letter-spacing: 0.06em; }
+footer .brand { color: var(--ink); }
+footer p { margin: 0 0 8px; max-width: 60em; }
 
+@media (max-width: 1500px) { .chips .chip.clock { display: none; } }
+@media (max-width: 1320px) { .chips, .p-head i { display: none; } nav { gap: 18px; } }
 @media (max-width: 960px) {
-  nav a:not(.btn) { display: none; }
-  .hero-top, .sec-head, .verify, .split { grid-template-columns: minmax(0, 1fr); }
-  .split > .sec-head { position: static; margin-bottom: 32px; }
-  .hero .wrap { grid-template-columns: minmax(0, 1fr); }
-  .hero-top { gap: 22px; }
-  .hero .wrap { padding-top: 36px; padding-bottom: 56px; }
-  .field-plot { min-height: 260px; }
-  section { padding: 72px 0; }
-  .sec-head { gap: 20px; margin-bottom: 40px; }
+  nav a:not(.btn), .chips { display: none; }
+  .hero .wrap, .sec-head, .verify, .split { grid-template-columns: minmax(0, 1fr); }
+  .hero .wrap { min-height: 0; padding-top: 28px; padding-bottom: 40px; }
+  .split > .sec-head { position: static; margin-bottom: 28px; }
+  .plate-view { min-height: 340px; }
+  .hud.tl { gap: 14px; }
+  .hud.tr { top: auto; bottom: 8px; left: 10px; right: 10px; justify-content: space-between; }
+  .scrub #f-date { display: none; }
+  .plate figcaption .hint, .scrub label, .p-head i { display: none; }
+  .scrub #f-date { min-width: 0; }
   .steps { grid-template-columns: 1fr; }
-  .log li { grid-template-columns: minmax(0, 1fr); gap: 6px; }
-  .scrub label, .scrub #f-date { display: none; }
   .step .num { margin-bottom: 20px; }
-  .row { flex-direction: column; align-items: flex-start; gap: 14px; }
-  .stat { padding: 16px; }
+  .log li { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+  .row { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .stat { padding: 14px; }
   .stat b { font-size: 34px; }
-  .stat span { font-size: 10.5px; }
-  .col-phase, .col-due { display: none; }
-  .bar { display: none; }
-  /* The status column shrinks to its coloured dot; the wording is in the detail row. */
+  .stat span { font-size: 9px; }
+  .col-phase, .col-due, .bar { display: none; }
   .tag, th:last-child { font-size: 0; gap: 0; }
   td { padding-left: 8px; padding-right: 8px; }
-  th:first-child, td:first-child { padding-left: 16px; }
-  th:last-child, td:last-child { padding-right: 16px; }
-  .tools, .ledger-foot { padding-left: 16px; padding-right: 16px; }
+  th:first-child, td:first-child { padding-left: 14px; }
+  th:last-child, td:last-child { padding-right: 14px; }
+  .tools, .ledger-foot { padding-left: 14px; padding-right: 14px; }
   .search { width: 100%; }
-  .verify { gap: 32px; }
+  .readout dl { grid-template-columns: 1fr 1fr; }
+  .readout dl div:last-child { grid-column: 1 / -1; border-top: 1px solid var(--rule); }
+  .readout dl div:nth-child(2) { border-right: 0; }
 }
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .led.wait { animation: none; } }
 </style>
 </head>
 <body>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
-    <linearGradient id="mark-grad" gradientUnits="userSpaceOnUse" x1="14" y1="1" x2="23" y2="10">
-      <stop offset="0" stop-color="#D4F36B"/><stop offset=".52" stop-color="#8FF3B4"/><stop offset="1" stop-color="#6FE3F2"/>
-    </linearGradient>
-    <!-- The mark: a field of trials, with the one that carries signal lit up. -->
+    <!-- The mark: a plate of trials, with the one that carries signal lit up. -->
     <symbol id="mark" viewBox="0 0 24 24">
-      <g fill="#F1EEE6" opacity=".4">
-        <circle cx="5.5" cy="5.5" r="1.7"/><circle cx="12" cy="5.5" r="1.7"/>
-        <circle cx="5.5" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/><circle cx="18.5" cy="12" r="1.7"/>
-        <circle cx="5.5" cy="18.5" r="1.7"/><circle cx="12" cy="18.5" r="1.7"/><circle cx="18.5" cy="18.5" r="1.7"/>
+      <g fill="#0B1210" opacity=".28">
+        <circle cx="5.5" cy="5.5" r="1.8"/><circle cx="12" cy="5.5" r="1.8"/>
+        <circle cx="5.5" cy="12" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="18.5" cy="12" r="1.8"/>
+        <circle cx="5.5" cy="18.5" r="1.8"/><circle cx="12" cy="18.5" r="1.8"/><circle cx="18.5" cy="18.5" r="1.8"/>
       </g>
-      <circle cx="18.5" cy="5.5" r="3.7" fill="url(#mark-grad)"/>
+      <circle cx="18.5" cy="5.5" r="3.6" fill="#B4F02A" stroke="#0B1210" stroke-width="1.1"/>
     </symbol>
   </defs>
 </svg>
@@ -298,6 +315,10 @@ footer p { margin: 0 0 8px; max-width: 900px; }
 <header>
   <div class="wrap">
     <a class="brand" href="#top"><svg><use href="#mark"/></svg>Brier Lab</a>
+    <div class="chips">
+      <a class="chip" href="#verify" id="seal-chip"><span class="led" id="seal-led"></span><span id="seal-text">Seal</span></a>
+      <span class="chip clock" id="clock" aria-hidden="true"></span>
+    </div>
     <nav>
       <a href="how.html">How it works</a>
       <a href="#record">The record</a>
@@ -312,34 +333,57 @@ footer p { margin: 0 0 8px; max-width: 900px; }
 <main id="top">
   <div class="hero">
     <div class="wrap">
-      <div class="hero-top">
+      <div class="hero-copy">
         <div>
-          <div class="live"><span class="dot"></span><span id="opened">Record open</span></div>
           <h1>Every drug trial, <em>called in advance.</em></h1>
-        </div>
-        <div>
           <p class="lede">Brier Lab forecasts whether Phase 2 and 3 drug trials will meet their primary endpoint. Each forecast is sealed before the result is known, then scored in public when it lands.</p>
           <div class="actions">
             <a class="btn solid" href="#record">See the record</a>
             <a class="btn" href="how.html">Watch how it works</a>
           </div>
-          <p class="lab-status"><b>This is early.</b> No forecast has been scored yet and no accuracy is claimed. Brier Lab is a research lab's open record, not advice.</p>
         </div>
+        <div class="panel readout">
+          <div class="p-head"><span>Well <span id="r-well"></span></span><span id="r-mode">Reader head</span></div>
+          <div class="r-main">
+            <b id="r-prob"></b>
+            <div><span class="r-title" id="r-title"></span><span class="r-sub" id="r-sub"></span></div>
+          </div>
+          <dl>
+            <div><dt>Results due</dt><dd id="r-due"></dd></div>
+            <div><dt>Status</dt><dd id="r-state"></dd></div>
+            <div><dt>Sealed hash</dt><dd id="r-leaf"></dd></div>
+          </dl>
+        </div>
+        <p class="lab-status"><b>This is early.</b> No forecast has been scored yet and no accuracy is claimed. Brier Lab is a research lab's open record, not advice.</p>
       </div>
-      <figure class="field">
-        <div class="field-bar"><b>Forecast field</b><span id="f-now"></span></div>
-        <div class="field-plot"><canvas id="field" role="img" aria-label="Chart of every sealed forecast: each trial is a dot placed by its expected results date and its chance of success."></canvas></div>
+      <figure class="plate panel">
+        <div class="p-head"><span>The plate <i>one well per trial, filled to its chance of success</i></span><span id="opened">Record open</span></div>
+        <div class="plate-view">
+          <canvas id="plate" role="img" aria-label="A lab plate with one well for every sealed trial. Each well is filled to that trial's forecast chance of success. A reader moves across the plate in order of results date."></canvas>
+          <div class="hud tl">
+            <div class="tally"><b id="h-sealed">0</b><span>Forecasts sealed</span></div>
+            <div class="tally"><b id="h-trials">0</b><span>Trials</span></div>
+            <div class="tally"><b id="h-scored">0</b><span>Scored</span></div>
+          </div>
+          <div class="hud tr">
+            <div class="switch" role="group" aria-label="How to arrange the wells">
+              <button type="button" data-sort="date" aria-pressed="true">By date</button>
+              <button type="button" data-sort="odds" aria-pressed="false">By odds</button>
+            </div>
+            <div class="switch"><button type="button" id="p-evidence" aria-pressed="false">Evidence only</button></div>
+          </div>
+        </div>
         <div class="scrub">
           <button type="button" id="f-auto" aria-pressed="true">Auto</button>
-          <label for="f-scrub">Sweep</label>
-          <input id="f-scrub" type="range" min="0" max="1000" value="0" aria-label="Move the sweep through time">
+          <label for="f-scrub">Reader</label>
+          <input id="f-scrub" type="range" min="0" max="1000" value="0" aria-label="Move the reader across the plate">
           <span id="f-date"></span>
         </div>
         <figcaption>
-          <span>Each dot is one trial: when it reports, and its chance of success.</span>
-          <span class="key bright">Evidence-backed</span>
-          <span class="key">Record only</span>
-          <span class="key hollow">Already public</span>
+          <span><i class="swatch screened"></i>Evidence-backed</span>
+          <span><i class="swatch unscreened"></i>Record only</span>
+          <span><i class="swatch public"></i>Already public, not counted</span>
+          <span class="hint">Drag to turn. Select a well to open its forecast.</span>
         </figcaption>
       </figure>
     </div>
@@ -449,7 +493,15 @@ footer p { margin: 0 0 8px; max-width: 900px; }
       <div>
         <h2>Don't trust it. <em>Check it.</em></h2>
         <p>The sealed file lists every forecast with its hash. A few lines of code confirm that a forecast is in the file and that the file matches the fingerprint.</p>
-        <a class="btn" id="download" href="#">Download the sealed file</a>
+        <div class="actions">
+          <button class="btn solid" type="button" id="run-check">Run the check in this page</button>
+          <a class="btn" id="download" href="#">Download the sealed file</a>
+        </div>
+        <div class="panel checker">
+          <div class="p-head"><span>Hash tree <i>every forecast folds into one fingerprint</i></span><span>SHA-256</span></div>
+          <canvas id="check-tree" role="img" aria-label="Diagram of the hash tree: each row halves until one fingerprint is left."></canvas>
+          <div class="result" id="check-out">Not run yet. The check runs in your browser and needs nothing from us but the sealed file.</div>
+        </div>
         <div class="root-line"><b>Fingerprint of this record</b><span id="root"></span></div>
         <div class="root-line plain"><b>Outside timestamp</b><span id="stamp"></span></div>
       </div>
@@ -651,294 +703,446 @@ footer p { margin: 0 0 8px; max-width: 900px; }
     $("record").scrollIntoView();
   }
 
-  // The forecast field. Every sealed trial is a dot: left to right is when
-  // it is due to report, bottom to top is its chance of success. A sweep
-  // crosses the field and reads out each evidence-backed trial it passes.
-  (function field() {
-    const cv = $("field");
+  // Header status: the seal and a clock.
+  {
+    const st = (D.seal.stamp || { state: "none" }).state;
+    $("seal-led").className = "led " + (st === "confirmed" ? "ok" : st === "pending" ? "wait" : "");
+    $("seal-text").textContent =
+      `Seal ${D.seal.root.slice(0, 8)} ` +
+      (st === "confirmed" ? "anchored in Bitcoin" : st === "pending" ? "awaiting Bitcoin block" : "not yet timestamped");
+    const tick = () => ($("clock").textContent = new Date().toISOString().slice(11, 19) + " UTC");
+    tick();
+    setInterval(tick, 1000);
+  }
+  $("h-sealed").textContent = D.seal.count;
+  $("h-trials").textContent = D.trials.length;
+  $("h-scored").textContent = D.scored;
+
+  // The plate. Every sealed trial is a well, filled to its chance of success.
+  // Wells run left to right in order of results date; a reader head crosses
+  // the plate and reads out each column. Drawn as a turntable in plain 2D:
+  // with only a turn and a tilt, every tube is a rectangle between two ellipses.
+  (function plate() {
+    const cv = $("plate");
     const ctx = cv.getContext("2d");
     const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const ACCENT = "212, 243, 107";
-    const PAPER = "241, 238, 230";
-    const WARM = "255, 143, 102";
-    const DAY = 864e5;
-    // A stable pseudo-random number in [0, 1) per trial, so dots that share
-    // a date or a probability do not sit exactly on top of each other.
-    const rand = (s) => {
-      let h = 2166136261;
-      for (let i = 0; i < s.length; i++) h = Math.imul(h ^ s.charCodeAt(i), 16777619);
-      return (h >>> 0) / 4294967296;
+    const N = D.trials.length;
+    const COLS = 29;
+    const ROWS = Math.ceil(N / COLS);
+    const TALL = 3.4; // tube height, in well spacings
+    const R = 0.33;
+    const HX = COLS / 2 + 0.55, HZ = ROWS / 2 + 0.55, TH = 0.7;
+    const INK = "11, 18, 16";
+    const DYE = {
+      screened: { side: "#B4F02A", top: "#DCFF8A", edge: "#4F7D00" },
+      unscreened: { side: "#AEBBFF", top: "#D5DCFF", edge: "#4A5FE0" },
+      public: { side: "#FFD0DF", top: "#FF3D7F", edge: "#C4195A" },
     };
-    const start = Date.parse(D.seal.sealedAt.slice(0, 10));
-    const pts = D.trials.map((t) => {
-      const [y, m, d] = t.due.split("-").map(Number);
-      // A month-only date is spread across that month; an exact one barely moves.
-      const when = Date.UTC(y, m - 1, d || 15) + (rand(t.nct) - 0.5) * (d ? 2 : 26) * DAY;
-      return { t, when, p: headline(t) + (rand(t.nct + "y") - 0.5) * 0.024, phase: rand(t.nct + "p") * 6.283, glow: 0, x: 0, y: 0 };
+    const byOdds = [...D.trials].sort((a, b) => headline(b) - headline(a) || (a.nct < b.nct ? -1 : 1));
+    const oddsAt = new Map(byOdds.map((t, i) => [t.nct, i]));
+    const slot = (i) => ({ col: Math.floor(i / ROWS), row: i % ROWS });
+    const wells = D.trials.map((t, i) => {
+      const a = slot(i);
+      const b = slot(oddsAt.get(t.nct));
+      return {
+        t, a, b, glow: 0, X: 0, top: 0, base: 0, depth: 0, rx: 0, ry: 0, px: 0, py: 0,
+        id: String.fromCharCode(65 + a.row) + String(a.col + 1).padStart(2, "0"),
+      };
     });
-    const from = Math.min(start, ...pts.map((q) => q.when)) - 2 * DAY;
-    const to = Math.max(...pts.map((q) => q.when)) + 2 * DAY;
+    const colsOf = { date: [], odds: [] };
+    for (const w of wells) {
+      (colsOf.date[w.a.col] ??= []).push(w);
+      (colsOf.odds[w.b.col] ??= []).push(w);
+    }
+    const order = [...wells];
+    const dateMarks = [];
+    {
+      let prev = "";
+      colsOf.date.forEach((list, c) => {
+        const m = list[0].t.due.slice(0, 7);
+        if (m !== prev) { prev = m; dateMarks.push([c, MONTHS[Number(m.slice(5)) - 1] + " " + m.slice(0, 4)]); }
+      });
+    }
+    for (let i = dateMarks.length - 2; i >= 0; i--) if (dateMarks[i + 1][0] - dateMarks[i][0] < 3) dateMarks.splice(i, 1);
+    const oddsMarks = [];
+    {
+      let prev = 11;
+      colsOf.odds.forEach((list, c) => {
+        const band = Math.floor(headline(list[0].t) * 4 - 1e-9);
+        if (band !== prev && band >= 0) { prev = band; oddsMarks.push([c, `${(band + 1) * 25}% and under`]); }
+      });
+    }
 
-    let W = 0, H = 0;
-    const pad = { l: 46, r: 14, t: 18, b: 30 };
-    const X = (when) => pad.l + ((when - from) / (to - from)) * (W - pad.l - pad.r);
-    const Y = (p) => pad.t + (1 - p) * (H - pad.t - pad.b);
-    function resize() {
-      const dpr = Math.min(devicePixelRatio || 1, 2);
-      W = cv.clientWidth;
-      H = cv.clientHeight;
-      cv.width = W * dpr;
-      cv.height = H * dpr;
+    let W = 0, Hpx = 0, s = 10, cx = 0, cy = 0;
+    let yaw = -0.5, pitch = 0.6;
+    let sort = "date", mix = 0, evidence = false, dim = 0;
+    let auto = !still, head = 0, lastCol = -1;
+    let hover = null, shown = null, drag = null;
+    let mx = -1, my = -1, last = performance.now();
+
+    const proj = (x, y, z, cs, sn, sp, cp) => {
+      const xr = x * cs - z * sn;
+      const zr = x * sn + z * cs;
+      return [cx + s * xr, cy - s * y * cp + s * zr * sp, zr];
+    };
+
+    function fit() {
+      const r = cv.parentElement.getBoundingClientRect();
+      const dpr = Math.min(2, devicePixelRatio || 1);
+      W = r.width; Hpx = r.height;
+      cv.width = Math.round(W * dpr); cv.height = Math.round(Hpx * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      // Fit the whole instrument, from the plate's underside to the reader
+      // gantry, inside the frame, leaving room for the tallies and the labels.
+      const cs = Math.cos(-0.5), sn = Math.sin(-0.5), sp = Math.sin(0.6), cp = Math.cos(0.6);
+      let x0 = 1e9, x1 = -1e9, y0 = 1e9, y1 = -1e9;
+      for (const x of [-HX, HX]) for (const z of [-HZ, HZ]) for (const y of [-TH, TALL + 0.6]) {
+        const X = x * cs - z * sn, Y = -y * cp + (x * sn + z * cs) * sp;
+        x0 = Math.min(x0, X); x1 = Math.max(x1, X); y0 = Math.min(y0, Y); y1 = Math.max(y1, Y);
+      }
+      const mT = W < 560 ? 56 : 34, mB = W < 560 ? 52 : 26, mS = W < 560 ? 10 : 40;
+      s = Math.min((W - mS * 2) / (x1 - x0), (Hpx - mT - mB) / (y1 - y0));
+      cx = W / 2 - (s * (x0 + x1)) / 2;
+      cy = mT + (Hpx - mT - mB) / 2 - (s * (y0 + y1)) / 2;
     }
 
-    // The sweep runs by itself until the scrubber is moved; then it stays put.
-    let manual = null;
-    const scrub = $("f-scrub");
-    const auto = $("f-auto");
-    let shownDate = "";
-
-    // Callouts: numbered notes pinned to real features of the field.
-    const bright = pts.filter((q) => q.t.state === "screened");
-    const shut = pts.filter((q) => q.t.state === "public");
-    const byDay = new Map();
-    for (const q of pts) {
-      const k = Math.round(q.when / DAY);
-      byDay.set(k, (byDay.get(k) ?? 0) + 1);
+    function setReadout(w, mode) {
+      if (!w || (shown === w && $("r-mode").textContent === mode)) return;
+      shown = w;
+      const t = w.t;
+      $("r-well").textContent = w.id;
+      $("r-mode").textContent = mode;
+      $("r-prob").replaceChildren(String(Math.round(headline(t) * 100)), el("small", { textContent: "%" }));
+      $("r-title").textContent = t.title;
+      $("r-sub").textContent = `${t.nct}  ${t.sponsor}`;
+      $("r-due").textContent = day(t.due);
+      $("r-state").replaceChildren(el("i", { className: "swatch " + t.state }), STATE[t.state].split(",")[0]);
+      $("r-leaf").textContent = t.leaf ? t.leaf.slice(0, 10) + "…" + t.leaf.slice(-6) : "in sealed file";
     }
-    const [busyDay, busyCount] = [...byDay].sort((a, b) => b[1] - a[1])[0];
-    const mean = (list, f) => list.reduce((s, q) => s + f(q), 0) / list.length;
-    const centre = { when: mean(bright, (q) => q.when), p: mean(bright, (q) => q.p) };
-    const far = (q) => Math.abs(q.when - centre.when) / DAY / 20 + Math.abs(q.p - centre.p);
-    const NOTES = [
-      bright.length && { at: bright.reduce((a, q) => (far(q) < far(a) ? q : a)), text: `EVIDENCE-BACKED / ${bright.length}`, dx: 70, dy: 64 },
-      { at: { when: busyDay * DAY, p: 0.14 }, text: `${busyCount} DUE AROUND ${day(new Date(busyDay * DAY).toISOString().slice(0, 10)).toUpperCase()}`, dx: 64, dy: -46 },
-      shut.length && { at: shut.reduce((a, q) => (q.when > a.when ? q : a)), text: `ALREADY PUBLIC / ${shut.length} EXCLUDED`, dx: -64, dy: 58 },
-    ].filter(Boolean);
 
-    let reading = pts.find((q) => q.t === pick);
-    let shownReading = null;
-    let hover = null;
-    let lastSweep = 0;
-    let lastNow = 0;
+    function readColumn(c) {
+      const list = colsOf[sort][c];
+      if (!list) return;
+      for (const w of list) w.glow = 1;
+      const pickOne = list.find((w) => w.t.state === "screened") ?? list[Math.floor(list.length / 2)];
+      if (!hover) setReadout(pickOne, "Reader head");
+      const first = list[0].t, lastT = list[list.length - 1].t;
+      $("f-date").textContent =
+        sort === "date" ? `Due ${day(first.due)} to ${day(lastT.due)}` : `Odds ${pct(headline(lastT))} to ${pct(headline(first))}`;
+    }
+
+    function tube(w, X, Yb, sp, cp) {
+      const t = w.t, c = DYE[t.state];
+      const rx = s * R, ry = rx * sp;
+      const hl = headline(t) * TALL * s * cp, hg = TALL * s * cp;
+      const faded = evidence || dim > 0.01 ? (t.state !== "screened" ? 1 - 0.86 * dim : 1) : 1;
+      const lit = w.glow;
+      ctx.globalAlpha = faded;
+      // The glass.
+      ctx.strokeStyle = `rgba(${INK}, 0.1)`;
+      ctx.lineWidth = 0.75;
+      ctx.beginPath();
+      ctx.moveTo(X - rx, Yb); ctx.lineTo(X - rx, Yb - hg);
+      ctx.moveTo(X + rx, Yb); ctx.lineTo(X + rx, Yb - hg);
+      ctx.stroke();
+      if (t.state === "public") {
+        // Emptied: the answer was already out, so this well holds nothing.
+        ctx.fillStyle = c.side;
+        ctx.beginPath(); ctx.ellipse(X, Yb, rx, ry, 0, 0, 6.2832); ctx.fill();
+        ctx.strokeStyle = c.top; ctx.lineWidth = 1.4;
+        ctx.beginPath(); ctx.ellipse(X, Yb - hg, rx, ry, 0, 0, 6.2832); ctx.stroke();
+      } else {
+        ctx.fillStyle = c.side;
+        ctx.beginPath();
+        ctx.moveTo(X - rx, Yb - hl); ctx.lineTo(X - rx, Yb);
+        ctx.ellipse(X, Yb, rx, ry, 0, Math.PI, 0, true);
+        ctx.lineTo(X + rx, Yb - hl);
+        ctx.closePath(); ctx.fill();
+        if (rx > 2.5) {
+          ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+          ctx.fillRect(X - rx * 0.62, Yb - hl, rx * 0.3, hl);
+          ctx.fillStyle = `rgba(${INK}, 0.1)`;
+          ctx.fillRect(X + rx * 0.45, Yb - hl, rx * 0.55, hl);
+        }
+        ctx.strokeStyle = c.edge; ctx.lineWidth = 0.75;
+        ctx.beginPath();
+        ctx.moveTo(X - rx, Yb - hl); ctx.lineTo(X - rx, Yb);
+        ctx.ellipse(X, Yb, rx, ry, 0, Math.PI, 0, true);
+        ctx.lineTo(X + rx, Yb - hl);
+        ctx.stroke();
+        ctx.beginPath(); ctx.ellipse(X, Yb - hl, rx, ry, 0, 0, 6.2832);
+        ctx.fillStyle = c.top; ctx.fill();
+        if (lit > 0.02) { ctx.globalAlpha = faded * lit; ctx.fillStyle = "#FFFFFF"; ctx.fill(); ctx.globalAlpha = faded; }
+        ctx.stroke();
+        ctx.strokeStyle = `rgba(${INK}, 0.16)`;
+        ctx.beginPath(); ctx.ellipse(X, Yb - hg, rx, ry, 0, 0, 6.2832); ctx.stroke();
+      }
+      ctx.globalAlpha = 1;
+      w.X = X; w.base = Yb; w.top = t.state === "public" ? Yb - hg : Yb - hl; w.rx = rx; w.ry = ry;
+    }
+
+    function callout(w, strong) {
+      const text = `${w.id}  ${w.t.nct}  ${pct(headline(w.t))}`;
+      ctx.font = '500 10.5px "Martian Mono", ui-monospace, monospace';
+      const tw = ctx.measureText(text).width + 16;
+      const tipY = w.top - w.ry - 3;
+      let bx = w.X + 26;
+      const by = Math.max(58, tipY - 44);
+      if (bx + tw > W - 8) bx = w.X - 26 - tw;
+      ctx.strokeStyle = `rgba(${INK}, 1)`; ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(w.X, tipY); ctx.lineTo(w.X, by + 11); ctx.lineTo(bx > w.X ? bx : bx + tw, by + 11);
+      ctx.stroke();
+      ctx.beginPath(); ctx.arc(w.X, tipY, 2.5, 0, 6.2832); ctx.fillStyle = `rgba(${INK}, 1)`; ctx.fill();
+      ctx.fillStyle = strong ? `rgba(${INK}, 1)` : "#FFFFFF";
+      ctx.fillRect(bx, by, tw, 22); ctx.strokeRect(bx + 0.5, by + 0.5, tw - 1, 21);
+      ctx.fillStyle = strong ? "#B4F02A" : `rgba(${INK}, 1)`;
+      ctx.textBaseline = "middle"; ctx.textAlign = "left";
+      ctx.fillText(text, bx + 8, by + 11.5);
+    }
 
     function frame(now) {
-      const dt = Math.min(now - lastNow, 100);
-      lastNow = now;
-      ctx.clearRect(0, 0, W, H);
-      ctx.font = '11px "IBM Plex Mono", ui-monospace, monospace';
-      ctx.textBaseline = "middle";
+      const dt = Math.min(0.05, (now - last) / 1000);
+      last = now;
+      mix += ((sort === "odds" ? 1 : 0) - mix) * Math.min(1, dt * 3.2);
+      dim += ((evidence ? 1 : 0) - dim) * Math.min(1, dt * 6);
+      if (auto && !drag) head = (head + (dt * COLS) / 44) % COLS;
+      const hc = Math.min(COLS - 1, Math.floor(head));
+      if (hc !== lastCol) { lastCol = hc; readColumn(hc); }
+      if (auto) $("f-scrub").value = Math.round((head / COLS) * 1000);
 
-      // Grid: probability lines and month marks.
-      ctx.lineWidth = 1;
-      for (const p of [0, 0.25, 0.5, 0.75, 1]) {
-        const y = Math.round(Y(p)) + 0.5;
-        ctx.strokeStyle = `rgba(${PAPER}, ${p === 0.5 ? 0.16 : 0.07})`;
-        ctx.beginPath();
-        ctx.moveTo(pad.l, y);
-        ctx.lineTo(W - pad.r, y);
-        ctx.stroke();
-        ctx.fillStyle = `rgba(${PAPER}, 0.42)`;
-        ctx.textAlign = "right";
-        ctx.fillText(pct(p), pad.l - 10, y);
-      }
-      ctx.textAlign = "left";
-      const first = new Date(from);
-      for (let m = new Date(Date.UTC(first.getUTCFullYear(), first.getUTCMonth() + 1, 1)); m.getTime() < to; m.setUTCMonth(m.getUTCMonth() + 1)) {
-        const x = Math.round(X(m.getTime())) + 0.5;
-        ctx.strokeStyle = `rgba(${PAPER}, 0.07)`;
-        ctx.beginPath();
-        ctx.moveTo(x, pad.t);
-        ctx.lineTo(x, H - pad.b);
-        ctx.stroke();
-        ctx.fillStyle = `rgba(${PAPER}, 0.42)`;
-        // A month that starts at the very edge has no room for its label.
-        if (x < W - 80) ctx.fillText(`${MONTHS[m.getUTCMonth()]} ${m.getUTCFullYear()}`, x + 6, H - pad.b / 2);
-      }
+      const sway = still || drag ? 0 : 0.07 * Math.sin(now / 6100);
+      const cs = Math.cos(yaw + sway), sn = Math.sin(yaw + sway);
+      const sp = Math.sin(pitch), cp = Math.cos(pitch);
+      const P = (x, y, z) => proj(x, y, z, cs, sn, sp, cp);
+      ctx.clearRect(0, 0, W, Hpx);
 
-      // The sweep: a bright line with a fading trail.
-      const span = W - pad.l - pad.r;
-      const frac = manual ?? (still ? null : (now / 15000) % 1);
-      const sweep = frac == null ? -1 : pad.l + frac * span;
-      if (frac != null) {
-        if (manual == null) scrub.value = Math.round(frac * 1000);
-        const label = "Due by " + day(new Date(from + frac * (to - from)).toISOString().slice(0, 10));
-        if (label !== shownDate) $("f-date").textContent = shownDate = label;
-      }
-      if (sweep >= 0) {
-        const trail = ctx.createLinearGradient(sweep - 160, 0, sweep, 0);
-        trail.addColorStop(0, `rgba(${ACCENT}, 0)`);
-        trail.addColorStop(1, `rgba(${ACCENT}, 0.11)`);
-        ctx.fillStyle = trail;
-        ctx.fillRect(Math.max(pad.l, sweep - 160), pad.t, Math.min(160, sweep - pad.l), H - pad.t - pad.b);
-        ctx.strokeStyle = `rgba(${ACCENT}, 0.75)`;
+      // The plate body.
+      const hx = HX, hz = HZ, th = TH;
+      const corners = [[-hx, -hz], [hx, -hz], [hx, hz], [-hx, hz]];
+      const topQ = corners.map(([x, z]) => P(x, 0, z));
+      const botQ = corners.map(([x, z]) => P(x, -th, z));
+      ctx.lineJoin = "round"; ctx.lineWidth = 1; ctx.strokeStyle = `rgba(${INK}, 0.9)`;
+      for (let i = 0; i < 4; i++) {
+        const j = (i + 1) % 4;
+        ctx.fillStyle = "#DCE1DA";
         ctx.beginPath();
-        ctx.moveTo(sweep, pad.t - 6);
-        ctx.lineTo(sweep, H - pad.b);
-        ctx.stroke();
+        ctx.moveTo(topQ[i][0], topQ[i][1]); ctx.lineTo(topQ[j][0], topQ[j][1]);
+        ctx.lineTo(botQ[j][0], botQ[j][1]); ctx.lineTo(botQ[i][0], botQ[i][1]);
+        ctx.closePath(); ctx.fill(); ctx.stroke();
       }
+      ctx.fillStyle = "#FFFFFF";
+      ctx.beginPath();
+      topQ.forEach((p, i) => (i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1])));
+      ctx.closePath(); ctx.fill(); ctx.stroke();
 
-      // Dots, dim ones first so the evidence-backed ones sit on top.
-      for (const pass of [false, true]) {
-        for (const q of pts) {
-          const bright = q.t.state === "screened";
-          if (bright !== pass) continue;
-          const drift = still ? 0 : 1;
-          q.x = X(q.when) + Math.cos(now / 1900 + q.phase) * 1.6 * drift;
-          q.y = Y(q.p) + Math.sin(now / 1400 + q.phase) * 2.4 * drift;
-          if (!still) {
-            // By hand, the sweep lights whatever it is resting on.
-            const crossed = manual != null ? Math.abs(q.x - sweep) < 4 : lastSweep <= sweep ? q.x > lastSweep && q.x <= sweep : q.x <= sweep;
-            if (crossed) {
-              q.glow = 1;
-              if (bright) reading = q;
-            }
-            q.glow = Math.max(0, q.glow - dt / 2200);
-          }
-          const r = (bright ? 3.4 : 1.9) + q.glow * (bright ? 3 : 1.6);
-          ctx.beginPath();
-          ctx.arc(q.x, q.y, r, 0, 6.283);
-          if (q.t.state === "public") {
-            ctx.strokeStyle = `rgba(${WARM}, ${0.55 + q.glow * 0.45})`;
-            ctx.lineWidth = 1.3;
-            ctx.stroke();
-          } else if (bright) {
-            ctx.fillStyle = `rgba(${ACCENT}, ${0.85 + q.glow * 0.15})`;
-            ctx.fill();
-            if (q.glow > 0.02) {
-              ctx.beginPath();
-              ctx.arc(q.x, q.y, r + 5 + (1 - q.glow) * 10, 0, 6.283);
-              ctx.strokeStyle = `rgba(${ACCENT}, ${q.glow * 0.5})`;
-              ctx.lineWidth = 1;
-              ctx.stroke();
-            }
-          } else {
-            ctx.fillStyle = `rgba(${PAPER}, ${0.26 + q.glow * 0.6})`;
-            ctx.fill();
-          }
+      // Axis marks along the near edge: months by date, odds by odds.
+      const side = cs >= 0 ? 1 : -1;
+      ctx.font = '400 9.5px "Martian Mono", ui-monospace, monospace';
+      ctx.textAlign = "left"; ctx.textBaseline = "top";
+      const marks = (list, alpha) => {
+        if (alpha < 0.03) return;
+        ctx.globalAlpha = alpha;
+        for (const [c, text] of list) {
+          const x = c - (COLS - 1) / 2 - 0.5;
+          const p = P(x, -th, side * hz), q = P(x, -th, side * (hz + 1.1));
+          ctx.strokeStyle = `rgba(${INK}, 0.9)`;
+          ctx.beginPath(); ctx.moveTo(p[0], p[1]); ctx.lineTo(q[0], q[1]); ctx.stroke();
+          ctx.fillStyle = `rgba(${INK}, 0.75)`;
+          ctx.fillText(text, q[0] + 4, q[1] + 2);
+        }
+        ctx.globalAlpha = 1;
+      };
+      marks(dateMarks, 1 - mix);
+      marks(oddsMarks, mix);
+
+      // Where the reader is, on the plate surface.
+      const hxw = head - 0.5 - (COLS - 1) / 2;
+      const f0 = P(hxw, 0, -hz), f1 = P(hxw, 0, hz);
+      ctx.strokeStyle = `rgba(${INK}, 0.9)`; ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(f0[0], f0[1]); ctx.lineTo(f1[0], f1[1]); ctx.stroke();
+
+      // Wells, far to near.
+      for (const w of wells) {
+        const col = w.a.col + (w.b.col - w.a.col) * mix, row = w.a.row + (w.b.row - w.a.row) * mix;
+        const p = P(col - (COLS - 1) / 2, 0, row - (ROWS - 1) / 2);
+        w.px = p[0]; w.py = p[1]; w.depth = p[2];
+        if (w.glow > 0) w.glow = Math.max(0, w.glow - dt * 1.5);
+      }
+      order.sort((a, b) => a.depth - b.depth);
+      for (const w of order) tube(w, w.px, w.py, sp, cp);
+
+      // The reader head: a gantry over the column being read.
+      const gy = TALL + 0.55;
+      const g0 = P(hxw, gy, -hz), g1 = P(hxw, gy, hz);
+      ctx.fillStyle = "rgba(180, 240, 42, 0.13)";
+      ctx.beginPath();
+      ctx.moveTo(f0[0], f0[1]); ctx.lineTo(g0[0], g0[1]); ctx.lineTo(g1[0], g1[1]); ctx.lineTo(f1[0], f1[1]);
+      ctx.closePath(); ctx.fill();
+      ctx.strokeStyle = `rgba(${INK}, 1)`; ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(f0[0], f0[1]); ctx.lineTo(g0[0], g0[1]); ctx.moveTo(f1[0], f1[1]); ctx.lineTo(g1[0], g1[1]);
+      ctx.stroke();
+      ctx.lineWidth = 4; ctx.lineCap = "round";
+      ctx.beginPath(); ctx.moveTo(g0[0], g0[1]); ctx.lineTo(g1[0], g1[1]); ctx.stroke();
+      ctx.lineCap = "butt";
+
+      // Pointer.
+      if (!drag && mx >= 0) {
+        let hit = null;
+        for (let i = order.length - 1; i >= 0; i--) {
+          const w = order[i];
+          if (Math.abs(mx - w.X) <= w.rx + 1 && my >= w.top - w.ry - 1 && my <= w.base + w.ry + 1) { hit = w; break; }
+        }
+        if (hit !== hover) {
+          hover = hit;
+          cv.style.cursor = hit ? "pointer" : "";
+          if (hit) setReadout(hit, "Pointer");
         }
       }
-      lastSweep = sweep;
+      if (hover) callout(hover, true);
+      else if (shown) callout(shown, false);
 
-      // Callouts, with a leader line from each feature to its label.
-      if (W >= 700) {
-        ctx.font = '10.5px "IBM Plex Mono", ui-monospace, monospace';
-        NOTES.forEach((n, i) => {
-          const ax = X(n.at.when), ay = Y(n.at.p);
-          const no = `0${i + 1}`;
-          const w = ctx.measureText(`${no}  ${n.text}`).width + 16;
-          const right = n.dx > 0;
-          const lx = Math.min(Math.max(ax + n.dx, pad.l + (right ? 0 : w)), W - pad.r - (right ? w : 0));
-          const ly = Math.min(Math.max(ay + n.dy, pad.t + 12), H - pad.b - 12);
-          ctx.strokeStyle = `rgba(${PAPER}, 0.45)`;
-          ctx.lineWidth = 1;
-          ctx.beginPath();
-          ctx.moveTo(ax, ay);
-          ctx.lineTo(lx, ly);
-          ctx.stroke();
-          ctx.beginPath();
-          ctx.arc(ax, ay, 2.5, 0, 6.283);
-          ctx.fillStyle = `rgba(${PAPER}, 0.8)`;
-          ctx.fill();
-          const bx = right ? lx : lx - w;
-          ctx.fillStyle = "rgba(8, 10, 9, 0.88)";
-          ctx.fillRect(bx, ly - 10, w, 20);
-          ctx.textAlign = "left";
-          ctx.fillStyle = `rgb(${ACCENT})`;
-          ctx.fillText(no, bx + 8, ly);
-          ctx.fillStyle = `rgba(${PAPER}, 0.85)`;
-          ctx.fillText(n.text, bx + 8 + ctx.measureText(no + "  ").width, ly);
-        });
-      }
-
-      // The trial being read out, named in the bar above the field.
-      if (reading && reading !== shownReading) {
-        shownReading = reading;
-        const t = reading.t;
-        // The probability leads, so a narrow screen cuts the sponsor, not the number.
-        $("f-now").replaceChildren(
-          el("span", { className: "lit", textContent: pct(headline(t)) }),
-          `  ${t.nct}  ${short(t.sponsor.split(",")[0], 28)}`,
-        );
-      }
-
-      // Hover: a ring and a label for the nearest dot.
-      if (hover) {
-        const t = hover.t;
-        ctx.beginPath();
-        ctx.arc(hover.x, hover.y, 9, 0, 6.283);
-        ctx.strokeStyle = `rgba(${PAPER}, 0.9)`;
-        ctx.lineWidth = 1.2;
-        ctx.stroke();
-        const lines = [short(t.title, 52), `${pct(headline(t))}   due ${day(t.due)}   ${short(t.sponsor.split(",")[0], 26)}`];
-        ctx.font = '12px "IBM Plex Mono", ui-monospace, monospace';
-        const w = Math.max(...lines.map((s) => ctx.measureText(s).width)) + 24;
-        const bx = Math.min(Math.max(hover.x + 14, 6), W - w - 6);
-        const by = hover.y > 70 ? hover.y - 62 : hover.y + 16;
-        ctx.fillStyle = "#131816";
-        ctx.strokeStyle = "#3A443E";
-        ctx.beginPath();
-        ctx.rect(Math.round(bx) + 0.5, Math.round(by) + 0.5, w, 46);
-        ctx.fill();
-        ctx.stroke();
-        ctx.textAlign = "left";
-        ctx.fillStyle = `rgb(${PAPER})`;
-        ctx.fillText(lines[0], bx + 12, by + 16);
-        ctx.fillStyle = `rgb(${ACCENT})`;
-        ctx.fillText(lines[1], bx + 12, by + 32);
-      }
-
-      if (!still) requestAnimationFrame(frame);
+      requestAnimationFrame(frame);
     }
 
-    const nearest = (e, reach) => {
-      const box = cv.getBoundingClientRect();
-      const mx = e.clientX - box.left;
-      const my = e.clientY - box.top;
-      let best = null;
-      let bestD = reach * reach;
-      for (const q of pts) {
-        // Evidence-backed dots win ties, since they are the ones with a brief.
-        const d = (q.x - mx) ** 2 + (q.y - my) ** 2 - (q.t.state === "screened" ? 30 : 0);
-        if (d < bestD) {
-          bestD = d;
-          best = q;
-        }
+    // Controls.
+    const point = (e) => { const r = cv.getBoundingClientRect(); mx = e.clientX - r.left; my = e.clientY - r.top; };
+    cv.addEventListener("pointermove", (e) => {
+      point(e);
+      if (drag) {
+        const dx = e.clientX - drag.x, dy = e.clientY - drag.y;
+        if (Math.abs(dx) + Math.abs(dy) > 4) drag.moved = true;
+        yaw = Math.max(-1.25, Math.min(1.25, drag.yaw + dx * 0.006));
+        pitch = Math.max(0.3, Math.min(1.15, drag.pitch + dy * 0.005));
       }
-      return best;
-    };
-    cv.addEventListener("mousemove", (e) => {
-      hover = nearest(e, 16);
-      cv.style.cursor = hover ? "pointer" : "crosshair";
-      if (still) frame(0);
     });
-    cv.addEventListener("mouseleave", () => {
-      hover = null;
-      if (still) frame(0);
+    cv.addEventListener("pointerdown", (e) => {
+      point(e);
+      drag = { x: e.clientX, y: e.clientY, yaw, pitch, moved: false, hit: hover };
+      cv.setPointerCapture(e.pointerId);
+      cv.classList.add("dragging");
     });
-    cv.addEventListener("click", (e) => {
-      const q = nearest(e, 24);
-      if (q) showTrial(q.t);
+    cv.addEventListener("pointerup", () => {
+      if (drag && !drag.moved && drag.hit) showTrial(drag.hit.t);
+      drag = null;
+      cv.classList.remove("dragging");
     });
-    scrub.addEventListener("input", () => {
-      manual = scrub.value / 1000;
-      auto.setAttribute("aria-pressed", "false");
-      if (still) frame(0);
-    });
-    auto.addEventListener("click", () => {
-      manual = manual == null ? scrub.value / 1000 : null;
-      auto.setAttribute("aria-pressed", String(manual == null));
-      if (still) frame(0);
-    });
+    cv.addEventListener("pointercancel", () => { drag = null; cv.classList.remove("dragging"); });
+    cv.addEventListener("pointerleave", () => { if (!drag) { mx = my = -1; hover = null; } });
 
-    // The plot stretches with the first screen, so follow its size, not the window's.
-    new ResizeObserver(() => {
-      resize();
-      if (still) frame(0);
-    }).observe(cv.parentElement);
-    resize();
-    if (still) document.fonts.ready.then(() => frame(0));
+    function setAuto(on) {
+      auto = on && !still;
+      $("f-auto").setAttribute("aria-pressed", String(auto));
+    }
+    $("f-auto").addEventListener("click", () => setAuto(!auto));
+    $("f-scrub").addEventListener("input", (e) => {
+      setAuto(false);
+      head = (Number(e.target.value) / 1000) * (COLS - 0.001);
+    });
+    for (const b of document.querySelectorAll("[data-sort]")) {
+      b.addEventListener("click", () => {
+        sort = b.dataset.sort;
+        lastCol = -1;
+        for (const o of document.querySelectorAll("[data-sort]")) o.setAttribute("aria-pressed", String(o === b));
+      });
+    }
+    $("p-evidence").addEventListener("click", () => {
+      evidence = !evidence;
+      $("p-evidence").setAttribute("aria-pressed", String(evidence));
+    });
+    setAuto(true);
+
+    new ResizeObserver(fit).observe(cv.parentElement);
+    fit();
     requestAnimationFrame(frame);
+  })();
+
+  // The check, run in this page: rehash every forecast in the sealed file,
+  // fold the hashes pair by pair, and compare the result with the fingerprint.
+  (function checker() {
+    const btn = $("run-check"), out = $("check-out"), cv = $("check-tree");
+    const ctx = cv.getContext("2d");
+    const hex = (buf) => [...new Uint8Array(buf)].map((b) => b.toString(16).padStart(2, "0")).join("");
+    const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+    const sizes = [D.seal.count];
+    for (let n = D.seal.count; n > 1; ) sizes.push((n = Math.ceil(n / 2)));
+    let done = 0, ok = null;
+
+    function drawTree() {
+      const r = cv.getBoundingClientRect();
+      const dpr = Math.min(2, devicePixelRatio || 1);
+      cv.width = Math.round(r.width * dpr); cv.height = Math.round(r.height * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const W = r.width, H = r.height, padX = 14, top = 16, gap = (H - top - 26) / (sizes.length - 1);
+      const x = (n, j) => padX + ((W - padX * 2) * (j + 0.5)) / n;
+      ctx.clearRect(0, 0, W, H);
+      sizes.forEach((n, i) => {
+        const y = top + i * gap, live = i < done;
+        if (i + 1 < sizes.length) {
+          ctx.lineWidth = 0.75;
+          ctx.strokeStyle = i + 1 < done ? "rgba(11, 18, 16, 0.55)" : "rgba(11, 18, 16, 0.1)";
+          ctx.beginPath();
+          for (let j = 0; j < n; j++) { ctx.moveTo(x(n, j), y); ctx.lineTo(x(sizes[i + 1], j >> 1), y + gap); }
+          ctx.stroke();
+        }
+        const size = Math.max(1.2, Math.min(7, ((W - padX * 2) / n) * 0.7));
+        const isRoot = i === sizes.length - 1;
+        for (let j = 0; j < n; j++) {
+          ctx.fillStyle = !live ? "#CDD3CC" : isRoot ? (ok === false ? "#FF3D7F" : "#B4F02A") : "#0B1210";
+          const q = isRoot ? 12 : size;
+          ctx.fillRect(x(n, j) - q / 2, y - q / 2, q, q);
+          if (isRoot && live) { ctx.strokeStyle = "#0B1210"; ctx.lineWidth = 1; ctx.strokeRect(x(n, j) - q / 2, y - q / 2, q, q); }
+        }
+      });
+    }
+    new ResizeObserver(drawTree).observe(cv);
+    drawTree();
+
+    btn.addEventListener("click", async () => {
+      btn.disabled = true; done = 0; ok = null; out.className = "result";
+      out.textContent = "Downloading the sealed file…";
+      drawTree();
+      try {
+        const seal = await (await fetch(`sealed/${D.seal.name}.json`, { cache: "no-store" })).json();
+        const enc = new TextEncoder();
+        let level = [], wrong = 0;
+        for (const f of seal.forecasts) {
+          const { nct, method, probability, model, madeAt } = f;
+          const h = await crypto.subtle.digest("SHA-256", enc.encode(JSON.stringify({ nct, method, probability, model, madeAt })));
+          if (hex(h) !== f.leaf) wrong++;
+          level.push(new Uint8Array(h));
+        }
+        done = 1; drawTree();
+        out.textContent = `Rehashed ${level.length} forecasts. Folding them into one fingerprint…`;
+        while (level.length > 1) {
+          const next = [];
+          for (let i = 0; i < level.length; i += 2) {
+            const a = level[i], b = level[i + 1] ?? level[i];
+            const pair = new Uint8Array(a.length + b.length);
+            pair.set(a); pair.set(b, a.length);
+            next.push(new Uint8Array(await crypto.subtle.digest("SHA-256", pair)));
+          }
+          level = next; done++;
+          drawTree();
+          await wait(110);
+        }
+        const root = hex(level[0]);
+        ok = wrong === 0 && root === D.seal.root && root === seal.root;
+        drawTree();
+        out.className = "result " + (ok ? "ok" : "bad");
+        out.textContent = ok
+          ? `All ${seal.forecasts.length} forecasts match their hashes, and the fingerprint rebuilt in your browser matches the published one: ${root.slice(0, 16)}…`
+          : wrong
+            ? `${wrong} of ${seal.forecasts.length} forecasts do not match their hashes. The record has been changed.`
+            : `The rebuilt fingerprint ${root.slice(0, 16)}… does not match the published one. The record has been changed.`;
+      } catch (err) {
+        out.className = "result bad";
+        out.textContent = "The check could not run here: " + (err && err.message ? err.message : "unknown error") + ". Use the scripts instead.";
+      }
+      btn.disabled = false;
+      btn.textContent = "Run it again";
+    });
   })();
 
   // Verification snippets.

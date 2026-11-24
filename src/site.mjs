@@ -19,6 +19,7 @@ const byNct = (list) => new Map(list.filter((r) => !r.error).map((r) => [r.nct, 
 
 const seal = JSON.parse(readFileSync(`data/sealed/${sealName}.json`, "utf8"));
 const sealed = new Set(seal.forecasts.map((f) => `${f.nct} ${f.method}`));
+const leafOf = new Map(seal.forecasts.map((f) => [`${f.nct} ${f.method}`, f.leaf]));
 const base = byNct(rows("data/live_results.jsonl"));
 const researched = byNct(rows("data/live_researched_results.jsonl"));
 const briefs = byNct(rows("data/research_results.jsonl"));
@@ -47,6 +48,8 @@ for (const c of rows("data/live_cases.jsonl")) {
     rationale: (r ?? b).rationale,
     sources: r ? (brief?.sources ?? []).length : 0,
     state: alreadyPublic ? "public" : r ? "screened" : "unscreened",
+    // The sealed hash of the forecast the site shows for this trial.
+    leaf: leafOf.get(`${c.nct} ${r ? "live_researched" : "live"}`) ?? null,
   });
 }
 trials.sort((a, b) => (a.due < b.due ? -1 : a.due > b.due ? 1 : a.nct < b.nct ? -1 : 1));
