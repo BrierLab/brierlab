@@ -1,0 +1,1012 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brier Lab: every drug trial, called in advance</title>
+<meta name="description" content="Brier Lab forecasts whether drug trials will meet their primary endpoint, seals each forecast before the result is known, and scores itself in public.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="canonical" href="https://brierlab.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Brier Lab">
+<meta property="og:url" content="https://brierlab.com/">
+<meta property="og:title" content="Brier Lab: every drug trial, called in advance">
+<meta property="og:description" content="Forecasts of whether drug trials will meet their primary endpoint, sealed before the result is known and scored in public.">
+<meta property="og:image" content="https://brierlab.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0C0F0D">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0C0F0D;
+  --plate: #131816;
+  --deep: #080A09;
+  --rule: #262E29;
+  --engrave: #8C978F;
+  --paper: #F1EEE6;
+  --accent: #D4F36B;
+  --warm: #FF8F66;
+  --serif: "Instrument Serif", "Times New Roman", serif;
+  --sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", monospace;
+  --wrap: 100%;
+  --grad: linear-gradient(120deg, #D4F36B 0%, #8FF3B4 52%, #6FE3F2 100%);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--paper);
+  font: 400 17px/1.6 var(--sans);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+.wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 clamp(20px, 3.4vw, 56px); }
+.mono { font-family: var(--mono); }
+.lit { color: var(--accent); }
+
+/* Header */
+header {
+  position: sticky; top: 0; z-index: 20;
+  background: rgba(12, 15, 13, 0.88);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--rule);
+}
+header .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font: 400 29px/1 var(--serif); color: var(--paper); }
+.brand svg { width: 32px; height: 32px; }
+nav { display: flex; align-items: center; gap: 28px; }
+nav a { text-decoration: none; font-size: 15px; color: var(--engrave); transition: color .15s; }
+nav a:hover { color: var(--paper); }
+nav a:not(.btn) { font: 400 12.5px/1 var(--mono); text-transform: uppercase; letter-spacing: 0.1em; }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  height: 46px; padding: 0 22px;
+  border-radius: 12px; border: 1px solid rgba(241, 238, 230, 0.16);
+  /* Glass: a translucent pane that blurs what is behind it, lit along the top edge. */
+  background: linear-gradient(180deg, rgba(241, 238, 230, 0.11), rgba(241, 238, 230, 0.03));
+  -webkit-backdrop-filter: blur(16px) saturate(170%);
+  backdrop-filter: blur(16px) saturate(170%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), inset 0 -1px 0 rgba(0, 0, 0, 0.35), 0 10px 28px -10px rgba(0, 0, 0, 0.6);
+  color: var(--paper);
+  font: 500 15px/1 var(--sans); text-decoration: none; cursor: pointer;
+  transition: border-color .2s, background-position .5s ease, transform .2s, box-shadow .2s;
+}
+.btn:hover { border-color: rgba(241, 238, 230, 0.4); transform: translateY(-1px); }
+.btn.solid {
+  background: var(--grad); background-size: 190% 100%; background-position: 0 0;
+  color: var(--ink); font-weight: 600; border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6), inset 0 -3px 8px rgba(12, 15, 13, 0.16), 0 12px 34px -10px rgba(143, 243, 180, 0.55);
+}
+.btn.solid:hover { background-position: 100% 0; border-color: rgba(255, 255, 255, 0.7); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7), inset 0 -3px 8px rgba(12, 15, 13, 0.16), 0 16px 40px -10px rgba(111, 227, 242, 0.65); }
+.btn.small { height: 38px; padding: 0 16px; font-size: 14px; border-radius: 10px; }
+nav .btn.solid { color: var(--ink); }
+
+/* Hero */
+/* The hero fills the first screen: headline on top, the field takes the rest. */
+.hero { position: relative; overflow: hidden; }
+.hero::before {
+  content: ""; position: absolute; inset: -20% -10% auto -10%; height: 90%; pointer-events: none;
+  background:
+    radial-gradient(38% 55% at 78% 30%, rgba(111, 227, 242, 0.13), transparent 70%),
+    radial-gradient(34% 50% at 16% 20%, rgba(212, 243, 107, 0.10), transparent 70%);
+}
+.hero .wrap { position: relative; display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(28px, 3.6vw, 72px); align-items: stretch; min-height: calc(100svh - 65px); padding-top: clamp(24px, 4.5vh, 48px); padding-bottom: clamp(20px, 3.5vh, 36px); }
+.hero-top { display: flex; flex-direction: column; justify-content: center; gap: clamp(20px, 3.4vh, 34px); }
+.live { display: inline-flex; align-items: center; gap: 10px; font: 400 13px/1 var(--mono); color: var(--engrave); margin-bottom: 22px; text-transform: uppercase; letter-spacing: 0.08em; }
+.dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px rgba(212, 243, 107, 0.14); flex: none; }
+h1, h2 { font-family: var(--serif); font-weight: 400; margin: 0; }
+h1 { font-size: clamp(46px, min(5.3vw, 13.5vh), 108px); line-height: 0.96; letter-spacing: -0.02em; }
+h1 em { display: block; }
+h1 em, h2 em { font-style: italic; color: var(--accent); }
+h2 { font-size: clamp(40px, 5vw, 64px); line-height: 1; letter-spacing: -0.015em; }
+.hero p.lede { font-size: 19px; line-height: 1.5; margin: 0 0 26px; max-width: 520px; color: #D8D6CD; }
+.actions { display: flex; gap: 12px; flex-wrap: wrap; }
+/* A plain statement of where the lab stands. */
+.lab-status { margin: 26px 0 0; max-width: 520px; padding: 12px 16px; border: 1px solid var(--rule); border-left: 2px solid var(--warm); border-radius: 0 8px 8px 0; background: rgba(8, 10, 9, 0.5); font: 400 12.5px/1.65 var(--mono); color: var(--engrave); }
+.lab-status b { color: var(--paper); font-weight: 500; }
+/* The scrubber under the field moves the sweep by hand. */
+.scrub { display: flex; align-items: center; gap: 14px; padding: 9px 16px; border-top: 1px solid var(--rule); font: 400 11.5px/1 var(--mono); color: var(--engrave); text-transform: uppercase; letter-spacing: 0.08em; }
+.scrub input { flex: 1; min-width: 0; accent-color: #8FF3B4; height: 20px; }
+.scrub button { border: 1px solid var(--rule); border-radius: 6px; background: none; color: var(--engrave); font: inherit; letter-spacing: inherit; text-transform: inherit; padding: 6px 10px; cursor: pointer; }
+.scrub button[aria-pressed="true"] { background: var(--grad); color: var(--ink); border-color: transparent; }
+.scrub #f-date { min-width: 150px; text-align: right; color: var(--paper); }
+/* Lab notebook */
+.log { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--rule); }
+.log li { display: grid; grid-template-columns: 104px 136px minmax(0, 1fr); gap: 20px; padding: 22px 0; border-bottom: 1px solid var(--rule); align-items: baseline; }
+.log time { font: 400 12.5px/1.4 var(--mono); color: var(--engrave); }
+.log .kind { display: inline-flex; align-items: center; gap: 9px; font: 400 11.5px/1.4 var(--mono); text-transform: uppercase; letter-spacing: 0.1em; color: var(--paper); }
+.log .kind::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--engrave); flex: none; }
+.log .sealed { color: var(--accent); } .log .sealed::before { background: var(--accent); }
+.log .negative { color: var(--warm); } .log .negative::before { background: var(--warm); }
+.log .open { color: var(--engrave); } .log .open::before { background: none; border: 1.5px solid var(--engrave); }
+.log p { margin: 0; font-size: 16.5px; line-height: 1.55; color: #D8D6CD; max-width: 860px; }
+
+/* The forecast field: every trial as a moving dot. */
+.field {
+  flex: 1; display: flex; flex-direction: column;
+  margin: 0; border: 1px solid rgba(241, 238, 230, 0.12); border-radius: 14px; overflow: hidden;
+  background: rgba(8, 10, 9, 0.62);
+  -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07), 0 30px 80px -30px rgba(0, 0, 0, 0.8);
+}
+.field-plot { position: relative; flex: 1; min-height: 220px; }
+.field-bar { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 11px 16px; border-bottom: 1px solid var(--rule); font: 400 12.5px/1.3 var(--mono); color: var(--engrave); }
+.field-bar b { white-space: nowrap; font-weight: 400; color: var(--paper); text-transform: uppercase; letter-spacing: 0.08em; }
+.field-bar #f-now { text-align: right; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+.field canvas { position: absolute; inset: 0; display: block; width: 100%; height: 100%; cursor: crosshair; }
+.field figcaption { display: flex; gap: 22px; flex-wrap: wrap; padding: 11px 16px; border-top: 1px solid var(--rule); font-size: 13px; color: var(--engrave); }
+.key { display: inline-flex; align-items: center; gap: 8px; }
+.key::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: rgba(241, 238, 230, 0.4); }
+.key.bright::before { background: var(--accent); }
+.key.hollow::before { background: none; border: 1.5px solid var(--warm); }
+
+/* Sections */
+section { padding: 110px 0; }
+/* Every section splits at the same line as the hero: heading on the left,
+   content on the right. */
+section + section { border-top: 1px solid var(--rule); }
+.sec-head { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(28px, 3.6vw, 72px); align-items: end; margin-bottom: 48px; }
+.split { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(28px, 3.6vw, 72px); align-items: start; }
+.split > .sec-head { display: block; margin: 0; position: sticky; top: 104px; }
+.split > .sec-head p { margin-top: 22px; }
+/* In the narrow heading column the italic phrase takes its own line. */
+.split h2 em, .verify h2 em { display: block; }
+.sec-head p { margin: 0; font-size: 18px; color: var(--engrave); max-width: 520px; }
+
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+.step { border-top: 1px solid var(--rule); padding-top: 22px; }
+.step .num { font: 400 13px/1 var(--mono); color: var(--accent); margin-bottom: 30px; letter-spacing: 0.08em; }
+.step h3 { font: 400 30px/1.1 var(--serif); margin: 0 0 12px; }
+.step p { margin: 0; font-size: 15.5px; color: var(--engrave); max-width: 320px; }
+
+/* Rows (method) */
+.rows { border-top: 1px solid var(--rule); }
+.split .rows, .split .log, .split .steps { margin-top: 8px; }
+.row { display: flex; justify-content: space-between; align-items: center; gap: 32px; padding: 32px 0; border-bottom: 1px solid var(--rule); }
+.row h3 { font: 500 19px/1.3 var(--sans); margin: 0 0 4px; }
+.row p { margin: 0; font-size: 15.5px; color: var(--engrave); max-width: 470px; }
+.row .fig { font: 400 clamp(38px, 4.4vw, 56px)/1 var(--serif); white-space: nowrap; }
+.row .fig small { font: 400 12.5px/1 var(--mono); color: var(--engrave); margin-left: 10px; text-transform: uppercase; letter-spacing: 0.08em; }
+
+/* Record */
+.ledger { background: var(--plate); border: 1px solid var(--rule); border-radius: 8px; overflow: hidden; }
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); border-bottom: 1px solid var(--rule); }
+.stat { padding: 22px 24px; border-right: 1px solid var(--rule); }
+.stat:last-child { border-right: 0; }
+.stat span { font: 400 12.5px/1 var(--mono); color: var(--engrave); text-transform: uppercase; letter-spacing: 0.08em; }
+.stat b { display: block; font: 400 52px/1.1 var(--serif); margin-top: 6px; }
+.tools { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 14px 24px; border-bottom: 1px solid var(--rule); flex-wrap: wrap; }
+.seg { display: inline-flex; border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; }
+.seg button { border: 0; background: transparent; color: var(--engrave); font: 500 14px/1 var(--sans); padding: 11px 16px; cursor: pointer; }
+.seg button + button { border-left: 1px solid var(--rule); }
+.seg button[aria-pressed="true"] { background: var(--grad); color: var(--ink); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5); }
+.search { background: var(--deep); border: 1px solid var(--rule); border-radius: 6px; color: var(--paper); font: 400 14px/1 var(--sans); padding: 0 14px; height: 38px; width: 290px; max-width: 100%; outline: none; }
+.search:focus { border-color: var(--engrave); }
+.search::placeholder { color: #5E6861; }
+.scroller { max-height: 620px; overflow-y: auto; }
+.scroller, pre { scrollbar-color: var(--rule) transparent; scrollbar-width: thin; }
+table { width: 100%; border-collapse: collapse; }
+th { position: sticky; top: 0; background: var(--plate); text-align: left; font: 400 12px/1 var(--mono); color: var(--engrave); text-transform: uppercase; letter-spacing: 0.08em; padding: 14px 12px; border-bottom: 1px solid var(--rule); z-index: 1; }
+td { padding: 14px 12px; border-bottom: 1px solid rgba(38, 46, 41, 0.7); vertical-align: middle; font-size: 15px; }
+th:first-child, td:first-child { padding-left: 24px; }
+th:last-child, td:last-child { padding-right: 24px; text-align: right; }
+tr.trial { cursor: pointer; }
+tr.trial:hover td { background: rgba(255, 255, 255, 0.02); }
+.t-title { display: block; max-width: 760px; line-height: 1.35; }
+.t-sub { display: block; font-size: 13px; color: var(--engrave); margin-top: 3px; }
+.t-sub a { font-family: var(--mono); font-size: 12.5px; }
+td.num { font-family: var(--mono); font-size: 13.5px; white-space: nowrap; }
+.prob { display: flex; align-items: center; gap: 10px; white-space: nowrap; }
+.prob b { font: 500 15px/1 var(--mono); width: 38px; }
+.bar { width: 84px; height: 3px; background: #222A25; overflow: hidden; }
+.bar i { display: block; height: 100%; background: var(--grad); }
+.tag { display: inline-flex; align-items: center; gap: 7px; font-size: 13px; color: var(--engrave); white-space: nowrap; }
+.tag::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #4B564F; }
+.tag.screened::before { background: var(--accent); }
+.tag.public::before { background: var(--warm); }
+tr.detail td { background: var(--deep); text-align: left; padding: 18px 24px 22px; font-size: 14.5px; line-height: 1.6; color: #CDCBC2; }
+tr.detail p { margin: 0 0 8px; max-width: 860px; }
+tr.detail small { color: var(--engrave); font-size: 13px; }
+.empty { padding: 40px 24px; color: var(--engrave); text-align: center; }
+.ledger-foot { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 14px 24px; font-size: 13.5px; color: var(--engrave); border-top: 1px solid var(--rule); flex-wrap: wrap; }
+.ledger-foot span:first-child { display: inline-flex; align-items: center; gap: 10px; }
+
+/* Verify */
+.verify { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(28px, 3.6vw, 72px); align-items: start; }
+.verify p { color: var(--engrave); font-size: 18px; margin: 24px 0 28px; max-width: 420px; }
+.root-line { font: 400 12.5px/1.6 var(--mono); color: var(--engrave); word-break: break-all; margin-top: 26px; max-width: 420px; }
+.root-line b { display: block; font: 400 12px/1.4 var(--mono); text-transform: uppercase; letter-spacing: 0.08em; color: var(--engrave); margin-bottom: 4px; }
+.root-line span { color: var(--paper); }
+.root-line.plain span { font: 400 14px/1.5 var(--sans); word-break: normal; }
+.root-line a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+.code { background: var(--deep); border: 1px solid var(--rule); border-radius: 8px; overflow: hidden; margin-top: 12px; }
+.code-bar { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; border-bottom: 1px solid var(--rule); font: 400 13px/1 var(--mono); color: var(--engrave); }
+.code-bar button { border: 0; background: none; color: var(--paper); font: 500 13px/1 var(--sans); cursor: pointer; }
+pre { margin: 0; padding: 22px 20px; overflow-x: auto; font: 400 13.5px/1.7 var(--mono); color: #DAD8CF; }
+pre .k { color: var(--warm); }
+pre .s { color: var(--accent); }
+pre .c { color: #5E6861; }
+
+/* Closing */
+.closing { text-align: center; padding: 130px 0; border-top: 1px solid var(--rule); }
+.closing h2 { font-size: clamp(48px, 7.4vw, 96px); max-width: 820px; margin: 0 auto; }
+.closing p { color: var(--engrave); font-size: 18px; max-width: 520px; margin: 26px auto 34px; }
+.closing .actions { justify-content: center; }
+
+footer { border-top: 1px solid var(--rule); padding: 40px 0 56px; font-size: 13.5px; color: var(--engrave); }
+footer .top { display: flex; align-items: center; gap: 34px; margin-bottom: 22px; }
+footer .top { flex-wrap: wrap; }
+footer .top a:not(.brand) { text-decoration: none; font: 400 12.5px/1 var(--mono); text-transform: uppercase; letter-spacing: 0.1em; }
+footer p { margin: 0 0 8px; max-width: 900px; }
+
+@media (max-width: 960px) {
+  nav a:not(.btn) { display: none; }
+  .hero-top, .sec-head, .verify, .split { grid-template-columns: minmax(0, 1fr); }
+  .split > .sec-head { position: static; margin-bottom: 32px; }
+  .hero .wrap { grid-template-columns: minmax(0, 1fr); }
+  .hero-top { gap: 22px; }
+  .hero .wrap { padding-top: 36px; padding-bottom: 56px; }
+  .field-plot { min-height: 260px; }
+  section { padding: 72px 0; }
+  .sec-head { gap: 20px; margin-bottom: 40px; }
+  .steps { grid-template-columns: 1fr; }
+  .log li { grid-template-columns: minmax(0, 1fr); gap: 6px; }
+  .scrub label, .scrub #f-date { display: none; }
+  .step .num { margin-bottom: 20px; }
+  .row { flex-direction: column; align-items: flex-start; gap: 14px; }
+  .stat { padding: 16px; }
+  .stat b { font-size: 34px; }
+  .stat span { font-size: 10.5px; }
+  .col-phase, .col-due { display: none; }
+  .bar { display: none; }
+  /* The status column shrinks to its coloured dot; the wording is in the detail row. */
+  .tag, th:last-child { font-size: 0; gap: 0; }
+  td { padding-left: 8px; padding-right: 8px; }
+  th:first-child, td:first-child { padding-left: 16px; }
+  th:last-child, td:last-child { padding-right: 16px; }
+  .tools, .ledger-foot { padding-left: 16px; padding-right: 16px; }
+  .search { width: 100%; }
+  .verify { gap: 32px; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="mark-grad" gradientUnits="userSpaceOnUse" x1="14" y1="1" x2="23" y2="10">
+      <stop offset="0" stop-color="#D4F36B"/><stop offset=".52" stop-color="#8FF3B4"/><stop offset="1" stop-color="#6FE3F2"/>
+    </linearGradient>
+    <!-- The mark: a field of trials, with the one that carries signal lit up. -->
+    <symbol id="mark" viewBox="0 0 24 24">
+      <g fill="#F1EEE6" opacity=".4">
+        <circle cx="5.5" cy="5.5" r="1.7"/><circle cx="12" cy="5.5" r="1.7"/>
+        <circle cx="5.5" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/><circle cx="18.5" cy="12" r="1.7"/>
+        <circle cx="5.5" cy="18.5" r="1.7"/><circle cx="12" cy="18.5" r="1.7"/><circle cx="18.5" cy="18.5" r="1.7"/>
+      </g>
+      <circle cx="18.5" cy="5.5" r="3.7" fill="url(#mark-grad)"/>
+    </symbol>
+  </defs>
+</svg>
+
+<header>
+  <div class="wrap">
+    <a class="brand" href="#top"><svg><use href="#mark"/></svg>Brier Lab</a>
+    <nav>
+      <a href="how.html">How it works</a>
+      <a href="#record">The record</a>
+      <a href="#lab">Lab notes</a>
+      <a href="#method">Method</a>
+      <a href="#verify">Verify</a>
+      <a class="btn solid small" href="#record">See the record</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="hero">
+    <div class="wrap">
+      <div class="hero-top">
+        <div>
+          <div class="live"><span class="dot"></span><span id="opened">Record open</span></div>
+          <h1>Every drug trial, <em>called in advance.</em></h1>
+        </div>
+        <div>
+          <p class="lede">Brier Lab forecasts whether Phase 2 and 3 drug trials will meet their primary endpoint. Each forecast is sealed before the result is known, then scored in public when it lands.</p>
+          <div class="actions">
+            <a class="btn solid" href="#record">See the record</a>
+            <a class="btn" href="how.html">Watch how it works</a>
+          </div>
+          <p class="lab-status"><b>This is early.</b> No forecast has been scored yet and no accuracy is claimed. Brier Lab is a research lab's open record, not advice.</p>
+        </div>
+      </div>
+      <figure class="field">
+        <div class="field-bar"><b>Forecast field</b><span id="f-now"></span></div>
+        <div class="field-plot"><canvas id="field" role="img" aria-label="Chart of every sealed forecast: each trial is a dot placed by its expected results date and its chance of success."></canvas></div>
+        <div class="scrub">
+          <button type="button" id="f-auto" aria-pressed="true">Auto</button>
+          <label for="f-scrub">Sweep</label>
+          <input id="f-scrub" type="range" min="0" max="1000" value="0" aria-label="Move the sweep through time">
+          <span id="f-date"></span>
+        </div>
+        <figcaption>
+          <span>Each dot is one trial: when it reports, and its chance of success.</span>
+          <span class="key bright">Evidence-backed</span>
+          <span class="key">Record only</span>
+          <span class="key hollow">Already public</span>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <section id="how">
+    <div class="wrap split">
+      <div class="sec-head">
+        <h2>Forecast. Seal. <em>Score.</em></h2>
+        <p>A forecast only means something if it was fixed before the answer existed. So the answer is the one thing Brier Lab never gets to see first.</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="num">01</div>
+          <h3>The model reads the trial</h3>
+          <p>It studies the public registration record: the drug, the design, the endpoint, the sponsor. Then it gives one probability.</p>
+        </div>
+        <div class="step">
+          <div class="num">02</div>
+          <h3>The forecast is sealed</h3>
+          <p>Every forecast is hashed into a single fingerprint. Change one number afterward and the fingerprint no longer matches.</p>
+        </div>
+        <div class="step">
+          <div class="num">03</div>
+          <h3>Reality grades it</h3>
+          <p>When the sponsor reports, the forecast is scored against the result. Hits and misses stay on the record.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="record">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Every forecast, <em>on the record.</em></h2>
+        <p>Industry drug trials due to finish by the end of February 2027. None has been scored yet, because none had reported when the record was sealed.</p>
+      </div>
+      <div class="ledger">
+        <div class="stats">
+          <div class="stat"><span>Forecasts sealed</span><b id="s-sealed">0</b></div>
+          <div class="stat"><span>Trials covered</span><b id="s-trials">0</b></div>
+          <div class="stat"><span>Scored so far</span><b id="s-scored">0</b></div>
+        </div>
+        <div class="tools">
+          <div class="seg" role="group" aria-label="Which trials to show">
+            <button type="button" data-view="screened" aria-pressed="true">Evidence-backed <span id="n-screened"></span></button>
+            <button type="button" data-view="all" aria-pressed="false">All trials <span id="n-all"></span></button>
+          </div>
+          <input class="search" id="search" type="search" placeholder="Search drug, sponsor or NCT number" aria-label="Search trials">
+        </div>
+        <div class="scroller">
+          <table>
+            <thead>
+              <tr><th>Trial</th><th class="col-phase">Phase</th><th class="col-due">Results due</th><th>Chance of success</th><th>Status</th></tr>
+            </thead>
+            <tbody id="rows"></tbody>
+          </table>
+          <div class="empty" id="empty" hidden>No trials match that search.</div>
+        </div>
+        <div class="ledger-foot">
+          <span><span class="dot"></span><span id="sealed-line"></span></span>
+          <span id="showing"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="lab">
+    <div class="wrap split">
+      <div class="sec-head">
+        <h2>Lab <em>notebook.</em></h2>
+        <p>What we tried, what we found, and what did not work. Results that went against us stay in.</p>
+      </div>
+      <ol class="log" id="log"></ol>
+    </div>
+  </section>
+
+  <section id="method">
+    <div class="wrap split">
+      <div class="sec-head">
+        <h2>Two forecasts, <em>one honest score.</em></h2>
+        <p>"Success" means what a sponsor means in a topline announcement: the first-listed primary endpoint was met with statistical significance in the drug's favor.</p>
+      </div>
+      <div class="rows">
+        <div class="row">
+          <div><h3>From the record alone</h3><p>Every trial gets a forecast from its public registration record and nothing else.</p></div>
+          <div class="fig"><span id="m-all">0</span><small>trials</small></div>
+        </div>
+        <div class="row">
+          <div><h3>With an evidence brief</h3><p>The trials closest to reporting get a second forecast, made with a sourced brief on earlier results for the drug and its class.</p></div>
+          <div class="fig"><span class="lit" id="m-screened">0</span><small>trials</small></div>
+        </div>
+        <div class="row">
+          <div><h3>Already decided</h3><p>If a trial's result was found to be public before sealing, it stays visible and never counts toward the score.</p></div>
+          <div class="fig"><span id="m-public">0</span><small>excluded</small></div>
+        </div>
+        <div class="row">
+          <div><h3>How it is scored</h3><p>By Brier score, the standard measure for probability forecasts, shown next to a plain statistical baseline. Lower is better; zero is perfect.</p></div>
+          <div class="fig">Brier</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="verify">
+    <div class="wrap verify">
+      <div>
+        <h2>Don't trust it. <em>Check it.</em></h2>
+        <p>The sealed file lists every forecast with its hash. A few lines of code confirm that a forecast is in the file and that the file matches the fingerprint.</p>
+        <a class="btn" id="download" href="#">Download the sealed file</a>
+        <div class="root-line"><b>Fingerprint of this record</b><span id="root"></span></div>
+        <div class="root-line plain"><b>Outside timestamp</b><span id="stamp"></span></div>
+      </div>
+      <div>
+        <div class="seg" role="group" aria-label="Which check to show">
+          <button type="button" data-code="leaf" aria-pressed="true">Check one forecast</button>
+          <button type="button" data-code="root" aria-pressed="false">Rebuild the fingerprint</button>
+        </div>
+        <div class="code">
+          <div class="code-bar"><span id="code-name">check.mjs</span><button type="button" id="copy">Copy</button></div>
+          <pre id="code"></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="closing">
+    <div class="wrap">
+      <h2>Judge it by <em>the readouts.</em></h2>
+      <p>The first of these trials report in the coming weeks. Every result will be scored here, whichever way it goes.</p>
+      <div class="actions">
+        <a class="btn solid" href="#record">See the record</a>
+        <a class="btn" href="#verify">Verify a forecast</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="top">
+      <a class="brand" href="#top" style="font-size:25px"><svg><use href="#mark"/></svg>Brier Lab</a>
+      <a href="how.html">How it works</a>
+      <a href="#record">The record</a>
+      <a href="#lab">Lab notes</a>
+      <a href="#verify">Verify</a>
+    </div>
+    <p>Trial records come from ClinicalTrials.gov. Brier Lab is independent and is not affiliated with any trial sponsor or regulator.</p>
+    <p>Forecasts are probabilities produced by an AI model. They are not medical advice or investment advice, and no accuracy is claimed until results are scored.</p>
+  </div>
+</footer>
+
+<script src="data.js"></script>
+<script>
+(() => {
+  const D = window.READOUT;
+  if (!D) return;
+  const $ = (id) => document.getElementById(id);
+  const el = (tag, props = {}, kids = []) => {
+    const n = Object.assign(document.createElement(tag), props);
+    for (const k of [].concat(kids)) n.append(k);
+    return n;
+  };
+  const pct = (p) => Math.round(p * 100) + "%";
+  const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  const day = (iso) => {
+    // Registry dates are sometimes month-only ("2026-12").
+    const [y, m, d] = iso.split("-").map(Number);
+    return d ? `${d} ${MONTHS[m - 1]} ${y}` : `${MONTHS[m - 1]} ${y}`;
+  };
+  const headline = (t) => t.researched ?? t.base;
+  const short = (s, n) => (s.length > n ? s.slice(0, n - 1).trimEnd() + "…" : s);
+  const STATE = {
+    screened: "Awaiting readout",
+    unscreened: "Not yet screened",
+    public: "Already public, not counted",
+  };
+
+  const sealedDay = day(D.seal.sealedAt.slice(0, 10));
+  $("opened").textContent = `Record sealed ${sealedDay}`;
+
+  // The example used in the verification code: the evidence-backed trial
+  // whose outcome is least certain.
+  const pick =
+    D.trials
+      .filter((t) => t.state === "screened")
+      .sort((a, b) => Math.abs(headline(a) - 0.5) - Math.abs(headline(b) - 0.5) || (a.due < b.due ? -1 : 1))[0] ??
+    D.trials[0];
+
+  const n = (s) => D.trials.filter((t) => t.state === s).length;
+  $("s-sealed").textContent = D.seal.count;
+  $("s-trials").textContent = D.trials.length;
+  $("s-scored").textContent = D.scored;
+  $("n-screened").textContent = n("screened");
+  $("n-all").textContent = D.trials.length;
+  $("m-all").textContent = D.trials.length;
+  $("m-screened").textContent = n("screened");
+  $("m-public").textContent = n("public");
+  $("sealed-line").textContent = `Sealed ${sealedDay}. Updated as trials report.`;
+  $("root").textContent = D.seal.root;
+  {
+    const st = D.seal.stamp || { state: "none" };
+    const day = st.date ? new Date(st.date + "T00:00:00Z").toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" }) : "";
+    const files = `<a href="sealed/${D.seal.name}.root" download>fingerprint file</a> and <a href="sealed/${D.seal.name}.root.ots" download>proof</a>`;
+    $("stamp").innerHTML =
+      st.state === "confirmed"
+        ? `Timestamped in the Bitcoin blockchain through OpenTimestamps, submitted ${day}. Check it yourself with the ${files}.`
+        : st.state === "pending"
+          ? `Submitted to OpenTimestamps on ${day}. Waiting to be written into a Bitcoin block. Download the ${files}.`
+          : "Pending. Until it is stamped, the sealing date is our own claim.";
+  }
+  $("download").href = `sealed/${D.seal.name}.json`;
+  $("download").setAttribute("download", "");
+
+  // The record table.
+  let view = "screened";
+  let query = "";
+  let open = null;
+  function draw() {
+    const q = query.trim().toLowerCase();
+    const list = D.trials.filter(
+      (t) =>
+        (view === "all" || t.state === "screened") &&
+        (!q || `${t.title} ${t.sponsor} ${t.nct}`.toLowerCase().includes(q)),
+    );
+    const body = $("rows");
+    body.replaceChildren();
+    for (const t of list) {
+      const link = el("a", {
+        href: `https://clinicaltrials.gov/study/${t.nct}`,
+        target: "_blank",
+        rel: "noopener",
+        textContent: t.nct,
+      });
+      link.addEventListener("click", (e) => e.stopPropagation());
+      const bar = el("span", { className: "bar" }, el("i"));
+      bar.firstChild.style.width = pct(headline(t));
+      const row = el("tr", { className: "trial", tabIndex: 0 }, [
+        el("td", {}, [
+          el("span", { className: "t-title", textContent: t.title }),
+          el("span", { className: "t-sub" }, [link, " · " + t.sponsor]),
+        ]),
+        el("td", { className: "num col-phase", textContent: t.phase }),
+        el("td", { className: "num col-due", textContent: day(t.due) }),
+        el("td", {}, el("span", { className: "prob" }, [el("b", { textContent: pct(headline(t)) }), bar])),
+        el("td", {}, el("span", { className: "tag " + t.state, textContent: STATE[t.state] })),
+      ]);
+      const toggle = () => {
+        open = open === t.nct ? null : t.nct;
+        draw();
+      };
+      row.addEventListener("click", toggle);
+      row.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") toggle();
+      });
+      body.append(row);
+      if (open === t.nct) {
+        const notes = [STATE[t.state] + "."];
+        if (t.researched != null && t.base != null) {
+          notes.push(`From the record alone: ${pct(t.base)}. With the evidence brief (${t.sources} sources): ${pct(t.researched)}.`);
+        }
+        if (t.enrollment) notes.push(`${t.enrollment.toLocaleString()} participants planned.`);
+        body.append(
+          el("tr", { className: "detail" }, el("td", { colSpan: 5 }, [
+            el("p", { textContent: t.rationale }),
+            el("small", { textContent: notes.join(" ") }),
+          ])),
+        );
+      }
+    }
+    $("empty").hidden = list.length > 0;
+    $("showing").textContent = `Showing ${list.length} of ${D.trials.length}. Select a trial for the reasoning.`;
+  }
+  function setView(next) {
+    view = next;
+    for (const o of document.querySelectorAll("[data-view]")) o.setAttribute("aria-pressed", String(o.dataset.view === next));
+  }
+  for (const b of document.querySelectorAll("[data-view]")) {
+    b.addEventListener("click", () => {
+      setView(b.dataset.view);
+      draw();
+    });
+  }
+  $("search").addEventListener("input", (e) => {
+    query = e.target.value;
+    draw();
+  });
+  draw();
+
+  // Lab notebook entries.
+  const KIND = { sealed: "Sealed", finding: "Finding", negative: "Did not work", open: "Still open" };
+  for (const e of D.log ?? []) {
+    $("log").append(
+      el("li", {}, [
+        el("time", { textContent: /^\d{4}-/.test(e.date) ? day(e.date) : e.date }),
+        el("span", { className: "kind " + e.kind, textContent: KIND[e.kind] }),
+        el("p", { textContent: e.text }),
+      ]),
+    );
+  }
+
+  // Jump from a dot in the field to that trial's row, opened.
+  function showTrial(t) {
+    setView("all");
+    query = t.nct;
+    $("search").value = t.nct;
+    open = t.nct;
+    draw();
+    $("record").scrollIntoView();
+  }
+
+  // The forecast field. Every sealed trial is a dot: left to right is when
+  // it is due to report, bottom to top is its chance of success. A sweep
+  // crosses the field and reads out each evidence-backed trial it passes.
+  (function field() {
+    const cv = $("field");
+    const ctx = cv.getContext("2d");
+    const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const ACCENT = "212, 243, 107";
+    const PAPER = "241, 238, 230";
+    const WARM = "255, 143, 102";
+    const DAY = 864e5;
+    // A stable pseudo-random number in [0, 1) per trial, so dots that share
+    // a date or a probability do not sit exactly on top of each other.
+    const rand = (s) => {
+      let h = 2166136261;
+      for (let i = 0; i < s.length; i++) h = Math.imul(h ^ s.charCodeAt(i), 16777619);
+      return (h >>> 0) / 4294967296;
+    };
+    const start = Date.parse(D.seal.sealedAt.slice(0, 10));
+    const pts = D.trials.map((t) => {
+      const [y, m, d] = t.due.split("-").map(Number);
+      // A month-only date is spread across that month; an exact one barely moves.
+      const when = Date.UTC(y, m - 1, d || 15) + (rand(t.nct) - 0.5) * (d ? 2 : 26) * DAY;
+      return { t, when, p: headline(t) + (rand(t.nct + "y") - 0.5) * 0.024, phase: rand(t.nct + "p") * 6.283, glow: 0, x: 0, y: 0 };
+    });
+    const from = Math.min(start, ...pts.map((q) => q.when)) - 2 * DAY;
+    const to = Math.max(...pts.map((q) => q.when)) + 2 * DAY;
+
+    let W = 0, H = 0;
+    const pad = { l: 46, r: 14, t: 18, b: 30 };
+    const X = (when) => pad.l + ((when - from) / (to - from)) * (W - pad.l - pad.r);
+    const Y = (p) => pad.t + (1 - p) * (H - pad.t - pad.b);
+    function resize() {
+      const dpr = Math.min(devicePixelRatio || 1, 2);
+      W = cv.clientWidth;
+      H = cv.clientHeight;
+      cv.width = W * dpr;
+      cv.height = H * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    // The sweep runs by itself until the scrubber is moved; then it stays put.
+    let manual = null;
+    const scrub = $("f-scrub");
+    const auto = $("f-auto");
+    let shownDate = "";
+
+    // Callouts: numbered notes pinned to real features of the field.
+    const bright = pts.filter((q) => q.t.state === "screened");
+    const shut = pts.filter((q) => q.t.state === "public");
+    const byDay = new Map();
+    for (const q of pts) {
+      const k = Math.round(q.when / DAY);
+      byDay.set(k, (byDay.get(k) ?? 0) + 1);
+    }
+    const [busyDay, busyCount] = [...byDay].sort((a, b) => b[1] - a[1])[0];
+    const mean = (list, f) => list.reduce((s, q) => s + f(q), 0) / list.length;
+    const centre = { when: mean(bright, (q) => q.when), p: mean(bright, (q) => q.p) };
+    const far = (q) => Math.abs(q.when - centre.when) / DAY / 20 + Math.abs(q.p - centre.p);
+    const NOTES = [
+      bright.length && { at: bright.reduce((a, q) => (far(q) < far(a) ? q : a)), text: `EVIDENCE-BACKED / ${bright.length}`, dx: 70, dy: 64 },
+      { at: { when: busyDay * DAY, p: 0.14 }, text: `${busyCount} DUE AROUND ${day(new Date(busyDay * DAY).toISOString().slice(0, 10)).toUpperCase()}`, dx: 64, dy: -46 },
+      shut.length && { at: shut.reduce((a, q) => (q.when > a.when ? q : a)), text: `ALREADY PUBLIC / ${shut.length} EXCLUDED`, dx: -64, dy: 58 },
+    ].filter(Boolean);
+
+    let reading = pts.find((q) => q.t === pick);
+    let shownReading = null;
+    let hover = null;
+    let lastSweep = 0;
+    let lastNow = 0;
+
+    function frame(now) {
+      const dt = Math.min(now - lastNow, 100);
+      lastNow = now;
+      ctx.clearRect(0, 0, W, H);
+      ctx.font = '11px "IBM Plex Mono", ui-monospace, monospace';
+      ctx.textBaseline = "middle";
+
+      // Grid: probability lines and month marks.
+      ctx.lineWidth = 1;
+      for (const p of [0, 0.25, 0.5, 0.75, 1]) {
+        const y = Math.round(Y(p)) + 0.5;
+        ctx.strokeStyle = `rgba(${PAPER}, ${p === 0.5 ? 0.16 : 0.07})`;
+        ctx.beginPath();
+        ctx.moveTo(pad.l, y);
+        ctx.lineTo(W - pad.r, y);
+        ctx.stroke();
+        ctx.fillStyle = `rgba(${PAPER}, 0.42)`;
+        ctx.textAlign = "right";
+        ctx.fillText(pct(p), pad.l - 10, y);
+      }
+      ctx.textAlign = "left";
+      const first = new Date(from);
+      for (let m = new Date(Date.UTC(first.getUTCFullYear(), first.getUTCMonth() + 1, 1)); m.getTime() < to; m.setUTCMonth(m.getUTCMonth() + 1)) {
+        const x = Math.round(X(m.getTime())) + 0.5;
+        ctx.strokeStyle = `rgba(${PAPER}, 0.07)`;
+        ctx.beginPath();
+        ctx.moveTo(x, pad.t);
+        ctx.lineTo(x, H - pad.b);
+        ctx.stroke();
+        ctx.fillStyle = `rgba(${PAPER}, 0.42)`;
+        // A month that starts at the very edge has no room for its label.
+        if (x < W - 80) ctx.fillText(`${MONTHS[m.getUTCMonth()]} ${m.getUTCFullYear()}`, x + 6, H - pad.b / 2);
+      }
+
+      // The sweep: a bright line with a fading trail.
+      const span = W - pad.l - pad.r;
+      const frac = manual ?? (still ? null : (now / 15000) % 1);
+      const sweep = frac == null ? -1 : pad.l + frac * span;
+      if (frac != null) {
+        if (manual == null) scrub.value = Math.round(frac * 1000);
+        const label = "Due by " + day(new Date(from + frac * (to - from)).toISOString().slice(0, 10));
+        if (label !== shownDate) $("f-date").textContent = shownDate = label;
+      }
+      if (sweep >= 0) {
+        const trail = ctx.createLinearGradient(sweep - 160, 0, sweep, 0);
+        trail.addColorStop(0, `rgba(${ACCENT}, 0)`);
+        trail.addColorStop(1, `rgba(${ACCENT}, 0.11)`);
+        ctx.fillStyle = trail;
+        ctx.fillRect(Math.max(pad.l, sweep - 160), pad.t, Math.min(160, sweep - pad.l), H - pad.t - pad.b);
+        ctx.strokeStyle = `rgba(${ACCENT}, 0.75)`;
+        ctx.beginPath();
+        ctx.moveTo(sweep, pad.t - 6);
+        ctx.lineTo(sweep, H - pad.b);
+        ctx.stroke();
+      }
+
+      // Dots, dim ones first so the evidence-backed ones sit on top.
+      for (const pass of [false, true]) {
+        for (const q of pts) {
+          const bright = q.t.state === "screened";
+          if (bright !== pass) continue;
+          const drift = still ? 0 : 1;
+          q.x = X(q.when) + Math.cos(now / 1900 + q.phase) * 1.6 * drift;
+          q.y = Y(q.p) + Math.sin(now / 1400 + q.phase) * 2.4 * drift;
+          if (!still) {
+            // By hand, the sweep lights whatever it is resting on.
+            const crossed = manual != null ? Math.abs(q.x - sweep) < 4 : lastSweep <= sweep ? q.x > lastSweep && q.x <= sweep : q.x <= sweep;
+            if (crossed) {
+              q.glow = 1;
+              if (bright) reading = q;
+            }
+            q.glow = Math.max(0, q.glow - dt / 2200);
+          }
+          const r = (bright ? 3.4 : 1.9) + q.glow * (bright ? 3 : 1.6);
+          ctx.beginPath();
+          ctx.arc(q.x, q.y, r, 0, 6.283);
+          if (q.t.state === "public") {
+            ctx.strokeStyle = `rgba(${WARM}, ${0.55 + q.glow * 0.45})`;
+            ctx.lineWidth = 1.3;
+            ctx.stroke();
+          } else if (bright) {
+            ctx.fillStyle = `rgba(${ACCENT}, ${0.85 + q.glow * 0.15})`;
+            ctx.fill();
+            if (q.glow > 0.02) {
+              ctx.beginPath();
+              ctx.arc(q.x, q.y, r + 5 + (1 - q.glow) * 10, 0, 6.283);
+              ctx.strokeStyle = `rgba(${ACCENT}, ${q.glow * 0.5})`;
+              ctx.lineWidth = 1;
+              ctx.stroke();
+            }
+          } else {
+            ctx.fillStyle = `rgba(${PAPER}, ${0.26 + q.glow * 0.6})`;
+            ctx.fill();
+          }
+        }
+      }
+      lastSweep = sweep;
+
+      // Callouts, with a leader line from each feature to its label.
+      if (W >= 700) {
+        ctx.font = '10.5px "IBM Plex Mono", ui-monospace, monospace';
+        NOTES.forEach((n, i) => {
+          const ax = X(n.at.when), ay = Y(n.at.p);
+          const no = `0${i + 1}`;
+          const w = ctx.measureText(`${no}  ${n.text}`).width + 16;
+          const right = n.dx > 0;
+          const lx = Math.min(Math.max(ax + n.dx, pad.l + (right ? 0 : w)), W - pad.r - (right ? w : 0));
+          const ly = Math.min(Math.max(ay + n.dy, pad.t + 12), H - pad.b - 12);
+          ctx.strokeStyle = `rgba(${PAPER}, 0.45)`;
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.moveTo(ax, ay);
+          ctx.lineTo(lx, ly);
+          ctx.stroke();
+          ctx.beginPath();
+          ctx.arc(ax, ay, 2.5, 0, 6.283);
+          ctx.fillStyle = `rgba(${PAPER}, 0.8)`;
+          ctx.fill();
+          const bx = right ? lx : lx - w;
+          ctx.fillStyle = "rgba(8, 10, 9, 0.88)";
+          ctx.fillRect(bx, ly - 10, w, 20);
+          ctx.textAlign = "left";
+          ctx.fillStyle = `rgb(${ACCENT})`;
+          ctx.fillText(no, bx + 8, ly);
+          ctx.fillStyle = `rgba(${PAPER}, 0.85)`;
+          ctx.fillText(n.text, bx + 8 + ctx.measureText(no + "  ").width, ly);
+        });
+      }
+
+      // The trial being read out, named in the bar above the field.
+      if (reading && reading !== shownReading) {
+        shownReading = reading;
+        const t = reading.t;
+        // The probability leads, so a narrow screen cuts the sponsor, not the number.
+        $("f-now").replaceChildren(
+          el("span", { className: "lit", textContent: pct(headline(t)) }),
+          `  ${t.nct}  ${short(t.sponsor.split(",")[0], 28)}`,
+        );
+      }
+
+      // Hover: a ring and a label for the nearest dot.
+      if (hover) {
+        const t = hover.t;
+        ctx.beginPath();
+        ctx.arc(hover.x, hover.y, 9, 0, 6.283);
+        ctx.strokeStyle = `rgba(${PAPER}, 0.9)`;
+        ctx.lineWidth = 1.2;
+        ctx.stroke();
+        const lines = [short(t.title, 52), `${pct(headline(t))}   due ${day(t.due)}   ${short(t.sponsor.split(",")[0], 26)}`];
+        ctx.font = '12px "IBM Plex Mono", ui-monospace, monospace';
+        const w = Math.max(...lines.map((s) => ctx.measureText(s).width)) + 24;
+        const bx = Math.min(Math.max(hover.x + 14, 6), W - w - 6);
+        const by = hover.y > 70 ? hover.y - 62 : hover.y + 16;
+        ctx.fillStyle = "#131816";
+        ctx.strokeStyle = "#3A443E";
+        ctx.beginPath();
+        ctx.rect(Math.round(bx) + 0.5, Math.round(by) + 0.5, w, 46);
+        ctx.fill();
+        ctx.stroke();
+        ctx.textAlign = "left";
+        ctx.fillStyle = `rgb(${PAPER})`;
+        ctx.fillText(lines[0], bx + 12, by + 16);
+        ctx.fillStyle = `rgb(${ACCENT})`;
+        ctx.fillText(lines[1], bx + 12, by + 32);
+      }
+
+      if (!still) requestAnimationFrame(frame);
+    }
+
+    const nearest = (e, reach) => {
+      const box = cv.getBoundingClientRect();
+      const mx = e.clientX - box.left;
+      const my = e.clientY - box.top;
+      let best = null;
+      let bestD = reach * reach;
+      for (const q of pts) {
+        // Evidence-backed dots win ties, since they are the ones with a brief.
+        const d = (q.x - mx) ** 2 + (q.y - my) ** 2 - (q.t.state === "screened" ? 30 : 0);
+        if (d < bestD) {
+          bestD = d;
+          best = q;
+        }
+      }
+      return best;
+    };
+    cv.addEventListener("mousemove", (e) => {
+      hover = nearest(e, 16);
+      cv.style.cursor = hover ? "pointer" : "crosshair";
+      if (still) frame(0);
+    });
+    cv.addEventListener("mouseleave", () => {
+      hover = null;
+      if (still) frame(0);
+    });
+    cv.addEventListener("click", (e) => {
+      const q = nearest(e, 24);
+      if (q) showTrial(q.t);
+    });
+    scrub.addEventListener("input", () => {
+      manual = scrub.value / 1000;
+      auto.setAttribute("aria-pressed", "false");
+      if (still) frame(0);
+    });
+    auto.addEventListener("click", () => {
+      manual = manual == null ? scrub.value / 1000 : null;
+      auto.setAttribute("aria-pressed", String(manual == null));
+      if (still) frame(0);
+    });
+
+    // The plot stretches with the first screen, so follow its size, not the window's.
+    new ResizeObserver(() => {
+      resize();
+      if (still) frame(0);
+    }).observe(cv.parentElement);
+    resize();
+    if (still) document.fonts.ready.then(() => frame(0));
+    requestAnimationFrame(frame);
+  })();
+
+  // Verification snippets.
+  const file = `${D.seal.name}.json`;
+  const CODE = {
+    leaf: {
+      name: "check.mjs",
+      text: `import { createHash } from "node:crypto";
+import { readFileSync } from "node:fs";
+
+const seal = JSON.parse(readFileSync("${file}", "utf8"));
+const mine = seal.forecasts.filter((x) => x.nct === "${pick.nct}");
+
+// Hash each forecast exactly as it was sealed.
+for (const f of mine) {
+  const { nct, method, probability, model, madeAt } = f;
+  const leaf = createHash("sha256")
+    .update(JSON.stringify({ nct, method, probability, model, madeAt }))
+    .digest("hex");
+  console.log(method, probability, leaf === f.leaf);
+}`,
+    },
+    root: {
+      name: "root.mjs",
+      text: `import { createHash } from "node:crypto";
+import { readFileSync } from "node:fs";
+
+const seal = JSON.parse(readFileSync("${file}", "utf8"));
+const sha = (b) => createHash("sha256").update(b).digest();
+
+// Fold every forecast hash, pair by pair, into one fingerprint.
+let level = seal.forecasts.map((f) => Buffer.from(f.leaf, "hex"));
+while (level.length > 1) {
+  const next = [];
+  for (let i = 0; i < level.length; i += 2) {
+    next.push(sha(Buffer.concat([level[i], level[i + 1] ?? level[i]])));
+  }
+  level = next;
+}
+
+console.log(level[0].toString("hex") === seal.root);`,
+    },
+  };
+  const esc = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;");
+  const paint = (src) =>
+    esc(src).replace(
+      /(\/\/.*$)|("(?:[^"\\]|\\.)*")|\b(import|from|const|let|while|for|of)\b/gm,
+      (m, c, s) => `<span class="${c ? "c" : s ? "s" : "k"}">${m}</span>`,
+    );
+  let shown = "leaf";
+  function showCode(which) {
+    shown = which;
+    $("code-name").textContent = CODE[which].name;
+    $("code").innerHTML = paint(CODE[which].text);
+    for (const o of document.querySelectorAll("[data-code]")) o.setAttribute("aria-pressed", String(o.dataset.code === which));
+  }
+  for (const b of document.querySelectorAll("[data-code]")) b.addEventListener("click", () => showCode(b.dataset.code));
+  $("copy").addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(CODE[shown].text);
+      $("copy").textContent = "Copied";
+    } catch {
+      $("copy").textContent = "Select and copy";
+    }
+    setTimeout(() => ($("copy").textContent = "Copy"), 1600);
+  });
+  showCode("leaf");
+})();
+</script>
+</body>
+</html>

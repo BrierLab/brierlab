@@ -1,0 +1,736 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How Brier Lab works</title>
+<meta name="description" content="How a Brier Lab forecast is made, sealed and scored, shown step by step.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="canonical" href="https://brierlab.com/how">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Brier Lab">
+<meta property="og:url" content="https://brierlab.com/how">
+<meta property="og:title" content="How Brier Lab works">
+<meta property="og:description" content="How a forecast is made, sealed and scored, shown step by step.">
+<meta property="og:image" content="https://brierlab.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0C0F0D">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+/* Tokens, header and buttons match index.html. */
+:root {
+  --ink: #0C0F0D; --plate: #131816; --deep: #080A09; --rule: #262E29; --engrave: #8C978F;
+  --paper: #F1EEE6; --accent: #D4F36B; --warm: #FF8F66;
+  --serif: "Instrument Serif", "Times New Roman", serif;
+  --sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", monospace;
+  --wrap: 100%;
+  --grad: linear-gradient(120deg, #D4F36B 0%, #8FF3B4 52%, #6FE3F2 100%);
+  --head: 65px;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--ink); color: var(--paper); font: 400 17px/1.6 var(--sans); -webkit-font-smoothing: antialiased; }
+a { color: inherit; }
+.wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 clamp(20px, 3.4vw, 56px); }
+header { position: sticky; top: 0; z-index: 20; background: rgba(12, 15, 13, 0.88); backdrop-filter: blur(14px); border-bottom: 1px solid var(--rule); }
+header .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font: 400 29px/1 var(--serif); color: var(--paper); }
+.brand svg { width: 32px; height: 32px; }
+nav { display: flex; align-items: center; gap: 28px; }
+nav a { text-decoration: none; font-size: 15px; color: var(--engrave); transition: color .15s; }
+nav a:hover, nav a[aria-current] { color: var(--paper); }
+nav a:not(.btn) { font: 400 12.5px/1 var(--mono); text-transform: uppercase; letter-spacing: 0.1em; }
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; height: 46px; padding: 0 22px;
+  border-radius: 12px; border: 1px solid rgba(241, 238, 230, 0.16);
+  background: linear-gradient(180deg, rgba(241, 238, 230, 0.11), rgba(241, 238, 230, 0.03));
+  -webkit-backdrop-filter: blur(16px) saturate(170%); backdrop-filter: blur(16px) saturate(170%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), inset 0 -1px 0 rgba(0, 0, 0, 0.35), 0 10px 28px -10px rgba(0, 0, 0, 0.6);
+  color: var(--paper); font: 500 15px/1 var(--sans); text-decoration: none; cursor: pointer;
+  transition: border-color .2s, background-position .5s ease, transform .2s, box-shadow .2s;
+}
+.btn:hover { border-color: rgba(241, 238, 230, 0.4); transform: translateY(-1px); }
+.btn.solid {
+  background: var(--grad); background-size: 190% 100%; color: var(--ink); font-weight: 600; border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6), inset 0 -3px 8px rgba(12, 15, 13, 0.16), 0 12px 34px -10px rgba(143, 243, 180, 0.55);
+}
+.btn.solid:hover { background-position: 100% 0; }
+.btn.small { height: 38px; padding: 0 16px; font-size: 14px; border-radius: 10px; }
+nav .btn.solid { color: var(--ink); }
+h1, h2 { font-family: var(--serif); font-weight: 400; margin: 0; }
+h2 em, .cap h1 em { font-style: italic; color: var(--accent); }
+
+/* The film: a tall scroll track with one screen pinned inside it. Scrolling
+   moves through the six chapters. */
+.film { position: relative; height: 760vh; }
+.screen { position: sticky; top: var(--head); height: calc(100svh - var(--head)); overflow: hidden; }
+.screen canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.caps { position: absolute; inset: 0; pointer-events: none; }
+.cap {
+  position: absolute; left: clamp(20px, 3.4vw, 56px); top: 50%; width: min(36%, 470px);
+  transform: translateY(calc(-50% + 14px)); opacity: 0; transition: opacity .45s ease, transform .6s cubic-bezier(.2, .7, .2, 1);
+}
+.cap.on { opacity: 1; transform: translateY(-50%); }
+.cap .no { font: 400 13px/1 var(--mono); color: var(--accent); letter-spacing: 0.1em; margin-bottom: 18px; }
+.cap h1 { font-size: clamp(38px, 4.4vw, 68px); line-height: 1; letter-spacing: -0.015em; }
+.cap p { margin: 20px 0 0; font-size: 17px; line-height: 1.55; color: #CFCDC4; }
+.cap small { display: block; margin-top: 14px; font: 400 12px/1.5 var(--mono); color: var(--engrave); text-transform: uppercase; letter-spacing: 0.06em; }
+
+.rail {
+  position: absolute; left: 50%; bottom: clamp(14px, 3vh, 28px); transform: translateX(-50%);
+  display: flex; align-items: center; gap: 6px; padding: 6px; border-radius: 16px; max-width: calc(100% - 24px);
+  border: 1px solid rgba(241, 238, 230, 0.14); background: rgba(12, 15, 13, 0.6);
+  -webkit-backdrop-filter: blur(18px) saturate(160%); backdrop-filter: blur(18px) saturate(160%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 20px 50px -20px rgba(0, 0, 0, 0.8);
+}
+.rail button {
+  position: relative; overflow: hidden; border: 0; background: transparent; color: var(--engrave); cursor: pointer;
+  font: 500 13.5px/1 var(--sans); padding: 11px 14px; border-radius: 10px; white-space: nowrap; transition: color .2s, background .2s;
+}
+.rail button i { font: 400 11px/1 var(--mono); font-style: normal; margin-right: 7px; opacity: .7; }
+.rail button:hover { color: var(--paper); }
+.rail button.on { color: var(--paper); background: rgba(241, 238, 230, 0.08); }
+/* A thin bar along the bottom of the current chapter shows how far through it you are. */
+.rail button::after { content: ""; position: absolute; left: 0; bottom: 0; height: 2px; width: calc(var(--fill, 0) * 100%); background: var(--grad); }
+.rail .play { width: 40px; height: 36px; padding: 0; display: grid; place-items: center; color: var(--ink); background: var(--grad); margin-right: 4px; }
+.rail .play:hover { color: var(--ink); }
+.rail .play svg { width: 13px; height: 13px; }
+.hint { position: absolute; right: clamp(20px, 3.4vw, 56px); bottom: clamp(24px, 4vh, 40px); font: 400 12px/1 var(--mono); color: var(--engrave); letter-spacing: 0.08em; text-transform: uppercase; transition: opacity .4s; }
+
+/* Scoring calculator */
+.try { padding: 110px 0; border-top: 1px solid var(--rule); }
+.try-head { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(28px, 3.6vw, 72px); align-items: end; margin-bottom: 48px; }
+.try-head h2 { font-size: clamp(40px, 5vw, 64px); line-height: 1; }
+.try-head p { margin: 0; font-size: 18px; color: var(--engrave); max-width: 520px; }
+.calc { border: 1px solid var(--rule); border-radius: 14px; background: var(--plate); overflow: hidden; }
+.calc-top { display: flex; align-items: center; gap: 28px; padding: 26px 28px; border-bottom: 1px solid var(--rule); flex-wrap: wrap; }
+.calc-top label { font: 400 12.5px/1 var(--mono); color: var(--engrave); text-transform: uppercase; letter-spacing: 0.08em; }
+.calc-top output { font: 400 56px/1 var(--serif); min-width: 120px; }
+.calc-top input { flex: 1; min-width: 200px; accent-color: #8FF3B4; height: 28px; }
+.outs { display: grid; grid-template-columns: repeat(3, 1fr); }
+.out { padding: 24px 28px; border-right: 1px solid var(--rule); }
+.out:last-child { border-right: 0; }
+.out span { font: 400 12.5px/1.4 var(--mono); color: var(--engrave); text-transform: uppercase; letter-spacing: 0.08em; }
+.out b { display: block; font: 400 52px/1.1 var(--serif); margin: 8px 0 12px; }
+.meter { height: 4px; background: #222A25; border-radius: 4px; overflow: hidden; }
+.meter i { display: block; height: 100%; width: 0; background: var(--grad); transition: width .25s ease, background .25s; }
+.out p { margin: 12px 0 0; font-size: 14.5px; color: var(--engrave); }
+.closing { text-align: center; padding: 110px 0 130px; border-top: 1px solid var(--rule); }
+.closing h2 { font-size: clamp(48px, 7.4vw, 96px); line-height: 1; max-width: 820px; margin: 0 auto 34px; }
+.closing .actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+@media (max-width: 820px) {
+  nav a:not(.btn) { display: none; }
+  .cap { top: auto; bottom: 86px; width: auto; right: 20px; transform: translateY(14px); }
+  .cap.on { transform: none; }
+  .cap h1 { font-size: 34px; }
+  .cap p { font-size: 15px; margin-top: 12px; }
+  .cap .no { margin-bottom: 10px; }
+  .rail button:not(.play) { padding: 11px 9px; font-size: 0; }
+  .rail button i { font-size: 12px; margin: 0; }
+  .hint { display: none; }
+  .try { padding: 72px 0; }
+  .try-head { grid-template-columns: 1fr; gap: 18px; }
+  .outs { grid-template-columns: 1fr; }
+  .out { border-right: 0; border-bottom: 1px solid var(--rule); }
+  .out:last-child { border-bottom: 0; }
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="mark-grad" gradientUnits="userSpaceOnUse" x1="14" y1="1" x2="23" y2="10">
+      <stop offset="0" stop-color="#D4F36B"/><stop offset=".52" stop-color="#8FF3B4"/><stop offset="1" stop-color="#6FE3F2"/>
+    </linearGradient>
+    <!-- The mark: a field of trials, with the one that carries signal lit up. -->
+    <symbol id="mark" viewBox="0 0 24 24">
+      <g fill="#F1EEE6" opacity=".4">
+        <circle cx="5.5" cy="5.5" r="1.7"/><circle cx="12" cy="5.5" r="1.7"/>
+        <circle cx="5.5" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/><circle cx="18.5" cy="12" r="1.7"/>
+        <circle cx="5.5" cy="18.5" r="1.7"/><circle cx="12" cy="18.5" r="1.7"/><circle cx="18.5" cy="18.5" r="1.7"/>
+      </g>
+      <circle cx="18.5" cy="5.5" r="3.7" fill="url(#mark-grad)"/>
+    </symbol>
+  </defs>
+</svg>
+
+<header>
+  <div class="wrap">
+    <a class="brand" href="index.html"><svg><use href="#mark"/></svg>Brier Lab</a>
+    <nav>
+      <a href="how.html" aria-current="page">How it works</a>
+      <a href="index.html#record">The record</a>
+      <a href="index.html#lab">Lab notes</a>
+      <a href="index.html#method">Method</a>
+      <a href="index.html#verify">Verify</a>
+      <a class="btn solid small" href="index.html#record">See the record</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="film" id="film">
+    <div class="screen">
+      <canvas id="cv" role="img" aria-label="Animation of a forecast being made from a trial record, checked against evidence, sealed, and scored."></canvas>
+      <div class="caps" id="caps">
+        <div class="cap"><div class="no">01 / THE RECORD</div><h1>It starts with the <em>public record.</em></h1><p>Every drug trial is registered before it runs: the drug, the design, the endpoint, the sponsor. That record is where every forecast begins.</p><small id="cap-trial"></small></div>
+        <div class="cap"><div class="no">02 / THE READ</div><h1>The model <em>reads the trial.</em></h1><p>It weighs how often trials like this succeed, how hard the endpoint is to hit, and whether the trial is big enough to show an effect. Out comes one number.</p></div>
+        <div class="cap"><div class="no">03 / THE EVIDENCE</div><h1>Then it <em>checks the evidence.</em></h1><p>For trials close to reporting, Brier Lab gathers sourced evidence on the drug and its class. The forecast moves only as far as the evidence justifies.</p><small id="cap-move"></small></div>
+        <div class="cap"><div class="no">04 / THE SEAL</div><h1>The forecast <em>is sealed.</em></h1><p>Each forecast is hashed. The hashes fold together, pair by pair, into a single fingerprint for the whole record.</p><small id="cap-seal"></small></div>
+        <div class="cap"><div class="no">05 / THE WAIT</div><h1>Nothing can change <em>while we wait.</em></h1><p>Alter one number and the fingerprint stops matching. The forecast you see after the result is the forecast that was made before it.</p></div>
+        <div class="cap"><div class="no">06 / THE SCORE</div><h1>Reality <em>grades it.</em></h1><p>When the sponsor reports, the forecast is scored. A confident call that turns out wrong costs the most, and every score stays on the record.</p><small>Example only. This trial has not reported.</small></div>
+      </div>
+      <div class="rail" id="rail">
+        <button class="play" id="play" type="button" aria-label="Play"></button>
+        <button type="button"><i>01</i>Record</button>
+        <button type="button"><i>02</i>Read</button>
+        <button type="button"><i>03</i>Evidence</button>
+        <button type="button"><i>04</i>Seal</button>
+        <button type="button"><i>05</i>Wait</button>
+        <button type="button"><i>06</i>Score</button>
+      </div>
+      <div class="hint" id="hint">Playing. Scroll to take over</div>
+    </div>
+  </div>
+
+  <section class="try">
+    <div class="wrap">
+      <div class="try-head">
+        <h2>Try the scoring <em>yourself.</em></h2>
+        <p>Forecasts are graded with the Brier score: the gap between the forecast and what happened, squared. Zero is perfect. Always saying 50% scores 0.25.</p>
+      </div>
+      <div class="calc">
+        <div class="calc-top">
+          <label for="p">Forecast</label>
+          <output id="p-out" for="p">70%</output>
+          <input id="p" type="range" min="1" max="99" value="70" aria-label="Forecast probability">
+        </div>
+        <div class="outs">
+          <div class="out"><span>If the trial succeeds</span><b id="s-met">0.09</b><div class="meter"><i id="m-met"></i></div><p id="t-met"></p></div>
+          <div class="out"><span>If the trial fails</span><b id="s-miss">0.49</b><div class="meter"><i id="m-miss"></i></div><p id="t-miss"></p></div>
+          <div class="out"><span>Break-even</span><b id="s-even">70%</b><div class="meter"><i id="m-even"></i></div><p>The forecast only pays off over many trials if trials like this succeed about this often.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="closing">
+    <div class="wrap">
+      <h2>Now see it <em>on real trials.</em></h2>
+      <div class="actions">
+        <a class="btn solid" href="index.html#record">See the record</a>
+        <a class="btn" href="index.html#verify">Verify a forecast</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script src="data.js"></script>
+<script>
+(() => {
+  const D = window.READOUT;
+  if (!D) return;
+  const $ = (id) => document.getElementById(id);
+  const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  const day = (iso) => {
+    const [y, m, d] = iso.split("-").map(Number);
+    return d ? `${d} ${MONTHS[m - 1]} ${y}` : `${MONTHS[m - 1]} ${y}`;
+  };
+  const short = (s, n) => (s.length > n ? s.slice(0, n - 1).trimEnd() + "…" : s);
+  const pct = (p) => Math.round(p * 100) + "%";
+
+  // The film follows one real trial from the sealed record: the one whose
+  // forecast the evidence moved the most.
+  const T = D.trials
+    .filter((t) => t.state === "screened" && t.base != null && t.researched != null)
+    .sort((a, b) => Math.abs(b.researched - b.base) - Math.abs(a.researched - a.base))[0];
+  const sponsor = T.sponsor.split(",")[0];
+  $("cap-trial").textContent = `Shown: ${T.nct}, ${short(sponsor, 30)}`;
+  $("cap-move").textContent = `${T.sources} sources moved this forecast from ${pct(T.base)} to ${pct(T.researched)}`;
+  $("cap-seal").textContent = `${D.seal.count} forecasts, one fingerprint`;
+
+  // ---------- drawing ----------
+  const cv = $("cv");
+  const ctx = cv.getContext("2d");
+  const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const LIME = "212, 243, 107", MINT = "143, 243, 180", CYAN = "111, 227, 242", PAPER = "241, 238, 230", WARM = "255, 143, 102", GREY = "140, 151, 143";
+  const FONT = { mono: '"IBM Plex Mono", ui-monospace, monospace', serif: '"Instrument Serif", serif', sans: '"IBM Plex Sans", sans-serif' };
+  const cl = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+  const seg = (u, a, b) => cl((u - a) / (b - a));
+  const mix = (a, b, t) => a + (b - a) * t;
+  const io = (x) => (x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2);
+  const out = (x) => 1 - Math.pow(1 - x, 3);
+  const rgba = (c, a) => `rgba(${c}, ${cl(a)})`;
+  const rnd = (i, salt = 0) => {
+    const x = Math.sin(i * 127.1 + salt * 311.7) * 43758.5453;
+    return x - Math.floor(x);
+  };
+
+  let W = 0, H = 0, U = 1, narrow = false, F = { x: 0, y: 0 };
+  function size() {
+    const dpr = Math.min(devicePixelRatio || 1, 2);
+    W = cv.clientWidth;
+    H = cv.clientHeight;
+    cv.width = W * dpr;
+    cv.height = H * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    narrow = W < 820;
+    // The picture sits right of the caption on wide screens, above it on narrow ones.
+    F = narrow ? { x: W / 2, y: H * 0.3 } : { x: W * 0.68, y: H * 0.46 };
+    U = cl(Math.min((narrow ? W : W * 0.6) / 640, (narrow ? H * 0.56 : H * 0.92) / 600), 0.42, 1.5);
+  }
+
+  function text(s, x, y, { font = "mono", size = 12, color = PAPER, a = 1, align = "left" } = {}) {
+    ctx.font = `${size * U}px ${FONT[font]}`;
+    ctx.fillStyle = rgba(color, a);
+    ctx.textAlign = align;
+    ctx.textBaseline = "middle";
+    ctx.fillText(s, x, y);
+  }
+  function panel(x, y, w, h, a, edge = PAPER) {
+    ctx.beginPath();
+    ctx.roundRect(x, y, w, h, 12 * U);
+    ctx.fillStyle = `rgba(19, 24, 22, ${0.94 * a})`;
+    ctx.fill();
+    ctx.strokeStyle = rgba(edge, 0.2 * a);
+    ctx.lineWidth = 1;
+    ctx.stroke();
+    const g = ctx.createLinearGradient(x, 0, x + w, 0);
+    g.addColorStop(0, rgba(LIME, a));
+    g.addColorStop(0.5, rgba(MINT, a));
+    g.addColorStop(1, rgba(CYAN, a));
+    ctx.fillStyle = g;
+    ctx.fillRect(x + 14 * U, y, w - 28 * U, 2);
+  }
+  function glow(x, y, r, c, a) {
+    const g = ctx.createRadialGradient(x, y, 0, x, y, r);
+    g.addColorStop(0, rgba(c, a));
+    g.addColorStop(1, rgba(c, 0));
+    ctx.fillStyle = g;
+    ctx.beginPath();
+    ctx.arc(x, y, r, 0, 6.283);
+    ctx.fill();
+  }
+  function dot(x, y, r, c, a) {
+    ctx.beginPath();
+    ctx.arc(x, y, r, 0, 6.283);
+    ctx.fillStyle = rgba(c, a);
+    ctx.fill();
+  }
+  function seal(x, y, r, a) {
+    // The Brier Lab mark: a grid of dim trials with one lit signal, on a dark disc.
+    dot(x, y, r * 1.12, "12, 15, 13", a * 0.92);
+    const step = r * 0.56;
+    for (let i = -1; i <= 1; i++) {
+      for (let j = -1; j <= 1; j++) {
+        if (i === 1 && j === -1) continue;
+        dot(x + i * step, y + j * step, r * 0.15, PAPER, a * 0.45);
+      }
+    }
+    const sx = x + step, sy = y - step;
+    const g = ctx.createLinearGradient(sx - r * 0.3, sy - r * 0.3, sx + r * 0.3, sy + r * 0.3);
+    g.addColorStop(0, rgba(LIME, a));
+    g.addColorStop(0.5, rgba(MINT, a));
+    g.addColorStop(1, rgba(CYAN, a));
+    glow(sx, sy, r * 0.9, MINT, 0.3 * a);
+    ctx.fillStyle = g;
+    ctx.beginPath();
+    ctx.arc(sx, sy, r * 0.32, 0, 6.283);
+    ctx.fill();
+  }
+
+  // The registration record, as a card whose rows arrive one by one.
+  const ROWS = [
+    ["Trial", short(T.title, 34)],
+    ["Sponsor", short(sponsor, 30)],
+    ["Phase", T.phase],
+    ["Participants", T.enrollment ? T.enrollment.toLocaleString() : "Not stated"],
+    ["Results due", day(T.due)],
+    ["Endpoint", "Primary, first listed"],
+  ];
+  function record(x, y, k, a, rows, scan) {
+    const w = 320 * U * k, h = 400 * U * k, l = x - w / 2, t = y - h / 2;
+    panel(l, t, w, h, a);
+    text("CLINICALTRIALS.GOV", l + 22 * U * k, t + 30 * U * k, { size: 9.5 * k, color: GREY, a });
+    text(T.nct, l + w - 22 * U * k, t + 30 * U * k, { size: 10.5 * k, a, align: "right" });
+    ctx.fillStyle = rgba(PAPER, 0.1 * a);
+    ctx.fillRect(l + 22 * U * k, t + 50 * U * k, w - 44 * U * k, 1);
+    ROWS.forEach(([label, value], i) => {
+      const e = out(seg(rows, i / 7.5, (i + 2) / 7.5));
+      const ry = t + (82 + i * 52) * U * k;
+      text(label.toUpperCase(), l + 22 * U * k + (1 - e) * 18, ry, { size: 8.5 * k, color: GREY, a: a * e });
+      text(value, l + 22 * U * k + (1 - e) * 18, ry + 18 * U * k, { font: "sans", size: 13.5 * k, a: a * e });
+    });
+    if (scan > 0 && scan < 1) {
+      const sy = t + scan * h;
+      const g = ctx.createLinearGradient(0, sy - 46 * U, 0, sy);
+      g.addColorStop(0, rgba(LIME, 0));
+      g.addColorStop(1, rgba(LIME, 0.16 * a));
+      ctx.fillStyle = g;
+      ctx.fillRect(l, Math.max(t, sy - 46 * U), w, Math.min(46 * U, sy - t));
+      ctx.fillStyle = rgba(LIME, 0.9 * a);
+      ctx.fillRect(l, sy, w, 1.5);
+    }
+    return { l, t, w, h };
+  }
+
+  // The model: rotating rings around a number.
+  function core(x, y, R, a, now, energy) {
+    glow(x, y, R * 2.3, MINT, 0.1 * a * (0.7 + energy * 0.6));
+    for (let j = 0; j < 4; j++) {
+      const r = R * (0.72 + j * 0.2);
+      const spin = (now / (2600 + j * 900)) * (j % 2 ? -1 : 1);
+      ctx.lineWidth = (j === 0 ? 2 : 1.2) * U;
+      for (let k = 0; k < 3; k++) {
+        const s = spin + (k * 6.283) / 3;
+        ctx.strokeStyle = rgba([LIME, MINT, CYAN][(j + k) % 3], (0.75 - j * 0.15) * a);
+        ctx.beginPath();
+        ctx.arc(x, y, r, s, s + 1.1 + 0.35 * Math.sin(now / 1700 + j));
+        ctx.stroke();
+      }
+    }
+  }
+  function figure(x, y, value, label, a, k = 1, color = PAPER) {
+    text(label, x, y - 44 * U * k, { size: 9.5 * k, color: LIME, a, align: "center" });
+    text(pct(value), x, y + 6 * U * k, { font: "serif", size: 78 * k, color, a, align: "center" });
+  }
+
+  const SOURCES = ["EARLIER TRIALS", "SAME DRUG CLASS", "ENDPOINT HISTORY", "SPONSOR FILINGS", "PUBLICATIONS", "CONFERENCE DATA"];
+  const HEX = "0123456789abcdef";
+  const scramble = (n, seed) => Array.from({ length: n }, (_, i) => HEX[Math.floor(rnd(i, seed) * 16)]).join("");
+  const ROOT = D.seal.root.slice(0, 10) + "…" + D.seal.root.slice(-6);
+
+  // Positions shared between chapters, so one chapter ends where the next begins.
+  const P = () => {
+    const spread = narrow ? W * 0.27 : 215 * U;
+    return {
+      docMid: { x: F.x, y: F.y },
+      docSide: { x: F.x - spread, y: F.y },
+      core: { x: F.x + (narrow ? W * 0.2 : spread * 0.72), y: F.y },
+      R: (narrow ? 62 : 92) * U,
+      card: { x: F.x, y: F.y - 70 * U },
+      lineY: F.y + 130 * U,
+      x1: F.x - Math.min(270 * U, W * 0.42),
+      x2: F.x + Math.min(270 * U, W * 0.42),
+    };
+  };
+
+  function tree(p, grow, a, now) {
+    const leaves = 16;
+    const tw = Math.min(560 * U, W * 0.88), ly = F.y + 190 * U, gap = 82 * U;
+    const pos = (l, i) => ({ x: F.x - tw / 2 + ((i + 0.5) * tw) / (leaves >> l), y: ly - l * gap });
+    const mine = 5;
+    for (let l = 0; l < 4; l++) {
+      const e = io(seg(grow, 0.3 + l * 0.13, 0.44 + l * 0.13));
+      if (e <= 0) continue;
+      for (let i = 0; i < leaves >> l; i++) {
+        const c = pos(l, i), par = pos(l + 1, i >> 1);
+        const onPath = mine >> l === i;
+        ctx.strokeStyle = rgba(onPath ? LIME : PAPER, (onPath ? 0.85 : 0.22) * a);
+        ctx.lineWidth = (onPath ? 1.6 : 1) * U;
+        ctx.beginPath();
+        ctx.moveTo(c.x, c.y);
+        // Each link rises, then crosses to its parent.
+        const mid = c.y - gap * 0.5;
+        const q = e * 2;
+        ctx.lineTo(c.x, mix(c.y, mid, cl(q)));
+        if (q > 1) ctx.lineTo(mix(c.x, par.x, cl(q - 1)), mix(mid, par.y, cl(q - 1)));
+        ctx.stroke();
+        if (e < 1) dot(mix(c.x, par.x, cl(q - 1)), q > 1 ? mix(mid, par.y, cl(q - 1)) : mix(c.y, mid, cl(q)), 2.4 * U, LIME, a);
+      }
+    }
+    for (let l = 0; l <= 4; l++) {
+      for (let i = 0; i < leaves >> l; i++) {
+        const show = l === 0 ? out(seg(grow, 0.1 + i * 0.012, 0.2 + i * 0.012)) : seg(grow, 0.42 + (l - 1) * 0.13, 0.46 + (l - 1) * 0.13);
+        if (show <= 0) continue;
+        const n = pos(l, i), onPath = mine >> l === i, s = (l === 4 ? 7 : l === 0 ? 4.5 : 4) * U;
+        ctx.fillStyle = rgba(onPath ? LIME : PAPER, (onPath ? 1 : 0.5) * a * show);
+        ctx.fillRect(n.x - s, n.y - s, s * 2, s * 2);
+        if (l === 0 && !narrow) text(scramble(4, i + 3), n.x, n.y + 16 * U, { size: 7.5, color: onPath ? LIME : GREY, a: a * show * 0.9, align: "center" });
+      }
+    }
+    return { root: pos(4, 0), leaf: pos(0, mine), ly };
+  }
+
+  function timeline(p, a, travel, now) {
+    ctx.strokeStyle = rgba(PAPER, 0.25 * a);
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(p.x1, p.lineY);
+    ctx.lineTo(p.x2, p.lineY);
+    ctx.stroke();
+    for (let i = 0; i <= 28; i++) {
+      const x = mix(p.x1, p.x2, i / 28);
+      ctx.fillStyle = rgba(PAPER, (i % 7 === 0 ? 0.5 : 0.2) * a);
+      ctx.fillRect(x, p.lineY - (i % 7 === 0 ? 7 : 4) * U, 1, (i % 7 === 0 ? 14 : 8) * U);
+    }
+    text("SEALED", p.x1, p.lineY + 26 * U, { size: 9, color: GREY, a });
+    text(day(D.seal.sealedAt.slice(0, 10)), p.x1, p.lineY + 44 * U, { font: "sans", size: 13, a });
+    text("RESULTS DUE", p.x2, p.lineY + 26 * U, { size: 9, color: GREY, a, align: "right" });
+    text(day(T.due), p.x2, p.lineY + 44 * U, { font: "sans", size: 13, a, align: "right" });
+    const x = mix(p.x1, p.x2, travel);
+    const g = ctx.createLinearGradient(p.x1, 0, Math.max(x, p.x1 + 1), 0);
+    g.addColorStop(0, rgba(LIME, 0));
+    g.addColorStop(1, rgba(MINT, 0.9 * a));
+    ctx.strokeStyle = g;
+    ctx.lineWidth = 2 * U;
+    ctx.beginPath();
+    ctx.moveTo(p.x1, p.lineY);
+    ctx.lineTo(x, p.lineY);
+    ctx.stroke();
+    glow(x, p.lineY, 22 * U, MINT, 0.35 * a);
+    dot(x, p.lineY, (5 + Math.sin(now / 300)) * U, LIME, a);
+  }
+
+  function sealedCard(p, a, tampered, now, k = 1) {
+    const w = 330 * U * k, h = 150 * U * k, l = p.card.x - w / 2, t = p.card.y - h / 2;
+    panel(l, t, w, h, a, tampered ? WARM : PAPER);
+    seal(l + 46 * U * k, t + h / 2, 24 * U * k, a * (tampered ? 0.35 : 1));
+    const tx = l + 88 * U * k;
+    text("SEALED FORECAST", tx, t + 30 * U * k, { size: 9 * k, color: GREY, a });
+    const jit = tampered ? (rnd(Math.floor(now / 70)) - 0.5) * 3 : 0;
+    text(tampered ? "80%" : pct(T.researched), tx + jit, t + 72 * U * k, { font: "serif", size: 56 * k, color: tampered ? WARM : PAPER, a });
+    text(tampered ? scramble(14, Math.floor(now / 70)) : ROOT, tx + 110 * U * k, t + 62 * U * k, { size: 9 * k, color: tampered ? WARM : GREY, a });
+    text(T.nct, tx + 110 * U * k, t + 82 * U * k, { size: 9 * k, color: GREY, a });
+    text(tampered ? "FINGERPRINT NO LONGER MATCHES" : "FINGERPRINT MATCHES", tx, t + 122 * U * k, { size: 9 * k, color: tampered ? WARM : LIME, a });
+  }
+
+  // One chapter per whole number of progress; u runs 0 to 1 inside a chapter.
+  function draw(prog, now) {
+    ctx.clearRect(0, 0, W, H);
+    const ch = Math.min(5, Math.floor(prog)), u = cl(prog - ch);
+    const p = P();
+
+    // Backdrop: a slow field of points, and a wash behind the picture.
+    glow(F.x, F.y, Math.max(W, H) * 0.5, CYAN, 0.05);
+    glow(F.x - 120 * U, F.y - 60 * U, Math.max(W, H) * 0.34, LIME, 0.045);
+    for (let i = 0; i < 90; i++) {
+      const x = (rnd(i, 1) * W + now * 0.004 * (0.3 + rnd(i, 2))) % W;
+      const y = rnd(i, 3) * H;
+      dot(x, y, 1, PAPER, 0.06 + 0.1 * rnd(i, 4));
+    }
+
+    if (ch === 0) {
+      const a = out(seg(u, 0, 0.18));
+      record(p.docMid.x, p.docMid.y + (1 - a) * 30, 1, a, seg(u, 0.1, 0.75), seg(u, 0.72, 0.98));
+    }
+
+    if (ch === 1 || ch === 2) {
+      const move = ch === 1 ? io(seg(u, 0, 0.3)) : 1;
+      const k = mix(1, narrow ? 0.5 : 0.66, move);
+      const dx = mix(p.docMid.x, p.docSide.x, move);
+      const box = record(dx, p.docMid.y, k, ch === 1 ? 1 : mix(1, 0.55, seg(u, 0, 0.3)), 1, 0);
+      const ca = ch === 1 ? out(seg(u, 0.12, 0.4)) : 1;
+      const flow = ch === 1 ? seg(u, 0.25, 0.4) * (1 - seg(u, 0.9, 1)) : 0;
+      // Facts leave the record and stream into the model.
+      for (let i = 0; i < 80 && flow > 0; i++) {
+        const ph = (i / 80 + now / 2400) % 1;
+        const sx = box.l + box.w, sy = box.t + box.h * (0.12 + 0.76 * rnd(i, 5));
+        const mx = (sx + p.core.x) / 2, my = p.core.y + (rnd(i, 6) - 0.5) * 220 * U;
+        const q = 1 - ph;
+        const x = q * q * sx + 2 * q * ph * mx + ph * ph * p.core.x;
+        const y = q * q * sy + 2 * q * ph * my + ph * ph * p.core.y;
+        dot(x, y, (1.2 + rnd(i, 7) * 1.4) * U, [LIME, MINT, CYAN][i % 3], Math.sin(ph * 3.1416) * flow);
+      }
+      core(p.core.x, p.core.y, p.R, ca, now, ch === 1 ? seg(u, 0.3, 0.9) : 1);
+      if (ch === 1) {
+        const n = out(seg(u, 0.42, 0.92));
+        figure(p.core.x, p.core.y, T.base * n, "FROM THE RECORD", seg(u, 0.38, 0.5), narrow ? 0.6 : 0.82);
+      } else {
+        const orbit = p.R * (narrow ? 1.75 : 2.05);
+        SOURCES.forEach((label, i) => {
+          const a = out(seg(u, 0.04 + i * 0.05, 0.2 + i * 0.05));
+          if (a <= 0) return;
+          const ang = -1.5708 + (i * 6.283) / SOURCES.length + now / 14000;
+          const x = p.core.x + Math.cos(ang) * orbit, y = p.core.y + Math.sin(ang) * orbit * (narrow ? 1 : 0.86);
+          ctx.strokeStyle = rgba(MINT, 0.22 * a);
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.moveTo(x, y);
+          ctx.lineTo(p.core.x, p.core.y);
+          ctx.stroke();
+          const ph = (now / 1300 + i / SOURCES.length) % 1;
+          dot(mix(x, p.core.x, ph), mix(y, p.core.y, ph), 2.6 * U, CYAN, a * (1 - ph));
+          ctx.font = `${8.5 * U}px ${FONT.mono}`;
+          const tw = ctx.measureText(label).width + 20 * U;
+          ctx.beginPath();
+          ctx.roundRect(x - tw / 2, y - 12 * U, tw, 24 * U, 6 * U);
+          ctx.fillStyle = `rgba(19, 24, 22, ${0.96 * a})`;
+          ctx.fill();
+          ctx.strokeStyle = rgba(PAPER, 0.25 * a);
+          ctx.stroke();
+          text(label, x, y, { size: 8.5, a, align: "center" });
+        });
+        // A disc behind the number keeps it readable over the beams.
+        dot(p.core.x, p.core.y, p.R * 0.66, "12, 15, 13", 0.9);
+        const shift = io(seg(u, 0.4, 0.85));
+        figure(p.core.x, p.core.y, mix(T.base, T.researched, shift), shift > 0.02 ? "WITH EVIDENCE" : "FROM THE RECORD", 1, narrow ? 0.6 : 0.82);
+      }
+    }
+
+    if (ch === 3) {
+      const leave = io(seg(u, 0, 0.2));
+      const t = tree(p, u, 1, now);
+      // The forecast shrinks out of the model and becomes one leaf of the tree.
+      if (leave < 1) {
+        core(p.core.x, p.core.y, p.R * (1 - leave * 0.5), 1 - leave, now, 1);
+        const x = mix(p.core.x, t.leaf.x, leave), y = mix(p.core.y, t.leaf.y, leave);
+        figure(x, y, T.researched, "WITH EVIDENCE", 1 - leave, (narrow ? 0.6 : 0.82) * (1 - leave * 0.85));
+      }
+      text(`${D.seal.count} FORECASTS`, F.x, t.ly + (narrow ? 22 : 40) * U, { size: 9.5, color: GREY, a: seg(u, 0.22, 0.34), align: "center" });
+      const named = seg(u, 0.82, 0.9);
+      text("FINGERPRINT", t.root.x, t.root.y - 64 * U, { size: 9.5, color: LIME, a: named, align: "center" });
+      text(ROOT, t.root.x, t.root.y - 44 * U, { size: 12, a: named, align: "center" });
+      const s = seg(u, 0.86, 0.98);
+      if (s > 0) {
+        seal(t.root.x, t.root.y, mix(70, 22, out(s)) * U, s);
+        ctx.strokeStyle = rgba(MINT, (1 - s) * 0.8);
+        ctx.lineWidth = 1.5 * U;
+        ctx.beginPath();
+        ctx.arc(t.root.x, t.root.y, (26 + s * 110) * U, 0, 6.283);
+        ctx.stroke();
+      }
+    }
+
+    if (ch === 4) {
+      const settle = io(seg(u, 0, 0.18));
+      if (settle < 1) tree(p, 1, 1 - settle, now);
+      const tampered = u > 0.42 && u < 0.7;
+      sealedCard(p, settle, tampered, now);
+      timeline(p, settle, io(seg(u, 0.16, 0.96)), now);
+      const note = seg(u, 0.4, 0.46) * (1 - seg(u, 0.7, 0.76));
+      text("IF ANYONE EDITS A SEALED NUMBER", p.card.x, p.card.y - 100 * U, { size: 9.5, color: WARM, a: note, align: "center" });
+    }
+
+    if (ch === 5) {
+      const split = io(seg(u, 0, 0.3));
+      timeline(p, 1, 1, now);
+      // A ring where the result lands.
+      const ring = (now / 1600) % 1;
+      ctx.strokeStyle = rgba(MINT, (1 - ring) * 0.6);
+      ctx.lineWidth = 1.2 * U;
+      ctx.beginPath();
+      ctx.arc(p.x2, p.lineY, (8 + ring * 34) * U, 0, 6.283);
+      ctx.stroke();
+      if (split < 1) sealedCard(p, 1 - split, false, now, 1 - split * 0.2);
+      const f = T.researched;
+      const cards = [
+        ["IF IT MEETS ITS ENDPOINT", (1 - f) ** 2, -1],
+        ["IF IT MISSES", f ** 2, 1],
+      ];
+      const w = Math.min(250 * U, W * 0.43), h = 176 * U, off = w / 2 + 10 * U;
+      text(`FORECAST ${pct(f)}`, F.x, p.card.y - h / 2 - 26 * U, { size: 10, color: LIME, a: split, align: "center" });
+      cards.forEach(([label, score, side], i) => {
+        const a = out(seg(u, 0.12 + i * 0.1, 0.4 + i * 0.1));
+        const x = F.x + side * off, l = x - w / 2, t = p.card.y - h / 2 + (1 - a) * 24;
+        const good = score < 0.25;
+        panel(l, t, w, h, a, good ? MINT : WARM);
+        text(label, l + 20 * U, t + 30 * U, { size: 8.5, color: GREY, a });
+        const grow = out(seg(u, 0.3 + i * 0.1, 0.8 + i * 0.1));
+        text((score * grow).toFixed(2), l + 20 * U, t + 84 * U, { font: "serif", size: 58, color: good ? PAPER : WARM, a });
+        ctx.fillStyle = rgba(PAPER, 0.1 * a);
+        ctx.fillRect(l + 20 * U, t + 128 * U, w - 40 * U, 3 * U);
+        ctx.fillStyle = rgba(good ? MINT : WARM, a);
+        ctx.fillRect(l + 20 * U, t + 128 * U, (w - 40 * U) * score * grow, 3 * U);
+        text(good ? "BETTER THAN A COIN FLIP" : "WORSE THAN A COIN FLIP", l + 20 * U, t + 152 * U, { size: 8.5, color: good ? MINT : WARM, a });
+      });
+    }
+  }
+
+  // ---------- scroll, chapters, play ----------
+  const film = $("film");
+  const caps = [...$("caps").children];
+  const tabs = [...$("rail").querySelectorAll("button:not(.play)")];
+  const CHAPTERS = 6;
+  const track = () => film.offsetHeight - (innerHeight - 65);
+  const target = () => cl((scrollY - film.offsetTop) / track(), 0, 1) * (CHAPTERS - 0.001);
+  const goTo = (i) => scrollTo({ top: film.offsetTop + (track() * (i + 0.02)) / CHAPTERS, behavior: still ? "auto" : "smooth" });
+
+  let prog = target();
+  let playing = false;
+  let last = 0;
+  let shown = -1;
+  const ICON = {
+    play: '<svg viewBox="0 0 12 12" fill="currentColor"><path d="M2 1l9 5-9 5z"/></svg>',
+    pause: '<svg viewBox="0 0 12 12" fill="currentColor"><path d="M2 1h3v10H2zM7 1h3v10H7z"/></svg>',
+  };
+  function setPlaying(on) {
+    playing = on;
+    $("play").innerHTML = on ? ICON.pause : ICON.play;
+    $("play").setAttribute("aria-label", on ? "Pause" : "Play");
+  }
+  $("play").addEventListener("click", () => {
+    // Pressing play at the end starts again from the top.
+    if (!playing && target() > CHAPTERS - 0.05) scrollTo({ top: film.offsetTop });
+    setPlaying(!playing);
+  });
+  tabs.forEach((b, i) =>
+    b.addEventListener("click", () => {
+      setPlaying(false);
+      goTo(i);
+    }),
+  );
+  for (const ev of ["wheel", "touchstart"]) addEventListener(ev, () => playing && setPlaying(false), { passive: true });
+  addEventListener("keydown", (e) => {
+    const at = Math.floor(target());
+    if (e.key === "ArrowRight") { setPlaying(false); goTo(Math.min(CHAPTERS - 1, at + 1)); }
+    if (e.key === "ArrowLeft") { setPlaying(false); goTo(Math.max(0, at - 1)); }
+  });
+
+  function frame(now) {
+    const dt = Math.min(now - last, 60);
+    last = now;
+    // About seven seconds per chapter when playing.
+    if (playing) {
+      scrollBy(0, (track() / CHAPTERS / 7000) * dt);
+      if (target() >= CHAPTERS - 0.01) setPlaying(false);
+    }
+    // Ease toward the scroll position so scrubbing feels smooth.
+    const want = target();
+    prog = still || Math.abs(want - prog) < 0.0005 ? want : prog + (want - prog) * Math.min(1, dt / 110);
+    draw(prog, still ? 0 : now);
+    const ch = Math.min(CHAPTERS - 1, Math.floor(prog));
+    if (ch !== shown) {
+      shown = ch;
+      caps.forEach((c, i) => c.classList.toggle("on", i === ch));
+      tabs.forEach((b, i) => b.classList.toggle("on", i === ch));
+    }
+    tabs.forEach((b, i) => b.style.setProperty("--fill", i < ch ? 1 : i === ch ? cl(prog - ch) : 0));
+    $("hint").style.opacity = prog > 0.25 ? 0 : 1;
+    requestAnimationFrame(frame);
+  }
+  // The film plays by itself on arrival; scrolling or a chapter tab takes over.
+  setPlaying(!still && target() < CHAPTERS - 0.05);
+  new ResizeObserver(size).observe(cv);
+  size();
+  requestAnimationFrame(frame);
+
+  // ---------- scoring calculator ----------
+  const slider = $("p");
+  const verdict = (s) => (s < 0.1 ? "A good call." : s < 0.25 ? "Better than a coin flip." : s < 0.5 ? "Worse than saying 50%." : "A confident miss.");
+  function score() {
+    const f = slider.value / 100;
+    const met = (1 - f) ** 2, miss = f ** 2;
+    $("p-out").textContent = pct(f);
+    $("s-met").textContent = met.toFixed(2);
+    $("s-miss").textContent = miss.toFixed(2);
+    $("s-even").textContent = pct(f);
+    $("m-met").style.width = met * 100 + "%";
+    $("m-miss").style.width = miss * 100 + "%";
+    $("m-even").style.width = f * 100 + "%";
+    $("m-met").style.background = met < 0.25 ? "" : "var(--warm)";
+    $("m-miss").style.background = miss < 0.25 ? "" : "var(--warm)";
+    $("t-met").textContent = verdict(met);
+    $("t-miss").textContent = verdict(miss);
+  }
+  slider.value = Math.round(T.researched * 100);
+  slider.addEventListener("input", score);
+  score();
+})();
+</script>
+</body>
+</html>

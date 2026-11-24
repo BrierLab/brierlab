@@ -1,0 +1,15 @@
+{
+  "name": "brierlab",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "description": "Forecasts whether clinical trials will meet their primary endpoint, and scores the forecasts against posted results.",
+  "scripts": {
+    "fetch": "node src/fetch.mjs",
+    "prepare-cases": "node src/prepare.mjs",
+    "label": "node src/batch.mjs label",
+    "forecast": "node src/batch.mjs forecast",
+    "score": "node src/score.mjs",
+    "site": "node src/site.mjs live-2026-11-22 && python3 -m http.server 4173 -d site"
+  }
+}

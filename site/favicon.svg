@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <defs>
+    <linearGradient id="mark-grad" gradientUnits="userSpaceOnUse" x1="14" y1="1" x2="23" y2="10">
+      <stop offset="0" stop-color="#D4F36B"/><stop offset=".52" stop-color="#8FF3B4"/><stop offset="1" stop-color="#6FE3F2"/>
+    </linearGradient>
+  </defs>
+  <!-- A field of trials on a dark tile, with the one that carries signal lit up. -->
+  <rect width="24" height="24" rx="5.6" fill="#0C0F0D"/>
+  <g transform="translate(12 12) scale(.8) translate(-12 -12)">
+    <g fill="#F1EEE6" opacity=".5">
+      <circle cx="5.5" cy="5.5" r="1.9"/><circle cx="12" cy="5.5" r="1.9"/>
+      <circle cx="5.5" cy="12" r="1.9"/><circle cx="12" cy="12" r="1.9"/><circle cx="18.5" cy="12" r="1.9"/>
+      <circle cx="5.5" cy="18.5" r="1.9"/><circle cx="12" cy="18.5" r="1.9"/><circle cx="18.5" cy="18.5" r="1.9"/>
+    </g>
+    <circle cx="18.5" cy="5.5" r="4" fill="url(#mark-grad)"/>
+  </g>
+</svg>

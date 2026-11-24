@@ -1,0 +1,9 @@
+node_modules/
+.wrangler/
+.env
+.DS_Store
+# Raw registry pulls are large and can be fetched again with src/fetch.mjs.
+data/*_raw.jsonl
+data/train_cases.jsonl
+# Batch job handles from the model provider.
+data/*_batch.json
