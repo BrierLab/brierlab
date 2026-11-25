@@ -116,7 +116,7 @@ export function staticFeatures(p) {
 const STOP = new Set(
   "the of and in to a at for with from by on or as is per that be an after during between than versus vs each all any using were was not time number patients participants subjects who percentage proportion baseline week weeks day days month months".split(" "),
 );
-const words = (text) => (text ?? "").toLowerCase().match(/[a-z][a-z-]{2,}/g)?.filter((w) => !STOP.has(w)) ?? [];
+export const words = (text) => (text ?? "").toLowerCase().match(/[a-z][a-z-]{2,}/g)?.filter((w) => !STOP.has(w)) ?? [];
 const CONTROL = /placebo|saline|vehicle|sham|standard of care|standard care|best supportive|usual care|no treatment|observation/i;
 
 // Drug names as written on the record, with doses and brackets removed.

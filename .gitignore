@@ -7,3 +7,5 @@ data/*_raw.jsonl
 data/train_cases.jsonl
 # Batch job handles from the model provider.
 data/*_batch.json
+# The public benchmark's tables are not ours; src/top.mjs says where to get them.
+data/top/

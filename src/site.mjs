@@ -29,6 +29,7 @@ const mlSealName = readdirSync("data/sealed").filter((f) => f.endsWith("-ml.json
 const mlSeal = mlSealName ? JSON.parse(readFileSync(`data/sealed/${mlSealName}.json`, "utf8")) : null;
 const learned = new Map((mlSeal?.forecasts ?? []).map((f) => [f.nct, f.probability]));
 const evalPath = "data/model/eval.json";
+const top = existsSync("data/model/top.json") ? JSON.parse(readFileSync("data/model/top.json", "utf8")) : null;
 const test = existsSync(evalPath) ? JSON.parse(readFileSync(evalPath, "utf8")) : null;
 
 const phaseName = (p) => "Phase " + p.replaceAll("PHASE", "");
@@ -153,6 +154,15 @@ const log = [
           kind: "sealed",
           text: `The learned model's forecasts for all ${mlSeal.count} open trials are sealed, so it is scored on the same trials as the published forecast. Fingerprint ${mlSeal.root.slice(0, 12)}… It has no outside timestamp yet.`,
         },
+        ...(top
+          ? [
+              {
+                date: top.ranAt.slice(0, 10),
+                kind: "finding",
+                text: `We scored the learned model's method on TOP, the public test set that published trial-outcome models report on. ROC-AUC, where 0.5 is a coin flip and 1 is perfect: ${["I", "II", "III"].map((ph) => `Phase ${ph} ${top.strict.phases[ph].roc.toFixed(3)}`).join(", ")}. That is level with the best published results we found (0.653, 0.701, 0.772) and ahead of the earlier published models, but the test cannot separate us from the top one, so we do not claim first place. The full table is in MODEL.md in the public repo.`,
+              },
+            ]
+          : []),
       ]
     : []),
   {

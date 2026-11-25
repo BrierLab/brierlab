@@ -69,10 +69,46 @@ Learning curve:
 
 What it leans on most (share of total split gain): industry 16%, phase3 7%, endpointWord_lift 7%, armCount 5%, logEnrollment 4%, conditionWord_lift 3%, secondaryCount 2%, logTimeFrame 2%.
 
+## Public benchmark
+
+TOP is the public test set from the HINT paper (Fu et al., 2022) that published trial-outcome models report on. We ran the same method on it: the same tree learner and the same kinds of inputs, trained on the benchmark's 8,436 training and validation trials, then scored on its test trials. Settings were chosen on the validation trials. This tests the method, not the exact model that forecasts our open trials, because the benchmark's label is "the trial succeeded", which is broader than "the primary endpoint was met".
+
+The headline run leaves out six inputs the registry rewrites after a trial ends (final headcount, final site list), because a stopped trial shows a small headcount and that gives the ending away.
+
+ROC-AUC, higher is better. Ours shows the range from resampling the test trials.
+
+| Model | Phase I (627 trials) | Phase II (1,654) | Phase III (1,146) |
+|---|---|---|---|
+| **Brier Lab learned model** | **0.677** (0.634 to 0.722) | **0.698** (0.671 to 0.722) | **0.761** (0.728 to 0.790) |
+| HINT (2022, as rerun in the LIFTED paper) | 0.621 | 0.628 | 0.708 |
+| SPOT (2023, as rerun in the LIFTED paper) | 0.646 | 0.630 | 0.710 |
+| LIFTED (2025) | 0.649 | 0.651 | 0.735 |
+| Biomedical language models (2026 preprint, best of four per phase) | 0.653 | 0.701 | 0.772 |
+
+PR-AUC, higher is better.
+
+| Model | Phase I | Phase II | Phase III |
+|---|---|---|---|
+| **Brier Lab learned model** | **0.705** (0.653 to 0.763) | **0.746** (0.714 to 0.776) | **0.899** (0.876 to 0.919) |
+| HINT (2022, as rerun in the LIFTED paper) | 0.584 | 0.591 | 0.859 |
+| SPOT (2023, as rerun in the LIFTED paper) | 0.698 | 0.626 | 0.817 |
+| LIFTED (2025) | 0.707 | 0.698 | 0.883 |
+| Biomedical language models (2026 preprint, best of four per phase) | 0.680 | 0.741 | 0.901 |
+
+How to read this:
+
+- It is level with the best published results. It is ahead of HINT, SPOT and LIFTED on ROC-AUC in every phase, and ahead of every published number we found in Phase I on ROC-AUC.
+- It is not shown to be the best. The 2026 language-model preprint is slightly higher in Phase III (0.772 against 0.761) and about equal in Phase II. Those gaps are inside the ranges above, so the test cannot separate the two.
+- On F1 it scores 0.698, 0.668, 0.848. Saying "success" for every trial scores 0.713, 0.714, 0.857. No model we found, ours included, clearly beats that, so F1 says little on this benchmark.
+- With the six after-the-fact inputs put back, the same method scores 0.833, 0.815, 0.811 on ROC-AUC. We do not count that run, and it is a reason to distrust any benchmark score that uses final headcounts.
+- Published papers use slightly different versions of the benchmark files and different ways of averaging runs, so differences of a point or two between rows are not meaningful.
+- The registry records are as they stand today, for us and for every other model on the list. Some text may have been edited after a trial ended.
+- We looked at the test trials twice: once with one model, once with five averaged. The scores moved by at most 0.002. We also tried a wider input set (word-level track records); it did not help on the validation trials, scored about the same on the test trials, and is not the headline.
+
 ## Limits
 
 - No live trial has been scored yet. Every number above is a test on past trials.
-- No comparison with other published models has been run. These numbers are not on any public benchmark, so they say nothing about rank.
+- On the public benchmark the method is level with the best published models, not ahead of all of them. See above.
 - It reads the registry record only. It knows nothing about the drug's biology, earlier data that was never posted to the registry, or news.
 - Retraining is run by hand (`npm run retrain`). Each retrain is sealed as a new version before its forecasts are shown.
 
@@ -87,5 +123,7 @@ What it leans on most (share of total split gain): industry 16%, phase3 7%, endp
 npm run history            # download the training history (about 290 MB)
 node src/train.mjs eval    # walk-forward, held-out and learning-curve tests
 node src/train.mjs fit     # train on everything, forecast the open trials
+node src/top.mjs fetch     # public benchmark: registry records for its trials (its tables go in data/top/ first)
+node src/top.mjs eval      # public benchmark: train on its training trials, score its test trials
 node src/card.mjs          # rewrite this file
 ```
