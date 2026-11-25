@@ -117,6 +117,65 @@ h2 em, .cap h1 em { font-style: normal; color: var(--ink); background: linear-gr
 .meter { height: 8px; background: var(--panel); border: 1px solid var(--ink); border-radius: 4px; overflow: hidden; }
 .meter i { display: block; height: 100%; width: 0; background: var(--fluo); transition: width .25s ease, background .25s; }
 .out p { margin: 12px 0 0; font-size: 14.5px; color: var(--mute); }
+/* The learned model, run live */
+.learn { padding: clamp(64px, 9vw, 120px) 0; border-top: 1px solid var(--ink); }
+.learn .try-head p b { color: var(--ink); font-weight: 600; }
+.mx { border: 1px solid var(--ink); border-radius: 10px; background: var(--panel); overflow: hidden; box-shadow: 0 3px 0 var(--ink); }
+.mx-head { display: flex; justify-content: space-between; gap: 16px; padding: 12px 18px; border-bottom: 1px solid var(--ink); font: 400 10.5px/1.4 var(--mono); text-transform: uppercase; letter-spacing: 0.06em; }
+.mx-head span:last-child { color: var(--mute); display: flex; align-items: center; gap: 8px; white-space: nowrap; }
+.mx-head i { width: 8px; height: 8px; border-radius: 50%; background: var(--fluo); border: 1px solid var(--ink); }
+.mx-head i.busy { animation: mxblink .5s steps(2) infinite; }
+@keyframes mxblink { 50% { background: var(--panel); } }
+.mx-body { display: grid; grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr); }
+.mx-side { padding: 22px; border-right: 1px solid var(--ink); display: flex; flex-direction: column; gap: 18px; }
+.mx-side .tag { font: 400 10.5px/1.4 var(--mono); color: var(--mute); text-transform: uppercase; letter-spacing: 0.06em; }
+.mx-side h3 { font: 600 20px/1.25 var(--sans); letter-spacing: -0.02em; margin: 6px 0 4px; }
+.mx-side h3 + p { margin: 0; font-size: 14.5px; color: var(--mute); }
+.mx-inputs { margin: 0; border-top: 1px solid var(--rule); }
+.mx-inputs div { display: flex; justify-content: space-between; gap: 14px; padding: 9px 0; border-bottom: 1px solid var(--rule); font: 400 10.5px/1.5 var(--mono); letter-spacing: 0.02em; }
+.mx-inputs dt { color: var(--mute); text-transform: uppercase; letter-spacing: 0.06em; }
+.mx-inputs dd { margin: 0; text-align: right; }
+.mx-actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: auto; }
+.mx-stage { position: relative; min-width: 0; background-image: linear-gradient(var(--soft, #E1E5DF) 1px, transparent 1px), linear-gradient(90deg, var(--soft, #E1E5DF) 1px, transparent 1px); background-size: 28px 28px; }
+#mx-cv { display: block; width: 100%; height: 620px; }
+.mx-foot { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--ink); }
+.mx-foot > div { padding: 18px 22px; border-right: 1px solid var(--rule); }
+.mx-foot > div:last-child { border-right: 0; }
+.mx-foot span { font: 400 10.5px/1.4 var(--mono); color: var(--mute); text-transform: uppercase; letter-spacing: 0.06em; }
+.mx-foot b { display: flex; align-items: baseline; gap: 6px; font: 900 54px/1 var(--dots); margin-top: 8px; }
+.mx-foot b small { font: 500 13px/1 var(--mono); }
+.mx-foot b.plain { font: 600 40px/1.35 var(--sans); letter-spacing: -0.04em; font-variant-numeric: tabular-nums; }
+.mx-foot em { font: 500 10.5px/1 var(--mono); font-style: normal; text-transform: uppercase; letter-spacing: 0.06em; padding: 5px 8px; border: 1px solid var(--ink); border-radius: 4px; background: var(--fluo); align-self: center; }
+.mx-foot em.wait { background: var(--panel); color: var(--mute); border-color: var(--rule); }
+.mx-foot em.bad { background: var(--rhod); color: #fff; }
+.mx-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 20px; margin-top: 20px; }
+.mx-card { border: 1px solid var(--ink); border-radius: 10px; background: var(--panel); overflow: hidden; }
+.mx-card .pad { padding: 20px 22px 22px; }
+.mx-card h3 { font: 600 22px/1.2 var(--sans); letter-spacing: -0.03em; margin: 0 0 6px; }
+.mx-card p { margin: 0 0 16px; font-size: 15px; color: var(--mute); max-width: 34em; }
+#mx-curve { display: block; width: 100%; height: auto; }
+.mx-bars { display: grid; gap: 9px; margin-bottom: 22px; }
+.mx-bars:last-child { margin-bottom: 0; }
+.mx-bars .cap2 { font: 400 10.5px/1.4 var(--mono); color: var(--mute); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 2px; }
+.mx-bar { display: grid; grid-template-columns: minmax(0, 11em) minmax(0, 1fr) 4.2em; gap: 12px; align-items: center; font-size: 14.5px; }
+.mx-bar .track { height: 14px; border: 1px solid var(--ink); border-radius: 3px; background: var(--panel); overflow: hidden; }
+.mx-bar .track i { display: block; height: 100%; width: 0; background: var(--ink); transition: width .9s cubic-bezier(.2,.8,.2,1); }
+.mx-bar.a .track i { background: var(--fluo); border-right: 1px solid var(--ink); }
+.mx-bar.b .track i { background: #AEBBFF; border-right: 1px solid var(--ink); }
+.mx-bar.c .track i { background: var(--rule); border-right: 1px solid var(--ink); }
+.mx-bar b { font: 500 12px/1 var(--mono); text-align: right; }
+.mx-note { margin: 18px 0 0; font: 400 10.5px/1.7 var(--mono); color: var(--mute); text-transform: uppercase; letter-spacing: 0.06em; max-width: 90em; }
+@media (max-width: 980px) {
+  .mx-body, .mx-row { grid-template-columns: 1fr; }
+  .mx-side { border-right: 0; border-bottom: 1px solid var(--ink); }
+  #mx-cv { height: 540px; }
+  .mx-foot { grid-template-columns: 1fr; }
+  .mx-foot > div { border-right: 0; border-bottom: 1px solid var(--rule); }
+  .mx-foot > div:last-child { border-bottom: 0; }
+  .mx-head span:first-child b { display: none; }
+  .mx-card .mx-head span:last-child { display: none; }
+  .mx-bar { grid-template-columns: minmax(0, 8.5em) minmax(0, 1fr) 3.6em; gap: 8px; font-size: 13.5px; }
+}
 .closing { text-align: center; padding: clamp(80px, 11vw, 150px) 0; background: var(--ink); color: #fff; }
 .closing h2 { font-size: clamp(44px, 7vw, 104px); line-height: 0.96; max-width: 11em; margin: 0 auto 34px; }
 .closing .actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
@@ -194,6 +253,60 @@ h2 em, .cap h1 em { font-style: normal; color: var(--ink); background: linear-gr
       <div class="hint" id="hint">Playing. Scroll to take over</div>
     </div>
   </div>
+
+  <section class="learn" id="model" hidden>
+    <div class="wrap">
+      <div class="try-head">
+        <h2>A second forecaster that <em>learns from results.</em></h2>
+        <p>Beside the language model runs a learned one, trained on <b id="mx-n">0</b> past trials whose results are in the public registry. It is <b id="mx-trees">0</b> small decision trees. Each looks at a few facts about the trial and nudges the estimate up or down. Below, the real model runs in your browser on a real open trial.</p>
+      </div>
+      <div class="mx">
+        <div class="mx-head"><span id="mx-version">Learned model</span><span><i id="mx-led"></i><b id="mx-status" style="font-weight:400">Running in your browser</b></span></div>
+        <div class="mx-body">
+          <div class="mx-side">
+            <div>
+              <div class="tag" id="mx-tag"></div>
+              <h3 id="mx-title"></h3>
+              <p id="mx-sponsor"></p>
+            </div>
+            <dl class="mx-inputs" id="mx-inputs"></dl>
+            <div class="mx-actions">
+              <button class="btn solid small" type="button" id="mx-run">Run again</button>
+              <button class="btn small" type="button" id="mx-next">Another trial</button>
+            </div>
+          </div>
+          <div class="mx-stage">
+            <canvas id="mx-cv" role="img" aria-label="The learned model running: each decision tree is walked for this trial, and its small nudge is added to a running estimate."></canvas>
+          </div>
+        </div>
+        <div class="mx-foot">
+          <div><span>Model output</span><b><i id="mx-out" style="font-style:normal">--</i><small>%</small></b></div>
+          <div><span>Sealed forecast for this trial</span><b class="plain"><i id="mx-sealed" style="font-style:normal">--</i><em class="wait" id="mx-match">Waiting</em></b></div>
+          <div><span>Trees run</span><b class="plain" id="mx-count">0 / 0</b></div>
+        </div>
+      </div>
+      <div class="mx-row">
+        <div class="mx-card">
+          <div class="mx-head"><span>Learning curve</span><span>More trials in, less error out</span></div>
+          <div class="pad">
+            <h3>It improves as it sees more results.</h3>
+            <p>The same model, trained on more and more past trials, then tested on recent ones it never saw. The number is the share of error it removes compared with always guessing the average.</p>
+            <svg id="mx-curve" viewBox="0 0 560 280" role="img" aria-label="Chart: the model's score rises as it is trained on more past trials."></svg>
+          </div>
+        </div>
+        <div class="mx-card">
+          <div class="mx-head"><span>Held-out test</span><span id="mx-held">Trials it never saw</span></div>
+          <div class="pad">
+            <h3>Tested on trials it never trained on.</h3>
+            <p>Error removed compared with always guessing the average. Higher is better.</p>
+            <div class="mx-bars" id="mx-compare"></div>
+            <div class="mx-bars" id="mx-lean"><div class="cap2">What the model leans on most</div></div>
+          </div>
+        </div>
+      </div>
+      <p class="mx-note">These are tests on past trials. Registry records are edited after a trial ends, so results on live trials may be lower. Live trials scored so far: 0. Retraining on new results is done by hand today.</p>
+    </div>
+  </section>
 
   <section class="try">
     <div class="wrap">
@@ -726,6 +839,462 @@ h2 em, .cap h1 em { font-style: normal; color: var(--ink); background: linear-gr
   slider.value = Math.round(T.researched * 100);
   slider.addEventListener("input", score);
   score();
+})();
+</script>
+<script src="model.js"></script>
+<script>
+// The learned model, rerun in the browser: the same trees and the same inputs
+// that produced the sealed forecast, walked one tree at a time.
+(() => {
+  const M = window.MODEL, D = window.READOUT;
+  if (!M || !D) return;
+  const $ = (id) => document.getElementById(id);
+  const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const INK = "#0B1210", FLUO = "#B4F02A", RHOD = "#FF3D7F", RULE = "#CDD3CC", DIM = "#98A29B", MUTE = "#5B6760", PERI = "#AEBBFF";
+  const MONO = '"Martian Mono", ui-monospace, monospace';
+  const sig = (z) => 1 / (1 + Math.exp(-z));
+  const num = (n) => Math.round(n).toLocaleString("en-US");
+  const signed = (x, d = 1) => (x >= 0 ? "+" : "−") + Math.abs(x).toFixed(d);
+
+  // Plain names for the model's inputs.
+  const GROUP = { sponsor: "Sponsor", drug: "Drug", condition: "Condition", conditionWord: "Condition wording", endpointWord: "Endpoint wording" };
+  const NAME = {
+    phase3: "Phase 3", industry: "Industry sponsor", logEnrollment: "Enrollment", placeboControlled: "Placebo control", activeControlled: "Active control",
+    blinded: "Blinded", armCount: "Arms", oncology: "Cancer trial", biologic: "Biologic", vaccine: "Vaccine", nonInferiority: "Non-inferiority design",
+    hasMonitoringCommittee: "Monitoring committee", phase2only: "Phase 2 only", phase2and3: "Phase 2/3", sponsorNih: "Government sponsor",
+    sponsorAcademic: "Academic sponsor", collaborators: "Collaborators", masking: "Masking level", crossover: "Crossover design", factorial: "Factorial design",
+    prevention: "Prevention trial", treatment: "Treatment trial", interventionCount: "Interventions", drugCount: "Drugs", primaryCount: "Primary endpoints",
+    secondaryCount: "Secondary endpoints", logSites: "Sites", countryCount: "Countries", usOnly: "US only", hasUs: "US sites", startYear: "Start year",
+    healthyVolunteers: "Healthy volunteers", pediatric: "Children only", adultsOnly: "Adults only", oneSex: "One sex", logCriteria: "Entry criteria length",
+    logSummary: "Summary length", area_infection: "Infection", area_neuro: "Brain and mind", area_cardio: "Heart and vessels", area_metabolic: "Metabolic",
+    area_respiratory: "Lungs", area_immune: "Immune", area_pain: "Pain", area_eye: "Eye", epSurvival: "Survival endpoint", epResponse: "Response endpoint",
+    epChange: "Change-from-start endpoint", epPk: "Drug-level endpoint", epSafety: "Safety endpoint", epImmuno: "Antibody endpoint", epScale: "Score endpoint",
+    epEvent: "Event-rate endpoint",
+  };
+  const COUNT = new Set(["armCount", "collaborators", "masking", "interventionCount", "drugCount", "primaryCount", "secondaryCount", "countryCount"]);
+  const LOG = new Set(["logEnrollment", "logSites", "logCriteria", "logSummary"]);
+  const unlog = (x) => Math.max(0, Math.round(10 ** x - 1));
+  function label(name) {
+    const m = /^(.*)_(n|rate|lift)$/.exec(name);
+    if (m && GROUP[m[1]]) return GROUP[m[1]] + (m[2] === "n" ? " history" : " track record");
+    return NAME[name] ?? name;
+  }
+  // One split, in words: the question the tree asks and which way this trial goes.
+  function ask(name, t, goesLeft) {
+    const m = /^(.*)_(n|rate|lift)$/.exec(name);
+    if (m && m[2] === "n") return `${label(name)} ≤ ${num(unlog(t))} trials? ${goesLeft ? "yes" : "no"}`;
+    if (m) return `${label(name)} ≤ ${signed(t * 100)} pts? ${goesLeft ? "yes" : "no"}`;
+    if (LOG.has(name)) return `${label(name)} ≤ ${num(unlog(t))}? ${goesLeft ? "yes" : "no"}`;
+    if (name === "startYear") return `Started by ${Math.floor(t)}? ${goesLeft ? "yes" : "no"}`;
+    if (COUNT.has(name)) return `${label(name)} ≤ ${Math.floor(t)}? ${goesLeft ? "yes" : "no"}`;
+    return `${label(name)}? ${goesLeft ? "no" : "yes"}`;
+  }
+
+  // ---------- run the model for one trial ----------
+  const N = M.trees.length;
+  const ix = Object.fromEntries(M.names.map((n, i) => [n, i]));
+  function run(nct) {
+    const x = M.vectors[nct];
+    let z = M.base;
+    const p = [sig(z)], delta = [], paths = [];
+    for (const tree of M.trees) {
+      const path = [];
+      let node = tree;
+      while (node.f !== undefined) {
+        const left = x[node.f] <= node.t;
+        path.push({ node, left });
+        node = left ? node.l : node.r;
+      }
+      path.push({ node });
+      z += node.v;
+      const after = sig(z);
+      delta.push((after - p[p.length - 1]) * 100);
+      p.push(after);
+      paths.push(path);
+    }
+    return { nct, x, p, delta, paths, lo: Math.min(...p), hi: Math.max(...p), top: Math.max(...delta.map(Math.abs)) };
+  }
+
+  // Where each node of a tree sits: leaves spread evenly, parents above the middle of their children.
+  function layout(tree) {
+    const pos = new Map();
+    let leaf = 0, deep = 0;
+    const walk = (n, d) => {
+      deep = Math.max(deep, d);
+      if (n.f === undefined) return pos.set(n, { u: leaf++, d }).get(n).u;
+      const a = walk(n.l, d + 1), b = walk(n.r, d + 1);
+      pos.set(n, { u: (a + b) / 2, d });
+      return (a + b) / 2;
+    };
+    walk(tree, 0);
+    return { pos, leaves: leaf, deep };
+  }
+  const layouts = M.trees.map(layout);
+
+  // ---------- trial panel ----------
+  const byNct = new Map(D.trials.map((t) => [t.nct, t]));
+  const pool = D.trials.filter((t) => t.state !== "public" && M.vectors[t.nct]).map((t) => t.nct);
+  const first = D.trials
+    .filter((t) => t.state === "screened" && t.base != null && t.researched != null && M.vectors[t.nct])
+    .sort((a, b) => Math.abs(b.researched - b.base) - Math.abs(a.researched - a.base))[0];
+  let R = null;
+  function history(x, g) {
+    const n = unlog(x[ix[`${g}_n`]]);
+    return n ? `${num(n)} earlier trials, ${signed(x[ix[`${g}_rate`]] * 100)} pts` : "No earlier trials";
+  }
+  function describe(nct) {
+    const t = byNct.get(nct), x = M.vectors[nct];
+    const yes = (n) => x[ix[n]] > 0.5;
+    $("mx-tag").textContent = `${nct} / ${t.phase}`;
+    $("mx-title").textContent = t.title.length > 120 ? t.title.slice(0, 119).trimEnd() + "…" : t.title;
+    $("mx-sponsor").textContent = t.sponsor;
+    const rows = [
+      ["Sponsor type", yes("industry") ? "Industry" : yes("sponsorNih") ? "Government" : "Academic or other"],
+      ["Enrollment", num(unlog(x[ix.logEnrollment]))],
+      ["Arms", String(x[ix.armCount])],
+      ["Control", yes("placeboControlled") ? "Placebo" : yes("activeControlled") ? "Active drug" : "None listed"],
+      ["Sponsor history", history(x, "sponsor")],
+      ["Drug history", history(x, "drug")],
+      ["Condition history", history(x, "condition")],
+      ["Endpoint wording", `${signed(x[ix.endpointWord_lift] * 100)} pts vs average`],
+    ];
+    $("mx-inputs").replaceChildren(
+      ...rows.map(([k, v]) => {
+        const row = document.createElement("div"), dt = document.createElement("dt"), dd = document.createElement("dd");
+        dt.textContent = k;
+        dd.textContent = v;
+        row.append(dt, dd);
+        return row;
+      }),
+    );
+  }
+
+  // ---------- drawing ----------
+  const cv = $("mx-cv"), ctx = cv.getContext("2d");
+  let W = 0, H = 0;
+  function size() {
+    const r = cv.getBoundingClientRect(), dpr = Math.min(devicePixelRatio || 1, 2);
+    W = r.width;
+    H = r.height;
+    cv.width = Math.round(W * dpr);
+    cv.height = Math.round(H * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    draw();
+  }
+  const text = (s, x, y, o = {}) => {
+    ctx.font = `${o.w ?? 400} ${o.size ?? 10.5}px ${MONO}`;
+    ctx.textAlign = o.align ?? "left";
+    ctx.textBaseline = o.base ?? "middle";
+    if (o.plate) {
+      const w = ctx.measureText(s).width + 10, h = (o.size ?? 10.5) + 9;
+      let x0 = ctx.textAlign === "right" ? x - w + 5 : ctx.textAlign === "center" ? x - w / 2 : x - 5;
+      // Keep the label inside the stage on narrow screens.
+      const fixed = Math.max(4, Math.min(W - w - 4, x0));
+      x += fixed - x0;
+      x0 = fixed;
+      ctx.fillStyle = "#fff";
+      ctx.fillRect(x0, y - h / 2, w, h);
+      ctx.strokeStyle = o.plate;
+      ctx.lineWidth = 1;
+      ctx.strokeRect(x0 + 0.5, y - h / 2 + 0.5, w - 1, h - 1);
+    }
+    ctx.fillStyle = o.color ?? INK;
+    ctx.fillText(s, x, y);
+  };
+
+  let at = 0; // trees finished, as a fraction: 12.4 means the 13th tree is 40% walked
+  function draw() {
+    if (!R || !W) return;
+    ctx.clearRect(0, 0, W, H);
+    const narrow = W < 560;
+    const padL = narrow ? 14 : 22, padR = narrow ? 14 : 22;
+    const done = Math.min(N, Math.floor(at)), cur = Math.min(N - 1, done), sub = done >= N ? 1 : at - done;
+
+    // 1. The tree being walked.
+    const tTop = 66, tBot = H * 0.45;
+    const L = layouts[cur], path = R.paths[cur];
+    const X = (u) => padL + 24 + ((W - padL - padR - 48) * (L.leaves === 1 ? 0.5 : u / (L.leaves - 1)));
+    const Y = (d) => tTop + ((tBot - tTop) * d) / Math.max(L.deep, 1);
+    text(`TREE ${String(cur + 1).padStart(3, "0")} / ${N}`, padL, 20, { w: 500 });
+    text(narrow ? "ONE TREE, WALKED" : "ONE TREE, WALKED FOR THIS TRIAL", W - padR, 20, { align: "right", color: MUTE });
+    const onPath = new Map(path.map((s, i) => [s.node, i]));
+    const reach = sub * (path.length - 1); // how far down the path the walk has got
+    const edge = (a, b, lit) => {
+      const A = L.pos.get(a), B = L.pos.get(b), my = (Y(A.d) + Y(B.d)) / 2;
+      ctx.beginPath();
+      ctx.moveTo(X(A.u), Y(A.d));
+      ctx.lineTo(X(A.u), my);
+      ctx.lineTo(X(B.u), my);
+      ctx.lineTo(X(B.u), Y(B.d));
+      ctx.strokeStyle = lit ? INK : DIM;
+      ctx.lineWidth = lit ? 2.5 : 1;
+      ctx.stroke();
+    };
+    const each = (n, fn) => {
+      fn(n);
+      if (n.f !== undefined) (each(n.l, fn), each(n.r, fn));
+    };
+    each(M.trees[cur], (n) => {
+      if (n.f === undefined) return;
+      for (const c of [n.l, n.r]) if (!(onPath.has(n) && onPath.has(c) && onPath.get(c) <= reach)) edge(n, c, false);
+    });
+    for (let i = 0; i + 1 < path.length && i + 1 <= reach; i++) edge(path[i].node, path[i + 1].node, true);
+    each(M.trees[cur], (n) => {
+      const P = L.pos.get(n), x = X(P.u), y = Y(P.d);
+      const i = onPath.get(n), lit = i !== undefined && i <= reach;
+      if (n.f === undefined) {
+        ctx.beginPath();
+        ctx.arc(x, y, lit ? 7 : 3.5, 0, 7);
+        ctx.fillStyle = lit ? (n.v >= 0 ? FLUO : RHOD) : "#fff";
+        ctx.fill();
+        ctx.strokeStyle = lit ? INK : DIM;
+        ctx.lineWidth = lit ? 1.5 : 1;
+        ctx.stroke();
+      } else {
+        const s = lit ? 6 : 3.5;
+        ctx.fillStyle = lit ? INK : "#fff";
+        ctx.fillRect(x - s, y - s, s * 2, s * 2);
+        ctx.strokeStyle = lit ? INK : DIM;
+        ctx.lineWidth = 1;
+        ctx.strokeRect(x - s + 0.5, y - s + 0.5, s * 2 - 1, s * 2 - 1);
+      }
+    });
+    // The questions asked along the path, and the nudge at the end.
+    for (let i = 0; i < path.length; i++) {
+      if (i > reach) break;
+      const n = path[i].node, P = L.pos.get(n), x = X(P.u), y = Y(P.d);
+      const right = x < W * 0.56;
+      const s = n.f === undefined ? `${signed(R.delta[cur], 2)} pts` : ask(M.names[n.f], n.t, path[i].left);
+      if (narrow && n.f !== undefined && i !== Math.floor(reach)) continue;
+      text(s, x + (right ? 14 : -14), y - (n.f === undefined ? 0 : 15), { align: right ? "left" : "right", plate: INK, w: n.f === undefined ? 500 : 400 });
+    }
+
+    // 2. The inputs: a cell lights when the tree being walked reads it, and stays tinted once any tree has.
+    const gL = padL + 34, gR = W - padR - 46, eTop = H * 0.66, eBot = H * 0.81;
+    const K = M.names.length, cw = (gR - gL) / K, cy = H * 0.535, ch = Math.min(18, Math.max(10, cw * 1.3));
+    text(`THE ${K} INPUTS`, padL, cy - 20, { w: 500 });
+    text(narrow ? "LIT WHEN READ" : "LIT WHEN THIS TREE READS ONE", W - padR, cy - 20, { align: "right", color: MUTE });
+    const used = new Uint16Array(K), live = new Set();
+    for (let i = 0; i < done; i++) for (const s of R.paths[i]) if (s.node.f !== undefined) used[s.node.f]++;
+    path.forEach((s, i) => s.node.f !== undefined && i <= reach && done < N && live.add(s.node.f));
+    for (let k = 0; k < K; k++) {
+      const x0 = gL + k * cw;
+      ctx.fillStyle = live.has(k) ? FLUO : used[k] ? PERI : "#fff";
+      ctx.globalAlpha = live.has(k) || !used[k] ? 1 : Math.min(1, 0.3 + used[k] / 40);
+      ctx.fillRect(x0 + 1, cy, cw - 2, ch);
+      ctx.globalAlpha = 1;
+      ctx.strokeStyle = live.has(k) ? INK : DIM;
+      ctx.lineWidth = 1;
+      ctx.strokeRect(Math.round(x0 + 1) + 0.5, Math.round(cy) + 0.5, Math.round(cw - 2), Math.round(ch));
+    }
+
+    // 3. The running estimate.
+    const lo = Math.floor((R.lo * 100 - 2) / 5) * 5, hi = Math.ceil((R.hi * 100 + 2) / 5) * 5;
+    const gx = (i) => gL + ((gR - gL) * i) / N;
+    const gy = (p) => eBot - ((eBot - eTop) * (p * 100 - lo)) / (hi - lo);
+    text("RUNNING ESTIMATE", padL, eTop - 22, { w: 500 });
+    text(narrow ? "STARTS AT THE AVERAGE" : "STARTS AT THE AVERAGE OF ALL PAST TRIALS", W - padR, eTop - 22, { align: "right", color: MUTE });
+    for (let v = lo; v <= hi; v += 5) {
+      ctx.strokeStyle = RULE;
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(gL, Math.round(gy(v / 100)) + 0.5);
+      ctx.lineTo(gR, Math.round(gy(v / 100)) + 0.5);
+      ctx.stroke();
+      if ((hi - lo) / 5 <= 6 || v % 10 === 0) text(v + "%", gL - 8, gy(v / 100), { align: "right", color: MUTE });
+    }
+    ctx.setLineDash([4, 4]);
+    ctx.strokeStyle = MUTE;
+    ctx.beginPath();
+    ctx.moveTo(gL, gy(R.p[0]));
+    ctx.lineTo(gR, gy(R.p[0]));
+    ctx.stroke();
+    ctx.setLineDash([]);
+    const now = done >= N ? R.p[N] : R.p[done] + (R.p[done + 1] - R.p[done]) * sub;
+    ctx.beginPath();
+    ctx.moveTo(gx(0), gy(R.p[0]));
+    for (let i = 1; i <= done; i++) ctx.lineTo(gx(i), gy(R.p[i]));
+    if (done < N) ctx.lineTo(gx(done + sub), gy(now));
+    ctx.strokeStyle = INK;
+    ctx.lineWidth = 2;
+    ctx.lineJoin = "round";
+    ctx.stroke();
+    const hx = gx(Math.min(N, at)), hy = gy(now);
+    ctx.beginPath();
+    ctx.arc(hx, hy, 6, 0, 7);
+    ctx.fillStyle = FLUO;
+    ctx.fill();
+    ctx.strokeStyle = INK;
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+    text((now * 100).toFixed(1) + "%", Math.min(hx + 12, W - padR - 4), hy - 14, { align: hx + 60 > W - padR ? "right" : "left", plate: INK, w: 500 });
+
+    // 4. Every tree's nudge.
+    const vMid = H * 0.93, vH = H * 0.045;
+    text("EACH TREE'S NUDGE", padL, H * 0.865, { w: 500 });
+    text("UP / DOWN", W - padR, H * 0.865, { align: "right", color: MUTE });
+    ctx.strokeStyle = INK;
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(gL, Math.round(vMid) + 0.5);
+    ctx.lineTo(gR, Math.round(vMid) + 0.5);
+    ctx.stroke();
+    const bw = Math.max(1, (gR - gL) / N - 1);
+    for (let i = 0; i < done; i++) {
+      const h = Math.max(1, (Math.abs(R.delta[i]) / R.top) * vH);
+      ctx.fillStyle = R.delta[i] >= 0 ? "#7FB800" : RHOD;
+      ctx.fillRect(gx(i), R.delta[i] >= 0 ? vMid - h : vMid + 1, bw, h);
+    }
+    if (done < N) {
+      ctx.fillStyle = INK;
+      ctx.fillRect(gx(done), vMid - vH, 1, vH * 2);
+    }
+  }
+
+  // ---------- readouts and playback ----------
+  function readout() {
+    const done = Math.min(N, Math.floor(at)), finished = done >= N;
+    const now = finished ? R.p[N] : R.p[done];
+    $("mx-out").textContent = Math.round(now * 100);
+    $("mx-count").textContent = `${done} / ${N}`;
+    const sealed = M.sealed[R.nct], match = $("mx-match");
+    $("mx-sealed").textContent = sealed == null ? "--" : Math.round(sealed * 100) + "%";
+    const same = sealed != null && Math.abs(R.p[N] - sealed) < 1e-9;
+    match.textContent = !finished ? "Waiting" : same ? "Match" : "No match";
+    match.className = !finished ? "wait" : same ? "" : "bad";
+    $("mx-led").className = finished ? "" : "busy";
+    $("mx-status").textContent = finished ? "Done. Ran in your browser" : "Running in your browser";
+  }
+  // The first trees are walked slowly so the path can be read; the rest speed up.
+  const pace = (i) => (i < 3 ? 1500 : Math.max(14, 620 * 0.84 ** (i - 3)));
+  let last = 0, playing = false, seen = false;
+  function frame(t) {
+    if (!playing) return;
+    const dt = Math.min(64, t - (last || t));
+    last = t;
+    at = Math.min(N, at + dt / pace(Math.floor(at)));
+    draw();
+    readout();
+    if (at >= N) playing = false;
+    else requestAnimationFrame(frame);
+  }
+  function start(nct) {
+    if (nct) {
+      R = run(nct);
+      describe(nct);
+    }
+    at = still ? N : 0;
+    last = 0;
+    draw();
+    readout();
+    if (!still && seen && !playing) {
+      playing = true;
+      requestAnimationFrame(frame);
+    }
+  }
+
+  // ---------- the test results ----------
+  const T = M.test, pc = (x) => (x * 100).toFixed(1) + "%";
+  function bar(cls, name, value, share) {
+    const row = document.createElement("div"), a = document.createElement("span"), track = document.createElement("div"), fill = document.createElement("i"), b = document.createElement("b");
+    row.className = "mx-bar " + cls;
+    a.textContent = name;
+    track.className = "track";
+    fill.dataset.w = Math.max(2, share * 100) + "%";
+    b.textContent = value;
+    track.append(fill);
+    row.append(a, track, b);
+    return row;
+  }
+  const best = Math.max(T.boosted.skill, T.logistic.skill, T.oldBaseline.skill) * 1.25;
+  $("mx-compare").append(
+    bar("a", "Learned model", pc(T.boosted.skill), T.boosted.skill / best),
+    bar("b", "Simple formula, same inputs", pc(T.logistic.skill), T.logistic.skill / best),
+    bar("c", "Our earlier baseline", pc(T.oldBaseline.skill), T.oldBaseline.skill / best),
+  );
+  const lean = T.importance.slice(0, 6);
+  for (const f of lean) $("mx-lean").append(bar("", label(f.name), Math.round(f.share * 100) + "%", f.share / lean[0].share));
+  $("mx-held").textContent = `${T.n} recent trials it never saw`;
+
+  // Learning curve, drawn as a small chart.
+  const svg = $("mx-curve"), NS = "http://www.w3.org/2000/svg";
+  const mk = (tag, attrs, txt) => {
+    const e = document.createElementNS(NS, tag);
+    for (const [k, v] of Object.entries(attrs)) e.setAttribute(k, v);
+    if (txt != null) e.textContent = txt;
+    svg.append(e);
+    return e;
+  };
+  const small = svg.getBoundingClientRect().width < 430;
+  if (small) svg.setAttribute("viewBox", "0 0 340 280");
+  const cx0 = small ? 40 : 54, cx1 = small ? 318 : 532, cy0 = 26, cy1 = 232;
+  const top = Math.ceil((Math.max(...T.curve.map((c) => c.skill)) * 100 + 3) / 5) * 5;
+  const a = Math.log10(T.curve[0].size), z = Math.log10(T.curve.at(-1).size);
+  const sx = (n) => cx0 + ((cx1 - cx0) * (Math.log10(n) - a)) / (z - a);
+  const sy = (s) => cy1 - ((cy1 - cy0) * s * 100) / top;
+  const mono = { "font-family": "Martian Mono, monospace", "font-size": 10.5 };
+  for (let v = 0; v <= top; v += 5) {
+    mk("line", { x1: cx0, x2: cx1, y1: sy(v / 100), y2: sy(v / 100), stroke: v ? RULE : INK, "stroke-width": 1 });
+    mk("text", { ...mono, x: cx0 - 10, y: sy(v / 100) + 4, "text-anchor": "end", fill: MUTE }, v + "%");
+  }
+  const line = mk("path", { d: T.curve.map((c, i) => `${i ? "L" : "M"}${sx(c.size).toFixed(1)} ${sy(c.skill).toFixed(1)}`).join(" "), fill: "none", stroke: INK, "stroke-width": 2.5, "stroke-linejoin": "round" });
+  T.curve.forEach((c, i) => {
+    mk("circle", { cx: sx(c.size), cy: sy(c.skill), r: 6.5, fill: FLUO, stroke: INK, "stroke-width": 1.5 });
+    mk("text", { ...mono, "font-weight": 500, x: sx(c.size), y: sy(c.skill) - 14, "text-anchor": i === T.curve.length - 1 ? "end" : "middle", fill: INK }, (c.skill * 100).toFixed(1) + "%");
+    mk("text", { ...mono, x: sx(c.size), y: cy1 + 20, "text-anchor": i === T.curve.length - 1 ? "end" : i ? "middle" : "start", fill: MUTE }, num(c.size));
+  });
+  mk("text", { ...mono, x: cx1, y: cy1 + 40, "text-anchor": "end", fill: MUTE }, "PAST TRIALS TRAINED ON");
+  const len = line.getTotalLength?.() ?? 0;
+  if (len && !still) {
+    line.style.strokeDasharray = len;
+    line.style.strokeDashoffset = len;
+    line.style.transition = "stroke-dashoffset 1.4s cubic-bezier(.3,.7,.2,1)";
+  }
+
+  // ---------- wire up ----------
+  $("mx-n").textContent = num(M.trainedOn);
+  $("mx-trees").textContent = N;
+  const head = $("mx-version");
+  head.textContent = "";
+  head.append("Learned model ");
+  const meta = document.createElement("b");
+  meta.style.fontWeight = "400";
+  meta.style.color = MUTE;
+  meta.textContent = `/ ${N} trees / ${M.names.length} inputs / trained on ${num(M.trainedOn)} trials`;
+  head.append(meta);
+  $("model").hidden = false;
+  $("mx-run").addEventListener("click", () => start());
+  $("mx-next").addEventListener("click", () => {
+    let nct = R.nct;
+    while (nct === R.nct && pool.length > 1) nct = pool[Math.floor(Math.random() * pool.length)];
+    start(nct);
+  });
+  new ResizeObserver(size).observe(cv);
+  start((first ?? byNct.get(pool[0])).nct);
+  new IntersectionObserver(
+    (entries, obs) => {
+      for (const e of entries) {
+        if (!e.isIntersecting) continue;
+        seen = true;
+        start();
+        obs.unobserve(e.target);
+      }
+    },
+    { threshold: 0.35 },
+  ).observe(cv);
+  const reveal = new IntersectionObserver(
+    (entries) => {
+      for (const e of entries) {
+        if (!e.isIntersecting) continue;
+        for (const i of e.target.querySelectorAll(".track i")) i.style.width = i.dataset.w;
+        if (e.target.contains(svg)) line.style.strokeDashoffset = 0;
+        reveal.unobserve(e.target);
+      }
+    },
+    { threshold: 0.3 },
+  );
+  for (const card of document.querySelectorAll(".mx-card")) reveal.observe(card);
+  document.fonts?.ready.then(draw);
 })();
 </script>
 </body>

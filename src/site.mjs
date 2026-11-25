@@ -189,6 +189,38 @@ if (stamp.state !== "none") {
   copyFileSync(`data/sealed/${sealName}.root`, `site/sealed/${sealName}.root`);
   copyFileSync(otsPath, `site/sealed/${sealName}.root.ots`);
 }
+// Everything the How it works page needs to rerun the learned model in the
+// browser: the trees, each open trial's inputs, the sealed answers to check
+// against, and the test results.
+const modelPath = "data/model/gbm-v1.json";
+const inputsPath = "data/model/live_features.json";
+if (test && mlSeal && existsSync(modelPath) && existsSync(inputsPath)) {
+  const m = JSON.parse(readFileSync(modelPath, "utf8"));
+  const inputs = JSON.parse(readFileSync(inputsPath, "utf8"));
+  const strip = (n) => (n.f === undefined ? { v: n.v } : { f: n.f, t: n.t, l: strip(n.l), r: strip(n.r) });
+  const all = test.heldOut.all;
+  const pick = (r) => ({ skill: r.skill, auc: r.auc });
+  const model = {
+    version: m.version,
+    trainedOn: m.trainedOn,
+    names: m.features,
+    base: m.base,
+    trees: m.trees.map(strip),
+    vectors: inputs.vectors,
+    sealed: Object.fromEntries(mlSeal.forecasts.map((f) => [f.nct, f.probability])),
+    root: mlSeal.root,
+    test: {
+      trainedOn: test.trainedOn,
+      n: all.boosted.n,
+      boosted: pick(all.boosted),
+      logistic: pick(all.logistic),
+      oldBaseline: pick(all.oldBaseline),
+      curve: test.curve,
+      importance: test.importance,
+    },
+  };
+  writeFileSync("site/model.js", `window.MODEL = ${JSON.stringify(model)};\n`);
+}
 writeFileSync("site/data.js", `window.READOUT = ${JSON.stringify(data)};\n`);
 const count = (s) => trials.filter((t) => t.state === s).length;
 console.log(

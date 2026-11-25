@@ -2,6 +2,7 @@
 //   node src/train.mjs eval   walk-forward test on past years, then the held-out
 //                             recent trials, then a learning curve
 //   node src/train.mjs fit    train on every resolved trial and forecast the live ones
+//   node src/train.mjs features   write the live trials' inputs, so the site can rerun the model in the browser
 // Training data: data/history_raw.jsonl (src/history.mjs). Every trial is
 // described only by what was public before it read out.
 import { createReadStream, existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
@@ -11,8 +12,8 @@ import { fit, importance, predict, rng } from "./gbm.mjs";
 import { TrackRecord, keys, staticFeatures, time } from "./mlfeatures.mjs";
 
 const mode = process.argv[2];
-if (!["eval", "fit"].includes(mode)) {
-  console.error("usage: node src/train.mjs eval|fit");
+if (!["eval", "fit", "features"].includes(mode)) {
+  console.error("usage: node src/train.mjs eval|fit|features");
   process.exit(1);
 }
 const DAY = 86_400_000;
@@ -252,7 +253,7 @@ if (mode === "eval") {
   console.log("\nwrote data/model/eval.json");
 }
 
-if (mode === "fit") {
+if (mode === "fit" || mode === "features") {
   const evalPath = "data/model/eval.json";
   if (!existsSync(evalPath)) throw new Error("run `node src/train.mjs eval` first: it chooses the settings");
   const { chosen } = JSON.parse(readFileSync(evalPath, "utf8"));
@@ -262,6 +263,11 @@ if (mode === "fit") {
   addTrackRecords([...resolved, ...live], resolved, now);
   names = Object.keys(resolved[0].x);
   const pool = resolved.filter(usable);
+  writeFileSync("data/model/live_features.json", JSON.stringify({ names, vectors: Object.fromEntries(live.map((r) => [r.nct, vec(r)])) }));
+  if (mode === "features") {
+    console.log(`wrote inputs for ${live.length} live trials to data/model/live_features.json`);
+    process.exit(0);
+  }
   const model = train(pool, chosen);
   const version = `gbm-v1(n=${pool.length})`;
   const madeAt = new Date().toISOString();
