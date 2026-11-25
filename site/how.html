@@ -1249,7 +1249,7 @@ h2 em, .cap h1 em { font-style: normal; color: var(--ink); background: linear-gr
   const line = mk("path", { d: T.curve.map((c, i) => `${i ? "L" : "M"}${sx(c.size).toFixed(1)} ${sy(c.skill).toFixed(1)}`).join(" "), fill: "none", stroke: INK, "stroke-width": 2.5, "stroke-linejoin": "round" });
   T.curve.forEach((c, i) => {
     mk("circle", { cx: sx(c.size), cy: sy(c.skill), r: 6.5, fill: FLUO, stroke: INK, "stroke-width": 1.5 });
-    mk("text", { ...mono, "font-weight": 500, x: sx(c.size), y: sy(c.skill) - 14, "text-anchor": i === T.curve.length - 1 ? "end" : "middle", fill: INK }, (c.skill * 100).toFixed(1) + "%");
+    mk("text", { ...mono, "font-weight": 500, x: sx(c.size) + (i ? 0 : 12), y: sy(c.skill) + (i ? -14 : 20), "text-anchor": i === T.curve.length - 1 ? "end" : i ? "middle" : "start", fill: INK }, (c.skill * 100).toFixed(1) + "%");
     mk("text", { ...mono, x: sx(c.size), y: cy1 + 20, "text-anchor": i === T.curve.length - 1 ? "end" : i ? "middle" : "start", fill: MUTE }, num(c.size));
   });
   mk("text", { ...mono, x: cx1, y: cy1 + 40, "text-anchor": "end", fill: MUTE }, "PAST TRIALS TRAINED ON");
