@@ -1,6 +1,6 @@
 // A small gradient-boosted tree classifier, written out in full so the whole
 // model can be read, rerun and checked without installing anything.
-// Log loss, histogram splits, Newton leaf values, row subsampling.
+// Log loss, histogram splits, Newton leaf values, row and input subsampling.
 
 const sigmoid = (z) => 1 / (1 + Math.exp(-z));
 
@@ -50,7 +50,7 @@ const binOf = (cuts, x) => {
 };
 
 export function fit(X, y, opts = {}) {
-  const o = { trees: 300, depth: 3, rate: 0.04, subsample: 0.7, minLeaf: 25, lambda: 2, maxBins: 24, seed: 7, ...opts };
+  const o = { trees: 300, depth: 3, rate: 0.04, subsample: 0.7, minLeaf: 25, lambda: 2, maxBins: 24, colsample: 1, seed: 7, ...opts };
   const n = X.length;
   const d = X[0].length;
   const edges = binEdges(X, o.maxBins);
@@ -63,6 +63,7 @@ export function fit(X, y, opts = {}) {
   const h = new Float64Array(n);
   const trees = [];
 
+  let cols = Array.from({ length: d }, (_, j) => j);
   const grow = (rows, depth) => {
     let G = 0;
     let H = 0;
@@ -74,7 +75,7 @@ export function fit(X, y, opts = {}) {
     if (depth >= o.depth || rows.length < 2 * o.minLeaf) return leaf;
     const parent = (G * G) / (H + o.lambda);
     let best = null;
-    for (let j = 0; j < d; j++) {
+    for (const j of cols) {
       const nb = edges[j].length + 1;
       if (nb < 2) continue;
       const gs = new Float64Array(nb);
@@ -118,6 +119,12 @@ export function fit(X, y, opts = {}) {
     }
     const rows = [];
     for (let i = 0; i < n; i++) if (rand() < o.subsample) rows.push(i);
+    // Each tree sees a random share of the inputs, which keeps the trees from all leaning on the same few.
+    if (o.colsample < 1) {
+      cols = [];
+      for (let j = 0; j < d; j++) if (rand() < o.colsample) cols.push(j);
+      if (!cols.length) cols = [Math.floor(rand() * d)];
+    }
     const tree = grow(rows, 0);
     trees.push(tree);
     for (let i = 0; i < n; i++) F[i] += walk(tree, B[i]);

@@ -36,6 +36,18 @@ const years = (text) => {
   return Number(m[1]) * k;
 };
 
+// A time frame such as "Week 24" or "up to 2 years", in days.
+function span(text) {
+  let best = null;
+  for (const m of (text ?? "").matchAll(/(\d+(?:\.\d+)?)\s*-?\s*(year|month|week|day|hour)|(year|month|week|day)\s*(\d+)/gi)) {
+    const n = Number(m[1] ?? m[4]);
+    const unit = (m[2] ?? m[3]).toLowerCase();
+    const days = n * { year: 365, month: 30, week: 7, day: 1, hour: 1 / 24 }[unit];
+    if (Number.isFinite(days) && days < 365 * 15) best = Math.max(best ?? 0, days);
+  }
+  return best;
+}
+
 export function time(text) {
   if (!text) return null;
   const t = Date.parse(text.length === 7 ? `${text}-15` : text);
@@ -56,6 +68,7 @@ export function staticFeatures(p) {
   const phases = design.phases ?? [];
   const conditionText = [...(p.conditionsModule?.conditions ?? []), ...(p.conditionsModule?.keywords ?? [])].join(" ");
   const endpointText = (outcomes.primaryOutcomes ?? []).map((o) => o.measure).join(" ; ");
+  const titleText = [p.identificationModule?.briefTitle, p.identificationModule?.officialTitle].join(" ");
   const start = time(p.statusModule?.startDateStruct?.date);
   const minAge = years(elig.minimumAge);
   const maxAge = years(elig.maximumAge);
@@ -87,6 +100,14 @@ export function staticFeatures(p) {
   f.oneSex = b(elig.sex && elig.sex !== "ALL");
   f.logCriteria = Math.log10((elig.eligibilityCriteria ?? "").length + 1);
   f.logSummary = Math.log10((p.descriptionModule?.briefSummary ?? "").length + 1);
+  // How long after dosing the main endpoint is measured, when the record says.
+  const frames = (outcomes.primaryOutcomes ?? []).map((o) => span(o.timeFrame)).filter((d) => d != null);
+  f.logTimeFrame = frames.length ? Math.log10(Math.max(...frames) + 1) : -1;
+  f.logEnrollPerSite = f.logEnrollment - f.logSites;
+  f.titlePilot = b(/pilot|exploratory|proof.of.concept|feasibility/i.test(titleText));
+  f.titleDose = b(/dose.(finding|ranging|escalation|response)/i.test(titleText));
+  f.titleExtension = b(/extension|long.term|open.label/i.test(titleText));
+  f.biosimilar = b(/biosimilar|bioequivalen|generic/i.test(titleText));
   for (const [name, re] of Object.entries(AREAS)) if (name !== "oncology") f[`area_${name}`] = b(re.test(conditionText));
   for (const [name, re] of Object.entries(ENDPOINTS)) f[name] = b(re.test(endpointText));
   return f;
@@ -108,53 +129,84 @@ const drugName = (name) =>
     .replace(/[^a-z0-9-]+/g, " ")
     .trim();
 
-// The keys a trial is filed under in each track record.
-export function keys(p) {
+// The track records a trial is filed under once it has a result (file), and
+// the ones it is read against before it has one (read). Disease terms and
+// their parent categories come from the registry's own tagging.
+export function keys(p, mesh = {}) {
   const interventions = p.armsInterventionsModule?.interventions ?? [];
   const outcomes = p.outcomesModule?.primaryOutcomes ?? [];
   const uniq = (list) => [...new Set(list.filter(Boolean))];
-  return {
-    sponsor: uniq([p.sponsorCollaboratorsModule?.leadSponsor?.name?.toLowerCase()]),
-    drug: uniq(interventions.filter((i) => !CONTROL.test(i.name ?? "")).map((i) => drugName(i.name ?? ""))),
-    condition: uniq((p.conditionsModule?.conditions ?? []).map((c) => c.toLowerCase().trim())),
+  const sponsor = uniq([p.sponsorCollaboratorsModule?.leadSponsor?.name?.toLowerCase()]);
+  const drug = uniq(interventions.filter((i) => !CONTROL.test(i.name ?? "")).map((i) => drugName(i.name ?? "")));
+  const condition = uniq((p.conditionsModule?.conditions ?? []).map((c) => c.toLowerCase().trim()));
+  const terms = uniq(mesh.terms ?? []);
+  const parents = uniq(mesh.parents ?? []);
+  const phase = (p.designModule?.phases ?? []).includes("PHASE3") ? "P3" : "P2";
+  const disease = terms.length ? terms : condition;
+  const pair = (a, b) => a.flatMap((x) => b.map((y) => `${x}|${y}`));
+  const file = {
+    sponsor,
+    drug,
+    condition,
     conditionWord: uniq((p.conditionsModule?.conditions ?? []).flatMap(words)),
     endpointWord: uniq(outcomes.flatMap((o) => words(o.measure))),
+    mesh: terms,
+    meshParent: parents,
+    drugPhase: pair(drug, [phase]),
+    drugDisease: pair(drug, disease),
+    sponsorPhase: pair(sponsor, [phase]),
   };
+  const read = {
+    sponsor: ["sponsor", file.sponsor],
+    drug: ["drug", file.drug],
+    condition: ["condition", file.condition],
+    conditionWord: ["conditionWord", file.conditionWord],
+    endpointWord: ["endpointWord", file.endpointWord],
+    mesh: ["mesh", file.mesh],
+    meshParent: ["meshParent", file.meshParent],
+    drugSamePhase: ["drugPhase", file.drugPhase],
+    // Only a Phase 3 trial has an earlier phase to look back on.
+    drugEarlier: ["drugPhase", phase === "P3" ? pair(drug, ["P2"]) : []],
+    drugDisease: ["drugDisease", file.drugDisease],
+    sponsorPhase: ["sponsorPhase", file.sponsorPhase],
+  };
+  return { file, read };
 }
-
-export const GROUPS = ["sponsor", "drug", "condition", "conditionWord", "endpointWord"];
 
 // Running tallies of outcomes per key. read() turns a trial's keys into
 // features; add() files a finished trial. The caller decides the order, so a
 // trial is only ever read against results that were public before it.
 export class TrackRecord {
   constructor() {
-    this.tables = Object.fromEntries(GROUPS.map((g) => [g, new Map()]));
+    this.tables = new Map();
     this.n = 0;
     this.met = 0;
   }
-  add(k, label) {
+  add(file, label) {
     this.n++;
     this.met += label;
-    for (const g of GROUPS) {
-      for (const key of k[g]) {
-        const row = this.tables[g].get(key) ?? [0, 0];
+    for (const [name, list] of Object.entries(file)) {
+      if (!this.tables.has(name)) this.tables.set(name, new Map());
+      const table = this.tables.get(name);
+      for (const key of list) {
+        const row = table.get(key) ?? [0, 0];
         row[0]++;
         row[1] += label;
-        this.tables[g].set(key, row);
+        table.set(key, row);
       }
     }
   }
-  read(k) {
+  read(read) {
     const prior = this.n ? this.met / this.n : 0.5;
     const out = {};
-    for (const g of GROUPS) {
+    for (const [g, [name, list]] of Object.entries(read)) {
+      const table = this.tables.get(name);
       let n = 0;
       let met = 0;
       let lift = 0;
       let seen = 0;
-      for (const key of k[g]) {
-        const row = this.tables[g].get(key);
+      for (const key of list) {
+        const row = table?.get(key);
         if (!row) continue;
         n += row[0];
         met += row[1];

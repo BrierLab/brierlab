@@ -17,11 +17,17 @@ if (!["eval", "fit", "features"].includes(mode)) {
   process.exit(1);
 }
 const DAY = 86_400_000;
+// Disease tags on a full registry record, in the same shape src/history.mjs keeps.
+const meshOf = (s) => {
+  const browse = s.derivedSection?.conditionBrowseModule ?? {};
+  return { terms: (browse.meshes ?? []).map((m) => m.term), parents: (browse.ancestors ?? []).map((m) => m.term) };
+};
+const VERSION = "gbm-v2";
 const lines = (path) => readFileSync(path, "utf8").split("\n").filter(Boolean).map((l) => JSON.parse(l));
 
 // One row per trial: when its result became public, and the last moment a
 // forecast of it could honestly have been made (its primary completion date).
-function row(p, label, source) {
+function row(p, label, source, mesh) {
   const st = p.statusModule ?? {};
   const posted = time(st.resultsFirstPostDateStruct?.date);
   let known = time(st.primaryCompletionDateStruct?.date) ?? time(st.completionDateStruct?.date);
@@ -36,7 +42,7 @@ function row(p, label, source) {
     industry: p.sponsorCollaboratorsModule?.leadSponsor?.class === "INDUSTRY",
     phase3: (p.designModule?.phases ?? []).includes("PHASE3"),
     stat: staticFeatures(p),
-    keys: keys(p),
+    keys: keys(p, mesh),
   };
 }
 
@@ -44,7 +50,7 @@ const history = [];
 for await (const line of createInterface({ input: createReadStream("data/history_raw.jsonl") })) {
   const s = JSON.parse(line);
   const label = ruleLabel(s.primaries);
-  if (label != null) history.push(row(s.protocolSection, label, "history"));
+  if (label != null) history.push(row(s.protocolSection, label, "history", s.mesh));
 }
 
 // Held-out trials: results posted after the history window. Graded by the
@@ -61,7 +67,7 @@ for (const s of lines("data/test_raw.jsonl")) {
   const label = grade.get(nct) ?? null;
   const rule = ruleLabel(primaries);
   if (label == null && rule == null) continue;
-  const r = row(s.protocolSection, label ?? rule, "held");
+  const r = row(s.protocolSection, label ?? rule, "held", meshOf(s));
   r.graded = label != null;
   r.rule = rule;
   held.push(r);
@@ -78,10 +84,10 @@ function addTrackRecords(queries, resolved, now) {
   for (const q of asked) {
     const at = q.known ?? now;
     while (i < filed.length && filed[i].posted < at) {
-      record.add(filed[i].keys, filed[i].label);
+      record.add(filed[i].keys.file, filed[i].label);
       i++;
     }
-    q.x = { ...q.stat, ...record.read(q.keys) };
+    q.x = { ...q.stat, ...record.read(q.keys.read) };
   }
 }
 
@@ -142,9 +148,9 @@ function logistic(train) {
 }
 
 const GRID = [];
-for (const depth of [2, 3, 4]) for (const minLeaf of [25, 60]) GRID.push({ depth, minLeaf });
-const STAGES = [100, 200, 300, 450, 600];
-const train = (rows, o) => fit(rows.map(vec), rows.map((r) => r.label), { rate: 0.03, ...o });
+for (const depth of [3, 4, 5]) for (const minLeaf of [25, 60]) for (const colsample of [1, 0.5]) GRID.push({ depth, minLeaf, colsample });
+const STAGES = [200, 400, 600, 800, 1000];
+const train = (rows, o) => fit(rows.map(vec), rows.map((r) => r.label), { rate: 0.02, ...o });
 
 mkdirSync("data/model", { recursive: true });
 
@@ -170,7 +176,7 @@ if (mode === "eval") {
     for (const g of GRID) {
       const m = train(f.tr, { ...g, trees: STAGES.at(-1) });
       for (const stage of STAGES) {
-        const key = `${g.depth}/${g.minLeaf}/${stage}`;
+        const key = `${g.depth}/${g.minLeaf}/${g.colsample}/${stage}`;
         const s = score(f.te, f.te.map((r) => predict(m, vec(r), stage)));
         fold.settings[key] = s;
         table.set(key, [...(table.get(key) ?? []), s.brier]);
@@ -179,14 +185,21 @@ if (mode === "eval") {
     walk.push(fold);
   }
   const ranked = [...table].map(([key, v]) => [key, v.reduce((s, x) => s + x, 0) / v.length]).sort((a, b) => a[1] - b[1]);
-  const [depth, minLeaf, trees] = ranked[0][0].split("/").map(Number);
-  const chosen = { depth, minLeaf, trees };
+  const [depth, minLeaf, colsample, trees] = ranked[0][0].split("/").map(Number);
+  const chosen = { depth, minLeaf, colsample, trees };
   console.log("walk-forward (settings chosen here, before looking at the held-out trials):");
   for (const f of walk) {
     const s = f.settings[ranked[0][0]];
     console.log(`  from ${f.from}: train ${f.train}, test ${f.test}  boosted skill ${(s.skill * 100).toFixed(1)}% AUC ${s.auc.toFixed(3)}  logistic skill ${(f.logistic * 100).toFixed(1)}%`);
   }
-  console.log(`  chosen settings: depth ${depth}, min leaf ${minLeaf}, ${trees} trees\n`);
+  console.log(`  chosen settings: depth ${depth}, min leaf ${minLeaf}, input share ${colsample}, ${trees} trees`);
+  // All four walk-forward years scored together: the largest fair test we have.
+  const pooled = walk.reduce((s, f) => s + f.settings[ranked[0][0]].brier * f.test, 0) / walk.reduce((s, f) => s + f.test, 0);
+  const tested = walk.reduce((s, f) => s + f.test, 0);
+  const meanSkill = walk.reduce((s, f) => s + f.settings[ranked[0][0]].skill * f.test, 0) / tested;
+  const meanAuc = walk.reduce((s, f) => s + f.settings[ranked[0][0]].auc * f.test, 0) / tested;
+  const meanLogistic = walk.reduce((s, f) => s + f.logistic * f.test, 0) / tested;
+  console.log(`  across ${tested} walk-forward trials: skill ${(meanSkill * 100).toFixed(1)}%  AUC ${meanAuc.toFixed(3)}  Brier ${pooled.toFixed(4)}  (logistic skill ${(meanLogistic * 100).toFixed(1)}%)\n`);
 
   // 2. The held-out trials, touched once with the chosen settings.
   const test = held.filter(usable);
@@ -248,7 +261,7 @@ if (mode === "eval") {
 
   writeFileSync(
     "data/model/eval.json",
-    JSON.stringify({ ranAt: new Date().toISOString(), trainedOn: pool.length, features: names.length, chosen, walk: walk.map((f) => ({ from: f.from, train: f.train, test: f.test, logistic: f.logistic, boosted: f.settings[ranked[0][0]] })), heldOut, curve, importance: imp }, null, 1),
+    JSON.stringify({ ranAt: new Date().toISOString(), version: VERSION, trainedOn: pool.length, features: names.length, chosen, walkAll: { n: tested, skill: meanSkill, auc: meanAuc, brier: pooled, logistic: meanLogistic }, walk: walk.map((f) => ({ from: f.from, train: f.train, test: f.test, logistic: f.logistic, boosted: f.settings[ranked[0][0]] })), heldOut, curve, importance: imp }, null, 1),
   );
   console.log("\nwrote data/model/eval.json");
 }
@@ -258,7 +271,7 @@ if (mode === "fit" || mode === "features") {
   if (!existsSync(evalPath)) throw new Error("run `node src/train.mjs eval` first: it chooses the settings");
   const { chosen } = JSON.parse(readFileSync(evalPath, "utf8"));
   const now = Date.now();
-  const live = lines("data/live_raw.jsonl").map((s) => ({ ...row(s.protocolSection, null, "live"), known: now }));
+  const live = lines("data/live_raw.jsonl").map((s) => ({ ...row(s.protocolSection, null, "live", meshOf(s)), known: now }));
   const resolved = [...history, ...held.map((r) => ({ ...r }))];
   addTrackRecords([...resolved, ...live], resolved, now);
   names = Object.keys(resolved[0].x);
@@ -269,9 +282,9 @@ if (mode === "fit" || mode === "features") {
     process.exit(0);
   }
   const model = train(pool, chosen);
-  const version = `gbm-v1(n=${pool.length})`;
+  const version = `${VERSION}(n=${pool.length})`;
   const madeAt = new Date().toISOString();
-  writeFileSync("data/model/gbm-v1.json", JSON.stringify({ version, madeAt, trainedOn: pool.length, features: names, ...model }));
+  writeFileSync(`data/model/${VERSION}.json`, JSON.stringify({ version, madeAt, trainedOn: pool.length, features: names, ...model }));
   writeFileSync("data/live_ml_results.jsonl", live.map((r) => JSON.stringify({ nct: r.nct, probability: predict(model, vec(r)), model: version, madeAt })).join("\n") + "\n");
   const ps = live.map((r) => predict(model, vec(r)));
   console.log(`${version}: trained on ${pool.length} trials, forecast ${live.length} live trials, mean ${(ps.reduce((s, v) => s + v, 0) / ps.length).toFixed(3)}, range ${Math.min(...ps).toFixed(2)} to ${Math.max(...ps).toFixed(2)}`);

@@ -857,7 +857,7 @@ h2 em, .cap h1 em { font-style: normal; color: var(--ink); background: linear-gr
   const signed = (x, d = 1) => (x >= 0 ? "+" : "−") + Math.abs(x).toFixed(d);
 
   // Plain names for the model's inputs.
-  const GROUP = { sponsor: "Sponsor", drug: "Drug", condition: "Condition", conditionWord: "Condition wording", endpointWord: "Endpoint wording" };
+  const GROUP = { sponsor: "Sponsor", drug: "Drug", condition: "Condition", conditionWord: "Condition wording", endpointWord: "Endpoint wording", mesh: "Disease", meshParent: "Disease family", drugSamePhase: "Drug at this phase", drugEarlier: "Drug in Phase 2", drugDisease: "Drug in this disease", sponsorPhase: "Sponsor at this phase" };
   const NAME = {
     phase3: "Phase 3", industry: "Industry sponsor", logEnrollment: "Enrollment", placeboControlled: "Placebo control", activeControlled: "Active control",
     blinded: "Blinded", armCount: "Arms", oncology: "Cancer trial", biologic: "Biologic", vaccine: "Vaccine", nonInferiority: "Non-inferiority design",
@@ -869,10 +869,11 @@ h2 em, .cap h1 em { font-style: normal; color: var(--ink); background: linear-gr
     logSummary: "Summary length", area_infection: "Infection", area_neuro: "Brain and mind", area_cardio: "Heart and vessels", area_metabolic: "Metabolic",
     area_respiratory: "Lungs", area_immune: "Immune", area_pain: "Pain", area_eye: "Eye", epSurvival: "Survival endpoint", epResponse: "Response endpoint",
     epChange: "Change-from-start endpoint", epPk: "Drug-level endpoint", epSafety: "Safety endpoint", epImmuno: "Antibody endpoint", epScale: "Score endpoint",
-    epEvent: "Event-rate endpoint",
+    epEvent: "Event-rate endpoint", logTimeFrame: "Endpoint timing, days", logEnrollPerSite: "Patients per site", titlePilot: "Pilot study",
+    titleDose: "Dose-finding study", titleExtension: "Extension or open-label", biosimilar: "Copy of an existing drug",
   };
   const COUNT = new Set(["armCount", "collaborators", "masking", "interventionCount", "drugCount", "primaryCount", "secondaryCount", "countryCount"]);
-  const LOG = new Set(["logEnrollment", "logSites", "logCriteria", "logSummary"]);
+  const LOG = new Set(["logEnrollment", "logSites", "logCriteria", "logSummary", "logTimeFrame"]);
   const unlog = (x) => Math.max(0, Math.round(10 ** x - 1));
   function label(name) {
     const m = /^(.*)_(n|rate|lift)$/.exec(name);
@@ -885,6 +886,7 @@ h2 em, .cap h1 em { font-style: normal; color: var(--ink); background: linear-gr
     if (m && m[2] === "n") return `${label(name)} ≤ ${num(unlog(t))} trials? ${goesLeft ? "yes" : "no"}`;
     if (m) return `${label(name)} ≤ ${signed(t * 100)} pts? ${goesLeft ? "yes" : "no"}`;
     if (LOG.has(name)) return `${label(name)} ≤ ${num(unlog(t))}? ${goesLeft ? "yes" : "no"}`;
+    if (name === "logEnrollPerSite") return `${label(name)} \u2264 ${num(10 ** t)}? ${goesLeft ? "yes" : "no"}`;
     if (name === "startYear") return `Started by ${Math.floor(t)}? ${goesLeft ? "yes" : "no"}`;
     if (COUNT.has(name)) return `${label(name)} ≤ ${Math.floor(t)}? ${goesLeft ? "yes" : "no"}`;
     return `${label(name)}? ${goesLeft ? "no" : "yes"}`;
@@ -1212,6 +1214,13 @@ h2 em, .cap h1 em { font-style: normal; color: var(--ink); background: linear-gr
     bar("b", "Simple formula, same inputs", pc(T.logistic.skill), T.logistic.skill / best),
     bar("c", "Our earlier baseline", pc(T.oldBaseline.skill), T.oldBaseline.skill / best),
   );
+  if (T.walk) {
+    const more = document.createElement("div");
+    more.className = "cap2";
+    more.style.marginTop = "6px";
+    more.textContent = `Same test across four earlier years, ${num(T.walk.n)} trials: ${pc(T.walk.skill)}`;
+    $("mx-compare").append(more);
+  }
   const lean = T.importance.slice(0, 6);
   for (const f of lean) $("mx-lean").append(bar("", label(f.name), Math.round(f.share * 100) + "%", f.share / lean[0].share));
   $("mx-held").textContent = `${T.n} recent trials it never saw`;
@@ -1225,7 +1234,7 @@ h2 em, .cap h1 em { font-style: normal; color: var(--ink); background: linear-gr
     svg.append(e);
     return e;
   };
-  const small = svg.getBoundingClientRect().width < 430;
+  const small = innerWidth < 560;
   if (small) svg.setAttribute("viewBox", "0 0 340 280");
   const cx0 = small ? 40 : 54, cx1 = small ? 318 : 532, cy0 = 26, cy1 = 232;
   const top = Math.ceil((Math.max(...T.curve.map((c) => c.skill)) * 100 + 3) / 5) * 5;

@@ -38,7 +38,12 @@ function slim(s) {
         statisticalMethod: a.statisticalMethod,
       })),
     }));
-  return { protocolSection: p, primaries };
+  // Disease terms and their parent categories, as tagged by the registry.
+  // The registry's drug tags are deliberately not kept: a drug tends to get a
+  // tag only once it is well known, which would leak how things turned out.
+  const browse = s.derivedSection?.conditionBrowseModule ?? {};
+  const mesh = { terms: (browse.meshes ?? []).map((m) => m.term), parents: (browse.ancestors ?? []).map((m) => m.term) };
+  return { protocolSection: p, primaries, mesh };
 }
 
 const stream = createWriteStream(out);
@@ -48,7 +53,7 @@ do {
   const url = new URL(BASE);
   url.searchParams.set("query.term", `AREA[ResultsFirstPostDate]RANGE[${from},${to}]`);
   url.searchParams.set("filter.advanced", advanced);
-  url.searchParams.set("fields", "protocolSection,resultsSection.outcomeMeasuresModule");
+  url.searchParams.set("fields", "protocolSection,resultsSection.outcomeMeasuresModule,derivedSection.conditionBrowseModule");
   url.searchParams.set("pageSize", "200");
   if (token) url.searchParams.set("pageToken", token);
 

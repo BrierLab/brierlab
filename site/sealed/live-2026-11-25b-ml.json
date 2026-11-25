@@ -1,0 +1,4048 @@
+{
+ "sealedAt": "2026-11-25T17:37:21.806Z",
+ "count": 505,
+ "root": "bfa76901596382a77a2f8533ba619175283a3be6af53da432597cf66640a017b",
+ "hashing": "leaf = sha256(JSON of {nct, method, probability, model, madeAt}); pairwise sha256 Merkle tree over leaves sorted by nct+method, odd node paired with itself",
+ "forecasts": [
+  {
+   "nct": "NCT01297400",
+   "method": "live_ml",
+   "probability": 0.32248594931462143,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "b5eaf74a12c3bb84042a0aa8553dcb417df9d3e67e0495605f31817a656392cd"
+  },
+  {
+   "nct": "NCT01872260",
+   "method": "live_ml",
+   "probability": 0.35452435092072515,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "cde2b09a25ef86abae3682e204bed94894a02c9d5713406d0d4176c012c949d8"
+  },
+  {
+   "nct": "NCT02972840",
+   "method": "live_ml",
+   "probability": 0.7723831511555155,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "e4466cac62eed013b9888ee30a24486bfb80ffce8eb95f1aee819c17503340f3"
+  },
+  {
+   "nct": "NCT03383081",
+   "method": "live_ml",
+   "probability": 0.2734099590582248,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "8e646dcff1db5a7293a7f2aa67e18dc5c40c8c2232fddf3ba16c2e06935bce0f"
+  },
+  {
+   "nct": "NCT03592472",
+   "method": "live_ml",
+   "probability": 0.6870118640372979,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "93d0dc2001b3b36cf947f3299d3475338c46c8f8ff3584eedffd05f062636244"
+  },
+  {
+   "nct": "NCT03767244",
+   "method": "live_ml",
+   "probability": 0.8249196046638699,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "63da1fb38537db52c7e518944ea8e567a632a9c7b39540123c6f1785fc492e81"
+  },
+  {
+   "nct": "NCT03789552",
+   "method": "live_ml",
+   "probability": 0.8577387797453776,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "8654c744c9fff4df379cf11f3a33747235f88ff88c6b2d0f41c06163d069d4c4"
+  },
+  {
+   "nct": "NCT03817502",
+   "method": "live_ml",
+   "probability": 0.7112240524973672,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "631633f7d0a6fa76ff2fd3edf9e252bce72895368a3f2abbafa75e6dc8bc8ffb"
+  },
+  {
+   "nct": "NCT03887455",
+   "method": "live_ml",
+   "probability": 0.704670050181169,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "aa0ff82ff49581f0897ef0618653f4f40033828652f3f76e840f30b5cb6977de"
+  },
+  {
+   "nct": "NCT03981796",
+   "method": "live_ml",
+   "probability": 0.7979892477324,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "5907fff8a2145392ff2648a9f840c99c15a780d741ba951a3e08f5971ea100ac"
+  },
+  {
+   "nct": "NCT03994471",
+   "method": "live_ml",
+   "probability": 0.6511384909813476,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "a57ff8da3283784e859d6e08c82460fe3ca75da6e7db6acb13db263829f9c2db"
+  },
+  {
+   "nct": "NCT03994874",
+   "method": "live_ml",
+   "probability": 0.29852392059719657,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "a5bc634e7738850e2fd4bccbebb033e30dd14c8297bab12c55d3921344087a16"
+  },
+  {
+   "nct": "NCT04042844",
+   "method": "live_ml",
+   "probability": 0.3885357701745321,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "83e714fca5bd2bfc2d02b81e6481051fa42a06da222922e891886d4de8dc30f2"
+  },
+  {
+   "nct": "NCT04077723",
+   "method": "live_ml",
+   "probability": 0.39231899895249467,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "ba3b03d2d023d156b0ba869938783bbfa88794e14271c37e0ca37105d58c77fa"
+  },
+  {
+   "nct": "NCT04199689",
+   "method": "live_ml",
+   "probability": 0.701753866169888,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "c83f86993333ff795b7ff40f6e3c6417a5cb5eb1a955e86199b8e3c02331388c"
+  },
+  {
+   "nct": "NCT04208178",
+   "method": "live_ml",
+   "probability": 0.5999863118975285,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "5dc29feba2706055abd3ed7d7494ff539c3b0c67fc4bb841e13fb72bd80b1d72"
+  },
+  {
+   "nct": "NCT04224493",
+   "method": "live_ml",
+   "probability": 0.7601796792546931,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "5eb8be7daff8b4b35e7912a5f11c0601fc28a7c3eda6db485267f3f001d23572"
+  },
+  {
+   "nct": "NCT04241185",
+   "method": "live_ml",
+   "probability": 0.6416492096904886,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "9ad533d72d8c7184a55ee02ad2dab9124b56d81e993e0e34dafd0b872c8982af"
+  },
+  {
+   "nct": "NCT04318041",
+   "method": "live_ml",
+   "probability": 0.5767529769574361,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "80209861ff46412d4b7d7ff74793b20bb72d397f8e8cc4c2ad7b9323efe767a3"
+  },
+  {
+   "nct": "NCT04344158",
+   "method": "live_ml",
+   "probability": 0.627142637087681,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "c43a32916203e5083ace931f31056752eb22bb66473930138b476410b85545c0"
+  },
+  {
+   "nct": "NCT04417621",
+   "method": "live_ml",
+   "probability": 0.42477541807905217,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "3a15a1c0ce44db8b133e0a47f9bc36e9fddb200baba1b0f24fb9629c3b91194d"
+  },
+  {
+   "nct": "NCT04435990",
+   "method": "live_ml",
+   "probability": 0.7414350479310429,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "14a0d357d1e4825428dcf25f336aecc797fbcfc44b439ef4d29464bb5d21318b"
+  },
+  {
+   "nct": "NCT04442022",
+   "method": "live_ml",
+   "probability": 0.7467705856897596,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "6f73b554d79aab4dbb8ebca360fa5dc071e451c1dda6cea73859e4178daab851"
+  },
+  {
+   "nct": "NCT04485949",
+   "method": "live_ml",
+   "probability": 0.2638237871832864,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "317a15dfe9b24b23bc71d8a8abf74460fb7033c8c78e49f4d0e6a7ddeeab7f54"
+  },
+  {
+   "nct": "NCT04498117",
+   "method": "live_ml",
+   "probability": 0.7482344514525094,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "1bb283eb9d1882b8b370f2057e72cc77f8b9e564103c185952712312dd1b84f8"
+  },
+  {
+   "nct": "NCT04529772",
+   "method": "live_ml",
+   "probability": 0.671959768120011,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "5e3a61b63f426ab0b954bbfc35eb92949177f0a0bd845d0f89f013ac6b835c36"
+  },
+  {
+   "nct": "NCT04544189",
+   "method": "live_ml",
+   "probability": 0.30670236001853063,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "94f8b4454f2fd3106b3d08fce28e97328a82c221844a277144b975ef8e0ae273"
+  },
+  {
+   "nct": "NCT04587830",
+   "method": "live_ml",
+   "probability": 0.26979967638861896,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "49ba0235640ca0d32a2698aad18a97e590830eb7c8e596563008d997fced79b8"
+  },
+  {
+   "nct": "NCT04588922",
+   "method": "live_ml",
+   "probability": 0.5095492272691851,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "c47107db785aa81c076c54a65586cff7d0f8aae6c636c14e2c20e58efd957951"
+  },
+  {
+   "nct": "NCT04639986",
+   "method": "live_ml",
+   "probability": 0.6823594196189958,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "6a921b5cea31fb1e46d78a919fad8b0dbfb691c4be57e4278a421cefa9ab01d2"
+  },
+  {
+   "nct": "NCT04657289",
+   "method": "live_ml",
+   "probability": 0.7115445214883076,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "c2b9ae197f00b3c95ff4d36e555d011aa94222d30dd83264ef73ca0902c1b51e"
+  },
+  {
+   "nct": "NCT04658862",
+   "method": "live_ml",
+   "probability": 0.6909774728799037,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "acf9b147091445c1012294f3db41663a628795c2930d180557a9241caec6ec50"
+  },
+  {
+   "nct": "NCT04691804",
+   "method": "live_ml",
+   "probability": 0.7424364478709521,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "ee14fbcf63a756a7382dd707b34948255a2dfc024d0763882f9f24cb7e4c66cd"
+  },
+  {
+   "nct": "NCT04704921",
+   "method": "live_ml",
+   "probability": 0.8866748121913438,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "ee9b9f16e0d9d662a06dac67a96e1b3da8c1d7ad06bc7bb3c21218e66b7ec2bf"
+  },
+  {
+   "nct": "NCT04817618",
+   "method": "live_ml",
+   "probability": 0.6907486411079027,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "3a8e2444ebe8a289f4439b7fcb053b099fdaaacffa273aa0b38acda56fb317cf"
+  },
+  {
+   "nct": "NCT04853342",
+   "method": "live_ml",
+   "probability": 0.5183207442938229,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "e8dfda42e4d41fce7f77eb4cffa71311cb41d987025605de6cfcdab68e7da316"
+  },
+  {
+   "nct": "NCT04879329",
+   "method": "live_ml",
+   "probability": 0.5533634489327731,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "47281f86d4c54dc41004cd6894f53fe3b57f5d48bbeb50bcbdd1f2087bd56e35"
+  },
+  {
+   "nct": "NCT04957485",
+   "method": "live_ml",
+   "probability": 0.6537882232169787,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "be8b6ac80e88e23b5c8cfc393d11dc1504a4a89246e1c10292564952b4cda63c"
+  },
+  {
+   "nct": "NCT04957550",
+   "method": "live_ml",
+   "probability": 0.9153286843756002,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "48d2301b8eceba19e665c883cece5a14a8f135885a98ac509917561b38277b18"
+  },
+  {
+   "nct": "NCT04969731",
+   "method": "live_ml",
+   "probability": 0.5529932977701278,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "aac35782f67a928df649a0deff100b2f29216457955aec27365e6eb6b1f8c65a"
+  },
+  {
+   "nct": "NCT04977024",
+   "method": "live_ml",
+   "probability": 0.35151849886103975,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "324c160b06edac9069314c42e65d59f5ad16026b9c7a605c59aca16cb66e28c0"
+  },
+  {
+   "nct": "NCT04986423",
+   "method": "live_ml",
+   "probability": 0.4067095448555068,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "c7aef15cd208b4df3a4f298699bb66acdca27081d4422f0c45892e774d3f7b4f"
+  },
+  {
+   "nct": "NCT05035212",
+   "method": "live_ml",
+   "probability": 0.8479266927104055,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "eff65b687c3dd3f79d067117fdafd8da648ded8a480cdab15a4bb0cd4271ff92"
+  },
+  {
+   "nct": "NCT05038735",
+   "method": "live_ml",
+   "probability": 0.6973147234548766,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "3a0242c53dd649771a4bf842c008a4d8357cea24d07959bf83ef6e079f289b11"
+  },
+  {
+   "nct": "NCT05050136",
+   "method": "live_ml",
+   "probability": 0.6165514008353742,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "7c0570c853dd4c00cf0931d83ed8a7833acfc8caea47978ed25dffb7e1fddd9a"
+  },
+  {
+   "nct": "NCT05065216",
+   "method": "live_ml",
+   "probability": 0.5109736051666213,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "40b0504926c853fdf7c3bbfa3c554c60274278065e0977ac0f4dfd2362f036fd"
+  },
+  {
+   "nct": "NCT05128825",
+   "method": "live_ml",
+   "probability": 0.5200995017494207,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "3e4b7ba97155de048c69e13451056cb9b7c2ad0a48f8e9775c8cf809a4c7b7b3"
+  },
+  {
+   "nct": "NCT05138133",
+   "method": "live_ml",
+   "probability": 0.70885010711051,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "8ca3adfb00263a312932985ef276ec9f490169920ea4f0a69998bc068561a0d4"
+  },
+  {
+   "nct": "NCT05139719",
+   "method": "live_ml",
+   "probability": 0.4306565973387441,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "db6f406016100f26dc63327b9d3d808c0b9b179f47e3271d1673f97f92b1a6f6"
+  },
+  {
+   "nct": "NCT05170204",
+   "method": "live_ml",
+   "probability": 0.6522900236285877,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "92b01698b0655b59f64ddfca877619ffbc358343cc1e5b832ac63508e34d79c5"
+  },
+  {
+   "nct": "NCT05171894",
+   "method": "live_ml",
+   "probability": 0.5964237455356539,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "aa14ea992bbd5cfcd756b2c5d44e808152ad88704a8a8d909cebc99025fd7781"
+  },
+  {
+   "nct": "NCT05198323",
+   "method": "live_ml",
+   "probability": 0.3204089003729141,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "d30f7c51ae6b94b8577aa6a6bcf9f3c1ab2dc20d25a17c4264297d6a4e7c752a"
+  },
+  {
+   "nct": "NCT05217628",
+   "method": "live_ml",
+   "probability": 0.7529556185610183,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "92bc3b03defc77b8ef4a2615c6422228738bcfe62758c87f7976a9db75ec2270"
+  },
+  {
+   "nct": "NCT05219617",
+   "method": "live_ml",
+   "probability": 0.7074893427661574,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "4f7440c3dbc7cd8174869f78b4678d0e17b1c363f2cdf4c3835606bdaaadbce9"
+  },
+  {
+   "nct": "NCT05221840",
+   "method": "live_ml",
+   "probability": 0.6994286694187887,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "9b7fad1ea4bdcd9fea65797b8310b98228391aaf41a30f5b1af6a0a997ffd0c5"
+  },
+  {
+   "nct": "NCT05262023",
+   "method": "live_ml",
+   "probability": 0.4443478221375335,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "e53c897802a0c11d70c4ec0b1cdffba8d446fe3b5a33c81ac19cee2783badc3d"
+  },
+  {
+   "nct": "NCT05281471",
+   "method": "live_ml",
+   "probability": 0.5489395529098842,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "a3f1bb5ec683f4cd574f8a3391fc25991832833e8cba76af616be1a18a177560"
+  },
+  {
+   "nct": "NCT05302284",
+   "method": "live_ml",
+   "probability": 0.6908093836442749,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "b10917ea832135dbb01b3ca55a7b8665987d30e3b64dc8c31ea110e3f5313a00"
+  },
+  {
+   "nct": "NCT05327114",
+   "method": "live_ml",
+   "probability": 0.6516240539865366,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "455a4bbdfb7d685ceb420fe128a52f0d02d74669836244fe77c0dd6cfc1b26d5"
+  },
+  {
+   "nct": "NCT05365672",
+   "method": "live_ml",
+   "probability": 0.4103332319286366,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "1bd25c2c7ac6ce8efb4aa2259f9f2a1914608fd1405d8cf7a305ba249b2a5b6c"
+  },
+  {
+   "nct": "NCT05382286",
+   "method": "live_ml",
+   "probability": 0.7744181625507526,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "9132bf91108ae910582f4c21b575840cc1a1e00134c30c3af8181a055b9a7207"
+  },
+  {
+   "nct": "NCT05397639",
+   "method": "live_ml",
+   "probability": 0.6202054202935307,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "dc070f8fbe81fef1a8e3ae33c65b2a5806e32a46c7a3077c13e2de896fd2fd0b"
+  },
+  {
+   "nct": "NCT05406362",
+   "method": "live_ml",
+   "probability": 0.3213955090587023,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "6803291ef1a9925471fa977b095b5945d8ea1b6abf0fa81cdcbe2c875892ebe6"
+  },
+  {
+   "nct": "NCT05413655",
+   "method": "live_ml",
+   "probability": 0.20223851908098991,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "d1d74c4c14a55bf220e72973261e7c7773073773b7446a372e4d0e4f8313cc73"
+  },
+  {
+   "nct": "NCT05424835",
+   "method": "live_ml",
+   "probability": 0.7942085303652154,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "c8a4c31644b1f648a3781149d6260a25c50bb09de16e1d7e41a14fd992ae9458"
+  },
+  {
+   "nct": "NCT05456256",
+   "method": "live_ml",
+   "probability": 0.3107230645214258,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "95c73b4fe96f071496e54b27d801f4fd8f0b803f6fd53c4e8deaa202389c1f9c"
+  },
+  {
+   "nct": "NCT05456425",
+   "method": "live_ml",
+   "probability": 0.7612609249578156,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "e30a61eda884a62c1fa267ed59ce508120404d086827b12b089b73cd80667dc0"
+  },
+  {
+   "nct": "NCT05462587",
+   "method": "live_ml",
+   "probability": 0.7832213696045998,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "d5ca67f4c8fbb7ddeae6f85f227024d42ad502ac4b2453f77411ece9765a051b"
+  },
+  {
+   "nct": "NCT05464784",
+   "method": "live_ml",
+   "probability": 0.6400092346864851,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "16900a240431f1cb680925083e4032274a385cbe1c4497ea698a38fb1979991d"
+  },
+  {
+   "nct": "NCT05468697",
+   "method": "live_ml",
+   "probability": 0.38349175421626625,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "2aea38f499e58d33dbe763c3b6345b698acccde5026c24d82dad0759ca0ca2d5"
+  },
+  {
+   "nct": "NCT05477576",
+   "method": "live_ml",
+   "probability": 0.7999428999424361,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "bf5294fdb917941362fb6e19ae245938b86dceaa5574a036477b3d338bda69fc"
+  },
+  {
+   "nct": "NCT05486104",
+   "method": "live_ml",
+   "probability": 0.5185155582205494,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "39e1d0f279f7d363cef4c0891ef7e37351e3a36aaa030d0e7e84bdfb69685442"
+  },
+  {
+   "nct": "NCT05500222",
+   "method": "live_ml",
+   "probability": 0.6010797274517625,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "4175db35c3578adf041cf37b85bf3f648182af1892e7e37574f5fed46735751c"
+  },
+  {
+   "nct": "NCT05503264",
+   "method": "live_ml",
+   "probability": 0.6961966337557721,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "a9c913fa98f43dc2c03e526c08a52b01f89e84f91c5aa63e32895b8716c7e16c"
+  },
+  {
+   "nct": "NCT05519085",
+   "method": "live_ml",
+   "probability": 0.7829437832237554,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "9562d48e3f2c506262d38cc8036bc1ab7fd7d8c65930d574dd00fbdf1fa16464"
+  },
+  {
+   "nct": "NCT05540860",
+   "method": "live_ml",
+   "probability": 0.6377285116341901,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "bc2b1d704d0170935b259723a2550909fd680be869ccd8cef8b94e7c9a52adfe"
+  },
+  {
+   "nct": "NCT05555862",
+   "method": "live_ml",
+   "probability": 0.3759749285520399,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "34394db0cd7448e1953a80e178af932b7e9f1f912b2aeda53e3061482cda302c"
+  },
+  {
+   "nct": "NCT05557448",
+   "method": "live_ml",
+   "probability": 0.31251717488183367,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "4d0057510efa319f0f771ce0abffe8bfd18cbfa5f45e8468a2987b0e03e911f2"
+  },
+  {
+   "nct": "NCT05563844",
+   "method": "live_ml",
+   "probability": 0.46409138521675025,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "d0d8f24f8b9c2a5466d47605fb0df7a79b2d1e963f16234fb6d693f7b4af8065"
+  },
+  {
+   "nct": "NCT05608291",
+   "method": "live_ml",
+   "probability": 0.8521073755553736,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "392db8400cec96b6b559feb59179e0ff7f284320a37dbe86891303f3bfd70803"
+  },
+  {
+   "nct": "NCT05608681",
+   "method": "live_ml",
+   "probability": 0.701826189170225,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "d3114d0771465c54048358e6a8bf4d9955ee53955700747ce269f1b39f16b308"
+  },
+  {
+   "nct": "NCT05609968",
+   "method": "live_ml",
+   "probability": 0.6867899480782726,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "6eb10e7c973ba8ed80241e7754bbf51455e7bd5adceee9490688527447e3e853"
+  },
+  {
+   "nct": "NCT05626712",
+   "method": "live_ml",
+   "probability": 0.5006446997650954,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "995da8fe58e18afccdf7e0a27e26c7743efd774967600f0a18cb66396dcc3d49"
+  },
+  {
+   "nct": "NCT05631262",
+   "method": "live_ml",
+   "probability": 0.5893973193844915,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "a53c0d75099bcdf63562551a468138f6e32997795879504961d8080203a6e426"
+  },
+  {
+   "nct": "NCT05645692",
+   "method": "live_ml",
+   "probability": 0.3187808948626302,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "d9d6edeb917101909239f04a83d37cd8eda78a0b6ee64d080cadd18c0917d803"
+  },
+  {
+   "nct": "NCT05653453",
+   "method": "live_ml",
+   "probability": 0.6165492782044771,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "f5710549f9e26973fe6d67d64ce2821d97af770f751f2a954cec840efabedc5c"
+  },
+  {
+   "nct": "NCT05654454",
+   "method": "live_ml",
+   "probability": 0.7184936275021142,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "f5be77c61504fe21a1add98189d0b2b401552219952ec4695d1934f8fccad173"
+  },
+  {
+   "nct": "NCT05658575",
+   "method": "live_ml",
+   "probability": 0.7629697209232115,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "24e43727dd7c0896647cbc16468335dc093cf8184c5bb7047f03f7a2253b78ff"
+  },
+  {
+   "nct": "NCT05672576",
+   "method": "live_ml",
+   "probability": 0.7360959785700116,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "98ba84799ebb60b9a3dc407e8a82d899adee92ef38e089bb30bda984462a2105"
+  },
+  {
+   "nct": "NCT05678673",
+   "method": "live_ml",
+   "probability": 0.6977908352993558,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "c5cbad41990e8286d26d5ce99804ff0bec5b4a54f345a00a526ce9ecf5c19e61"
+  },
+  {
+   "nct": "NCT05682443",
+   "method": "live_ml",
+   "probability": 0.3666720103022458,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "24f4a863352207bfd0f198ce08bffb0596cb25c6a0e81c75fb4f3b2347e5081c"
+  },
+  {
+   "nct": "NCT05686642",
+   "method": "live_ml",
+   "probability": 0.29897662654910157,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "d3f516dc0d7496a6902c498cc3d48170dca2b64a71910fb6132b48db2fb92b42"
+  },
+  {
+   "nct": "NCT05692180",
+   "method": "live_ml",
+   "probability": 0.5016873774433679,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "bc73e4628139fcb27ea3b4971f73a5a9d9d94488c356fa1f33c042f50efdccd8"
+  },
+  {
+   "nct": "NCT05727176",
+   "method": "live_ml",
+   "probability": 0.31134406954570704,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "f86ca2b6c1e1535086083461603d30dbd17b24015018affb8dcd4b5e5c88ffcb"
+  },
+  {
+   "nct": "NCT05748873",
+   "method": "live_ml",
+   "probability": 0.5129210107295803,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "3218d1d972d3e04d002e3fcae81a3c4b179e9fadeaca5e23fad688972fe14c21"
+  },
+  {
+   "nct": "NCT05751928",
+   "method": "live_ml",
+   "probability": 0.7003464593482222,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "085918e010b30e27e9fa2f36a7a0180c48b8ca1269eadbb95a4a2e8ed47ea18f"
+  },
+  {
+   "nct": "NCT05757102",
+   "method": "live_ml",
+   "probability": 0.7418579455064058,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "cfc64042da73f09e0bbdc9836bab4d09d973e8ff8b728c5b9802e56275d8f02e"
+  },
+  {
+   "nct": "NCT05757869",
+   "method": "live_ml",
+   "probability": 0.8498254090351236,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "c87df84febd7994abe9db31b4caf719469cea23d6a2682959ba603b3298cc075"
+  },
+  {
+   "nct": "NCT05762107",
+   "method": "live_ml",
+   "probability": 0.5875376044247427,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "9d8a1b7818f72d9df9cce053b20a9581f139e5aca9016369a75ddf5b3ec68645"
+  },
+  {
+   "nct": "NCT05771584",
+   "method": "live_ml",
+   "probability": 0.2864208185765817,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "c2c89c16ec67fa58f12570d239ef2f2df122114b279d39f85acbb771874c293a"
+  },
+  {
+   "nct": "NCT05776277",
+   "method": "live_ml",
+   "probability": 0.5154243681006634,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "96687652bafa543844d02cdc995c5ccdeaa98b8132c2d28f405f437470ade1e2"
+  },
+  {
+   "nct": "NCT05778188",
+   "method": "live_ml",
+   "probability": 0.6663913578906583,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "60ed5e5ecdace9f3d74a59ac4e5d4ef622ed1001ff34458a2110d261a1617879"
+  },
+  {
+   "nct": "NCT05780567",
+   "method": "live_ml",
+   "probability": 0.641244811091917,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "d132d3e5962f909217ca96a0d2da62f3e890f78796f1c1eebb0891f9c777f249"
+  },
+  {
+   "nct": "NCT05821478",
+   "method": "live_ml",
+   "probability": 0.6695459642846205,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "8fdfe1b9701fdd3bc1d608ff214b4fe5ae6c3c83e010bed231255d7b783b9ba8"
+  },
+  {
+   "nct": "NCT05849298",
+   "method": "live_ml",
+   "probability": 0.34164775301078865,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "bab8e0a89eed7c6534b2536e29044976e2dbcc4dc5713f53cb3ab27171bc1532"
+  },
+  {
+   "nct": "NCT05860465",
+   "method": "live_ml",
+   "probability": 0.6339822581968535,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "92af12aa3f0ed54e43109b19f30093d6c04713b850a0cb53a8841c469fbc9e05"
+  },
+  {
+   "nct": "NCT05877963",
+   "method": "live_ml",
+   "probability": 0.8994146541293029,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "d8a680f0432aa52dff77336bb3e8dfa782c52404dc6657245bca52f45297689c"
+  },
+  {
+   "nct": "NCT05884255",
+   "method": "live_ml",
+   "probability": 0.6610461762063615,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "838fa5dc419fc54c7d35649f5b1ab041995cf23272e3524ff2b2859834251191"
+  },
+  {
+   "nct": "NCT05890729",
+   "method": "live_ml",
+   "probability": 0.4139690144080748,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "a26af5ba8b35de49a0eb2002ce7948fa83f1ce1eee61e08b52cd5ae47b5b62f2"
+  },
+  {
+   "nct": "NCT05906992",
+   "method": "live_ml",
+   "probability": 0.8119441436767766,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "1aa5c180a4f3254571f5ec2d37a72ed32438bec1a3206f599ab1c4e8f9589e03"
+  },
+  {
+   "nct": "NCT05909397",
+   "method": "live_ml",
+   "probability": 0.6418295618465594,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "b7df77bd9681e6d0c7fa770a1f139cc3ca7aaab795aae67f2e6261e7131584c8"
+  },
+  {
+   "nct": "NCT05910528",
+   "method": "live_ml",
+   "probability": 0.2853127055905737,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "58e11a8236e59d8ab77666f48ffcb4d9da7d0ebf4e0a1873779d47153d2d5958"
+  },
+  {
+   "nct": "NCT05911295",
+   "method": "live_ml",
+   "probability": 0.8054195250482905,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "fe2db719c050899e483de7fd9f19fb9f0eb90638baee9950c6be9d6bd7f0c1b9"
+  },
+  {
+   "nct": "NCT05913752",
+   "method": "live_ml",
+   "probability": 0.45355015763799966,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "b53c2722e8bcd3697d583061ae633f425da4ee273fb78ddbfabdcded4ab74511"
+  },
+  {
+   "nct": "NCT05922878",
+   "method": "live_ml",
+   "probability": 0.32142375195054124,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "36b7df4dd4498be1c76dc55e5dfd773b6deac6178d87b0c11c4b07380df7074d"
+  },
+  {
+   "nct": "NCT05925803",
+   "method": "live_ml",
+   "probability": 0.6742115874844977,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "ca9432de667cfa7d99408d668a6f8a6e19edbc84f77468eebbd34f9dd56cb8c7"
+  },
+  {
+   "nct": "NCT05944224",
+   "method": "live_ml",
+   "probability": 0.45194138368900205,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "9fe593aff7cc15e1b033fed4cf2b623059f47b75a4ee2cdf56249c09ae21a29d"
+  },
+  {
+   "nct": "NCT05948475",
+   "method": "live_ml",
+   "probability": 0.7838205134678248,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "8b4853573dab439e42e82df9740f52ae26f772f5a3813e7dafe7a9fafff1e7d2"
+  },
+  {
+   "nct": "NCT05952206",
+   "method": "live_ml",
+   "probability": 0.6863379185952467,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "70a09399ef498cf944c541fe850e5b57d3e30572b46144946537377b100f8f22"
+  },
+  {
+   "nct": "NCT05972473",
+   "method": "live_ml",
+   "probability": 0.7869022446110405,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "239979eece84980fa7029d31ce241cf63f31bffdeb7ab7523c1c0cbed673c22b"
+  },
+  {
+   "nct": "NCT05987332",
+   "method": "live_ml",
+   "probability": 0.789134792942224,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "c363a355728e15f81b33a236fcdaa9b8b1b8d296156c8bff1200d8b85f7becbe"
+  },
+  {
+   "nct": "NCT05987358",
+   "method": "live_ml",
+   "probability": 0.6449191903839272,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "a628d4f1b6466569ffdee4a575c789a350a688285ba22a59e7d7dfc2f46f441b"
+  },
+  {
+   "nct": "NCT06000956",
+   "method": "live_ml",
+   "probability": 0.9214248142809554,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "3b9e704301645a853040a769c1e728323cddad08aec29f666c8e26ac6df857a8"
+  },
+  {
+   "nct": "NCT06008119",
+   "method": "live_ml",
+   "probability": 0.5363492864892119,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "7008f42e931befe2b099c53b1b79670c1c0b5bada859ebc8afa5aa579e85a447"
+  },
+  {
+   "nct": "NCT06029972",
+   "method": "live_ml",
+   "probability": 0.486688352804013,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "b25275f516113193ef714a5c6aa66b1f7427ae6a2f699114c1f896aaa86bdb9f"
+  },
+  {
+   "nct": "NCT06032195",
+   "method": "live_ml",
+   "probability": 0.3947728990163018,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "b81a847a2431e9d45824d6abbff84d281a9ee29dd2c4acd9e3f1bc69761f494e"
+  },
+  {
+   "nct": "NCT06046222",
+   "method": "live_ml",
+   "probability": 0.3635383522641755,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "dcc3ff2873cf24de5ccb798e3d2f898a758ff0dfada7f5f45e9a56ffe3db106d"
+  },
+  {
+   "nct": "NCT06052267",
+   "method": "live_ml",
+   "probability": 0.6572491379215032,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "b2850dbaacfc560ea0a66191a5d190458f6a9c4678ff63d7c0ed7a8492ff2ba1"
+  },
+  {
+   "nct": "NCT06053242",
+   "method": "live_ml",
+   "probability": 0.6929806081177917,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "a0d5110f62129235c0af8b1555c6e97f26aed96a51c2c43242e4db90b3ed9a20"
+  },
+  {
+   "nct": "NCT06062810",
+   "method": "live_ml",
+   "probability": 0.6560552405784669,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "9b7cd1200147fc4bd764badcc2ba5f5a06975cfd5a7b9e03e92daebc8fb61aef"
+  },
+  {
+   "nct": "NCT06075264",
+   "method": "live_ml",
+   "probability": 0.3835621458275128,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "0249d7b6f7e7d6c293d53978762d56eaab6d4157ee1669d0ffa0282eb6f48779"
+  },
+  {
+   "nct": "NCT06080789",
+   "method": "live_ml",
+   "probability": 0.3972798072533701,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "ae2302236ae0219a8f11dc81ca4560150da8c5fb1e7e7a6a21a9e41d563bdea5"
+  },
+  {
+   "nct": "NCT06081959",
+   "method": "live_ml",
+   "probability": 0.6791986218626731,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "9c3f2b23797d0b4ad812bf8fa38d73dfdbee263f3b375299e3827bf54775f16d"
+  },
+  {
+   "nct": "NCT06087835",
+   "method": "live_ml",
+   "probability": 0.7585277187168324,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "bbe2ccfd99c7b748c57c42e4a9492275c905680c8da07fb0cc5ddb9abdc63f66"
+  },
+  {
+   "nct": "NCT06094179",
+   "method": "live_ml",
+   "probability": 0.5436450131041827,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "8ca58a7f1882cbf801b9212a471df7281d62b3a3484bb0c41f788c930892ce9f"
+  },
+  {
+   "nct": "NCT06104566",
+   "method": "live_ml",
+   "probability": 0.7103634841106407,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "ddd06507aa615aa343bf483389ac0c8faab780c1238de895be30dcc1e039db58"
+  },
+  {
+   "nct": "NCT06107413",
+   "method": "live_ml",
+   "probability": 0.3400887449599055,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "4a1ea40349f0abe68152998cb7260b382b6e3a967d515258d11ee94039a352d0"
+  },
+  {
+   "nct": "NCT06109272",
+   "method": "live_ml",
+   "probability": 0.6187972480857974,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "af1d52fa4b3474f6d4c83af8ac12b56abbe1086c662af1990bda55eaf8bf4d04"
+  },
+  {
+   "nct": "NCT06118281",
+   "method": "live_ml",
+   "probability": 0.7421686423849628,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "ea5292c9d9f4eb1ad0246f98eb9c1a9f9b1a09073f73f5bfdf6650a6564a5314"
+  },
+  {
+   "nct": "NCT06122779",
+   "method": "live_ml",
+   "probability": 0.2991211560187199,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "7c4f22cbd1f80733f9c879dea4388587892dce25326f76a7f17b0058aaf6cecc"
+  },
+  {
+   "nct": "NCT06125327",
+   "method": "live_ml",
+   "probability": 0.4581514083794926,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "b6e78b8ab8d0b816b2b18f99854a3c609a95a1abe9945aa982357a7f686b6b00"
+  },
+  {
+   "nct": "NCT06126224",
+   "method": "live_ml",
+   "probability": 0.44608595964835207,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "eaaa5ae1ab54b297fa19d36a228774db23051410e2aa70ca038c24fbf2bd1de2"
+  },
+  {
+   "nct": "NCT06129175",
+   "method": "live_ml",
+   "probability": 0.399622589120373,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "2e387a4eae60f7106ce07e56c9bc507510bbf0823eb8e569ac7c37b852716d02"
+  },
+  {
+   "nct": "NCT06132893",
+   "method": "live_ml",
+   "probability": 0.7565731960342126,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "8de987a1a30535e8490a5e079a859754b1068fd0b0fc61a5ba47707c732c2871"
+  },
+  {
+   "nct": "NCT06138743",
+   "method": "live_ml",
+   "probability": 0.6326046797007502,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "9d325fafadca763a3e049cdbb1fa48f37ab667ce1246cd1efed4da3f0b33fa8f"
+  },
+  {
+   "nct": "NCT06140836",
+   "method": "live_ml",
+   "probability": 0.8057265964543077,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "72578b24b2bf8a231e1905664248b16acefab056ab1decb785ad2289c526ec81"
+  },
+  {
+   "nct": "NCT06151574",
+   "method": "live_ml",
+   "probability": 0.7516211154870853,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "fac590e37ff43e42501e227b2704abe777a8805b7e6529285fa968b49ed83d86"
+  },
+  {
+   "nct": "NCT06151964",
+   "method": "live_ml",
+   "probability": 0.7627370275767599,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "43f9e9489c351e0770ad41c360408de2f2e5c5d1d1b73596310470b686be9d2f"
+  },
+  {
+   "nct": "NCT06157827",
+   "method": "live_ml",
+   "probability": 0.3969342504263401,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "7637c1bdb8104cbc39e2c8e8f04d676b32a19fab83a847c9c53dba6c9d55c41e"
+  },
+  {
+   "nct": "NCT06177041",
+   "method": "live_ml",
+   "probability": 0.6871654917497363,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "ae444c629ec26bf9f2b0543620e7ac09b68b9150a7635f42730c3a2fb0e44f6d"
+  },
+  {
+   "nct": "NCT06185764",
+   "method": "live_ml",
+   "probability": 0.4794091025508969,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "fb38f0e2a48bafb04bc78fec4b8195ab4fb955a48155b2a94f6fdfc6e4e74d15"
+  },
+  {
+   "nct": "NCT06194734",
+   "method": "live_ml",
+   "probability": 0.6589161615735831,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "bf3cabb92dc2ba4ca91accda93e4ebcdbb74350d2bf458947e1d16d6d740bdec"
+  },
+  {
+   "nct": "NCT06197568",
+   "method": "live_ml",
+   "probability": 0.32746344906714825,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "8b7e64257123c9d548f9519720b89c530e6fba7782c7b91aef1722a50bb7e4a4"
+  },
+  {
+   "nct": "NCT06206564",
+   "method": "live_ml",
+   "probability": 0.38673139564382203,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "2ad4226b3db4720c5ca20435cd5556e21aa1c890b6361f73a4bc8d87f0b9523a"
+  },
+  {
+   "nct": "NCT06206733",
+   "method": "live_ml",
+   "probability": 0.6302882652526726,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "0f1d7f920f8da07127d550a9d8720c5d2ca104cd58303d21213f429417320cb6"
+  },
+  {
+   "nct": "NCT06212999",
+   "method": "live_ml",
+   "probability": 0.8244165680678529,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "0a4fabab8d63634435d6824cc00d08ebbcfd4836b538f18fd3b7c72d34e06c73"
+  },
+  {
+   "nct": "NCT06220773",
+   "method": "live_ml",
+   "probability": 0.9145550045074302,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "d103bc6fbed47fc491af5d78b1b626abdde4556b406a46eedf9b1b31f23b7a1a"
+  },
+  {
+   "nct": "NCT06221748",
+   "method": "live_ml",
+   "probability": 0.7217408816131673,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "002223c990f9be83f31d5b8f23f5aa4a975ecf9a0a95adc2b9902b3bec35e5f0"
+  },
+  {
+   "nct": "NCT06233461",
+   "method": "live_ml",
+   "probability": 0.5686499133195747,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "c3d9ad2317cefbf3f908404038df864496352ccd6ba45e69f724c01fe554601e"
+  },
+  {
+   "nct": "NCT06238843",
+   "method": "live_ml",
+   "probability": 0.721689568614155,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "012c197ff5be94f6c03df021c518d520edf6de710c13e8a9d85a9ba2b0cf7ab1"
+  },
+  {
+   "nct": "NCT06241781",
+   "method": "live_ml",
+   "probability": 0.353841507277675,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "a2cc6c9988b5ff38304eb98bfa8fec29df07ab0d06b2f48331424572050ef16f"
+  },
+  {
+   "nct": "NCT06260163",
+   "method": "live_ml",
+   "probability": 0.7505047389984695,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "12f59e8aacf707f2e91c9b5f100a9dc82d28b414b38797a348adf2bd58f485f5"
+  },
+  {
+   "nct": "NCT06265727",
+   "method": "live_ml",
+   "probability": 0.6553911548943976,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "189790d27c51ccc36d04c7e0015c143b1b98c744dab64597fab3a23e566220a4"
+  },
+  {
+   "nct": "NCT06268886",
+   "method": "live_ml",
+   "probability": 0.20013407518363935,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "c64b1b69262ff3369ec9c65eab6f1b0a7b0d27975107bd123c6a2e02d1c750b8"
+  },
+  {
+   "nct": "NCT06269705",
+   "method": "live_ml",
+   "probability": 0.49114638845463154,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "3c0203f0a294c0e771567e23b1d6efbc36aacc12dc26ee5c7a2692f8e3480adf"
+  },
+  {
+   "nct": "NCT06279741",
+   "method": "live_ml",
+   "probability": 0.3977485732409964,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "1aa559ed24bf6d2a175fb228316c159212ea05abc7ecb702e2c063d0e5e4aaa1"
+  },
+  {
+   "nct": "NCT06281119",
+   "method": "live_ml",
+   "probability": 0.8919905396119104,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "e39c0c39cd04c1d02e4d1deaa326b7fcd8f627bd8e78a1804ae54c23cf11bd04"
+  },
+  {
+   "nct": "NCT06284265",
+   "method": "live_ml",
+   "probability": 0.7369753836440286,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "a212ccef522da608c4af0813b5eeb8cabd03bd85f14399f915e9bfd8ef1fa1fd"
+  },
+  {
+   "nct": "NCT06302491",
+   "method": "live_ml",
+   "probability": 0.46269311029160276,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "5a855691a83dddb96910b55a136ea86536bf1462449b2939151432b7446cb732"
+  },
+  {
+   "nct": "NCT06304103",
+   "method": "live_ml",
+   "probability": 0.38402176988482684,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "996a3290fb36aadc60a69f90e39e67cd6223c50fc3899482e761604fe6a5810f"
+  },
+  {
+   "nct": "NCT06309485",
+   "method": "live_ml",
+   "probability": 0.40700302474992767,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "3808e62f823c1b5676231f9ee7275213bd6d5167d81b55a4ca1160e1a876566b"
+  },
+  {
+   "nct": "NCT06323213",
+   "method": "live_ml",
+   "probability": 0.7000711236090318,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "c2914c0909323151b4774f1889691b4bc668f4f75418fd21794ddf691b31bcfd"
+  },
+  {
+   "nct": "NCT06328712",
+   "method": "live_ml",
+   "probability": 0.6714333293759135,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "ba26b18cc9a9b01ba5a481b75e4ba8eda1e917cce20428b45954aec6ad556685"
+  },
+  {
+   "nct": "NCT06340633",
+   "method": "live_ml",
+   "probability": 0.2931398828190063,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "64357951c488c85c09be96ca34dd9c2bf0af3fc61e3a806cc9554cbbb64e326c"
+  },
+  {
+   "nct": "NCT06349980",
+   "method": "live_ml",
+   "probability": 0.46475803762569773,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "09b22c457b566bb93ac40d116def01ae1f529f09da4777451895891347e33814"
+  },
+  {
+   "nct": "NCT06361537",
+   "method": "live_ml",
+   "probability": 0.7881081608971916,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "47981dead64ec119dc69ed2077a7c3605aaca54138b7a5af45ac0b161b5af646"
+  },
+  {
+   "nct": "NCT06365853",
+   "method": "live_ml",
+   "probability": 0.4249291817257901,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "313f2bb2031163addb6d3b5470b33c6ad7736b1865875e4dce07ad7e5bd00778"
+  },
+  {
+   "nct": "NCT06382129",
+   "method": "live_ml",
+   "probability": 0.5882035901393541,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "6a81447ed42ca3e5b8f60381e8b7905ffb0c561dc9d2b0ef0ace822900a3dd50"
+  },
+  {
+   "nct": "NCT06384261",
+   "method": "live_ml",
+   "probability": 0.3435682827526872,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "4ddaf379d92747fe4868c5589395acc1bd494ff6ab51e6f07508444b8f4ee595"
+  },
+  {
+   "nct": "NCT06388941",
+   "method": "live_ml",
+   "probability": 0.37184644699556063,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "7988af01a565e14be82d60e657b688f9d03a9cf9ccc9aa82706db90e1a1daaa9"
+  },
+  {
+   "nct": "NCT06401044",
+   "method": "live_ml",
+   "probability": 0.4882479797407471,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "879f10aaf7d78349c40c1de11e17558b2e7fd475694f52b2eaca66fed447bfb2"
+  },
+  {
+   "nct": "NCT06402331",
+   "method": "live_ml",
+   "probability": 0.5168781153604305,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "8a819527f7967bf9689a18a39cff620d796d5f219a2766b2b7e6ed1728be5341"
+  },
+  {
+   "nct": "NCT06403267",
+   "method": "live_ml",
+   "probability": 0.35851826043373963,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "1cdf0c1040be4dcaeaf72eb5828c8dcf38ea691200748dd7048c35166d738cf4"
+  },
+  {
+   "nct": "NCT06413433",
+   "method": "live_ml",
+   "probability": 0.7163549991234375,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "8514768dcc79b5ff38ebc1707d32732dfa13db65f8c59a6aeda251917454f311"
+  },
+  {
+   "nct": "NCT06413706",
+   "method": "live_ml",
+   "probability": 0.2549653813580769,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "0425368cc1fb28ce362d8409a8002ab3660e08c3d73d9e62a504104b840a8e40"
+  },
+  {
+   "nct": "NCT06414954",
+   "method": "live_ml",
+   "probability": 0.4807943351623891,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "3ba41748a334174f8a7c329f01ca2e742bc6b041c3a8f61b7b1e2565599e4af4"
+  },
+  {
+   "nct": "NCT06417814",
+   "method": "live_ml",
+   "probability": 0.7914308440203806,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "449002ddcc1a2e53b18b72be25d00b44ee715cb21345193cbe7f51a5d5568a3c"
+  },
+  {
+   "nct": "NCT06421636",
+   "method": "live_ml",
+   "probability": 0.45077325041130695,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "72fd402ea82f9ecd861b462ecb1571145a86b14e85b7e0d69dd6701b7a6e0197"
+  },
+  {
+   "nct": "NCT06430866",
+   "method": "live_ml",
+   "probability": 0.6260464421733047,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "397ef521c7851a1816f7ea5639383885e7a9a8aa6566a28ed2c8b3155182a1d6"
+  },
+  {
+   "nct": "NCT06434610",
+   "method": "live_ml",
+   "probability": 0.31441901869715566,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "8722aa053edb5be3f94e1cc03d41712ea1dfe2a6e0c288cd21780942651c4156"
+  },
+  {
+   "nct": "NCT06447597",
+   "method": "live_ml",
+   "probability": 0.7235173371817941,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "d600f9c2fa2cb12991df4b39e720954b9e540bbf8d5fbfa60b348346934c50fa"
+  },
+  {
+   "nct": "NCT06456593",
+   "method": "live_ml",
+   "probability": 0.47834432483698686,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "116ab793db86742a679e2a2e4a5f78cc33c0b7e74742b9cae792f5a3d38f665e"
+  },
+  {
+   "nct": "NCT06463665",
+   "method": "live_ml",
+   "probability": 0.46259143005937853,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "a07da1d39dbbc45229d664df9188cb73fdc8dbba6717db39b3a5c8e92881bdac"
+  },
+  {
+   "nct": "NCT06465563",
+   "method": "live_ml",
+   "probability": 0.3951067132923357,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "565af389bf9cecec95cf83b7cc0d76da95c46f701169854a3155fe16b57ec2e9"
+  },
+  {
+   "nct": "NCT06468228",
+   "method": "live_ml",
+   "probability": 0.8840825938610759,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "f96739a7e166dce7fb9fbeb3b83ebba77979279b723a3b16e03920563801cb0f"
+  },
+  {
+   "nct": "NCT06470191",
+   "method": "live_ml",
+   "probability": 0.6185100468184863,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "d06e22110a731262978a6dda24c12689fcdc5328fb15b47c8114b027174f6c5c"
+  },
+  {
+   "nct": "NCT06474806",
+   "method": "live_ml",
+   "probability": 0.4876825076278575,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "8718bd55a2c6851abdaeeee4325de5f0c7f1ccbf9ffb78e0e47d6a3eebd8af24"
+  },
+  {
+   "nct": "NCT06479135",
+   "method": "live_ml",
+   "probability": 0.8157178022899999,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "7882266b5a94072693b45911e38cb0817ffb840c68cfe12f86f5b887fc6d6ec6"
+  },
+  {
+   "nct": "NCT06481306",
+   "method": "live_ml",
+   "probability": 0.3807199236444556,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "74ed60be5452289960aef2b03a11cef60526428dd8996ebdb9b6cebf1744394a"
+  },
+  {
+   "nct": "NCT06481891",
+   "method": "live_ml",
+   "probability": 0.7820697025436888,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "fad122c6f3cceff83a5d001efe770811e2ba447ee506bbc85fd915374d44e514"
+  },
+  {
+   "nct": "NCT06495918",
+   "method": "live_ml",
+   "probability": 0.8299343921754556,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "d06d65bf3cb86ecff7d854c297ea0e19427ae9ac7186a1d6dffe5f5618063afb"
+  },
+  {
+   "nct": "NCT06496971",
+   "method": "live_ml",
+   "probability": 0.6574872612714243,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "ee90135148394746b71736386083d40822c309153bd8dc0513e6fe2247827046"
+  },
+  {
+   "nct": "NCT06500026",
+   "method": "live_ml",
+   "probability": 0.6431715471768201,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "ed8c3918f2352e753e48d385358be99860be959eb7b442cad4af2f0f6ef01172"
+  },
+  {
+   "nct": "NCT06500702",
+   "method": "live_ml",
+   "probability": 0.5561758110000791,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "d9209b7a39340d39dbf8e4772aa4ddea46011806e9073658bef13f9cad72c7ee"
+  },
+  {
+   "nct": "NCT06501066",
+   "method": "live_ml",
+   "probability": 0.3305318084670643,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "978e52f15cc7b94649f19414f5327538890b5764316547c8d03b6ed1b7829b21"
+  },
+  {
+   "nct": "NCT06531824",
+   "method": "live_ml",
+   "probability": 0.8271444274907025,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "c9dffdcce85afc1c5ff57eee0d2a63a20196dfece05a8f786a6434d4a343c4c3"
+  },
+  {
+   "nct": "NCT06534437",
+   "method": "live_ml",
+   "probability": 0.4108244529384789,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "e509a6c1572cca555c80767ccdf9aadbc57d432148796b5cc96a67ae0a22988e"
+  },
+  {
+   "nct": "NCT06537999",
+   "method": "live_ml",
+   "probability": 0.3781799803061835,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "79a595f591030648a0fababbaad23e20be24bfffd35d2154c93ca1f83ceeb406"
+  },
+  {
+   "nct": "NCT06544616",
+   "method": "live_ml",
+   "probability": 0.17538458075123722,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "4fc58605f91887fe2de70f019563860aa58e1f92e52a7ac0e269414c06d73c11"
+  },
+  {
+   "nct": "NCT06547151",
+   "method": "live_ml",
+   "probability": 0.5350252334175443,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "8a50a4c9261bf4d238960698f5c6b18906b5024e263f50af4e79f87e13949f54"
+  },
+  {
+   "nct": "NCT06551324",
+   "method": "live_ml",
+   "probability": 0.7960045562745207,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "37412e555f98b454673bef096896be08994d84cb0d920fbee32d5bb72b6721e1"
+  },
+  {
+   "nct": "NCT06559306",
+   "method": "live_ml",
+   "probability": 0.6371924938871036,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "376f11091bce0cf7770935c7486bf0bd38c0fdb35566e53f7a94e9f6ca5816c3"
+  },
+  {
+   "nct": "NCT06561607",
+   "method": "live_ml",
+   "probability": 0.745944277540535,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "c7b87346a7cd8aceb42aa03b505ca47ec747b66c3a9f011ed04f5736727e7457"
+  },
+  {
+   "nct": "NCT06567782",
+   "method": "live_ml",
+   "probability": 0.2422704344299406,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "824a7976dbf8daa0ca44e4e02e9e9032f19184fec4c2538fb403f21b02bffb82"
+  },
+  {
+   "nct": "NCT06568367",
+   "method": "live_ml",
+   "probability": 0.8239421778368581,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "daecef290876a6bf0d883bbe3195c8e9a3e9fddb115bf7e2ce04391ad9a38864"
+  },
+  {
+   "nct": "NCT06568627",
+   "method": "live_ml",
+   "probability": 0.5034772122232615,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "68a278b4f19ea4cc838f48c0605ea0ba285de42a5a655fd4db28cfa6dd10f343"
+  },
+  {
+   "nct": "NCT06569524",
+   "method": "live_ml",
+   "probability": 0.3720992004381341,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "6ffcc19c78b463fe227e706205bbc358a1588fa9be293ec836fef10330c95794"
+  },
+  {
+   "nct": "NCT06570291",
+   "method": "live_ml",
+   "probability": 0.5771048547631549,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "2d611e23c66c5ecc70c519575a097b0b0f9f037f98c9ef1b38a1449df06fbc07"
+  },
+  {
+   "nct": "NCT06577519",
+   "method": "live_ml",
+   "probability": 0.635198510584125,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "9b26ceb0486922d5920c70488d090893f7991d7b7b7f7784c7a7ef54249885a3"
+  },
+  {
+   "nct": "NCT06577935",
+   "method": "live_ml",
+   "probability": 0.9207294945200478,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "82a3e5859f50ad3bef30bc4af7eab8bd637f4759feeb1b400a975889b30638c0"
+  },
+  {
+   "nct": "NCT06579287",
+   "method": "live_ml",
+   "probability": 0.37200641226023334,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "8d14d842ce77ee300e66e317ec29e4701162072d0d6d8d180ebb6309f798c00a"
+  },
+  {
+   "nct": "NCT06585787",
+   "method": "live_ml",
+   "probability": 0.4592451679106769,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "dadc938be3317ef13b7c9255ed2fe3d348e6c85dd58bbeaacd745c85be3793b9"
+  },
+  {
+   "nct": "NCT06589986",
+   "method": "live_ml",
+   "probability": 0.7692518055420862,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "7b3e44843bb0c2fb4f8e469535aec6625c6d7445e75640484af876f694a7eed1"
+  },
+  {
+   "nct": "NCT06592794",
+   "method": "live_ml",
+   "probability": 0.7769398971214916,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "ca084eb6f41fa2ebebf1c1379a04d2c6b5f900661d77b3dd190313300036596f"
+  },
+  {
+   "nct": "NCT06596252",
+   "method": "live_ml",
+   "probability": 0.808865393088679,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "b8031142b424a8ecabdac35a6ff405d2895b8b8f6d7eddb45b65c466d9e02ebd"
+  },
+  {
+   "nct": "NCT06601335",
+   "method": "live_ml",
+   "probability": 0.5203742112962917,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "b1ce8407c71de821ec6508e6a04453ca7e9d5dee05d482af489b4915190dcdb5"
+  },
+  {
+   "nct": "NCT06602258",
+   "method": "live_ml",
+   "probability": 0.4040579255710998,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "127a038197b4fe251aed1793b3925bb334faf759efee9a9ae7b9a7cb59192051"
+  },
+  {
+   "nct": "NCT06602479",
+   "method": "live_ml",
+   "probability": 0.5893915516700364,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "cb8810dc15e46590cccd134e7047d47f57c83fb4873553c3df3e310a5bf21892"
+  },
+  {
+   "nct": "NCT06607458",
+   "method": "live_ml",
+   "probability": 0.3564524153751675,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "eb87a5e9822d9b8fa911a909cf89b8e12bc964260563dfa922b52f8a460c31b1"
+  },
+  {
+   "nct": "NCT06616974",
+   "method": "live_ml",
+   "probability": 0.3998581399646867,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "27335bca68656f4b2942b945d45ae8014701b619f8d9f07571019439cbd01b04"
+  },
+  {
+   "nct": "NCT06636682",
+   "method": "live_ml",
+   "probability": 0.29888333412572415,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "8020e955167c89532b528377a0df72a0ab8a40297979ab5f3e54073c83554b2c"
+  },
+  {
+   "nct": "NCT06641089",
+   "method": "live_ml",
+   "probability": 0.953369312904566,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "ee752cec4d659bba05d3391dbf12df5673a911300fde78ef1af0832bc6e2746d"
+  },
+  {
+   "nct": "NCT06641466",
+   "method": "live_ml",
+   "probability": 0.9299160027129892,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "70145224a40084f66ae3d69430308773128348d38fa68ec437ea9e4809ab5486"
+  },
+  {
+   "nct": "NCT06646055",
+   "method": "live_ml",
+   "probability": 0.5659631710072047,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "c168937aab1c327e0ad5d0f60d786a1a3e6941c85cd156746072900239234999"
+  },
+  {
+   "nct": "NCT06660394",
+   "method": "live_ml",
+   "probability": 0.6557760055346367,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "ea39015fee2100cdcf972ee2b62ae92da80e45e0802fe2205f15e633a03245f7"
+  },
+  {
+   "nct": "NCT06660992",
+   "method": "live_ml",
+   "probability": 0.7666448455058137,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "d3206e211fdff84ba87c0431fbe02905916978066999bbe017736e7d574594e3"
+  },
+  {
+   "nct": "NCT06664775",
+   "method": "live_ml",
+   "probability": 0.7309610930659893,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "aa708e4fad484fb542fd5d5c302c4a4d7c5e21e77fd741e15ad6c4b77f673ec0"
+  },
+  {
+   "nct": "NCT06671379",
+   "method": "live_ml",
+   "probability": 0.6731394847275778,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "24385e4d4a1f0527e1502fca38f1153fd2e035b967afa46fb52c0b06da61ae2c"
+  },
+  {
+   "nct": "NCT06677229",
+   "method": "live_ml",
+   "probability": 0.3397252805643334,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "6aeadcfef091c854e46917354b58072c5d26b435e2c89c38007a00fae0bd5abb"
+  },
+  {
+   "nct": "NCT06680947",
+   "method": "live_ml",
+   "probability": 0.558530954426924,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "5d6174e5d526f210802dbdf97881d99f31d3392768a96b3045a31d7d80b6dbb3"
+  },
+  {
+   "nct": "NCT06685757",
+   "method": "live_ml",
+   "probability": 0.6296710366432344,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "663869fd810ccb09e091e6ab4d4d7b336703fb1c1e1b921eaa774831d3fea508"
+  },
+  {
+   "nct": "NCT06686654",
+   "method": "live_ml",
+   "probability": 0.8509108364333744,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "ab674e2c02b9d33f23afdb56dedba5c819ac856d29bdea929ca5fde000cbe7dc"
+  },
+  {
+   "nct": "NCT06693895",
+   "method": "live_ml",
+   "probability": 0.8513899470763822,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "c1451b7d2a0e162dd6ce4ca646df6f38d0b10e775b90f6c69b05277c944b95e6"
+  },
+  {
+   "nct": "NCT06696261",
+   "method": "live_ml",
+   "probability": 0.7172004646759194,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "b238cf424231534c2cd8c96ebbf1e5100addddc1aa9c50479095c5145ebea643"
+  },
+  {
+   "nct": "NCT06699108",
+   "method": "live_ml",
+   "probability": 0.5619283128618326,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "8d4ea4c2cd0931ad04ce3ded329f7b15f0d20dc4c3f82969583d6df5dfc28d18"
+  },
+  {
+   "nct": "NCT06701331",
+   "method": "live_ml",
+   "probability": 0.8985350462107525,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "f6cb787c539346751139f4e4d160ed36526d1d8994f8f4f713807aeb491aa277"
+  },
+  {
+   "nct": "NCT06707103",
+   "method": "live_ml",
+   "probability": 0.64003838465733,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "8cbd19bfb8a736c911ad311686a31b6a5f830221a81e57568893838435a2ffb0"
+  },
+  {
+   "nct": "NCT06707883",
+   "method": "live_ml",
+   "probability": 0.3221610656094948,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "7276115e9528055c148e5b4718380c0efe1280d720f3d6949d029123a05a5f77"
+  },
+  {
+   "nct": "NCT06711900",
+   "method": "live_ml",
+   "probability": 0.7713250047896427,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "ac0360c9af1bd482ccb1d304f9c824e879e9bd9820528c17a232173b4ba24d3e"
+  },
+  {
+   "nct": "NCT06712654",
+   "method": "live_ml",
+   "probability": 0.8744849493723676,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "7d64617ddd5942042c66e3e7f325535917e3bcd3df746037f4eb1f083cf32e1f"
+  },
+  {
+   "nct": "NCT06721143",
+   "method": "live_ml",
+   "probability": 0.43165110290488773,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "3e07f1ffeea2c22f8cf6da88c54e3924f90cdfa07a85dc9e209a8550a7f3243d"
+  },
+  {
+   "nct": "NCT06721871",
+   "method": "live_ml",
+   "probability": 0.6671984497870435,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "fdd9ce2a357da3cf9885a7e4001be9be97485de521d863cecc787c1045d3fc7f"
+  },
+  {
+   "nct": "NCT06740630",
+   "method": "live_ml",
+   "probability": 0.9420322043368005,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "f5c9c6467ab2f6e373e71e0c614eca9303207bcbc42c3ac061415e7c09c08fa5"
+  },
+  {
+   "nct": "NCT06741969",
+   "method": "live_ml",
+   "probability": 0.7395103437360488,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "39365456b6b5acd844147decc5e7362adfd7694516920bd751e5d1c4d349fa1a"
+  },
+  {
+   "nct": "NCT06747338",
+   "method": "live_ml",
+   "probability": 0.7856754592199776,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "8d1fe4993a84d2549e0b8a1cf46b08d4ed00388147f527452430fb1c1ceef34d"
+  },
+  {
+   "nct": "NCT06752668",
+   "method": "live_ml",
+   "probability": 0.34995001645270485,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "773203003cd38bc05c7a3c338766d5f32c020c2364f66f17555bf1a2870ac24a"
+  },
+  {
+   "nct": "NCT06754644",
+   "method": "live_ml",
+   "probability": 0.7394575672009044,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "8da78093d3c567da072c77b02fd2e276c879a85482f894f597f31ea714b97dae"
+  },
+  {
+   "nct": "NCT06764940",
+   "method": "live_ml",
+   "probability": 0.40942107318964815,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "4c72900d7d1918f13693cb04920c792687377f68e0fb3769db9812f339c85536"
+  },
+  {
+   "nct": "NCT06767527",
+   "method": "live_ml",
+   "probability": 0.8212273414006295,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "0a040643b7cbd9b78d47968ff5105ed90f592064d0828ec1b7fae8997cdaa29b"
+  },
+  {
+   "nct": "NCT06769048",
+   "method": "live_ml",
+   "probability": 0.3069202225882636,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "5ba3080a3a1581d1221ac497cabf64104e5681d8fb6214840dca4081ded4f2db"
+  },
+  {
+   "nct": "NCT06769152",
+   "method": "live_ml",
+   "probability": 0.4430473217923091,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "a842898514f92f313b7368b05c435b1cb092ea9ba6531d5e1cc6a77a778d9cbc"
+  },
+  {
+   "nct": "NCT06773962",
+   "method": "live_ml",
+   "probability": 0.2769339696776614,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "7fbfcb147653aa51d59987a68e6e77662d45a49551ecea154443c7bc33db39cb"
+  },
+  {
+   "nct": "NCT06775860",
+   "method": "live_ml",
+   "probability": 0.921976227028653,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "3ab6b30bc2b0900a5a70fb69803041ce642f52011eb099646c294df6f6aa0831"
+  },
+  {
+   "nct": "NCT06776432",
+   "method": "live_ml",
+   "probability": 0.6180602892665558,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "2d3514f3b0b5471dda436f8c6f21c30369c1a9cecd544011747444e54a6dd57a"
+  },
+  {
+   "nct": "NCT06783647",
+   "method": "live_ml",
+   "probability": 0.5178913996049863,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "916594dd6151e9a57e8147a7b8edbabe8dd259689d59c12afda7655211d81ed0"
+  },
+  {
+   "nct": "NCT06797297",
+   "method": "live_ml",
+   "probability": 0.3920969183594241,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "25998c633a7bc081b99b80969c834a8276222f54062471b7bfcb1f766fbdb3c8"
+  },
+  {
+   "nct": "NCT06799247",
+   "method": "live_ml",
+   "probability": 0.6596146943560098,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "1c697708a4a62cb2e658292c9e6fa95d54d18ef37336f4f1dd9b09521e0cc383"
+  },
+  {
+   "nct": "NCT06800651",
+   "method": "live_ml",
+   "probability": 0.45901677916154415,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "65421b97de9b5ccad43ca765e068ef5c56ae127da568619a3965da052a73a023"
+  },
+  {
+   "nct": "NCT06803823",
+   "method": "live_ml",
+   "probability": 0.26795224647324,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "f7268b68f7b58c4fff8e6aedc25df0d3e830d7923c15b50098d22095e46faf5e"
+  },
+  {
+   "nct": "NCT06806137",
+   "method": "live_ml",
+   "probability": 0.923990119012587,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "f9079752f1311d6aeb1eb654cfe1a904b759d65f8e1c8e451136c9036167c551"
+  },
+  {
+   "nct": "NCT06807424",
+   "method": "live_ml",
+   "probability": 0.9569034642167836,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "4311d582647ccece8e377400dd72909e991e189d786964b72d4216ce5621ae11"
+  },
+  {
+   "nct": "NCT06812078",
+   "method": "live_ml",
+   "probability": 0.32854911138060816,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "187e89076ab16142a5574b49afccd2cc9cfe7a08be1a3139a018f059081fd341"
+  },
+  {
+   "nct": "NCT06819826",
+   "method": "live_ml",
+   "probability": 0.7366352927080826,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "7bd95ebd1ee332d09f916db4de654d0cbece2e648234911169caf52be6d9ab9d"
+  },
+  {
+   "nct": "NCT06820099",
+   "method": "live_ml",
+   "probability": 0.763371486908215,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "a938e595485f78824bfa74a18de415320b0ae404d61226f9d450ee5d50ac7b0c"
+  },
+  {
+   "nct": "NCT06832722",
+   "method": "live_ml",
+   "probability": 0.3330128560993184,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "0cc45fa26fc17b35e9e3e342a97bcfd94090b71ca81d58b2f5174d18df766463"
+  },
+  {
+   "nct": "NCT06834932",
+   "method": "live_ml",
+   "probability": 0.9595315260568575,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "844292c4ec756c7375876599d7f44cc97af0e6cf37e4296ddef979e1237c8203"
+  },
+  {
+   "nct": "NCT06838000",
+   "method": "live_ml",
+   "probability": 0.825322620680453,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "3e2e71d78d30b69c70f338d39af51aea0539475da9ce8cb898b65acb7b6ba129"
+  },
+  {
+   "nct": "NCT06839066",
+   "method": "live_ml",
+   "probability": 0.37021926495372165,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "4acbe1da846b5baf528a2e691336d86e5e3932e0108a7b9c24942f1d8c855ffb"
+  },
+  {
+   "nct": "NCT06842823",
+   "method": "live_ml",
+   "probability": 0.8761847910754809,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "30a2e8a639cce74f17ad1765b0147f121df03ee633f1262b53314c40d50c3e99"
+  },
+  {
+   "nct": "NCT06842966",
+   "method": "live_ml",
+   "probability": 0.6510021386518515,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "8fbd19cfb87e3251ce02b437a5cff7b825c8b096a1a770e5c0df08877cae81a2"
+  },
+  {
+   "nct": "NCT06843018",
+   "method": "live_ml",
+   "probability": 0.6737385479788924,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "813396c354f5c06e15ee7a0e4d70b4d66d24b296107f54aaaffca76613db363a"
+  },
+  {
+   "nct": "NCT06848348",
+   "method": "live_ml",
+   "probability": 0.42587037409433603,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "cd463aec886e0b54db8e4d1cd3b8a959c627c467944f8142609432adcd36443d"
+  },
+  {
+   "nct": "NCT06852768",
+   "method": "live_ml",
+   "probability": 0.45476253615322104,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "8f2f5b0bf7e907db5b53a3c39b41b3fd4f50c54d2335808bdc2adf35dc297def"
+  },
+  {
+   "nct": "NCT06856577",
+   "method": "live_ml",
+   "probability": 0.6977940069449977,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "541063aa76bbc2a4de082a229ded62111d895d4aa80bebfea58aaef2b3c6d275"
+  },
+  {
+   "nct": "NCT06858839",
+   "method": "live_ml",
+   "probability": 0.9423623638482292,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "508654350c5725aa3f75fe0aae17d8a91fcaf06206a24dc0f3de2715938acd0d"
+  },
+  {
+   "nct": "NCT06858878",
+   "method": "live_ml",
+   "probability": 0.9398316389961466,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "4f3a143ebb2078848368fadefad42baede706cc142ea94b216752a33e7157e98"
+  },
+  {
+   "nct": "NCT06860971",
+   "method": "live_ml",
+   "probability": 0.6026753270936501,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "66d547b32b6a5b322932148ec1563dddc43f50f0d265ded0e371b90be5afdd2d"
+  },
+  {
+   "nct": "NCT06863701",
+   "method": "live_ml",
+   "probability": 0.5918884778733802,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "329291f18c4706ee521aaf5dc8598c148691521dac06a7a33af93e4e962604ad"
+  },
+  {
+   "nct": "NCT06868212",
+   "method": "live_ml",
+   "probability": 0.8443531273326869,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "c1028c9c58421d633fafd7b8f854ebf86127749bcb6a5e173d4255028936511e"
+  },
+  {
+   "nct": "NCT06873035",
+   "method": "live_ml",
+   "probability": 0.7563950614244298,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "e5bfb5422ae5ac83038155fdc435d397407747b744c82e61e3a1f5314ce095c2"
+  },
+  {
+   "nct": "NCT06879717",
+   "method": "live_ml",
+   "probability": 0.36290699420975187,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "f887ad90c39d3a93676de49cafeeeaf4e6d06cb7c618b204a077a0b76cf4f50b"
+  },
+  {
+   "nct": "NCT06884293",
+   "method": "live_ml",
+   "probability": 0.8591489656406205,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "fcce11bee36067305610d103a7fdc208b02c342918f1d8cb61b3434ab9aa2d80"
+  },
+  {
+   "nct": "NCT06889701",
+   "method": "live_ml",
+   "probability": 0.5379459762839679,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "a472363d14a425bf75fd855138496f27661eb658bc946005487da079e8d2daf9"
+  },
+  {
+   "nct": "NCT06899802",
+   "method": "live_ml",
+   "probability": 0.640903096248595,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "1eb992d61c403ac841180dc0e2245d1fb07ff9a68a53dc711b28f06c5a5ebf08"
+  },
+  {
+   "nct": "NCT06905210",
+   "method": "live_ml",
+   "probability": 0.909746387530327,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "a9e77e559c9b11dbc5c5ae7d76c708bc523eef3cdf89ed0b0b3bf5d62030ee36"
+  },
+  {
+   "nct": "NCT06907511",
+   "method": "live_ml",
+   "probability": 0.6371063669854167,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "13039e69bcb0995bf5bd97aa7f092f43a2a286785b387482ca2fa50a1b7020e6"
+  },
+  {
+   "nct": "NCT06908876",
+   "method": "live_ml",
+   "probability": 0.5155737349145577,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "11384f4c407deec0b4e228dc322deb44393874a4a3ea0f83b1ed5559a610c02c"
+  },
+  {
+   "nct": "NCT06912633",
+   "method": "live_ml",
+   "probability": 0.3462175217801645,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "0d6d2ee3b7933db772ebbbb9ca6d778e614ceb838fb1cc0da5d561c8019c2f91"
+  },
+  {
+   "nct": "NCT06927739",
+   "method": "live_ml",
+   "probability": 0.5326138656707881,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "fcdb59b3f1e630bcd8fa0bc738631750a6cfdf46fccf75a42bfc6444a18085a6"
+  },
+  {
+   "nct": "NCT06937203",
+   "method": "live_ml",
+   "probability": 0.7208494444298765,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "288de50bcd387cb10190ae5c06b0018df796b24a680cba9ee15e92910465098d"
+  },
+  {
+   "nct": "NCT06939595",
+   "method": "live_ml",
+   "probability": 0.5454354642493334,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "6983a36209c969cfa2abcb0f13065a8d56ff9ea068b0b81e37680af734c02dfd"
+  },
+  {
+   "nct": "NCT06943820",
+   "method": "live_ml",
+   "probability": 0.511102122384617,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "5bc18cd58b150458a0208cb6d2ba1808906822beda1bcb4b2350a3ecae758b50"
+  },
+  {
+   "nct": "NCT06946797",
+   "method": "live_ml",
+   "probability": 0.4731349707557329,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "24d6153ab890e05cf9099ddd4647c44e6f41a9652d70cbc7e3f625910484a9d4"
+  },
+  {
+   "nct": "NCT06951503",
+   "method": "live_ml",
+   "probability": 0.6894761711917913,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "ddeeb12d83a1ca2e49f0d3bbb771d35b16841e9f5e8ff5a0c5d77ff3d7b465c5"
+  },
+  {
+   "nct": "NCT06952699",
+   "method": "live_ml",
+   "probability": 0.4189103357276928,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "ab3db5285be7b47ee07f9fa8cebe631365c7c7eceb2958e8d82de24207a14b1b"
+  },
+  {
+   "nct": "NCT06954961",
+   "method": "live_ml",
+   "probability": 0.7961215472730185,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "0af45a2bf10e0820ec28e85e871263cdd1b6d057b64e704ddf612f090814e089"
+  },
+  {
+   "nct": "NCT06957080",
+   "method": "live_ml",
+   "probability": 0.8513102527996655,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "ec2e7aedeae8f5c4230f0b3b8c47e8b28fc37ed260d7760455bc05a99c0b94f5"
+  },
+  {
+   "nct": "NCT06958536",
+   "method": "live_ml",
+   "probability": 0.45774321687957753,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "e013d081c6b26e6374deffce3769c09235202a5b12060d34ab53a7f04ec608ab"
+  },
+  {
+   "nct": "NCT06968585",
+   "method": "live_ml",
+   "probability": 0.7277391492687877,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "0f4f31b18d50a9dcfc0815f49cbd1f26c83c08993dbde9772c1993ad39517cf3"
+  },
+  {
+   "nct": "NCT06972264",
+   "method": "live_ml",
+   "probability": 0.7353398611776757,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "ac79d8fa45b997a51f143f3662dd0e47ac312847cbef464174756c82959a1e9f"
+  },
+  {
+   "nct": "NCT06972446",
+   "method": "live_ml",
+   "probability": 0.6573326717562283,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "b9700b7f5343ea51c5a92c75623224a1757ce788c81ad801a8c72a8cec3fd5ec"
+  },
+  {
+   "nct": "NCT06974851",
+   "method": "live_ml",
+   "probability": 0.7574925022325314,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "61b1c475ad6957b58ecf1fdc51c904ea5c90a25edda5bf4efe7e22381740c74e"
+  },
+  {
+   "nct": "NCT06975722",
+   "method": "live_ml",
+   "probability": 0.4793442267886032,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "ea9080d9f463d5bed5884281bbbee4897cf715e56d342998faf36f31fb20cf33"
+  },
+  {
+   "nct": "NCT06982963",
+   "method": "live_ml",
+   "probability": 0.40685248503045784,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "777ad5ec2a34d7dfcb0fa263506164c91ed059075b35627b159429167e3eef7e"
+  },
+  {
+   "nct": "NCT06984627",
+   "method": "live_ml",
+   "probability": 0.381157011337574,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "96183985921cf3485f0b0b3aeed6eb0f0f748c51c2ec152d7a1af69238b6cb0a"
+  },
+  {
+   "nct": "NCT06989918",
+   "method": "live_ml",
+   "probability": 0.815930815573696,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "47a3115c4e774e403701ca48f458f4ca5edc62d50473c258fb3a4ec2289a7545"
+  },
+  {
+   "nct": "NCT06991556",
+   "method": "live_ml",
+   "probability": 0.35851770329770893,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "c67e262fc613b1f5619ab94aad3cf0a257981e0ed577fcaf86ca13c094cb348f"
+  },
+  {
+   "nct": "NCT06994650",
+   "method": "live_ml",
+   "probability": 0.6449898827400489,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "0800362f721a0917e9bc452d322a9c6f59f2ee7562083cebb6cf631a0d387f5d"
+  },
+  {
+   "nct": "NCT06996080",
+   "method": "live_ml",
+   "probability": 0.8017742807252313,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "21caa2d3850e825355f0283e4035d1c543eea946348521cfb0a825f6a8ba94fe"
+  },
+  {
+   "nct": "NCT06999733",
+   "method": "live_ml",
+   "probability": 0.4813104812252611,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "9dbe1f59ecc336c0148a446b40917618358e201b30ad02bbefe0bc9f1d0c6317"
+  },
+  {
+   "nct": "NCT07000123",
+   "method": "live_ml",
+   "probability": 0.8175348891754165,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "0373e663d6dd904d5533c1d0477c5ecf3d8d31b9206392a573d294751707d6de"
+  },
+  {
+   "nct": "NCT07000136",
+   "method": "live_ml",
+   "probability": 0.8939755243185226,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "f840d55d347f5d89358dd83aa32034c7685bef780f1a2d812a8748be60c102e1"
+  },
+  {
+   "nct": "NCT07005180",
+   "method": "live_ml",
+   "probability": 0.49434753625159894,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "e125ba1790d116aef44aa000915c352d4563f8c28448247053b20e2d5dabc4dd"
+  },
+  {
+   "nct": "NCT07009171",
+   "method": "live_ml",
+   "probability": 0.844099118624588,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "e40936bfec5bf2d562cdab1e65da5f17712e70df7b7996a19b6859eebe0a45a8"
+  },
+  {
+   "nct": "NCT07010471",
+   "method": "live_ml",
+   "probability": 0.8066798053186361,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "64ae53a9595422b425a310d103eb26e18449469ab03341e791804de9f1aca9bd"
+  },
+  {
+   "nct": "NCT07015905",
+   "method": "live_ml",
+   "probability": 0.9011065035470606,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "31ddc05815e4a4bfa8e854a9c04ba4e5b8fac032d6d405c2997fa6d4b06f7ea1"
+  },
+  {
+   "nct": "NCT07016750",
+   "method": "live_ml",
+   "probability": 0.7550989180693499,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "52823ab6a4d3e06ea4891032cd70cc8261e920dcab1f1ad2fb221c02d9d6de4a"
+  },
+  {
+   "nct": "NCT07017777",
+   "method": "live_ml",
+   "probability": 0.8718826954963875,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "8d10f935744cea076e0a532c6dd431bc42f6678c682d4659068e156862bc9a3d"
+  },
+  {
+   "nct": "NCT07019675",
+   "method": "live_ml",
+   "probability": 0.40767283253649,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "795c45c0aefef6917e9a23bf1588f4623d7b91b98d6e385cbe475b77f0fd277d"
+  },
+  {
+   "nct": "NCT07023614",
+   "method": "live_ml",
+   "probability": 0.3254509937854095,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "b2976ef43f053dcbfd1418bdde9f50419de59dbb3a958edb46953622c09f9caf"
+  },
+  {
+   "nct": "NCT07027345",
+   "method": "live_ml",
+   "probability": 0.3758673833527557,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "6ede78ef3af12d87f71206ad6bb1a20ce913c9910ed8be6af9b39cc5c65133bc"
+  },
+  {
+   "nct": "NCT07029711",
+   "method": "live_ml",
+   "probability": 0.8782200439302738,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "67fce44f9bfcc9cc635e2e71e04b3e8e57014be4ba6e12a6303c612cc4014056"
+  },
+  {
+   "nct": "NCT07037277",
+   "method": "live_ml",
+   "probability": 0.7550645057822737,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "ad065795ad7ae2fdc071b25ab17fe65f2ac41a870b6053a3c55c3eeaaa4d8a6f"
+  },
+  {
+   "nct": "NCT07038382",
+   "method": "live_ml",
+   "probability": 0.4522823740550909,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "8583516e040631c42ccb1bd1c3461fb0a57fa7225a5b753d5bacdc4c3ba36319"
+  },
+  {
+   "nct": "NCT07057622",
+   "method": "live_ml",
+   "probability": 0.6272597870329907,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "44a356df36cd46dbf2a1648f7c14ec15484e1440a26f42e3de4ae10722e2478a"
+  },
+  {
+   "nct": "NCT07060456",
+   "method": "live_ml",
+   "probability": 0.952058792389703,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "4d429b0faca8e74d00230719349b778ae76f40550882675d0801a0fc9f565fc2"
+  },
+  {
+   "nct": "NCT07062978",
+   "method": "live_ml",
+   "probability": 0.7817484613103507,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "7689a6dfc6b9e18a4e3b65e91fab00a85eb17578c792732d6bd47660fe15b189"
+  },
+  {
+   "nct": "NCT07073417",
+   "method": "live_ml",
+   "probability": 0.6955177335506214,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "df46f7aa730a511607c3a13a56eaeb005bccf025265c2d6e816b0721f3cb197b"
+  },
+  {
+   "nct": "NCT07074977",
+   "method": "live_ml",
+   "probability": 0.3876767602158325,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "9e78c1d3f13bb493c2423c24ffec12adbf9e2cfed09ca0182b710bdd8d14dec7"
+  },
+  {
+   "nct": "NCT07076199",
+   "method": "live_ml",
+   "probability": 0.8826430804086225,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "69b5d0e45a39928c563008f2c59e822e3864ee351beee62fb7a320b595166df9"
+  },
+  {
+   "nct": "NCT07080034",
+   "method": "live_ml",
+   "probability": 0.7375797005947728,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "c633c9f5f23e52935cc2678e1435bf933d127758e6a880c10cf6e83afe62357e"
+  },
+  {
+   "nct": "NCT07082114",
+   "method": "live_ml",
+   "probability": 0.9425358810270603,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "422c50cfba4d3b1d45766b10065e928cfa74d21a62f7b436b2b708cb0c6dd620"
+  },
+  {
+   "nct": "NCT07087158",
+   "method": "live_ml",
+   "probability": 0.4395767491647927,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "3c481f655573fd63d6f1f511ef0fb0b8e922b8d8a00b36ec49d788bdaa6ab35d"
+  },
+  {
+   "nct": "NCT07089186",
+   "method": "live_ml",
+   "probability": 0.7434110100224084,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "b5a62f727a1e96bebef44608d98b19504864cbc1dcecd3b6c5d30c4345452fea"
+  },
+  {
+   "nct": "NCT07090759",
+   "method": "live_ml",
+   "probability": 0.8233973345149718,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "286e9ac4509e497b36b4bb927e7ada6b4d88a5d7426cf9e675bdd3caa8561f76"
+  },
+  {
+   "nct": "NCT07093476",
+   "method": "live_ml",
+   "probability": 0.9279212423248404,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "c060f2bc1162d24f8407d24550f51189632e33e2c036bbffc4766b98a5b0af6f"
+  },
+  {
+   "nct": "NCT07097701",
+   "method": "live_ml",
+   "probability": 0.7010537225568813,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "92ab180ef7df90b1d110dda0238dde88a5bd9ee26cd7553f0b28dbc1c6178ca2"
+  },
+  {
+   "nct": "NCT07102628",
+   "method": "live_ml",
+   "probability": 0.8505580437426814,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "7534d5a7e76a16648dbd5118075ea3377be24bb270cdd06f2ccdfc8db6929836"
+  },
+  {
+   "nct": "NCT07103148",
+   "method": "live_ml",
+   "probability": 0.9370289072884157,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "8a723f79cb844fe483a59f6989d4712fe8192a340143433823651a08b041ddbb"
+  },
+  {
+   "nct": "NCT07105488",
+   "method": "live_ml",
+   "probability": 0.5372128814725277,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "5600528d037e5163f7e89e3e9d1f18dabd3bd19bec3a761f2aa3cab17f856941"
+  },
+  {
+   "nct": "NCT07106892",
+   "method": "live_ml",
+   "probability": 0.4876004889535526,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "e0361ef49d30367474f44aa11a236cc56484f3f006bdcb5053bbf4394cdeeeef"
+  },
+  {
+   "nct": "NCT07113262",
+   "method": "live_ml",
+   "probability": 0.7191782772466557,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "f8680ff89038a312d8d0ded58bc171619cb4c16b9b87d79be183a56ffdad62d2"
+  },
+  {
+   "nct": "NCT07118241",
+   "method": "live_ml",
+   "probability": 0.25287751010551995,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "cc5ea8003024f4e7e6f2797eb1e307d6681de1932bd08ff9e669b232a76cd903"
+  },
+  {
+   "nct": "NCT07118891",
+   "method": "live_ml",
+   "probability": 0.694084643224309,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "d58861116f592a4c083fe1a2b56c303f97935833d282d3ce8be10f23df6c5a98"
+  },
+  {
+   "nct": "NCT07121413",
+   "method": "live_ml",
+   "probability": 0.28893125924988333,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "e8b8c0cf5ae4530a52ff5357cc0618021a791dc2898b3c0dc27ebb2eb6705890"
+  },
+  {
+   "nct": "NCT07122401",
+   "method": "live_ml",
+   "probability": 0.8492937382322943,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "8558a8f04df43e08990d3ee87e3f5b1a4724756e8d85b6f7eee42bc1b5a0435f"
+  },
+  {
+   "nct": "NCT07122687",
+   "method": "live_ml",
+   "probability": 0.4338281845913896,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "8c2e428c6c2ce93a98e57834f1962e7dca78adbbfddb04fb35bf1411c4fd5267"
+  },
+  {
+   "nct": "NCT07127042",
+   "method": "live_ml",
+   "probability": 0.6155216780979385,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "06e4bcbf0ee192954a27048bfd9dad45faae898e001fe1e2c17af9bb8c0234c6"
+  },
+  {
+   "nct": "NCT07128550",
+   "method": "live_ml",
+   "probability": 0.7834403613343368,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "59f0aa44ce9bed7bbaa180820c290ac346a4ac4b9586eeb90af81d3ed3675991"
+  },
+  {
+   "nct": "NCT07136805",
+   "method": "live_ml",
+   "probability": 0.6249300167889065,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "246cca150fed50f57d2403c035aec185a1b668293f34b53c5b13dbf2f1da91cb"
+  },
+  {
+   "nct": "NCT07142044",
+   "method": "live_ml",
+   "probability": 0.3788012221906645,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "92e28eb9fc021dfd9798c641d2654101f027a4150a2c0dd4e0390fa916b542e0"
+  },
+  {
+   "nct": "NCT07144345",
+   "method": "live_ml",
+   "probability": 0.8427961763341629,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "9581c9e36d1e0afd7765953e8219e31516ea0655d6102af2d9333c2e2389b3c1"
+  },
+  {
+   "nct": "NCT07144852",
+   "method": "live_ml",
+   "probability": 0.8508528605317657,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "c6ee497448f66b9d52a85501bc4cd521bb0a8878d48ad7f28ab9a8d3ce73971a"
+  },
+  {
+   "nct": "NCT07145333",
+   "method": "live_ml",
+   "probability": 0.7360853967437289,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "0ff617445019fff8e16dab78423511f5da5e1d6351610c9de4c23d2e1ed1937f"
+  },
+  {
+   "nct": "NCT07162883",
+   "method": "live_ml",
+   "probability": 0.610516754790294,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "19f7d598ddfd43983a10746db3d6a6ab97c2adaea6a5286e3b2ad66839966749"
+  },
+  {
+   "nct": "NCT07169695",
+   "method": "live_ml",
+   "probability": 0.34745925191177696,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "a549be98aa27e8956f506357dddc0ad928c392081150ec75f0c773b599c140cf"
+  },
+  {
+   "nct": "NCT07169851",
+   "method": "live_ml",
+   "probability": 0.42417080426083337,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "95e0000e9ce8a93e2580394fb73e403706a06eb702784bf3dffbf9b2dbb1b5b9"
+  },
+  {
+   "nct": "NCT07170917",
+   "method": "live_ml",
+   "probability": 0.626885270311612,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "efa0cb0380a24c6a9efa69232104661395c86640b0c4c630603898585c85e938"
+  },
+  {
+   "nct": "NCT07175428",
+   "method": "live_ml",
+   "probability": 0.4842698131977629,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "f592b6204ea926c389f563bc1a095d6ae7fb09f0579c1379525ff74e958d3be9"
+  },
+  {
+   "nct": "NCT07179640",
+   "method": "live_ml",
+   "probability": 0.7200370536323998,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "57d5b5ea5c5ed284d9992e1eed6e7411c1caa6279608504a33b4fe68d2d8f54b"
+  },
+  {
+   "nct": "NCT07184632",
+   "method": "live_ml",
+   "probability": 0.6799516144962451,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "927fff1e6f1d3e24610bd608757af15fdb43f9e960391535e792a95eba937a12"
+  },
+  {
+   "nct": "NCT07186413",
+   "method": "live_ml",
+   "probability": 0.9113126316027385,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "69bcecb5ba334ef577b7b4d213a5acb87e00bcec0b844ecb3c1d0db32e82a3ff"
+  },
+  {
+   "nct": "NCT07194382",
+   "method": "live_ml",
+   "probability": 0.29835961230660113,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "d96d50a51272b3339fd29d5c3ceb46af6e419c81a4c29a34130e084f182e07c7"
+  },
+  {
+   "nct": "NCT07199569",
+   "method": "live_ml",
+   "probability": 0.7390362075054632,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "022c189ff2c61c8569c690167c93ee5fffb0b8b96e42f11d379ffdf792b0d77e"
+  },
+  {
+   "nct": "NCT07205900",
+   "method": "live_ml",
+   "probability": 0.7542317811686747,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "c8de7b43b7314ead0fdc2b81704eacaab959df368aa1f78471f387d6b33c1a2d"
+  },
+  {
+   "nct": "NCT07207408",
+   "method": "live_ml",
+   "probability": 0.7467281415744671,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "8b4eef2cd4bb2f05bfc757b12ba486220dfcdf300d76dae185bb299ee5018f15"
+  },
+  {
+   "nct": "NCT07214571",
+   "method": "live_ml",
+   "probability": 0.4366060798216898,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "4c108995ff0466c5e271154824517deb7280e0ab8823cdaa229daa89d587553f"
+  },
+  {
+   "nct": "NCT07215273",
+   "method": "live_ml",
+   "probability": 0.3273308746651953,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "208467db7fc6c5048edeefe614de3812bc6d3e6e1eba8c4cf762a5d54b232060"
+  },
+  {
+   "nct": "NCT07215702",
+   "method": "live_ml",
+   "probability": 0.44312705832968474,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "ee4addf16c198e24d253057afd33d30beba3d8fb7b87fec0950518f283878207"
+  },
+  {
+   "nct": "NCT07218523",
+   "method": "live_ml",
+   "probability": 0.7563248771147442,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "f6dc4a0882c4475a43bdb3543d7666be324c6bdd0798c48c4b2de60cb2a23408"
+  },
+  {
+   "nct": "NCT07219615",
+   "method": "live_ml",
+   "probability": 0.5937144316798827,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "a277b523e810eebf3ceaa9840c29b14da0c34087be28ec07fb5c5702ccc8a73f"
+  },
+  {
+   "nct": "NCT07221578",
+   "method": "live_ml",
+   "probability": 0.677131371597318,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "9d620ea0299f5a359004353d3dc7ecf741a0b6cf30a10bd2bc6dc6cf69688074"
+  },
+  {
+   "nct": "NCT07222917",
+   "method": "live_ml",
+   "probability": 0.4332924969413918,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "c4000ff12eec758b1c8b2c9286bac08e15881d399ca15981a8e819784a67fe01"
+  },
+  {
+   "nct": "NCT07223229",
+   "method": "live_ml",
+   "probability": 0.43343920219322274,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "f7e03e312baa67e390cf3904b8edc600fac168ba7d87b7508438307d7c0508c3"
+  },
+  {
+   "nct": "NCT07223840",
+   "method": "live_ml",
+   "probability": 0.35919156175510764,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "e985a25f767f275c00ffa809815a7d37bdd6ca1491c31aad9dbab58222f4b283"
+  },
+  {
+   "nct": "NCT07226258",
+   "method": "live_ml",
+   "probability": 0.4951711445883696,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "f8dee709857ac046079ae39c30316f01e415c26442faead1ba9ea93126f2cd2c"
+  },
+  {
+   "nct": "NCT07226661",
+   "method": "live_ml",
+   "probability": 0.27659809355609116,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "e2b1199e76882437eecb215c3a82db592fa0db248a3c2015e4f14ec7a927babb"
+  },
+  {
+   "nct": "NCT07228390",
+   "method": "live_ml",
+   "probability": 0.42443966953235196,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "683609e0cf804c9298bff6a947a7c6bb7f364352b2e3edd7fe2907a1f56d0d58"
+  },
+  {
+   "nct": "NCT07229950",
+   "method": "live_ml",
+   "probability": 0.6023746945098305,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "3d595dece9ebb06c907698faa4618c5cb330939a16d8a2b4d1e1c4124fa6298d"
+  },
+  {
+   "nct": "NCT07230132",
+   "method": "live_ml",
+   "probability": 0.805636195819092,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "b0bca9249cf2c25f66a21202de0184355ac3dc00cd4c450c0defbfa8690c8ee1"
+  },
+  {
+   "nct": "NCT07231679",
+   "method": "live_ml",
+   "probability": 0.45631406121570117,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "ca022d925e77dbf59c715e8e9e1dbc53372076a582e72513d16b4f34e43e76c0"
+  },
+  {
+   "nct": "NCT07243171",
+   "method": "live_ml",
+   "probability": 0.8213726361723075,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "bed312dbac959920ec5fff17dbd6fbd5375ab4010672793622b537ddeefb95ee"
+  },
+  {
+   "nct": "NCT07244263",
+   "method": "live_ml",
+   "probability": 0.571985644504027,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "25507fa082c40b8b6d1b06d6d9070f6a637f2330557f7a1f4e891de6ab501984"
+  },
+  {
+   "nct": "NCT07245771",
+   "method": "live_ml",
+   "probability": 0.708474870157829,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "59898d12246c39f1a51ad2b0a49945c40108cfffe2857ee4c386fd7d4c42363b"
+  },
+  {
+   "nct": "NCT07245953",
+   "method": "live_ml",
+   "probability": 0.5274849051938977,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "46d7b02cfab4f1b35539fd9d3b3ec3083932c7cacbd59ed95f8dd1fa527378cd"
+  },
+  {
+   "nct": "NCT07246889",
+   "method": "live_ml",
+   "probability": 0.8380618817978142,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "427e2dd6518d9342be5e13c25315d49eb105689bc358effb0fcae737265e1e10"
+  },
+  {
+   "nct": "NCT07247188",
+   "method": "live_ml",
+   "probability": 0.5562949455484758,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "6f23f561be0eb90e7c3cbee966bca21f09a6d78281fcaf6ec09c3858dde32c33"
+  },
+  {
+   "nct": "NCT07249632",
+   "method": "live_ml",
+   "probability": 0.7422976295326034,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "95da81de022d8a56a64df28fa2291d52172a6b5bf663a0b960737b511f4e7641"
+  },
+  {
+   "nct": "NCT07260500",
+   "method": "live_ml",
+   "probability": 0.5296699687658342,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "025ff35e461c0a064632516b37b93bc4ddb37820a8cb2e6a6acf1fc924c11df9"
+  },
+  {
+   "nct": "NCT07260877",
+   "method": "live_ml",
+   "probability": 0.38926814846127256,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "ccaf56c7d5c36ffeb5e0945febdb8fa0aee15de0d2eca21abb8ae9f00799206c"
+  },
+  {
+   "nct": "NCT07261644",
+   "method": "live_ml",
+   "probability": 0.9249342258055181,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "cf44913b8b0865cb4e0de1ed534a89527d6a51c34c709f04ec3e33595fd9947b"
+  },
+  {
+   "nct": "NCT07265349",
+   "method": "live_ml",
+   "probability": 0.4222156032209454,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "ef1e32922f5c037ffe69c350ef2784371f6dc02d65d679a31bb7e7de7a6d12ce"
+  },
+  {
+   "nct": "NCT07280858",
+   "method": "live_ml",
+   "probability": 0.7512034040957072,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "a93cdde05dd24100b189ad5a9a53629992f83d4d03c5f29d6edaadbabadc0548"
+  },
+  {
+   "nct": "NCT07285070",
+   "method": "live_ml",
+   "probability": 0.2662824173624899,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "a07cb9a9d8d7893e8bb8ac33d6d8e3798f6d41d0a91304c67c92898b5996b780"
+  },
+  {
+   "nct": "NCT07285291",
+   "method": "live_ml",
+   "probability": 0.7491244038481146,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "4beb2a023dd961c0db4a8fd90443d01ff5615b7af28dec2c174a0effef8992b5"
+  },
+  {
+   "nct": "NCT07287202",
+   "method": "live_ml",
+   "probability": 0.5003947284431157,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "989d01a6919cfb56e07aac759e1951e5f124f514e017a4fa48554b1204e55dbb"
+  },
+  {
+   "nct": "NCT07297797",
+   "method": "live_ml",
+   "probability": 0.6893846347143072,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "29bf16e17eedad335894672cb153b2af0b1dbaa4792f57b1812809a204c1dd37"
+  },
+  {
+   "nct": "NCT07298395",
+   "method": "live_ml",
+   "probability": 0.4960358628023764,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "a5f67221a2003dfb65cbb23924291e64381b8327b4320d5a02eae39f3084d3fe"
+  },
+  {
+   "nct": "NCT07301255",
+   "method": "live_ml",
+   "probability": 0.39184645102322685,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "a6fd735119cd9c548173ae53b62540cd7f231b8a0dc1d19dbe2e2524bd9db832"
+  },
+  {
+   "nct": "NCT07323784",
+   "method": "live_ml",
+   "probability": 0.37227631365155694,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "05ab6e4ee7378eb0b4ba7846fc5ff1df31ce4dcb576c9568631262c3fc11601b"
+  },
+  {
+   "nct": "NCT07363720",
+   "method": "live_ml",
+   "probability": 0.6741841366531013,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "416228fce5722c200c6fff55e397c2a54c5f2a2edb547f858a5d5965f8946980"
+  },
+  {
+   "nct": "NCT07365462",
+   "method": "live_ml",
+   "probability": 0.31039855911805087,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "54049aed8da788e613f7d0abaf9a4eec17885dcb868803eef573cefbb860ef0c"
+  },
+  {
+   "nct": "NCT07365904",
+   "method": "live_ml",
+   "probability": 0.45998813370171426,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "88d64abf09738ac5d2e25799801a0543eb6e3b06e73d598be9bd93b73833c629"
+  },
+  {
+   "nct": "NCT07371650",
+   "method": "live_ml",
+   "probability": 0.4372351900432389,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "238547900fecc253f123a4b937dacc59692df9b9c383ede6b153c7ed83b3ef9d"
+  },
+  {
+   "nct": "NCT07371793",
+   "method": "live_ml",
+   "probability": 0.5833298040589765,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "63c74be0fe273a21328071411c8df5c075577d5a1f61d9d898bfc2b4da27fd72"
+  },
+  {
+   "nct": "NCT07382167",
+   "method": "live_ml",
+   "probability": 0.9228270648333416,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "b179fd81b6c3fa11135ae959f9e444c23a8f66ba85127eb965e8460b17e5e558"
+  },
+  {
+   "nct": "NCT07385287",
+   "method": "live_ml",
+   "probability": 0.46115817434423617,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "8e17f4d3be8755ff8662fec213d0895ccd0aea8156f128fcc3a581bb8740574f"
+  },
+  {
+   "nct": "NCT07388680",
+   "method": "live_ml",
+   "probability": 0.7569446615370496,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "165cf88bf248e74cab508fe00765c9c0455d19de04b8c3d00c72035a79a0a51d"
+  },
+  {
+   "nct": "NCT07391241",
+   "method": "live_ml",
+   "probability": 0.5454660597296865,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "d6dbd8de56bc4bee2541ef21750c587b9ff0d067a757b468969ef452884f838d"
+  },
+  {
+   "nct": "NCT07393334",
+   "method": "live_ml",
+   "probability": 0.6964639459188676,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "f8c347e6094bb1be5a951c21d7f02924aa953c89bb4f0aa5398e3abb844a3a67"
+  },
+  {
+   "nct": "NCT07395687",
+   "method": "live_ml",
+   "probability": 0.8592417712136753,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "0a30742021e12f398787479a91c291fa73bab355e3967ee6d8f92cc53cfabb3b"
+  },
+  {
+   "nct": "NCT07395986",
+   "method": "live_ml",
+   "probability": 0.5148917484982557,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "2684a5ce3bfd72f34b74c776219e8c9cd6b1607deaacdae156ae263d6f1297c7"
+  },
+  {
+   "nct": "NCT07397325",
+   "method": "live_ml",
+   "probability": 0.39791469141449376,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "072346bf503a11addccc4f2e4f62d8b84046a629cadc94cbb3de1d68f3bcc490"
+  },
+  {
+   "nct": "NCT07402369",
+   "method": "live_ml",
+   "probability": 0.8192032768417702,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "d5a3111d4f3ee30e410bc2d350e1f37cbec2be0d2a58934557b098d6f454da65"
+  },
+  {
+   "nct": "NCT07408024",
+   "method": "live_ml",
+   "probability": 0.5835478154480342,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "d4fbacc9c7da18b2942ed1ec09bf1f7dbdf885de37d6b33aadeafc254d903cac"
+  },
+  {
+   "nct": "NCT07413094",
+   "method": "live_ml",
+   "probability": 0.30620737037152945,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "8cd3a63b6b41f6123d7cfeb5ea94461d637a16ac802847f66d55efcdcdab7289"
+  },
+  {
+   "nct": "NCT07413549",
+   "method": "live_ml",
+   "probability": 0.5268159932430422,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "99015324096b3b5c56524905e107bc2a5d6e2de19eb3762aa0f84d0eb1b750ad"
+  },
+  {
+   "nct": "NCT07415252",
+   "method": "live_ml",
+   "probability": 0.8954384205268509,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "85140f127b8a81bca26ef367f2f075df71bf270454f888fdc53851c40585e143"
+  },
+  {
+   "nct": "NCT07424144",
+   "method": "live_ml",
+   "probability": 0.6861157767722142,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "97acb4911da82a4373254f081a9f3fab463186beba42b2c44198a14fdd296279"
+  },
+  {
+   "nct": "NCT07437547",
+   "method": "live_ml",
+   "probability": 0.533940735555228,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "7a468d0f6ab357c5f2943a5813c3cdf374b56c4198e93ba7a41371249ea48fa3"
+  },
+  {
+   "nct": "NCT07437560",
+   "method": "live_ml",
+   "probability": 0.43725068375016907,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "82821944b54511eb3c95dcabb30660a4fbac2eedd996f665bfaf1c92eee4aca1"
+  },
+  {
+   "nct": "NCT07437586",
+   "method": "live_ml",
+   "probability": 0.46894772660885514,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "e517802cd2f5a27d7af031edc1b6f34b5c40075b6d80dc89eada3cca6944310a"
+  },
+  {
+   "nct": "NCT07439848",
+   "method": "live_ml",
+   "probability": 0.3988317206963207,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "4b9fd5024828e0bd81ca83d3d2ecd7449694dd13e387582d90840a8483176db7"
+  },
+  {
+   "nct": "NCT07443202",
+   "method": "live_ml",
+   "probability": 0.4426002846063483,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "674259b655cca11e2f9543d0f0e8a8d9da1a2360841002aea7ac4e571285d2eb"
+  },
+  {
+   "nct": "NCT07443696",
+   "method": "live_ml",
+   "probability": 0.30864866193530854,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "4e62949772ac2a408cc0a9cdb5e0b08953a69dedeb5170b9c7551f67ae472deb"
+  },
+  {
+   "nct": "NCT07446439",
+   "method": "live_ml",
+   "probability": 0.7134682166387599,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "cfd35d5f9345e67030ac42b15285de0f47ab05fe810a8805e82dc27153ccc7c5"
+  },
+  {
+   "nct": "NCT07472725",
+   "method": "live_ml",
+   "probability": 0.7669704126554243,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "acf3cd76db5686e9fb5e430b666d1286ba2518e90af6793cda01c7a6be3b155f"
+  },
+  {
+   "nct": "NCT07477704",
+   "method": "live_ml",
+   "probability": 0.9328424450283531,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "b1c971d3ed27c8d3482b1e2df5e4cffb726bf2560b58c75cf38f3526d92287be"
+  },
+  {
+   "nct": "NCT07478744",
+   "method": "live_ml",
+   "probability": 0.3899714024158257,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "27f19d69e50c1300c12207eeea186afce11d71294c2b2c513d8dbb5a8bd00576"
+  },
+  {
+   "nct": "NCT07481604",
+   "method": "live_ml",
+   "probability": 0.6242545657082013,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "cc1b909281985168b276f3c0b655122eb66afa50596f22906ee25559d5637054"
+  },
+  {
+   "nct": "NCT07481734",
+   "method": "live_ml",
+   "probability": 0.4521723198177317,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "12a158dfec2feb7813cb2e5c1a75f3c0294493e81d456283358fcc37c1249a01"
+  },
+  {
+   "nct": "NCT07481747",
+   "method": "live_ml",
+   "probability": 0.9623493956504218,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "a2f2f13f208368d43a7f1b458e3bda12ad9d9808a320a0177c40df790a50efff"
+  },
+  {
+   "nct": "NCT07482657",
+   "method": "live_ml",
+   "probability": 0.3112524537050387,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "892b60e0dd72c7f4c14a240681e59dd4666cbfb2efdff1cf8285e257c69c24ce"
+  },
+  {
+   "nct": "NCT07486960",
+   "method": "live_ml",
+   "probability": 0.8778058311067228,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "8e406d9d4850a4dceaab2ae12e00f3a3926b3836b0097c1bd5c19d7c6d563f67"
+  },
+  {
+   "nct": "NCT07487363",
+   "method": "live_ml",
+   "probability": 0.4756908961533267,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "94c2841f5df3e22d808b6ffbf407e848a639553570385d44df860a0c13f42983"
+  },
+  {
+   "nct": "NCT07488897",
+   "method": "live_ml",
+   "probability": 0.4627329321819223,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "09557e8b04dde0fe703356590f66af7adc5476e56a1ffc05a3d79156350ce40c"
+  },
+  {
+   "nct": "NCT07489612",
+   "method": "live_ml",
+   "probability": 0.776892340100843,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "bce08c6940ce32f625186c88e01df0ef65c70fb83be81a5321455b937d569fd7"
+  },
+  {
+   "nct": "NCT07491458",
+   "method": "live_ml",
+   "probability": 0.5642575228514173,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "5044cf2592d371093b2a4cf6401d900e3bd1ba16cacc79dfd1c5760c9ef1363e"
+  },
+  {
+   "nct": "NCT07493265",
+   "method": "live_ml",
+   "probability": 0.5686671143824694,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "8dc72a7f5323215eca2699be38ae693f6d5cd13a50f1a14e63a91245e9d510c4"
+  },
+  {
+   "nct": "NCT07494409",
+   "method": "live_ml",
+   "probability": 0.744754829318367,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "d23330635357ae0c1f3d26f5cfe03c45bfab61d37f4a24007368e23649b6c419"
+  },
+  {
+   "nct": "NCT07496450",
+   "method": "live_ml",
+   "probability": 0.8497416108790857,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "e982261c136778126761c61605cc255ba6b86fa259fd9d070bc19e2c73c2a502"
+  },
+  {
+   "nct": "NCT07499674",
+   "method": "live_ml",
+   "probability": 0.8149270329779876,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "e856f5082a058f5cd1f8b16f6864c3cefca4eb5e9f9408397eb9f3b9e9fcf4ce"
+  },
+  {
+   "nct": "NCT07500506",
+   "method": "live_ml",
+   "probability": 0.8458773098291015,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "63e89071cccc2d3ef998e1166ee89c424cadf0e57e4f4d84100bb4e14e0c142a"
+  },
+  {
+   "nct": "NCT07503886",
+   "method": "live_ml",
+   "probability": 0.23732418395777896,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "07222d52b830a51eb3cd57693afe0bddea319cab56979f1faaba2e757b3be507"
+  },
+  {
+   "nct": "NCT07505004",
+   "method": "live_ml",
+   "probability": 0.8368015062730677,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "3438cd43b35bd584980c54c31fbccc38ea766a557bcfa1749dc96fbe4ecd77ba"
+  },
+  {
+   "nct": "NCT07505745",
+   "method": "live_ml",
+   "probability": 0.3687530895956609,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "af332c20345c6b94cc670671e72867d43ce17d3702702a79df53291011ae387a"
+  },
+  {
+   "nct": "NCT07505836",
+   "method": "live_ml",
+   "probability": 0.8540264564667321,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "f30d84ddb8d91d5cb3712a5c08e7a9bff844b74f34d26556b44a2dbd0d860f40"
+  },
+  {
+   "nct": "NCT07511361",
+   "method": "live_ml",
+   "probability": 0.4308397929983663,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "7b9f58eafc813dc3bf1b8b582f1e2b130aee5106190f23dfe11da1b954f8634f"
+  },
+  {
+   "nct": "NCT07521137",
+   "method": "live_ml",
+   "probability": 0.4372155357496431,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "212c6f12ad98dcfb565afabd9862dffef0f9ab8c9d6f21ac6af87f2a390730fc"
+  },
+  {
+   "nct": "NCT07521631",
+   "method": "live_ml",
+   "probability": 0.7828494668199147,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "a338479d6aa966f4f85c298676f00e38deb733a670216a447482d8a24e74efd9"
+  },
+  {
+   "nct": "NCT07531043",
+   "method": "live_ml",
+   "probability": 0.8337751023805622,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "b18f56fe4ee0f933270f4dbd1b625a0e26290d845d8b12425610d9daa67ca143"
+  },
+  {
+   "nct": "NCT07533786",
+   "method": "live_ml",
+   "probability": 0.8192722534098704,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "b497d6bc4ad14476a30494e51915cf46605b12fd15bc6c33250eb20779935c23"
+  },
+  {
+   "nct": "NCT07543796",
+   "method": "live_ml",
+   "probability": 0.800870325237253,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "14a92c894d3e8f08e292ce4e671c5562d93b37429fb68eb386176f7d04c96096"
+  },
+  {
+   "nct": "NCT07547228",
+   "method": "live_ml",
+   "probability": 0.41193208080449195,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "d06d4f77be34434762cb2439e62b594da6110b2075f2e11db4a6be5d3ffc9105"
+  },
+  {
+   "nct": "NCT07547813",
+   "method": "live_ml",
+   "probability": 0.32739974368307967,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "21a3197c011a4fec9afab9755334a4f872c2f844e9dc78bf2cb384ff069048f1"
+  },
+  {
+   "nct": "NCT07548632",
+   "method": "live_ml",
+   "probability": 0.5979357514306339,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "5a267fb5df100d3681fd60cbbba3733404201744b11f233f674200862b6b63aa"
+  },
+  {
+   "nct": "NCT07552012",
+   "method": "live_ml",
+   "probability": 0.47469635532081483,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "68ab7ae32fb8326353f84d121daab4523066c5417b0c08be303951039b7808b3"
+  },
+  {
+   "nct": "NCT07565506",
+   "method": "live_ml",
+   "probability": 0.3655266498126233,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "a16ac57fb76bb2f6e5024093c1a0a9cb22e5352ed4b734f66cd7e1368acb6458"
+  },
+  {
+   "nct": "NCT07568730",
+   "method": "live_ml",
+   "probability": 0.49175277261503253,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "f55e08f2693da781426a870455403adeaf08325be51639377bc0d2a68692f2ea"
+  },
+  {
+   "nct": "NCT07572396",
+   "method": "live_ml",
+   "probability": 0.3514973927511601,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "f8560b2a4ecd354ce2ec7661fc731f549f0d7163bd1bc94b07203a1351544fc5"
+  },
+  {
+   "nct": "NCT07576608",
+   "method": "live_ml",
+   "probability": 0.4122039045673676,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "d661c331a98f283e3ba7eda7fe58bab3f8df7f5fa843a6ff068e53e16753b0fd"
+  },
+  {
+   "nct": "NCT07576868",
+   "method": "live_ml",
+   "probability": 0.7214162187498632,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "a84ea9d05700eeedf1726f39b76008ea5d1c83f085b26ebb5e3b5549569e4c2b"
+  },
+  {
+   "nct": "NCT07579741",
+   "method": "live_ml",
+   "probability": 0.6105692297197552,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "4691f4ce5acf650fe96a8cc8eae7c3408fa7dab4da176431131e18f17935b5cf"
+  },
+  {
+   "nct": "NCT07580716",
+   "method": "live_ml",
+   "probability": 0.34730287453105935,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "f96f45b28ab0480cc0cb6db658a1dd87b4806a4ee06460cc3a91da5d3363257b"
+  },
+  {
+   "nct": "NCT07598383",
+   "method": "live_ml",
+   "probability": 0.6390941189132504,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "6c9c0ce12df52d064f750edd41d7393a3b4ff4f6d64b297f6cb03b8544e49e88"
+  },
+  {
+   "nct": "NCT07600736",
+   "method": "live_ml",
+   "probability": 0.49161143217897807,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "b85234d69e06ed1a9f2ec7dd7efe1d7683633423bab5b3de7cecd898f717b418"
+  },
+  {
+   "nct": "NCT07600983",
+   "method": "live_ml",
+   "probability": 0.7189562919342449,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "dc4012fbdfc553b4c84749df37c65db99842f6c4e66924e606ddecbf6d0cd95a"
+  },
+  {
+   "nct": "NCT07614958",
+   "method": "live_ml",
+   "probability": 0.8533426654733687,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "344a4c0a86ebf719982dc02f09a4510c7cba0525b67482022ef5c32557578c3f"
+  },
+  {
+   "nct": "NCT07641634",
+   "method": "live_ml",
+   "probability": 0.2879860771773982,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "ce3ace5ccaa00a4ad8445516f689d1f2e7c3732d1019669a2ffcb70d85b414a6"
+  },
+  {
+   "nct": "NCT07644832",
+   "method": "live_ml",
+   "probability": 0.6200320583121837,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "78e9e03081c1d8b0d723d8504b8bd84751b7e4391358ee768550330e80a18655"
+  },
+  {
+   "nct": "NCT07645248",
+   "method": "live_ml",
+   "probability": 0.7420651224648159,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "29d5d3f8b4c28cfedff582ea6ac91f5da32c9fe8be17a7f63966bfba06121d8e"
+  },
+  {
+   "nct": "NCT07645924",
+   "method": "live_ml",
+   "probability": 0.8860031153991708,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "94bd10c2648a47882557d05b9a12eac8f46e9036b3110797bc4ca717af095cc3"
+  },
+  {
+   "nct": "NCT07653100",
+   "method": "live_ml",
+   "probability": 0.7546385133876272,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "a437514df08d8ce081f4107f5ae310b36245c3d0defd5411836ed3661e54a755"
+  },
+  {
+   "nct": "NCT07656727",
+   "method": "live_ml",
+   "probability": 0.6827605955372293,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "5ba7d6c6b6464d48887f34d5395b4a131ca1c49dee49cda68ff16aaa7e13a03b"
+  },
+  {
+   "nct": "NCT07658560",
+   "method": "live_ml",
+   "probability": 0.8990003702599145,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "b82fd100e4a4ab93aa51b51e764e1596bf1c8300e9879110a9df0e0ddf6a9efd"
+  },
+  {
+   "nct": "NCT07672236",
+   "method": "live_ml",
+   "probability": 0.7476331518782864,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "bbfbe9ef36869ccc33096406129d0c60c6e8b1671415ce692dd13cbbd02c85d4"
+  },
+  {
+   "nct": "NCT07672561",
+   "method": "live_ml",
+   "probability": 0.9248930357561519,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "63d839a2432989a1c17b27c729c6ba0bce0d74e36e0bb3c46681f7f57ddc5f2d"
+  },
+  {
+   "nct": "NCT07673029",
+   "method": "live_ml",
+   "probability": 0.7536394934149674,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "b7daccc2d0705af3ee275752c989df47672f29c50e5863e68eb742f745fe42bd"
+  },
+  {
+   "nct": "NCT07678931",
+   "method": "live_ml",
+   "probability": 0.7856557090909368,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "518b41427fbf451e30c4698b1b3b7740b2027e061e0d04b493ba75d7d55dbc19"
+  },
+  {
+   "nct": "NCT07688772",
+   "method": "live_ml",
+   "probability": 0.8512079042813795,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "7e9ea9f58822755c3290bfe3ce92320eda298e95585dfa3e26fef2f1a56704c0"
+  },
+  {
+   "nct": "NCT07694375",
+   "method": "live_ml",
+   "probability": 0.3760816268032251,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "82561db4858eb97194efab61fcc9395d8c6cc2c16f1f8ca7aee8bc7dea7e29d8"
+  },
+  {
+   "nct": "NCT07709897",
+   "method": "live_ml",
+   "probability": 0.5171366755169757,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "38653cf9078253c220ce50a871122c5c183d71a8dd633f8a4ff2a6921c04d32f"
+  },
+  {
+   "nct": "NCT07712523",
+   "method": "live_ml",
+   "probability": 0.6442548406731187,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "150d077fed07616dcd4a6ef4e4aafd89e604e7e9ad55984957252a60895c3080"
+  },
+  {
+   "nct": "NCT07719530",
+   "method": "live_ml",
+   "probability": 0.69655082692254,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "31ecc43065717afb9a40bccc5f4e86993cd135eeb459ec6dfb736f6293553ecc"
+  },
+  {
+   "nct": "NCT07724340",
+   "method": "live_ml",
+   "probability": 0.760818908394295,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "a8f2b1c67d4a3a6d25d947006853b6f8167d44ecde4e1ebcf06654bfc3a1b72d"
+  },
+  {
+   "nct": "NCT07743008",
+   "method": "live_ml",
+   "probability": 0.4762680784202067,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "b2a0eee53149e27679c643f4a4cb80268adf394af1867779d1e1789a07778819"
+  },
+  {
+   "nct": "NCT07746726",
+   "method": "live_ml",
+   "probability": 0.7459888862855735,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "b75d65d840331fdab1ccef2a21de7910741b0e9dd7adf42c4a901e3599eecf6d"
+  },
+  {
+   "nct": "NCT07767513",
+   "method": "live_ml",
+   "probability": 0.44532650916109107,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "aa939bb0345c6babb6feb5062bb2f7aebde483a4f7bf091c734c3924bb36563e"
+  },
+  {
+   "nct": "NCT07811908",
+   "method": "live_ml",
+   "probability": 0.30376827306571375,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "ce64a989eb3305305ee9dcba354a280d3adc2123cc50199e2d0ce70929d73507"
+  },
+  {
+   "nct": "NCT07832552",
+   "method": "live_ml",
+   "probability": 0.8281694220674958,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "67b5d8c4ca35fc441c52e01324538a52ee68b757ad04eff625693469fc2575ee"
+  },
+  {
+   "nct": "NCT07842991",
+   "method": "live_ml",
+   "probability": 0.4671004635098685,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "c0a1ca12b67230e406ef353e21578d4530f707aa7f849f3eafbbc9540604e854"
+  },
+  {
+   "nct": "NCT07873463",
+   "method": "live_ml",
+   "probability": 0.5118909875480964,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "59bba3e45ee3950cd75d4e73f7f99a8966a28b6da69a77ebcd4fc19473793655"
+  },
+  {
+   "nct": "NCT07889284",
+   "method": "live_ml",
+   "probability": 0.7541109944831034,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "7906cad952f47e0b1bdf82b35c654b27a53a030bab29854410cb7e6df60e089e"
+  },
+  {
+   "nct": "NCT07937462",
+   "method": "live_ml",
+   "probability": 0.7612464371707588,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "d00d661226a7ef6dd7815cbcdadf262f39bab093d76217644e9154c39a762d49"
+  },
+  {
+   "nct": "NCT07940075",
+   "method": "live_ml",
+   "probability": 0.589056786341134,
+   "model": "gbm-v2(n=9432)",
+   "madeAt": "2026-11-25T17:37:21.712Z",
+   "leaf": "b122857f138de6c22b5df8295925f95b6e45f9c2c34cf1731d2fbdd281983a0c"
+  }
+ ]
+}

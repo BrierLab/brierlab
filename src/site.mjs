@@ -192,7 +192,7 @@ if (stamp.state !== "none") {
 // Everything the How it works page needs to rerun the learned model in the
 // browser: the trees, each open trial's inputs, the sealed answers to check
 // against, and the test results.
-const modelPath = "data/model/gbm-v1.json";
+const modelPath = "data/model/" + (readdirSync("data/model").filter((f) => /^gbm-v\d+\.json$/.test(f)).sort().at(-1) ?? "none");
 const inputsPath = "data/model/live_features.json";
 if (test && mlSeal && existsSync(modelPath) && existsSync(inputsPath)) {
   const m = JSON.parse(readFileSync(modelPath, "utf8"));
@@ -215,6 +215,7 @@ if (test && mlSeal && existsSync(modelPath) && existsSync(inputsPath)) {
       boosted: pick(all.boosted),
       logistic: pick(all.logistic),
       oldBaseline: pick(all.oldBaseline),
+      walk: test.walkAll ?? null,
       curve: test.curve,
       importance: test.importance,
     },
