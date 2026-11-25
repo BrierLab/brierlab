@@ -2,7 +2,7 @@
 // carries a number that is not in the sealed file.
 // Usage: node src/site.mjs <seal-name>      (run from the repo root)
 // Writes site/data.js and copies the sealed file to site/sealed/.
-import { copyFileSync, existsSync, mkdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
+import { copyFileSync, existsSync, mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
 import { resultIsPublic } from "./briefs.mjs";
 
 const [sealName] = process.argv.slice(2);
@@ -23,6 +23,13 @@ const leafOf = new Map(seal.forecasts.map((f) => [`${f.nct} ${f.method}`, f.leaf
 const base = byNct(rows("data/live_results.jsonl"));
 const researched = byNct(rows("data/live_researched_results.jsonl"));
 const briefs = byNct(rows("data/research_results.jsonl"));
+
+// The learned model (src/train.mjs): its latest sealed forecasts and its test results.
+const mlSealName = readdirSync("data/sealed").filter((f) => f.endsWith("-ml.json")).sort().at(-1)?.replace(/\.json$/, "");
+const mlSeal = mlSealName ? JSON.parse(readFileSync(`data/sealed/${mlSealName}.json`, "utf8")) : null;
+const learned = new Map((mlSeal?.forecasts ?? []).map((f) => [f.nct, f.probability]));
+const evalPath = "data/model/eval.json";
+const test = existsSync(evalPath) ? JSON.parse(readFileSync(evalPath, "utf8")) : null;
 
 const phaseName = (p) => "Phase " + p.replaceAll("PHASE", "");
 
@@ -45,6 +52,8 @@ for (const c of rows("data/live_cases.jsonl")) {
     enrollment: c.enrollment,
     base: b?.probability ?? null,
     researched: r?.probability ?? null,
+    // The learned model's own sealed forecast, shown beside the headline one.
+    learned: learned.get(c.nct) ?? null,
     rationale: (r ?? b).rationale,
     sources: r ? (brief?.sources ?? []).length : 0,
     state: alreadyPublic ? "public" : r ? "screened" : "unscreened",
@@ -79,6 +88,7 @@ const stamp = existsSync(otsPath)
       date: submittedOn(),
     }
   : { state: "none", date: null };
+const pc = (x) => Math.round(x * 100);
 const log = [
   {
     date: "2026-11-22",
@@ -126,6 +136,25 @@ const log = [
               : "The fingerprint of the first record was submitted to OpenTimestamps, an outside timestamping service. It is waiting to be written into a Bitcoin block.",
         },
       ]),
+  ...(test && mlSeal
+    ? [
+        {
+          date: mlSeal.sealedAt.slice(0, 10),
+          kind: "finding",
+          text: `We built a second forecaster that learns from results: boosted decision trees trained on ${test.trainedOn.toLocaleString("en-US")} past trials from the public registry. On ${test.heldOut.all.boosted.n} recent trials it never saw, it removed ${pc(test.heldOut.all.boosted.skill)}% of the error of always guessing the average, against ${pc(test.heldOut.all.oldBaseline.skill)}% for our earlier statistical model. Registry records are edited after a trial ends, so expect less on live trials.`,
+        },
+        {
+          date: mlSeal.sealedAt.slice(0, 10),
+          kind: "finding",
+          text: `More data helps it. Trained on ${test.curve[0].size} past trials, the same model scored about ${pc(test.curve[0].skill)}% on the same kind of test; on ${test.curve.at(-1).size.toLocaleString("en-US")}, about ${pc(test.curve.at(-1).skill)}%. Retraining on newly posted results is a manual step today, and each retrain is sealed as a new version.`,
+        },
+        {
+          date: mlSeal.sealedAt.slice(0, 10),
+          kind: "sealed",
+          text: `The learned model's forecasts for all ${mlSeal.count} open trials are sealed, so it is scored on the same trials as the published forecast. Fingerprint ${mlSeal.root.slice(0, 12)}… It has no outside timestamp yet.`,
+        },
+      ]
+    : []),
   {
     date: "Open",
     kind: "open",
@@ -147,12 +176,15 @@ const data = {
   },
   // No outcome-resolution step exists yet, so nothing has been scored.
   scored: 0,
+  // The learned model: how many past trials it was trained on and where its sealed forecasts are.
+  learned: test && mlSeal ? { trainedOn: Number(/n=(\d+)/.exec(mlSeal.forecasts[0].model)?.[1] ?? test.trainedOn), seal: mlSealName, root: mlSeal.root, count: mlSeal.count } : null,
   log,
   trials,
 };
 
 mkdirSync("site/sealed", { recursive: true });
 copyFileSync(`data/sealed/${sealName}.json`, `site/sealed/${sealName}.json`);
+if (mlSealName) copyFileSync(`data/sealed/${mlSealName}.json`, `site/sealed/${mlSealName}.json`);
 if (stamp.state !== "none") {
   copyFileSync(`data/sealed/${sealName}.root`, `site/sealed/${sealName}.root`);
   copyFileSync(otsPath, `site/sealed/${sealName}.root.ots`);

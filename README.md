@@ -7,9 +7,11 @@ Site: https://brierlab.com
 ## Status
 
 - 539 forecasts across 505 trials are sealed in `data/sealed/live-2026-11-22.json`.
+- A second forecaster, a learned model (boosted decision trees trained on about 9,400 past trials from the registry), has its own forecasts for the same 505 trials sealed in `data/sealed/live-2026-11-25-ml.json`. Its test results are in `data/model/eval.json`.
 - Nothing has been scored yet. No accuracy is claimed.
 - The step that looks up each trial's real result and scores the forecast is not built yet.
 - The backtest files in `data/` (`forecast_results.jsonl`, `label_results.jsonl`, `baseline_results.jsonl`) are not evidence of skill. The model had already seen many of those results, so scores computed from them are contaminated. Only forecasts sealed before a result count.
+- The learned model's test in `data/model/eval.json` uses trials it never trained on, but registry records are edited after a trial ends (for example, enrollment becomes the actual count), so its live results may be lower.
 
 ## How it works
 
@@ -17,9 +19,10 @@ Site: https://brierlab.com
 2. `src/prepare.mjs` builds one case per trial, with outcome-revealing fields removed.
 3. `src/batch.mjs` runs the model over the cases: a forecast from the record alone, an evidence brief from a web search for the trials closest to reporting, and a second forecast that uses the brief.
 4. `src/baseline.mjs` fits a plain logistic regression on record features, as the comparison.
-5. `src/seal.mjs` hashes every forecast and folds the hashes into one Merkle root.
-6. `src/site.mjs` builds the site's data from the sealed file. The site never shows a number that is not in it.
-7. `src/score.mjs` computes Brier score and AUC.
+5. `src/history.mjs` pulls every past trial with posted results, and `src/train.mjs` trains and tests the learned model on them (`src/gbm.mjs` is the tree learner, `src/mlfeatures.mjs` the features). Each trial is described only by what was public before it read out. `npm run retrain` pulls newly posted results, retests and refits; it is run by hand.
+6. `src/seal.mjs` hashes every forecast and folds the hashes into one Merkle root.
+7. `src/site.mjs` builds the site's data from the sealed file. The site never shows a number that is not in it.
+8. `src/score.mjs` computes Brier score and AUC.
 
 Each script has a usage note at the top.
 
