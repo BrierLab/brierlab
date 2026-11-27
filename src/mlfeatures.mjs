@@ -221,3 +221,66 @@ export class TrackRecord {
     return out;
   }
 }
+
+// Version 3 inputs. More facts about the design, all of them fixed when the
+// trial is registered.
+export function designFeatures(p) {
+  const design = p.designModule ?? {};
+  const arms = p.armsInterventionsModule?.armGroups ?? [];
+  const interventions = p.armsInterventionsModule?.interventions ?? [];
+  const outcomes = p.outcomesModule?.primaryOutcomes ?? [];
+  return {
+    experimentalArms: arms.filter((a) => a.type === "EXPERIMENTAL").length,
+    placeboArms: arms.filter((a) => a.type === "PLACEBO_COMPARATOR").length,
+    noInterventionArm: b(arms.some((a) => a.type === "NO_INTERVENTION")),
+    phase1and2: b((design.phases ?? []).includes("PHASE1")),
+    fdaDrug: b(p.oversightModule?.isFdaRegulatedDrug),
+    piResponsible: b((p.sponsorCollaboratorsModule?.responsibleParty?.type ?? "") !== "SPONSOR"),
+    conditionCount: (p.conditionsModule?.conditions ?? []).length,
+    keywordCount: Math.min((p.conditionsModule?.keywords ?? []).length, 20),
+    otherIntervention: b(interventions.some((i) => !["DRUG", "BIOLOGICAL"].includes(i.type))),
+    secondaryIds: Math.min((p.identificationModule?.secondaryIdInfos ?? []).length, 6),
+    logTitle: Math.log10((p.identificationModule?.officialTitle ?? "").length + 1),
+    logPrimaryText: Math.log10(outcomes.map((o) => (o.measure ?? "") + (o.description ?? "")).join("").length + 1),
+    whoMasked: (design.designInfo?.maskingInfo?.whoMasked ?? []).length,
+    combo: b(interventions.filter((i) => i.type === "DRUG" || i.type === "BIOLOGICAL").length >= 3),
+    doseArms: b(arms.filter((a) => /\d+\s*(mg|mcg|µg|ug|iu|units?)\b/i.test((a.label ?? "") + " " + (a.description ?? ""))).length >= 2),
+  };
+}
+
+// Inputs the registry rewrites once a trial ends: the final headcount and the
+// final site list. A trial that struggled shows it there, so version 3 does
+// not use them.
+export const AFTER_THE_FACT = ["logEnrollment", "logEnrollPerSite", "logSites", "countryCount", "usOnly", "hasUs"];
+
+// Word-level track records: how earlier trials whose title, drug names or
+// entry criteria shared a word with this one turned out.
+export function textKeys(p) {
+  const interventions = p.armsInterventionsModule?.interventions ?? [];
+  const uniq = (list) => [...new Set(list)];
+  return {
+    titleWord: uniq(words([p.identificationModule?.briefTitle, p.identificationModule?.officialTitle].join(" "))),
+    drugWord: uniq(interventions.flatMap((i) => words(i.name))),
+    criteriaWord: uniq(words(p.eligibilityModule?.eligibilityCriteria)).slice(0, 400),
+    collaborator: uniq((p.sponsorCollaboratorsModule?.collaborators ?? []).map((c) => c.name?.toLowerCase()).filter(Boolean)),
+  };
+}
+export function readText(record, text) {
+  const prior = record.n ? record.met / record.n : 0.5;
+  const out = {};
+  for (const [name, list] of Object.entries(text)) {
+    const table = record.tables.get(name);
+    const lifts = [];
+    for (const key of list) {
+      const row = table?.get(key);
+      // A word counts once at least 8 earlier trials used it; its rate is shrunk toward the overall rate.
+      if (row && row[0] >= 8) lifts.push((row[1] + 8 * prior) / (row[0] + 8) - prior);
+    }
+    lifts.sort((a, z) => a - z);
+    out[`${name}_mean`] = lifts.length ? lifts.reduce((s, v) => s + v, 0) / lifts.length : 0;
+    out[`${name}_low`] = lifts.length ? lifts[Math.floor(lifts.length * 0.1)] : 0;
+    out[`${name}_high`] = lifts.length ? lifts[Math.floor(lifts.length * 0.9)] : 0;
+    out[`${name}_seen`] = Math.log10(lifts.length + 1);
+  }
+  return out;
+}

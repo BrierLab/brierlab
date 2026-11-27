@@ -56,6 +56,7 @@ How to read this:
 - We looked at the test trials twice: once with one model, once with five averaged. The scores moved by at most 0.002. We also tried a wider input set (word-level track records); it did not help on the validation trials, scored about the same on the test trials, and is not the headline.
 
 `;
+const v2 = existsSync("data/model/eval-v2.json") ? JSON.parse(readFileSync("data/model/eval-v2.json", "utf8")) : null;
 const v1Walk = v1 ? v1.walk.reduce((s, f) => s + f.boosted.skill * f.test, 0) / v1.walk.reduce((s, f) => s + f.test, 0) : null;
 
 const md = `# The learned model
@@ -72,25 +73,26 @@ It runs beside the language-model forecast. It does not replace it, and nothing 
 
 - ${n(e.trainedOn)} randomized Phase 2 and 3 drug trials with results posted on ClinicalTrials.gov between 2008 and mid-2026. \`src/history.mjs\` downloads them; the data is public and free.
 - The outcome label is read from the posted p-values on the first primary endpoint. Checked against a careful reading of 203 trials, this rule agreed on 93%.
-- Trials that were terminated are left out of training, because their recorded enrollment gives the ending away.
+- Trials that were terminated are left out of training.
 
 ## Inputs
 
-- Facts from the registration record: phase, sponsor type, size, arms, blinding, control, number of endpoints, endpoint type and timing, sites, countries, start year.
-- Track records: how earlier trials turned out for the same sponsor, drug, drug at the same and the earlier phase, drug in the same disease, condition, disease category and endpoint wording.
+- Facts from the registration record: phase, sponsor type, arms and what each arm gets, blinding, control, number of endpoints, endpoint type and timing, start year.
+- Track records: how earlier trials turned out for the same sponsor, drug, drug at the same and the earlier phase, drug in the same disease, condition, disease category and endpoint wording, and for trials that shared words in the title, drug names or entry criteria.
 
 ## Guards against hindsight
 
 - A trial's track-record inputs count only results that were public before that trial's own primary completion date. No trial sees its own result or anything later.
 - Status, stop reasons, completion dates and results dates are never inputs.
 - The registry's drug tags are not used. A drug tends to get a tag once it is well known, which would leak the outcome.
-- Known gap: registry records are edited after a trial ends. Enrollment, for example, becomes the actual count. Live performance may therefore be lower than the tests below.
+- The fields the registry rewrites once a trial ends (final headcount, final site list and countries) are not inputs. Versions 1 and 2 used them; version 3 does not.
+- Known gap: other text in a registry record can still be edited after a trial ends, so live performance may be lower than the tests below.
 
 ## How it is tested
 
 1. Walk-forward. Train on everything posted before a date, test on the next twelve months, four times. Model settings are chosen here.
-2. Held-out. Trials whose results were posted on or after 15 July 2026, never used for training or for choosing settings. This set has now been looked at for two model versions.
-3. Learning curve. The same settings trained on random subsets of the history, tested on the held-out trials.
+2. Held-out. Trials whose results were posted on or after 15 July 2026, never used for training or for choosing settings. This set has now been looked at for three model versions, so its number is less clean than the walk-forward one.
+3. Learning curve. The same settings trained on random subsets of the history, tested on the held-out trials. The track-record inputs are still built from the full history, so the small-subset rows flatter the model.
 
 "Skill" is the share of squared error removed compared with always guessing the average success rate. Zero means no better than that guess.
 
@@ -127,7 +129,7 @@ ${top ? "- On the public benchmark the method is level with the best published m
 
 ## Versions
 
-${v1 ? `- v1: ${v1.features} inputs, ${v1.chosen.trees} trees. Walk-forward skill ${pc(v1Walk)}, held-out skill ${pc(v1.heldOut.all.boosted.skill)}, AUC ${v1.heldOut.all.boosted.auc.toFixed(3)}.\n` : ""}- v2: ${e.features} inputs, ${e.chosen.trees} trees. Adds disease categories, drug history by phase and by disease, endpoint timing, and a wider settings search. Walk-forward skill ${pc(e.walkAll.skill)}, held-out skill ${pc(all.boosted.skill)}, AUC ${all.boosted.auc.toFixed(3)}.
+${v1 ? `- v1: ${v1.features} inputs, ${v1.chosen.trees} trees. Walk-forward skill ${pc(v1Walk)}, held-out skill ${pc(v1.heldOut.all.boosted.skill)}, AUC ${v1.heldOut.all.boosted.auc.toFixed(3)}.\n` : ""}${v2 ? `- v2: ${v2.features} inputs, ${v2.chosen.trees} trees. Added disease categories, drug history by phase and by disease, endpoint timing, and a wider settings search. Walk-forward skill ${pc(v2.walkAll.skill)}, held-out skill ${pc(v2.heldOut.all.boosted.skill)}, AUC ${v2.heldOut.all.boosted.auc.toFixed(3)}.\n` : ""}- v3: ${e.features} inputs, ${e.chosen.trees} trees. Drops the six inputs the registry rewrites after a trial ends, and adds more design facts and word-level track records. Walk-forward skill ${pc(e.walkAll.skill)}, held-out skill ${pc(all.boosted.skill)}, AUC ${all.boosted.auc.toFixed(3)}.
 
 ## Reproduce
 

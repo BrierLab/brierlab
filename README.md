@@ -7,11 +7,11 @@ Site: https://brierlab.com
 ## Status
 
 - 539 forecasts across 505 trials are sealed in `data/sealed/live-2026-11-22.json`.
-- A second forecaster, a learned model (boosted decision trees trained on about 9,400 past trials from the registry), has its own forecasts for the same 505 trials sealed in `data/sealed/live-2026-11-25b-ml.json`. [MODEL.md](MODEL.md) is its fact sheet: data, inputs, tests, results and limits. It runs live in the browser at https://brierlab.com/how. On TOP, the public benchmark that published trial-outcome models report on, the same method scores ROC-AUC 0.677, 0.698 and 0.761 for Phases I, II and III: level with the best published results, not shown to be ahead of all of them (`src/top.mjs`, table in MODEL.md).
+- A second forecaster, a learned model (boosted decision trees trained on about 9,400 past trials from the registry), has its own forecasts for the same 505 trials sealed in `data/sealed/live-2026-11-27-ml.json`. [MODEL.md](MODEL.md) is its fact sheet: data, inputs, tests, results and limits. It runs live in the browser at https://brierlab.com/how. On TOP, the public benchmark that published trial-outcome models report on, the same method scores ROC-AUC 0.677, 0.698 and 0.761 for Phases I, II and III: level with the best published results, not shown to be ahead of all of them (`src/top.mjs`, table in MODEL.md).
 - Nothing has been scored yet. No accuracy is claimed.
 - The step that looks up each trial's real result and scores the forecast is not built yet.
 - The backtest files in `data/` (`forecast_results.jsonl`, `label_results.jsonl`, `baseline_results.jsonl`) are not evidence of skill. The model had already seen many of those results, so scores computed from them are contaminated. Only forecasts sealed before a result count.
-- The learned model's test in `data/model/eval.json` uses trials it never trained on, but registry records are edited after a trial ends (for example, enrollment becomes the actual count), so its live results may be lower.
+- The learned model's test in `data/model/eval.json` uses trials it never trained on, and since version 3 it does not use the fields the registry rewrites after a trial ends (final headcount, site list). Other text in a record can still be edited, so its live results may be lower.
 
 ## How it works
 

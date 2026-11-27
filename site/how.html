@@ -304,7 +304,7 @@ h2 em, .cap h1 em { font-style: normal; color: var(--ink); background: linear-gr
           </div>
         </div>
       </div>
-      <p class="mx-note">These are tests on past trials. Registry records are edited after a trial ends, so results on live trials may be lower. Live trials scored so far: 0. Retraining on new results is done by hand today.</p>
+      <p class="mx-note">These are tests on past trials. The model does not use the fields the registry rewrites after a trial ends (final headcount and site list), but other text in a record can still be edited, so results on live trials may be lower. Live trials scored so far: 0. Retraining on new results is done by hand today.</p>
     </div>
   </section>
 
@@ -858,6 +858,8 @@ h2 em, .cap h1 em { font-style: normal; color: var(--ink); background: linear-gr
 
   // Plain names for the model's inputs.
   const GROUP = { sponsor: "Sponsor", drug: "Drug", condition: "Condition", conditionWord: "Condition wording", endpointWord: "Endpoint wording", mesh: "Disease", meshParent: "Disease family", drugSamePhase: "Drug at this phase", drugEarlier: "Drug in Phase 2", drugDisease: "Drug in this disease", sponsorPhase: "Sponsor at this phase" };
+  const WORDS = { titleWord: "Title wording", drugWord: "Drug-name wording", criteriaWord: "Entry-criteria wording", collaborator: "Collaborators'" };
+  const WORD_PART = { mean: "track record", low: "weakest words", high: "strongest words", seen: "known words" };
   const NAME = {
     phase3: "Phase 3", industry: "Industry sponsor", logEnrollment: "Enrollment", placeboControlled: "Placebo control", activeControlled: "Active control",
     blinded: "Blinded", armCount: "Arms", oncology: "Cancer trial", biologic: "Biologic", vaccine: "Vaccine", nonInferiority: "Non-inferiority design",
@@ -871,13 +873,19 @@ h2 em, .cap h1 em { font-style: normal; color: var(--ink); background: linear-gr
     epChange: "Change-from-start endpoint", epPk: "Drug-level endpoint", epSafety: "Safety endpoint", epImmuno: "Antibody endpoint", epScale: "Score endpoint",
     epEvent: "Event-rate endpoint", logTimeFrame: "Endpoint timing, days", logEnrollPerSite: "Patients per site", titlePilot: "Pilot study",
     titleDose: "Dose-finding study", titleExtension: "Extension or open-label", biosimilar: "Copy of an existing drug",
+    experimentalArms: "Test-drug arms", placeboArms: "Placebo arms", noInterventionArm: "Untreated arm", phase1and2: "Phase 1/2", fdaDrug: "FDA-regulated drug",
+    piResponsible: "Run by an investigator", conditionCount: "Conditions listed", keywordCount: "Keywords", otherIntervention: "Non-drug treatment too",
+    secondaryIds: "Other registry IDs", logTitle: "Title length", logPrimaryText: "Endpoint text length", whoMasked: "Parties blinded",
+    combo: "Three or more drugs", doseArms: "Several dose arms",
   };
-  const COUNT = new Set(["armCount", "collaborators", "masking", "interventionCount", "drugCount", "primaryCount", "secondaryCount", "countryCount"]);
-  const LOG = new Set(["logEnrollment", "logSites", "logCriteria", "logSummary", "logTimeFrame"]);
+  const COUNT = new Set(["armCount", "collaborators", "masking", "interventionCount", "drugCount", "primaryCount", "secondaryCount", "countryCount", "experimentalArms", "placeboArms", "conditionCount", "keywordCount", "secondaryIds", "whoMasked"]);
+  const LOG = new Set(["logEnrollment", "logSites", "logCriteria", "logSummary", "logTimeFrame", "logTitle", "logPrimaryText"]);
   const unlog = (x) => Math.max(0, Math.round(10 ** x - 1));
   function label(name) {
     const m = /^(.*)_(n|rate|lift)$/.exec(name);
     if (m && GROUP[m[1]]) return GROUP[m[1]] + (m[2] === "n" ? " history" : " track record");
+    const w = /^(.*)_(mean|low|high|seen)$/.exec(name);
+    if (w && WORDS[w[1]]) return `${WORDS[w[1]]} ${WORD_PART[w[2]]}`;
     return NAME[name] ?? name;
   }
   // One split, in words: the question the tree asks and which way this trial goes.
@@ -885,6 +893,9 @@ h2 em, .cap h1 em { font-style: normal; color: var(--ink); background: linear-gr
     const m = /^(.*)_(n|rate|lift)$/.exec(name);
     if (m && m[2] === "n") return `${label(name)} ≤ ${num(unlog(t))} trials? ${goesLeft ? "yes" : "no"}`;
     if (m) return `${label(name)} ≤ ${signed(t * 100)} pts? ${goesLeft ? "yes" : "no"}`;
+    const w = /^(.*)_(mean|low|high|seen)$/.exec(name);
+    if (w && w[2] === "seen") return `${label(name)} ≤ ${num(unlog(t))}? ${goesLeft ? "yes" : "no"}`;
+    if (w) return `${label(name)} ≤ ${signed(t * 100)} pts? ${goesLeft ? "yes" : "no"}`;
     if (LOG.has(name)) return `${label(name)} ≤ ${num(unlog(t))}? ${goesLeft ? "yes" : "no"}`;
     if (name === "logEnrollPerSite") return `${label(name)} \u2264 ${num(10 ** t)}? ${goesLeft ? "yes" : "no"}`;
     if (name === "startYear") return `Started by ${Math.floor(t)}? ${goesLeft ? "yes" : "no"}`;
@@ -952,7 +963,7 @@ h2 em, .cap h1 em { font-style: normal; color: var(--ink); background: linear-gr
     $("mx-sponsor").textContent = t.sponsor;
     const rows = [
       ["Sponsor type", yes("industry") ? "Industry" : yes("sponsorNih") ? "Government" : "Academic or other"],
-      ["Enrollment", num(unlog(x[ix.logEnrollment]))],
+      ["Blinding", yes("blinded") ? "Blinded" : "Not blinded"],
       ["Arms", String(x[ix.armCount])],
       ["Control", yes("placeboControlled") ? "Placebo" : yes("activeControlled") ? "Active drug" : "None listed"],
       ["Sponsor history", history(x, "sponsor")],

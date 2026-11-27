@@ -142,7 +142,7 @@ const log = [
         {
           date: mlSeal.sealedAt.slice(0, 10),
           kind: "finding",
-          text: `We built a second forecaster that learns from results: boosted decision trees trained on ${test.trainedOn.toLocaleString("en-US")} past trials from the public registry. On ${test.heldOut.all.boosted.n} recent trials it never saw, it removed ${pc(test.heldOut.all.boosted.skill)}% of the error of always guessing the average, against ${pc(test.heldOut.all.oldBaseline.skill)}% for our earlier statistical model. Registry records are edited after a trial ends, so expect less on live trials.`,
+          text: `We built a second forecaster that learns from results: boosted decision trees trained on ${test.trainedOn.toLocaleString("en-US")} past trials from the public registry. On ${test.heldOut.all.boosted.n} recent trials it never saw, it removed ${pc(test.heldOut.all.boosted.skill)}% of the error of always guessing the average, against ${pc(test.heldOut.all.oldBaseline.skill)}% for our earlier statistical model. It does not use the fields the registry rewrites after a trial ends, such as the final headcount. Other text in a record can still be edited, so expect less on live trials.`,
         },
         {
           date: mlSeal.sealedAt.slice(0, 10),

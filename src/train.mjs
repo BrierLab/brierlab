@@ -9,7 +9,7 @@ import { createReadStream, existsSync, mkdirSync, readFileSync, writeFileSync } 
 import { createInterface } from "node:readline";
 import { ruleLabel } from "./features.mjs";
 import { fit, importance, predict, rng } from "./gbm.mjs";
-import { TrackRecord, keys, staticFeatures, time } from "./mlfeatures.mjs";
+import { AFTER_THE_FACT, TrackRecord, designFeatures, keys, readText, staticFeatures, textKeys, time } from "./mlfeatures.mjs";
 
 const mode = process.argv[2];
 if (!["eval", "fit", "features"].includes(mode)) {
@@ -22,7 +22,7 @@ const meshOf = (s) => {
   const browse = s.derivedSection?.conditionBrowseModule ?? {};
   return { terms: (browse.meshes ?? []).map((m) => m.term), parents: (browse.ancestors ?? []).map((m) => m.term) };
 };
-const VERSION = "gbm-v2";
+const VERSION = "gbm-v3";
 const lines = (path) => readFileSync(path, "utf8").split("\n").filter(Boolean).map((l) => JSON.parse(l));
 
 // One row per trial: when its result became public, and the last moment a
@@ -41,8 +41,9 @@ function row(p, label, source, mesh) {
     status: st.overallStatus,
     industry: p.sponsorCollaboratorsModule?.leadSponsor?.class === "INDUSTRY",
     phase3: (p.designModule?.phases ?? []).includes("PHASE3"),
-    stat: staticFeatures(p),
+    stat: { ...staticFeatures(p), ...designFeatures(p) },
     keys: keys(p, mesh),
+    text: textKeys(p),
   };
 }
 
@@ -84,10 +85,10 @@ function addTrackRecords(queries, resolved, now) {
   for (const q of asked) {
     const at = q.known ?? now;
     while (i < filed.length && filed[i].posted < at) {
-      record.add(filed[i].keys.file, filed[i].label);
+      record.add({ ...filed[i].keys.file, ...filed[i].text }, filed[i].label);
       i++;
     }
-    q.x = { ...q.stat, ...record.read(q.keys.read) };
+    q.x = { ...q.stat, ...record.read(q.keys.read), ...readText(record, q.text) };
   }
 }
 
@@ -157,7 +158,7 @@ mkdirSync("data/model", { recursive: true });
 if (mode === "eval") {
   const now = Date.now();
   addTrackRecords([...history, ...held], history, now);
-  names = Object.keys(history[0].x);
+  names = Object.keys(history[0].x).filter((n) => !AFTER_THE_FACT.includes(n));
   const pool = history.filter(usable);
   console.log(`history: ${history.length} labelled trials, ${pool.length} usable for training, ${names.length} features\n`);
 
@@ -274,7 +275,7 @@ if (mode === "fit" || mode === "features") {
   const live = lines("data/live_raw.jsonl").map((s) => ({ ...row(s.protocolSection, null, "live", meshOf(s)), known: now }));
   const resolved = [...history, ...held.map((r) => ({ ...r }))];
   addTrackRecords([...resolved, ...live], resolved, now);
-  names = Object.keys(resolved[0].x);
+  names = Object.keys(resolved[0].x).filter((n) => !AFTER_THE_FACT.includes(n));
   const pool = resolved.filter(usable);
   writeFileSync("data/model/live_features.json", JSON.stringify({ names, vectors: Object.fromEntries(live.map((r) => [r.nct, vec(r)])) }));
   if (mode === "features") {
