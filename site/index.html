@@ -618,6 +618,20 @@ footer p { margin: 0 0 8px; max-width: 60em; }
     $("rec-status").textContent =
       `Last checked ${day(R.checkedAt.slice(0, 10))}: ${plural(R.pastFinish, "trial is", "trials are")} past the finish date, ${plural(R.reported, "has", "have")} a known result, and ${plural(D.scored, "forecast has", "forecasts have")} been scored.` +
       (R.notCounted ? ` ${plural(R.notCounted, "result is", "results are")} not counted, because ${R.notCounted === 1 ? "it was" : "they were"} void or already public when we sealed.` : "");
+    // The registry is asked again, live, at most every six hours. If it answers, show that check instead of the saved one.
+    fetch("/api/watch")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((w) => {
+        if (!w || !w.checkedAt || w.checked !== w.trials) return;
+        const at = new Date(w.checkedAt);
+        const when = `${at.getUTCDate()} ${MONTHS[at.getUTCMonth()]} ${at.getUTCFullYear()}, ${String(at.getUTCHours()).padStart(2, "0")}:${String(at.getUTCMinutes()).padStart(2, "0")} UTC`;
+        $("rec-status").textContent =
+          `Registry checked ${when}: of ${w.trials} sealed trials, ${plural(w.pastFinish, "is", "are")} past the finish date, ${plural(w.resultsPosted.length, "has", "have")} results posted there and ${plural(w.stopped.length, "has", "have")} been stopped. ` +
+          (w.unread ? `${plural(w.unread, "change is", "changes are")} waiting to be read into the record. ` : "") +
+          `Results known to us: ${R.reported}. Forecasts scored: ${D.scored}.` +
+          (R.notCounted ? ` ${plural(R.notCounted, "result is", "results are")} not counted, because ${R.notCounted === 1 ? "it was" : "they were"} void or already public when we sealed.` : "");
+      })
+      .catch(() => {});
     if (R.table.length) {
       $("results").hidden = false;
       for (const r of R.table)

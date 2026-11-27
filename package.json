@@ -12,7 +12,7 @@
     "score": "node src/score.mjs",
     "site": "node src/site.mjs live-2026-11-22 && python3 -m http.server 4173 -d site",
     "history": "node src/history.mjs 2008-01-01 2026-07-14 data/history_raw.jsonl",
-    "retrain": "node src/fetch.mjs 2026-07-15 MAX data/test_raw.jsonl && node src/train.mjs eval && node src/train.mjs fit && node src/card.mjs",
+    "retrain": "node src/fetch.mjs 2026-07-15 MAX data/test_raw.jsonl && node src/train.mjs eval && node src/train.mjs fit && node src/train.mjs precedents && node src/card.mjs",
     "check": "node src/resolve.mjs check && node src/site.mjs live-2026-11-22"
   }
 }

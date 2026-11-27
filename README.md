@@ -23,7 +23,7 @@ Site: https://brierlab.com
 6. `src/seal.mjs` hashes every forecast and folds the hashes into one Merkle root.
 7. `src/site.mjs` builds the site's data from the sealed file. The site never shows a number that is not in it.
 8. `src/score.mjs` computes Brier score and AUC.
-9. `src/resolve.mjs` checks the sealed trials against the registry (`check`), records each known result in `data/outcomes.jsonl` with its source and the words that decide it (`add`), and prints the live score (`score`). The scoring rules are at the top of `src/outcomes.mjs`. The registry check is automatic; finding and reading a sponsor's announcement is done by hand.
+9. `src/resolve.mjs` checks the sealed trials against the registry (`check`), records each known result in `data/outcomes.jsonl` with its source and the words that decide it (`add`), and prints the live score (`score`). The scoring rules are at the top of `src/outcomes.mjs`. The registry check is automatic; finding and reading a sponsor's announcement is done by hand. The site also asks the registry live, at most every six hours, through `/api/watch` in `src/worker.mjs`, and shows what has changed since sealing.
 
 Each script has a usage note at the top.
 

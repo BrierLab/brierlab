@@ -201,7 +201,7 @@ const log = [
         {
           date: watch?.checkedAt.slice(0, 10) ?? "2026-11-27",
           kind: "negative",
-          text: `Our screening missed ${uncounted.filter((r) => r.why === "reported before the forecast was sealed").length} trials whose sponsors had already announced the result before we sealed. Nobody had searched for them, so they sat in the record as open. They are now marked with the announcement and are not scored, whichever way our forecast leaned. Other unscreened trials may have the same problem; each is checked as it comes due.`,
+          text: `Our screening missed ${uncounted.filter((r) => r.why === "reported before the forecast was sealed").length} trials whose sponsors had already announced the result before we sealed. Nobody had searched for them, so they sat in the record as open. They are now marked with the announcement and are not scored, whichever way our forecast leaned. We then checked the registry record of every sealed trial: these were the only ones that had finished before we sealed. A sponsor can still announce early findings from a trial that is running, so each result's date is checked against the seal before it counts.`,
         },
       ]
     : []),
@@ -210,7 +210,7 @@ const log = [
     kind: "open",
     text:
       (stamp.state === "none" ? "Not done yet: an outside timestamp on the fingerprints. " : "") +
-      "Still by hand: the registry check runs on command, and sponsor announcements are found and read by a person or an assistant, then recorded with a link." +
+      "The registry is now checked automatically, at most every six hours, and the record page shows what it finds. Still by hand: sponsor announcements are found and read by a person or an assistant, then recorded with a link." +
       (live.scored ? "" : " No trial has been scored yet."),
   },
 ];
@@ -242,6 +242,12 @@ const data = {
 };
 
 mkdirSync("site/sealed", { recursive: true });
+// What the live registry check (src/worker.mjs, /api/watch) compares against:
+// each sealed trial's status when it was sealed, and whether we have read its outcome.
+{
+  const atSeal = new Map(rows("data/live_raw.jsonl").map((s) => [s.protocolSection.identificationModule.nctId, s.protocolSection.statusModule?.overallStatus ?? null]));
+  writeFileSync("site/watchlist.json", JSON.stringify(trials.map((t) => ({ nct: t.nct, status: atSeal.get(t.nct) ?? null, inLedger: !!t.outcome }))));
+}
 copyFileSync(`data/sealed/${sealName}.json`, `site/sealed/${sealName}.json`);
 if (mlSealName) copyFileSync(`data/sealed/${mlSealName}.json`, `site/sealed/${mlSealName}.json`);
 if (stamp.state !== "none") {

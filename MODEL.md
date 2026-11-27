@@ -113,6 +113,7 @@ How to read this:
 - With the six after-the-fact inputs put back, the same method scores 0.833, 0.815, 0.811 on ROC-AUC. We do not count that run, and it is a reason to distrust any benchmark score that uses final headcounts.
 - Published papers use slightly different versions of the benchmark files and different ways of averaging runs, so differences of a point or two between rows are not meaningful.
 - The registry records are as they stand today, for us and for every other model on the list. Some text may have been edited after a trial ended.
+- This run used the version 2 inputs minus the after-the-fact ones. The wider set we also scored (word-level track records added, which is most of what version 3 changed) came out at 0.679, 0.699, 0.758, so version 3 would not be expected to move these numbers. We have not rerun the benchmark for version 3, to avoid looking at its test trials again.
 - We looked at the test trials twice: once with one model, once with five averaged. The scores moved by at most 0.002. We also tried a wider input set (word-level track records); it did not help on the validation trials, scored about the same on the test trials, and is not the headline.
 
 ## Limits
