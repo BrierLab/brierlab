@@ -70,6 +70,15 @@ Learning curve:
 
 What it leans on most (share of total split gain): industry 9%, phase3 8%, endpointWord_lift 5%, sponsorAcademic 5%, titleWord_mean 4%, armCount 3%, phase2only 3%, criteriaWord_mean 3%.
 
+## Precedent memory
+
+The model can cite what a forecast rests on. Two trials count as alike when the trees sort them the same way: similarity is the share of the 400 trees in which both end in the same leaf. For every open trial, `node src/train.mjs precedents` lists the 25 past trials most like it and what happened to them. The site shows the closest eight.
+
+- The precedents are alike in the ways the model weighs (sponsor, design, track record). They are often in a different disease.
+- Tested on the same 2,163 walk-forward trials: a forecast made from the 25 closest precedents alone has skill 18.3% and AUC 0.753, against 20.7% for the full model.
+- Blending the two scored 20.5%, no better than the trees alone. So precedents explain a forecast and do not change it.
+- Leaf-sharing similarity is a known technique from tree models in general. We did not find it used to cite precedents in published trial-outcome models, but we have not searched exhaustively and do not claim it is new.
+
 ## Public benchmark
 
 TOP is the public test set from the HINT paper (Fu et al., 2022) that published trial-outcome models report on. We ran the same method on it: the same tree learner and the same kinds of inputs, trained on the benchmark's 8,436 training and validation trials, then scored on its test trials. Settings were chosen on the validation trials. This tests the method, not the exact model that forecasts our open trials, because the benchmark's label is "the trial succeeded", which is broader than "the primary endpoint was met".
@@ -125,6 +134,7 @@ How to read this:
 npm run history            # download the training history (about 290 MB)
 node src/train.mjs eval    # walk-forward, held-out and learning-curve tests
 node src/train.mjs fit     # train on everything, forecast the open trials
+node src/train.mjs precedents  # the past trials each open forecast rests on
 node src/top.mjs fetch     # public benchmark: registry records for its trials (its tables go in data/top/ first)
 node src/top.mjs eval      # public benchmark: train on its training trials, score its test trials
 node src/card.mjs          # rewrite this file

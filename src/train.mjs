@@ -2,6 +2,7 @@
 //   node src/train.mjs eval   walk-forward test on past years, then the held-out
 //                             recent trials, then a learning curve
 //   node src/train.mjs fit    train on every resolved trial and forecast the live ones
+//   node src/train.mjs precedents   for each live trial, the past trials the saved model treats most like it
 //   node src/train.mjs features   write the live trials' inputs, so the site can rerun the model in the browser
 // Training data: data/history_raw.jsonl (src/history.mjs). Every trial is
 // described only by what was public before it read out.
@@ -12,8 +13,8 @@ import { fit, importance, predict, rng } from "./gbm.mjs";
 import { AFTER_THE_FACT, TrackRecord, designFeatures, keys, readText, staticFeatures, textKeys, time } from "./mlfeatures.mjs";
 
 const mode = process.argv[2];
-if (!["eval", "fit", "features"].includes(mode)) {
-  console.error("usage: node src/train.mjs eval|fit|features");
+if (!["eval", "fit", "features", "precedents"].includes(mode)) {
+  console.error("usage: node src/train.mjs eval|fit|features|precedents");
   process.exit(1);
 }
 const DAY = 86_400_000;
@@ -34,6 +35,7 @@ function row(p, label, source, mesh) {
   if (posted != null && (known == null || known >= posted)) known = posted - (known == null ? 365 * DAY : DAY);
   return {
     nct: p.identificationModule.nctId,
+    title: p.identificationModule.briefTitle ?? "",
     source,
     label,
     posted,
@@ -155,6 +157,79 @@ const train = (rows, o) => fit(rows.map(vec), rows.map((r) => r.label), { rate: 
 
 mkdirSync("data/model", { recursive: true });
 
+// Precedent memory. Two trials are alike when the model's trees sort them
+// the same way: similarity is the share of trees in which both end in the
+// same leaf. For each live trial this lists the past trials most like it,
+// with what happened to them, so a forecast can cite what it rests on.
+const NEAR = 25;
+function signatures(model) {
+  const ids = model.trees.map(() => new Map());
+  return (list) =>
+    list.map((r) => {
+      const x = vec(r);
+      return Uint8Array.from(model.trees, (tree, k) => {
+        let node = tree;
+        while (node.f !== undefined) node = x[node.f] <= node.t ? node.l : node.r;
+        if (!ids[k].has(node)) ids[k].set(node, ids[k].size);
+        return ids[k].get(node);
+      });
+    });
+}
+function nearest(sig, past, T) {
+  const sims = new Float32Array(past.length);
+  for (let i = 0; i < past.length; i++) {
+    let same = 0;
+    for (let k = 0; k < T; k++) same += past[i][k] === sig[k];
+    sims[i] = same / T;
+  }
+  return { sims, order: Array.from(sims.keys()).sort((a, z) => sims[z] - sims[a]).slice(0, NEAR) };
+}
+// The closest precedents' success rate, pulled a little toward the overall rate.
+const fromPrecedents = (labels, base) => (labels.reduce((s, v) => s + v, 0) + 5 * base) / (labels.length + 5);
+
+function precedents(pool, live, chosen) {
+  const saved = JSON.parse(readFileSync(`data/model/${VERSION}.json`, "utf8"));
+  if (saved.features.join() !== names.join()) throw new Error("the saved model's inputs do not match; refit first");
+  const sealed = new Map(lines("data/live_ml_results.jsonl").map((r) => [r.nct, r.probability]));
+  for (const r of live) if (Math.abs(predict(saved, vec(r)) - sealed.get(r.nct)) > 1e-9) throw new Error(`${r.nct}: the saved model no longer reproduces its forecast`);
+  const T = saved.trees.length;
+  const sign = signatures(saved);
+  const past = sign(pool);
+  const base = pool.reduce((s, r) => s + r.label, 0) / pool.length;
+  const trials = {};
+  sign(live).forEach((sig, q) => {
+    const { sims, order } = nearest(sig, past, T);
+    const labels = order.map((i) => pool[i].label);
+    trials[live[q].nct] = {
+      estimate: fromPrecedents(labels, base),
+      met: labels.reduce((s, v) => s + v, 0),
+      list: order.slice(0, 8).map((i) => [pool[i].nct, pool[i].title.slice(0, 90), new Date(pool[i].posted).getUTCFullYear(), Math.round(sims[i] * 100), pool[i].label]),
+    };
+  });
+
+  // How good is a forecast made from precedents alone? Same four walk-forward years as the main test.
+  const acc = { n: 0, trees: 0, alone: 0, aloneAuc: 0, blend: 0 };
+  for (const [a, z] of [["2022-07-15", "2023-07-15"], ["2023-07-15", "2024-07-15"], ["2024-07-15", "2025-07-15"], ["2025-07-15", "2026-07-15"]]) {
+    const tr = pool.filter((r) => r.posted < time(a));
+    const te = pool.filter((r) => r.posted >= time(a) && r.posted < time(z));
+    const m = train(tr, chosen);
+    const s = signatures(m);
+    const before = s(tr);
+    const rate = tr.reduce((t, r) => t + r.label, 0) / tr.length;
+    const pt = te.map((r) => predict(m, vec(r)));
+    const pp = s(te).map((sig) => fromPrecedents(nearest(sig, before, m.trees.length).order.map((i) => tr[i].label), rate));
+    acc.n += te.length;
+    acc.trees += score(te, pt).skill * te.length;
+    acc.alone += score(te, pp).skill * te.length;
+    acc.aloneAuc += score(te, pp).auc * te.length;
+    acc.blend += score(te, pt.map((v, i) => 0.7 * v + 0.3 * pp[i])).skill * te.length;
+  }
+  const walk = { n: acc.n, trees: acc.trees / acc.n, alone: acc.alone / acc.n, aloneAuc: acc.aloneAuc / acc.n, blend: acc.blend / acc.n };
+  writeFileSync("data/model/precedents.json", JSON.stringify({ version: saved.version, near: NEAR, pastTrials: pool.length, walk, trials }));
+  console.log(`precedents for ${live.length} live trials from ${pool.length} past trials`);
+  console.log(`walk-forward, ${walk.n} trials: trees ${(walk.trees * 100).toFixed(1)}%, precedents alone ${(walk.alone * 100).toFixed(1)}% (AUC ${walk.aloneAuc.toFixed(3)}), blend ${(walk.blend * 100).toFixed(1)}%`);
+}
+
 if (mode === "eval") {
   const now = Date.now();
   addTrackRecords([...history, ...held], history, now);
@@ -267,7 +342,7 @@ if (mode === "eval") {
   console.log("\nwrote data/model/eval.json");
 }
 
-if (mode === "fit" || mode === "features") {
+if (mode === "fit" || mode === "features" || mode === "precedents") {
   const evalPath = "data/model/eval.json";
   if (!existsSync(evalPath)) throw new Error("run `node src/train.mjs eval` first: it chooses the settings");
   const { chosen } = JSON.parse(readFileSync(evalPath, "utf8"));
@@ -280,6 +355,10 @@ if (mode === "fit" || mode === "features") {
   writeFileSync("data/model/live_features.json", JSON.stringify({ names, vectors: Object.fromEntries(live.map((r) => [r.nct, vec(r)])) }));
   if (mode === "features") {
     console.log(`wrote inputs for ${live.length} live trials to data/model/live_features.json`);
+    process.exit(0);
+  }
+  if (mode === "precedents") {
+    precedents(pool, live, chosen);
     process.exit(0);
   }
   const model = train(pool, chosen);

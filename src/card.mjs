@@ -57,6 +57,7 @@ How to read this:
 
 `;
 const v2 = existsSync("data/model/eval-v2.json") ? JSON.parse(readFileSync("data/model/eval-v2.json", "utf8")) : null;
+const prec = existsSync("data/model/precedents.json") ? JSON.parse(readFileSync("data/model/precedents.json", "utf8")) : null;
 const v1Walk = v1 ? v1.walk.reduce((s, f) => s + f.boosted.skill * f.test, 0) / v1.walk.reduce((s, f) => s + f.test, 0) : null;
 
 const md = `# The learned model
@@ -120,7 +121,16 @@ ${rows(e.curve.map((c) => [n(c.size), pc(c.skill), c.auc.toFixed(3)]))}
 
 What it leans on most (share of total split gain): ${e.importance.slice(0, 8).map((f) => `${f.name} ${Math.round(f.share * 100)}%`).join(", ")}.
 
-${benchmark}## Limits
+${prec ? `## Precedent memory
+
+The model can cite what a forecast rests on. Two trials count as alike when the trees sort them the same way: similarity is the share of the ${e.chosen.trees} trees in which both end in the same leaf. For every open trial, \`node src/train.mjs precedents\` lists the ${prec.near} past trials most like it and what happened to them. The site shows the closest eight.
+
+- The precedents are alike in the ways the model weighs (sponsor, design, track record). They are often in a different disease.
+- Tested on the same ${n(prec.walk.n)} walk-forward trials: a forecast made from the ${prec.near} closest precedents alone has skill ${pc(prec.walk.alone)} and AUC ${prec.walk.aloneAuc.toFixed(3)}, against ${pc(prec.walk.trees)} for the full model.
+- Blending the two scored ${pc(prec.walk.blend)}, no better than the trees alone. So precedents explain a forecast and do not change it.
+- Leaf-sharing similarity is a known technique from tree models in general. We did not find it used to cite precedents in published trial-outcome models, but we have not searched exhaustively and do not claim it is new.
+
+` : ""}${benchmark}## Limits
 
 - No live trial has been scored yet. Every number above is a test on past trials.
 ${top ? "- On the public benchmark the method is level with the best published models, not ahead of all of them. See above." : "- No comparison with other published models has been run."}
@@ -137,6 +147,7 @@ ${v1 ? `- v1: ${v1.features} inputs, ${v1.chosen.trees} trees. Walk-forward skil
 npm run history            # download the training history (about 290 MB)
 node src/train.mjs eval    # walk-forward, held-out and learning-curve tests
 node src/train.mjs fit     # train on everything, forecast the open trials
+node src/train.mjs precedents  # the past trials each open forecast rests on
 node src/top.mjs fetch     # public benchmark: registry records for its trials (its tables go in data/top/ first)
 node src/top.mjs eval      # public benchmark: train on its training trials, score its test trials
 node src/card.mjs          # rewrite this file

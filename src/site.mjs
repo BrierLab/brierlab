@@ -30,6 +30,7 @@ const mlSeal = mlSealName ? JSON.parse(readFileSync(`data/sealed/${mlSealName}.j
 const learned = new Map((mlSeal?.forecasts ?? []).map((f) => [f.nct, f.probability]));
 const evalPath = "data/model/eval.json";
 const top = existsSync("data/model/top.json") ? JSON.parse(readFileSync("data/model/top.json", "utf8")) : null;
+const precedents = existsSync("data/model/precedents.json") ? JSON.parse(readFileSync("data/model/precedents.json", "utf8")) : null;
 const test = existsSync(evalPath) ? JSON.parse(readFileSync(evalPath, "utf8")) : null;
 
 const phaseName = (p) => "Phase " + p.replaceAll("PHASE", "");
@@ -154,6 +155,15 @@ const log = [
           kind: "sealed",
           text: `The learned model's forecasts for all ${mlSeal.count} open trials are sealed, so it is scored on the same trials as the published forecast. Fingerprint ${mlSeal.root.slice(0, 12)}… It has no outside timestamp yet.`,
         },
+        ...(precedents
+          ? [
+              {
+                date: "2026-11-27",
+                kind: "finding",
+                text: `The learned model now cites its precedents. For each open trial it lists the past trials its decision trees sort the same way, with what happened to them. A forecast made from the ${precedents.near} closest precedents alone removed ${pc(precedents.walk.alone)}% of the error on four years of past trials, against ${pc(precedents.walk.trees)}% for the full model. Blending the two did not help, so precedents explain a forecast and do not change it.`,
+              },
+            ]
+          : []),
         ...(top
           ? [
               {
@@ -230,6 +240,8 @@ if (test && mlSeal && existsSync(modelPath) && existsSync(inputsPath)) {
       importance: test.importance,
     },
   };
+  // Precedents are only shown when they were computed for this exact model.
+  if (precedents?.version === m.version) model.precedents = { near: precedents.near, pastTrials: precedents.pastTrials, walk: precedents.walk, trials: precedents.trials };
   writeFileSync("site/model.js", `window.MODEL = ${JSON.stringify(model)};\n`);
 }
 writeFileSync("site/data.js", `window.READOUT = ${JSON.stringify(data)};\n`);

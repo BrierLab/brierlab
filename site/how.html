@@ -148,6 +148,29 @@ h2 em, .cap h1 em { font-style: normal; color: var(--ink); background: linear-gr
 .mx-foot em { font: 500 10.5px/1 var(--mono); font-style: normal; text-transform: uppercase; letter-spacing: 0.06em; padding: 5px 8px; border: 1px solid var(--ink); border-radius: 4px; background: var(--fluo); align-self: center; }
 .mx-foot em.wait { background: var(--panel); color: var(--mute); border-color: var(--rule); }
 .mx-foot em.bad { background: var(--rhod); color: #fff; }
+.px { margin-top: 20px; border: 1px solid var(--ink); border-radius: 10px; background: var(--panel); overflow: hidden; }
+.px-body { display: grid; grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr); }
+.px-say { padding: 22px; border-right: 1px solid var(--ink); }
+.px-say h3 { font: 600 22px/1.2 var(--sans); letter-spacing: -0.03em; margin: 0 0 8px; }
+.px-say p { margin: 0 0 18px; font-size: 15px; color: var(--mute); max-width: 32em; }
+.px-nums { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--rule); border-radius: 8px; }
+.px-nums div { padding: 12px 14px; border-right: 1px solid var(--rule); }
+.px-nums div:last-child { border-right: 0; }
+.px-nums span { display: block; font: 400 10px/1.4 var(--mono); color: var(--mute); text-transform: uppercase; letter-spacing: 0.06em; }
+.px-nums b { display: block; margin-top: 6px; font: 600 26px/1 var(--sans); letter-spacing: -0.04em; font-variant-numeric: tabular-nums; }
+.px-list { list-style: none; margin: 0; padding: 0; }
+.px-list li { display: grid; grid-template-columns: 5.2em minmax(0, 1fr) 11em; gap: 14px; align-items: center; padding: 11px 22px; border-bottom: 1px solid var(--rule); font-size: 14.5px; }
+.px-list li:last-child { border-bottom: 0; }
+.px-list .res { font: 500 10.5px/1 var(--mono); text-transform: uppercase; letter-spacing: 0.06em; padding: 5px 0; text-align: center; border: 1px solid var(--ink); border-radius: 4px; }
+.px-list .res.met { background: var(--fluo); }
+.px-list .res.miss { background: var(--panel); color: var(--mute); border-color: var(--mute); }
+.px-list a { color: inherit; text-decoration: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.px-list a:hover { text-decoration: underline; }
+.px-list small { display: block; font: 400 10.5px/1.4 var(--mono); color: var(--mute); }
+.px-sim { font: 400 10.5px/1.4 var(--mono); color: var(--mute); text-align: right; }
+.px-sim i { display: block; height: 4px; margin-top: 5px; background: var(--rule); border-radius: 2px; overflow: hidden; }
+.px-sim i u { display: block; height: 100%; background: var(--ink); }
+.px-foot { padding: 14px 22px; border-top: 1px solid var(--ink); font-size: 14px; color: var(--mute); }
 .mx-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 20px; margin-top: 20px; }
 .mx-card { border: 1px solid var(--ink); border-radius: 10px; background: var(--panel); overflow: hidden; }
 .mx-card .pad { padding: 20px 22px 22px; }
@@ -166,7 +189,11 @@ h2 em, .cap h1 em { font-style: normal; color: var(--ink); background: linear-gr
 .mx-bar b { font: 500 12px/1 var(--mono); text-align: right; }
 .mx-note { margin: 18px 0 0; font: 400 10.5px/1.7 var(--mono); color: var(--mute); text-transform: uppercase; letter-spacing: 0.06em; max-width: 90em; }
 @media (max-width: 980px) {
-  .mx-body, .mx-row { grid-template-columns: 1fr; }
+  .mx-body, .mx-row, .px-body { grid-template-columns: 1fr; }
+  .px-say { border-right: 0; border-bottom: 1px solid var(--ink); }
+  .px-list li { grid-template-columns: 4.6em minmax(0, 1fr); padding: 11px 16px; }
+  .px-list .px-sim { display: none; }
+  .px-list a { white-space: normal; }
   .mx-side { border-right: 0; border-bottom: 1px solid var(--ink); }
   #mx-cv { height: 540px; }
   .mx-foot { grid-template-columns: 1fr; }
@@ -284,6 +311,22 @@ h2 em, .cap h1 em { font-style: normal; color: var(--ink); background: linear-gr
           <div><span>Sealed forecast for this trial</span><b class="plain"><i id="mx-sealed" style="font-style:normal">--</i><em class="wait" id="mx-match">Waiting</em></b></div>
           <div><span>Trees run</span><b class="plain" id="mx-count">0 / 0</b></div>
         </div>
+      </div>
+      <div class="px" id="px" hidden>
+        <div class="mx-head"><span>Precedent memory</span><span id="px-head">The past trials this forecast rests on</span></div>
+        <div class="px-body">
+          <div class="px-say">
+            <h3>Every forecast cites its precedents.</h3>
+            <p>Two trials are alike when the model's trees sort them the same way. These are the past trials that followed the most of the same paths as the one above, with what happened to them. They are alike in the ways the model weighs, such as sponsor, design and track record, and are often in a different disease.</p>
+            <div class="px-nums">
+              <div><span id="px-near-cap">Closest 25</span><b id="px-met">--</b></div>
+              <div><span>Precedents alone</span><b id="px-alone">--</b></div>
+              <div><span>Full model</span><b id="px-full">--</b></div>
+            </div>
+          </div>
+          <ol class="px-list" id="px-list"></ol>
+        </div>
+        <div class="px-foot" id="px-foot"></div>
       </div>
       <div class="mx-row">
         <div class="mx-card">
@@ -955,12 +998,49 @@ h2 em, .cap h1 em { font-style: normal; color: var(--ink); background: linear-gr
     const n = unlog(x[ix[`${g}_n`]]);
     return n ? `${num(n)} earlier trials, ${signed(x[ix[`${g}_rate`]] * 100)} pts` : "No earlier trials";
   }
+  // The precedent memory: the past trials the trees sort most like this one.
+  function cite(nct) {
+    const P = M.precedents, c = P?.trials[nct];
+    $("px").hidden = !c;
+    if (!c) return;
+    $("px-near-cap").textContent = `Closest ${P.near}`;
+    $("px-met").textContent = `${c.met} met`;
+    $("px-head").textContent = `${num(P.pastTrials)} past trials searched`;
+    $("px-alone").textContent = Math.round(c.estimate * 100) + "%";
+    $("px-full").textContent = Math.round(M.sealed[nct] * 100) + "%";
+    $("px-list").replaceChildren(
+      ...c.list.map(([id, title, year, sim, met]) => {
+        const li = document.createElement("li");
+        const res = document.createElement("span");
+        res.className = "res " + (met ? "met" : "miss");
+        res.textContent = met ? "Met" : "Missed";
+        const a = document.createElement("a");
+        a.href = "https://clinicaltrials.gov/study/" + id;
+        a.target = "_blank";
+        a.rel = "noopener";
+        a.textContent = title.length >= 90 ? title.trimEnd() + "…" : title;
+        const sub = document.createElement("small");
+        sub.textContent = `${id} / results posted ${year}`;
+        const mid = document.createElement("div");
+        mid.style.minWidth = "0";
+        mid.append(a, sub);
+        const s = document.createElement("div");
+        s.className = "px-sim";
+        s.innerHTML = `${sim}% of paths shared<i><u style="width:${sim}%"></u></i>`;
+        li.append(res, mid, s);
+        return li;
+      }),
+    );
+    const w = P.walk, pc1 = (v) => (v * 100).toFixed(1) + "%";
+    $("px-foot").textContent = `Tested on ${num(w.n)} past trials across four years: a forecast made from the ${P.near} closest precedents alone removed ${pc1(w.alone)} of the error, and the full model ${pc1(w.trees)}. Blending the two did not help (${pc1(w.blend)}), so precedents explain a forecast and do not change it. "Met" means the posted result on the main endpoint was statistically significant.`;
+  }
   function describe(nct) {
     const t = byNct.get(nct), x = M.vectors[nct];
     const yes = (n) => x[ix[n]] > 0.5;
     $("mx-tag").textContent = `${nct} / ${t.phase}`;
     $("mx-title").textContent = t.title.length > 120 ? t.title.slice(0, 119).trimEnd() + "…" : t.title;
     $("mx-sponsor").textContent = t.sponsor;
+    cite(nct);
     const rows = [
       ["Sponsor type", yes("industry") ? "Industry" : yes("sponsorNih") ? "Government" : "Academic or other"],
       ["Blinding", yes("blinded") ? "Blinded" : "Not blinded"],
