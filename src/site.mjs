@@ -4,6 +4,7 @@
 // Writes site/data.js and copies the sealed file to site/sealed/.
 import { copyFileSync, existsSync, mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
 import { resultIsPublic } from "./briefs.mjs";
+import { FORECASTERS, scoreLive } from "./outcomes.mjs";
 
 const [sealName] = process.argv.slice(2);
 if (!sealName) {
@@ -64,6 +65,17 @@ for (const c of rows("data/live_cases.jsonl")) {
   });
 }
 trials.sort((a, b) => (a.due < b.due ? -1 : a.due > b.due ? 1 : a.nct < b.nct ? -1 : 1));
+
+// The live score: outcomes from the ledger (data/outcomes.jsonl), scored
+// under the rules in src/outcomes.mjs. watch.json is the last registry check.
+const live = scoreLive(new Set(trials.filter((t) => t.state === "public").map((t) => t.nct)));
+const watch = existsSync("data/watch.json") ? JSON.parse(readFileSync("data/watch.json", "utf8")) : null;
+const outcomeOf = new Map(live.resolved.map((r) => [r.nct, r]));
+for (const t of trials) {
+  const o = outcomeOf.get(t.nct);
+  if (o) t.outcome = { result: o.outcome, reportedOn: o.reportedOn, source: o.source, quote: o.quote, counted: o.counted, why: o.why ?? null };
+}
+const uncounted = live.resolved.filter((r) => !r.counted);
 
 // The lab notebook: what was tried and found, in order, negative results
 // included. Counts come from the data so the page cannot drift from it.
@@ -175,12 +187,31 @@ const log = [
           : []),
       ]
     : []),
+  ...(watch
+    ? [
+        {
+          date: watch.checkedAt.slice(0, 10),
+          kind: "finding",
+          text: `We built the step that checks results and scores forecasts. It asks the registry about all ${watch.trials} sealed trials: ${watch.resultsPosted.length} have results posted there, ${watch.stopped.length} have been stopped, and ${watch.pastFinish.length + live.resolved.length} are past their finish date. Every outcome goes into a public ledger with its source and the words that decide it. Forecasts scored so far: ${live.scored}.`,
+        },
+      ]
+    : []),
+  ...(uncounted.some((r) => r.why === "reported before the forecast was sealed")
+    ? [
+        {
+          date: watch?.checkedAt.slice(0, 10) ?? "2026-11-27",
+          kind: "negative",
+          text: `Our screening missed ${uncounted.filter((r) => r.why === "reported before the forecast was sealed").length} trials whose sponsors had already announced the result before we sealed. Nobody had searched for them, so they sat in the record as open. They are now marked with the announcement and are not scored, whichever way our forecast leaned. Other unscreened trials may have the same problem; each is checked as it comes due.`,
+        },
+      ]
+    : []),
   {
     date: "Open",
     kind: "open",
     text:
-      (stamp.state === "none" ? "Not done yet: an outside timestamp on the fingerprints, and the step" : "Not done yet: the step") +
-      " that checks each trial's real result and scores it.",
+      (stamp.state === "none" ? "Not done yet: an outside timestamp on the fingerprints. " : "") +
+      "Still by hand: the registry check runs on command, and sponsor announcements are found and read by a person or an assistant, then recorded with a link." +
+      (live.scored ? "" : " No trial has been scored yet."),
   },
 ];
 
@@ -194,8 +225,16 @@ const data = {
     timestamped: stamp.state !== "none",
     stamp,
   },
-  // No outcome-resolution step exists yet, so nothing has been scored.
-  scored: 0,
+  // Forecasts scored against a real result, under the rules in src/outcomes.mjs.
+  scored: live.scored,
+  results: {
+    checkedAt: watch?.checkedAt ?? null,
+    pastFinish: watch ? watch.pastFinish.length + live.resolved.length : null,
+    reported: live.resolved.length,
+    notCounted: uncounted.length,
+    met: live.met,
+    table: Object.entries(live.table).map(([who, t]) => ({ name: FORECASTERS[who], ...t })),
+  },
   // The learned model: how many past trials it was trained on and where its sealed forecasts are.
   learned: test && mlSeal ? { trainedOn: Number(/n=(\d+)/.exec(mlSeal.forecasts[0].model)?.[1] ?? test.trainedOn), seal: mlSealName, root: mlSeal.root, count: mlSeal.count } : null,
   log,

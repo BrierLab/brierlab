@@ -8,7 +8,7 @@ Site: https://brierlab.com
 
 - 539 forecasts across 505 trials are sealed in `data/sealed/live-2026-11-22.json`.
 - A second forecaster, a learned model (boosted decision trees trained on about 9,400 past trials from the registry), has its own forecasts for the same 505 trials sealed in `data/sealed/live-2026-11-27-ml.json`. [MODEL.md](MODEL.md) is its fact sheet: data, inputs, tests, results and limits. It runs live in the browser at https://brierlab.com/how. Each of its forecasts cites its precedents: the past trials the trees sort the same way, with their outcomes (`node src/train.mjs precedents`). On TOP, the public benchmark that published trial-outcome models report on, the same method scores ROC-AUC 0.677, 0.698 and 0.761 for Phases I, II and III: level with the best published results, not shown to be ahead of all of them (`src/top.mjs`, table in MODEL.md).
-- Nothing has been scored yet. No accuracy is claimed.
+- Nothing has been scored yet. No accuracy is claimed. The step that checks results exists (`src/resolve.mjs`); its first run found two trials whose results were announced before the seal, and those are recorded and not scored.
 - The step that looks up each trial's real result and scores the forecast is not built yet.
 - The backtest files in `data/` (`forecast_results.jsonl`, `label_results.jsonl`, `baseline_results.jsonl`) are not evidence of skill. The model had already seen many of those results, so scores computed from them are contaminated. Only forecasts sealed before a result count.
 - The learned model's test in `data/model/eval.json` uses trials it never trained on, and since version 3 it does not use the fields the registry rewrites after a trial ends (final headcount, site list). Other text in a record can still be edited, so its live results may be lower.
@@ -23,6 +23,7 @@ Site: https://brierlab.com
 6. `src/seal.mjs` hashes every forecast and folds the hashes into one Merkle root.
 7. `src/site.mjs` builds the site's data from the sealed file. The site never shows a number that is not in it.
 8. `src/score.mjs` computes Brier score and AUC.
+9. `src/resolve.mjs` checks the sealed trials against the registry (`check`), records each known result in `data/outcomes.jsonl` with its source and the words that decide it (`add`), and prints the live score (`score`). The scoring rules are at the top of `src/outcomes.mjs`. The registry check is automatic; finding and reading a sponsor's announcement is done by hand.
 
 Each script has a usage note at the top.
 

@@ -220,6 +220,14 @@ td.num { font: 400 11.5px/1.3 var(--mono); white-space: nowrap; }
 .tag::before { content: ""; width: 8px; height: 8px; border-radius: 50%; border: 1px solid var(--ink); background: #AEBBFF; }
 .tag.screened::before { background: var(--fluo); }
 .tag.public::before { background: var(--rhod); }
+.tag.out-met, .tag.out-not_met, .tag.out-void { color: var(--ink); font-weight: 600; }
+.tag.out-met::before { background: var(--fluo); border-radius: 2px; }
+.tag.out-not_met::before { background: var(--ink); border-radius: 2px; }
+.tag.out-void::before { background: var(--rule); border-radius: 2px; }
+tr.detail small.outcome { display: block; margin-top: 8px; color: var(--ink); }
+tr.detail small.outcome a { color: inherit; }
+.results { border-bottom: 1px solid var(--ink); padding: 6px 0 14px; }
+.results p { margin: 10px 22px 0; font-size: 13px; color: var(--mute); }
 tr.detail td { background: var(--bench); text-align: left; padding: 16px 22px 20px; font-size: 14.5px; line-height: 1.55; }
 tr.detail p { margin: 0 0 8px; max-width: 54em; }
 tr.detail small { color: var(--mute); font-size: 13px; }
@@ -420,7 +428,7 @@ footer p { margin: 0 0 8px; max-width: 60em; }
     <div class="wrap">
       <div class="sec-head">
         <h2>Every forecast, <em>on the record.</em></h2>
-        <p>Industry drug trials due to finish by the end of February 2027. None has been scored yet, because none had reported when the record was sealed.</p>
+        <p>Industry drug trials due to finish by the end of February 2027. <span id="rec-status">None has been scored yet, because none had reported when the record was sealed.</span></p>
       </div>
       <div class="ledger">
         <div class="stats">
@@ -428,10 +436,18 @@ footer p { margin: 0 0 8px; max-width: 60em; }
           <div class="stat"><span>Trials covered</span><b id="s-trials">0</b></div>
           <div class="stat"><span>Scored so far</span><b id="s-scored">0</b></div>
         </div>
+        <div class="results" id="results" hidden>
+          <table>
+            <thead><tr><th>Forecaster</th><th>Trials scored</th><th>Brier score</th><th>Leaned the right way</th></tr></thead>
+            <tbody id="results-rows"></tbody>
+          </table>
+          <p id="results-note"></p>
+        </div>
         <div class="tools">
           <div class="seg" role="group" aria-label="Which trials to show">
             <button type="button" data-view="screened" aria-pressed="true">Evidence-backed <span id="n-screened"></span></button>
             <button type="button" data-view="all" aria-pressed="false">All trials <span id="n-all"></span></button>
+            <button type="button" data-view="reported" aria-pressed="false" id="b-reported" hidden>Reported <span id="n-reported"></span></button>
           </div>
           <input class="search" id="search" type="search" placeholder="Search drug, sponsor or NCT number" aria-label="Search trials">
         </div>
@@ -488,6 +504,10 @@ footer p { margin: 0 0 8px; max-width: 60em; }
         <div class="row">
           <div><h3>How it is scored</h3><p>By Brier score, the standard measure for probability forecasts, shown next to a plain statistical baseline. Lower is better; zero is perfect.</p></div>
           <div class="fig">Brier</div>
+        </div>
+        <div class="row">
+          <div><h3>How a result is decided</h3><p>Each result is recorded with a link to its source and the words that decide it. A trial stopped for futility, lack of efficacy or safety counts as not met. A trial stopped for any other reason is void and is not scored. Results already public when we sealed are not scored. Each forecaster is scored on its last forecast sealed at least a day before the result was reported.</p></div>
+          <div class="fig">Ledger</div>
         </div>
       </div>
     </div>
@@ -574,6 +594,8 @@ footer p { margin: 0 0 8px; max-width: 60em; }
     unscreened: "Not yet screened",
     public: "Already public, not counted",
   };
+  const RESULT = { met: "Met", not_met: "Not met", void: "Void" };
+  const status = (t) => (t.outcome ? RESULT[t.outcome.result] + (t.outcome.counted ? "" : ", not counted") : STATE[t.state]);
 
   const sealedDay = day(D.seal.sealedAt.slice(0, 10));
   $("opened").textContent = `Record sealed ${sealedDay}`;
@@ -590,8 +612,26 @@ footer p { margin: 0 0 8px; max-width: 60em; }
   $("s-sealed").textContent = D.seal.count;
   $("s-trials").textContent = D.trials.length;
   $("s-scored").textContent = D.scored;
+  if (D.results?.checkedAt) {
+    const R = D.results;
+    const plural = (k, one, many) => `${k} ${k === 1 ? one : many}`;
+    $("rec-status").textContent =
+      `Last checked ${day(R.checkedAt.slice(0, 10))}: ${plural(R.pastFinish, "trial is", "trials are")} past the finish date, ${plural(R.reported, "has", "have")} a known result, and ${plural(D.scored, "forecast has", "forecasts have")} been scored.` +
+      (R.notCounted ? ` ${plural(R.notCounted, "result is", "results are")} not counted, because ${R.notCounted === 1 ? "it was" : "they were"} void or already public when we sealed.` : "");
+    if (R.table.length) {
+      $("results").hidden = false;
+      for (const r of R.table)
+        $("results-rows").append(el("tr", {}, [el("td", { textContent: r.name }), el("td", { className: "num", textContent: r.n }), el("td", { className: "num", textContent: r.brier.toFixed(3) }), el("td", { className: "num", textContent: `${r.right} of ${r.n}` })]));
+      $("results-note").textContent = `Brier score: 0 is perfect, and always saying 50% scores 0.250. ${D.scored < 30 ? "With this few trials the numbers mean very little yet." : ""}`;
+    }
+  }
   $("n-screened").textContent = n("screened");
   $("n-all").textContent = D.trials.length;
+  {
+    const k = D.trials.filter((t) => t.outcome).length;
+    $("n-reported").textContent = k;
+    $("b-reported").hidden = !k;
+  }
   $("m-all").textContent = D.trials.length;
   $("m-screened").textContent = n("screened");
   $("m-public").textContent = n("public");
@@ -623,7 +663,7 @@ footer p { margin: 0 0 8px; max-width: 60em; }
     const q = query.trim().toLowerCase();
     const list = D.trials.filter(
       (t) =>
-        (view === "all" || t.state === "screened") &&
+        (view === "all" || (view === "reported" ? !!t.outcome : t.state === "screened")) &&
         (!q || `${t.title} ${t.sponsor} ${t.nct}`.toLowerCase().includes(q)),
     );
     const body = $("rows");
@@ -646,7 +686,7 @@ footer p { margin: 0 0 8px; max-width: 60em; }
         el("td", { className: "num col-phase", textContent: t.phase }),
         el("td", { className: "num col-due", textContent: day(t.due) }),
         el("td", {}, el("span", { className: "prob" }, [el("b", { textContent: pct(headline(t)) }), bar])),
-        el("td", {}, el("span", { className: "tag " + t.state, textContent: STATE[t.state] })),
+        el("td", {}, el("span", { className: "tag " + (t.outcome ? "out-" + t.outcome.result : t.state), textContent: status(t) })),
       ]);
       const toggle = () => {
         open = open === t.nct ? null : t.nct;
@@ -658,7 +698,7 @@ footer p { margin: 0 0 8px; max-width: 60em; }
       });
       body.append(row);
       if (open === t.nct) {
-        const notes = [STATE[t.state] + "."];
+        const notes = [status(t) + "."];
         if (t.researched != null && t.base != null) {
           notes.push(`From the record alone: ${pct(t.base)}. With the evidence brief (${t.sources} sources): ${pct(t.researched)}.`);
         }
@@ -668,6 +708,15 @@ footer p { margin: 0 0 8px; max-width: 60em; }
           el("tr", { className: "detail" }, el("td", { colSpan: 5 }, [
             el("p", { textContent: t.rationale }),
             el("small", { textContent: notes.join(" ") }),
+            ...(t.outcome
+              ? [
+                  el("small", { className: "outcome" }, [
+                    `Result reported ${day(t.outcome.reportedOn)}: ${t.outcome.quote} `,
+                    el("a", { href: t.outcome.source, target: "_blank", rel: "noopener", textContent: "Source" }),
+                    t.outcome.counted ? "" : `. Not scored: ${t.outcome.why}.`,
+                  ]),
+                ]
+              : []),
           ])),
         );
       }

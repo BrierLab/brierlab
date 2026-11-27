@@ -1,0 +1,130 @@
+{
+ "checkedAt": "2026-11-27T17:47:45.892Z",
+ "trials": 505,
+ "pastFinish": [
+  {
+   "nct": "NCT06685757",
+   "finish": "2026-11-04",
+   "status": "ACTIVE_NOT_RECRUITING"
+  },
+  {
+   "nct": "NCT06773962",
+   "finish": "2026-11-11",
+   "status": "COMPLETED"
+  },
+  {
+   "nct": "NCT07199569",
+   "finish": "2026-11-12",
+   "status": "COMPLETED"
+  },
+  {
+   "nct": "NCT07533786",
+   "finish": "2026-11-22",
+   "status": "RECRUITING"
+  },
+  {
+   "nct": "NCT06839066",
+   "finish": "2026-11-22",
+   "status": "RECRUITING"
+  },
+  {
+   "nct": "NCT06693895",
+   "finish": "2026-11-23",
+   "status": "RECRUITING"
+  },
+  {
+   "nct": "NCT06567782",
+   "finish": "2026-11-23",
+   "status": "RECRUITING"
+  },
+  {
+   "nct": "NCT07057622",
+   "finish": "2026-11-24",
+   "status": "RECRUITING"
+  },
+  {
+   "nct": "NCT06616974",
+   "finish": "2026-11-24",
+   "status": "ACTIVE_NOT_RECRUITING"
+  },
+  {
+   "nct": "NCT07600983",
+   "finish": "2026-11-24",
+   "status": "RECRUITING"
+  },
+  {
+   "nct": "NCT06775860",
+   "finish": "2026-11-25",
+   "status": "RECRUITING"
+  },
+  {
+   "nct": "NCT07122401",
+   "finish": "2026-11-26",
+   "status": "RECRUITING"
+  },
+  {
+   "nct": "NCT03981796",
+   "finish": "2026-11-26",
+   "status": "ACTIVE_NOT_RECRUITING"
+  }
+ ],
+ "resultsPosted": [],
+ "stopped": [],
+ "moved": [
+  {
+   "nct": "NCT06958536",
+   "from": "2026-12-17",
+   "to": "2028-01-17"
+  },
+  {
+   "nct": "NCT07478744",
+   "from": "2027-01",
+   "to": "2027-04-30"
+  },
+  {
+   "nct": "NCT06685757",
+   "from": "2026-12-01",
+   "to": "2026-11-04"
+  },
+  {
+   "nct": "NCT06773962",
+   "from": "2026-11-28",
+   "to": "2026-11-11"
+  },
+  {
+   "nct": "NCT07493265",
+   "from": "2027-02-14",
+   "to": "2027-02-04"
+  },
+  {
+   "nct": "NCT04587830",
+   "from": "2027-02-28",
+   "to": "2027-06-30"
+  },
+  {
+   "nct": "NCT07446439",
+   "from": "2026-12-01",
+   "to": "2026-09-15"
+  },
+  {
+   "nct": "NCT07221578",
+   "from": "2026-12",
+   "to": "2026-08-17"
+  },
+  {
+   "nct": "NCT06126224",
+   "from": "2026-12-09",
+   "to": "2027-11-19"
+  },
+  {
+   "nct": "NCT06585787",
+   "from": "2026-11-24",
+   "to": "2027-11-19"
+  },
+  {
+   "nct": "NCT07199569",
+   "from": "2026-11-30",
+   "to": "2026-11-12"
+  }
+ ]
+}
