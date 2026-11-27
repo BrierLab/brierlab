@@ -9,3 +9,5 @@ data/train_cases.jsonl
 data/*_batch.json
 # The public benchmark's tables are not ours; src/top.mjs says where to get them.
 data/top/
+# Backups the timestamp tool leaves behind when it upgrades a proof.
+*.bak

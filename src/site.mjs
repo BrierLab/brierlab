@@ -96,6 +96,20 @@ function submittedOn() {
   if (!existsSync(note)) writeFileSync(note, statSync(otsPath).mtime.toISOString().slice(0, 10) + "\n");
   return readFileSync(note, "utf8").trim();
 }
+// The same for any other sealed set. A proof only shows the set existed on the
+// day it was submitted, which can be later than the day it was sealed.
+function stampNote(name) {
+  const path = `data/sealed/${name}.root.ots`;
+  if (!existsSync(path)) return "It has no outside timestamp yet.";
+  const note = `${path}.date`;
+  if (!existsSync(note)) writeFileSync(note, statSync(path).mtime.toISOString().slice(0, 10) + "\n");
+  const on = new Date(readFileSync(note, "utf8").trim() + "T00:00:00Z").toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" });
+  mkdirSync("site/sealed", { recursive: true });
+  for (const ext of [".json", ".root", ".root.ots"]) copyFileSync(`data/sealed/${name}${ext}`, `site/sealed/${name}${ext}`);
+  return readFileSync(path).includes(BITCOIN_TAG)
+    ? `Its fingerprint was submitted to OpenTimestamps on ${on} and is now in the Bitcoin blockchain.`
+    : `Its fingerprint was submitted to OpenTimestamps on ${on} and is waiting to be written into a Bitcoin block.`;
+}
 const stamp = existsSync(otsPath)
   ? {
       state: readFileSync(otsPath).includes(BITCOIN_TAG) ? "confirmed" : "pending",
@@ -134,7 +148,7 @@ const log = [
         {
           date: baselineSeal.sealedAt.slice(0, 10),
           kind: "sealed",
-          text: `The statistical model's own forecasts for all ${baselineSeal.count} trials are sealed too, so the comparison is fair when results arrive. Fingerprint ${baselineSeal.root.slice(0, 12)}…`,
+          text: `The statistical model's own forecasts for all ${baselineSeal.count} trials are sealed too, so the comparison is fair when results arrive. Fingerprint ${baselineSeal.root.slice(0, 12)}… ${stampNote("live-2026-11-23-baseline")}`,
         },
       ]
     : []),
@@ -165,7 +179,7 @@ const log = [
         {
           date: mlSeal.sealedAt.slice(0, 10),
           kind: "sealed",
-          text: `The learned model's forecasts for all ${mlSeal.count} open trials are sealed, so it is scored on the same trials as the published forecast. Fingerprint ${mlSeal.root.slice(0, 12)}… It has no outside timestamp yet.`,
+          text: `The learned model's forecasts for all ${mlSeal.count} open trials are sealed, so it is scored on the same trials as the published forecast. Fingerprint ${mlSeal.root.slice(0, 12)}… ${stampNote(mlSealName)}`,
         },
         ...(precedents
           ? [

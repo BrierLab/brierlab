@@ -1,0 +1,4048 @@
+{
+ "sealedAt": "2026-11-23T15:43:25.247Z",
+ "count": 505,
+ "root": "5a7c6aef66f41c2d649143b4fa48cfb8c08cdefd255213d718e62cedddfbbf90",
+ "hashing": "leaf = sha256(JSON of {nct, method, probability, model, madeAt}); pairwise sha256 Merkle tree over leaves sorted by nct+method, odd node paired with itself",
+ "forecasts": [
+  {
+   "nct": "NCT01297400",
+   "method": "live_baseline",
+   "probability": 0.3914782522070079,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "f43b317e55e5da847b42ffa9327d0b5583c9e9f60b2f9b72c2dcba586f59d726"
+  },
+  {
+   "nct": "NCT01872260",
+   "method": "live_baseline",
+   "probability": 0.6874393305905695,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "6937f21454fb802fa79e26ec918924184538eb5ab668d39fb6f8595c6e77663c"
+  },
+  {
+   "nct": "NCT02972840",
+   "method": "live_baseline",
+   "probability": 0.7315161465767227,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "9100ab124c8963f40c4323c34d6917f7c4695bd686b6b680687b5309044889d0"
+  },
+  {
+   "nct": "NCT03383081",
+   "method": "live_baseline",
+   "probability": 0.41195100671058876,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "19ccf00b14ce5f2de94b2ddacd49e460242db67f97c21cec1f62befeb057af7a"
+  },
+  {
+   "nct": "NCT03592472",
+   "method": "live_baseline",
+   "probability": 0.7728745919330022,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "66a85011c0d0eacf9820e867fb90e0dddded6c6184fa43ac6edbcdc0259d4984"
+  },
+  {
+   "nct": "NCT03767244",
+   "method": "live_baseline",
+   "probability": 0.7862104455265844,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "84eebbc7f741d4e5f4630ba58801280587ced33a59fbc7a8830cd05af5abb9ba"
+  },
+  {
+   "nct": "NCT03789552",
+   "method": "live_baseline",
+   "probability": 0.8019446840181206,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "a9dee842b1e3ac3d239b67d682b2420b99ba1a88d5aa0f6cf7454e3ce22c8a22"
+  },
+  {
+   "nct": "NCT03817502",
+   "method": "live_baseline",
+   "probability": 0.793793046689968,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "318fb1b3b5f866226a1fa6d490a8f63a6ee3dc335bbcf3d617c1bf003ce4e272"
+  },
+  {
+   "nct": "NCT03887455",
+   "method": "live_baseline",
+   "probability": 0.9458511915353983,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "9074c12e3b8d5e8b14ea6fff13299197a27b608159e8dd9641a9387b4eb68007"
+  },
+  {
+   "nct": "NCT03981796",
+   "method": "live_baseline",
+   "probability": 0.6162598545436372,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "1cb5296de8aad6601316377d9fe4f158fc03693f779908825201ec6b565ca3c5"
+  },
+  {
+   "nct": "NCT03994471",
+   "method": "live_baseline",
+   "probability": 0.7018228584149205,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "1af6ae2661f281c9035b8346ba55a57bfff613d381b0a2a070654c2216c5e61d"
+  },
+  {
+   "nct": "NCT03994874",
+   "method": "live_baseline",
+   "probability": 0.44570131790197237,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "3ccbd617abf51c2edd845eeda21b80d984a4d5a8d357ef4493f093ba4c48d7ce"
+  },
+  {
+   "nct": "NCT04042844",
+   "method": "live_baseline",
+   "probability": 0.28740667304703743,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "cc5b81eae288f251b71e649191d55c2a59be15d666a0e283a58e19c6e5d387a6"
+  },
+  {
+   "nct": "NCT04077723",
+   "method": "live_baseline",
+   "probability": 0.6345086909269944,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "1af9baf5d42f06bc8cd32d3962e28dd615f87d1027d7222fd5bc4d19b1afca32"
+  },
+  {
+   "nct": "NCT04199689",
+   "method": "live_baseline",
+   "probability": 0.7094678069317296,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "e04be7023999c52567470916156627eba57e94de149e64043ca7946765494692"
+  },
+  {
+   "nct": "NCT04208178",
+   "method": "live_baseline",
+   "probability": 0.7445493780913213,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "e7ce01f47d699ae61f1fa1cb1051352ea47748ae980b522c1ed4d6a52f9d8d6e"
+  },
+  {
+   "nct": "NCT04224493",
+   "method": "live_baseline",
+   "probability": 0.7308261220854709,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "af23b89052e94f476335288bf5645d26393901148666a5d3a416cdddbf776be2"
+  },
+  {
+   "nct": "NCT04241185",
+   "method": "live_baseline",
+   "probability": 0.729149625379893,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "a37188cc0bca1de88375e6560b5339db438280d49f407cdb577b0358d9d0948b"
+  },
+  {
+   "nct": "NCT04318041",
+   "method": "live_baseline",
+   "probability": 0.7340617373517866,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "66b0f16bc0c6d7dceaeda7dcc84bca58dc06d30406cd849f637df55fcad20877"
+  },
+  {
+   "nct": "NCT04344158",
+   "method": "live_baseline",
+   "probability": 0.7456192873807193,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "9075055ef09a648e617fe5c34f2bc994d068d71dee77f462d275dbb7970505ed"
+  },
+  {
+   "nct": "NCT04417621",
+   "method": "live_baseline",
+   "probability": 0.5559384356888696,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "a8dcc1b2a8e3ed47d4a4d96392581f63f0245eeba85969820ecabfbe96cbf0c6"
+  },
+  {
+   "nct": "NCT04435990",
+   "method": "live_baseline",
+   "probability": 0.6589910665810809,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "28948d17baba53195701fcf4471f4c7edf5a055d00273a3544e78dbadc275bc6"
+  },
+  {
+   "nct": "NCT04442022",
+   "method": "live_baseline",
+   "probability": 0.8375667668999989,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "03901a7298b18b8ccffd16edf47af3bb9c81ba514cc372358c8e805548603e52"
+  },
+  {
+   "nct": "NCT04485949",
+   "method": "live_baseline",
+   "probability": 0.38150655684352025,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "6d784a5270db94db64f0ab7d8e17e93141eb763704f8dd6ab31d13fcef205197"
+  },
+  {
+   "nct": "NCT04498117",
+   "method": "live_baseline",
+   "probability": 0.7130475889376969,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "5746ef8c5ae304532d4f7010262234febe4d841d640af4224306e406c4ee6b3c"
+  },
+  {
+   "nct": "NCT04529772",
+   "method": "live_baseline",
+   "probability": 0.7310607518069114,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "381ee328754e646ccbfbd158f515e142710c48593f841e674df6f8ce87605202"
+  },
+  {
+   "nct": "NCT04544189",
+   "method": "live_baseline",
+   "probability": 0.4775726726019614,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "a44a722b7d82d9e7d599cda61a3973e905be2955a5739d2f076e3cf4e8bf3763"
+  },
+  {
+   "nct": "NCT04587830",
+   "method": "live_baseline",
+   "probability": 0.44166504756766706,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "589d9d295e6e65d0219c861b2ef21abf1f8813e2542bcdbc0ebc6af27d1286c7"
+  },
+  {
+   "nct": "NCT04588922",
+   "method": "live_baseline",
+   "probability": 0.9036964310129206,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "5ddd0c115197fa9848492fa2606db390182447a7a772b0b3b885a2ae5412ad71"
+  },
+  {
+   "nct": "NCT04639986",
+   "method": "live_baseline",
+   "probability": 0.6871541604278198,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "1e04f1dbee71d8d6aa8aaf5ef7cdd1b02763064b9bde922016a0e13008204e7e"
+  },
+  {
+   "nct": "NCT04657289",
+   "method": "live_baseline",
+   "probability": 0.6606971161821875,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "c36d49c64c87801d3ceca934f981e66a83763893cae28d0477bfcf7712306989"
+  },
+  {
+   "nct": "NCT04658862",
+   "method": "live_baseline",
+   "probability": 0.5428712622337367,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "1b4744c493786026c14604b1c6856192ccbaa118ed2e85180c2d7e1e01d00bc1"
+  },
+  {
+   "nct": "NCT04691804",
+   "method": "live_baseline",
+   "probability": 0.7748012130982037,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "fdf64203321195000a7929d1f06b02873e344b747d67ed24d329c026d89f5d35"
+  },
+  {
+   "nct": "NCT04704921",
+   "method": "live_baseline",
+   "probability": 0.5662060035003765,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "4e3dbe06c4d1e6d10c8ded2e99c2a8459e7927074613412d4c4ca599fa0f0603"
+  },
+  {
+   "nct": "NCT04817618",
+   "method": "live_baseline",
+   "probability": 0.6794467170416019,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "4bca8dd087d6256c6283b5825c5827dd53030e832b01ebcdb9dc0ad949cf5539"
+  },
+  {
+   "nct": "NCT04853342",
+   "method": "live_baseline",
+   "probability": 0.7701059743928784,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "b56f0693c71acb28551fa2398a099d994d9a3e84d11d2cc918b04a4498a81a5a"
+  },
+  {
+   "nct": "NCT04879329",
+   "method": "live_baseline",
+   "probability": 0.8409263877804906,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "9450519d98aef053e8b1a9f36a15d009fa12c86626a565cb9194cc8039c0b633"
+  },
+  {
+   "nct": "NCT04957485",
+   "method": "live_baseline",
+   "probability": 0.4018027644712157,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "ac030004efc4516ccc6c38741dcb95b81730fedecbc75d249159b31272cd831a"
+  },
+  {
+   "nct": "NCT04957550",
+   "method": "live_baseline",
+   "probability": 0.7961082232604747,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "5c7cab7f3de7150e32033182b8a3f26cf9b0246ae08013fc9573c249705a42f4"
+  },
+  {
+   "nct": "NCT04969731",
+   "method": "live_baseline",
+   "probability": 0.6898491966100938,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "26fad1f5d6bad497d2dc2c593c6d5407ca3ab548ac383706c73fa53463ab5029"
+  },
+  {
+   "nct": "NCT04977024",
+   "method": "live_baseline",
+   "probability": 0.4496309192742374,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "6058275b96339f1df1d8f2652ef6cce058c2cefcdbd3697fe5e73bf208226711"
+  },
+  {
+   "nct": "NCT04986423",
+   "method": "live_baseline",
+   "probability": 0.5796794208746561,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "591a1109195ac3360804fe1045ef5f785cd8cc18d0f8e65ce4c0487ac9d4691d"
+  },
+  {
+   "nct": "NCT05035212",
+   "method": "live_baseline",
+   "probability": 0.9495935974332593,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "fe3ff366257223a2ee57a5af3734bb3927087780eb593176943ada808ade1356"
+  },
+  {
+   "nct": "NCT05038735",
+   "method": "live_baseline",
+   "probability": 0.7182618206627784,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "d558bdcc748320a933e389b47fbc778912eb1aa3e9d4cfbe987658068b32b220"
+  },
+  {
+   "nct": "NCT05050136",
+   "method": "live_baseline",
+   "probability": 0.6027712448569259,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "dc36c5e494bd3184327fb0117eaa371c26a0d1eaeafac2c6db387d637529aeca"
+  },
+  {
+   "nct": "NCT05065216",
+   "method": "live_baseline",
+   "probability": 0.7050610434730757,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "3b3e6b8aceda1e383dc9dcc08bb00418f71a3b12618c58dfea257fcf49fe53a9"
+  },
+  {
+   "nct": "NCT05128825",
+   "method": "live_baseline",
+   "probability": 0.7455103036660649,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "d37661be5d1a22001712d794aadeb8fced470e956e64ef951643bccdb17dfabf"
+  },
+  {
+   "nct": "NCT05138133",
+   "method": "live_baseline",
+   "probability": 0.6962858856305301,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "1f3668bf8d1817712688c02e07d0e3b63c7aff73c21dbe415461eeb0fe9ecccd"
+  },
+  {
+   "nct": "NCT05139719",
+   "method": "live_baseline",
+   "probability": 0.5117786605620991,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "98133db036ddf303d42d948466f284a7ac4199e5c7438b0196a1fb85288d5b2a"
+  },
+  {
+   "nct": "NCT05170204",
+   "method": "live_baseline",
+   "probability": 0.7762394361067098,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "7904a991525edf498348e8df37a926898822981da88ec347ecaecf6a4d9059ca"
+  },
+  {
+   "nct": "NCT05171894",
+   "method": "live_baseline",
+   "probability": 0.7023624468847742,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "b8f4d9b29006ea190b4a16511da52281788370d49ed3a39d43d9607e444f0a78"
+  },
+  {
+   "nct": "NCT05198323",
+   "method": "live_baseline",
+   "probability": 0.43557655889141744,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "8658f17d9c3cdcb2fcaced9c268795814f523f2940577dc5c94a6b5aef37c463"
+  },
+  {
+   "nct": "NCT05217628",
+   "method": "live_baseline",
+   "probability": 0.737087147431204,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "34c48546150d4ea833375f165e20f38f58153858cea8ceb09c5cac556e77fbcd"
+  },
+  {
+   "nct": "NCT05219617",
+   "method": "live_baseline",
+   "probability": 0.7956692260401101,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "2b5272419dd0049363e0130cf2bb4a923f0cb2a2418fb92e8bd40bcc63ec99f9"
+  },
+  {
+   "nct": "NCT05221840",
+   "method": "live_baseline",
+   "probability": 0.7454104129713065,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "cf55f3ac92f2294d6ede028f1794c31875f76bf5b24be9d4fabbaa5c17a3241b"
+  },
+  {
+   "nct": "NCT05262023",
+   "method": "live_baseline",
+   "probability": 0.5148557274097658,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "76f022e8bb941e0aa91421b4f791c32b8e996ac389923ba272d93ad00f3e5cbf"
+  },
+  {
+   "nct": "NCT05281471",
+   "method": "live_baseline",
+   "probability": 0.5275739110211587,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "24b13e0e03d5db7cb2f0a0ef91c682e5591247af733b2724751ff6df6c4b3f7e"
+  },
+  {
+   "nct": "NCT05302284",
+   "method": "live_baseline",
+   "probability": 0.691164737460206,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "2741e502ea5e17dc92cfe7f944c089d171c107a22825b8a1ddeac59f0423376e"
+  },
+  {
+   "nct": "NCT05327114",
+   "method": "live_baseline",
+   "probability": 0.6887313827460934,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "4868a89449f1378c28c7880c4544d243f9f25674c553747a084c4730430d9d69"
+  },
+  {
+   "nct": "NCT05365672",
+   "method": "live_baseline",
+   "probability": 0.36357569202509316,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "154102864e8be3f02f603a961861483b1607077b090123eb2fab37a550aa317c"
+  },
+  {
+   "nct": "NCT05382286",
+   "method": "live_baseline",
+   "probability": 0.6909066087601199,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "5780fc398d30374c8afeb4092e85e194486280fbc9cafcf3e3e0a505dc8ba3b5"
+  },
+  {
+   "nct": "NCT05397639",
+   "method": "live_baseline",
+   "probability": 0.7516572090103572,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "e2ece2d8a13099b29275f496e547ea2f53e0e42269f157e98f6cd5c7e72533bb"
+  },
+  {
+   "nct": "NCT05406362",
+   "method": "live_baseline",
+   "probability": 0.44427009679398316,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "6def70e535a234f92e4d49b58149fd1a9f3f64563b97ecb3c3e63b8b38dcbdda"
+  },
+  {
+   "nct": "NCT05413655",
+   "method": "live_baseline",
+   "probability": 0.5130770812567322,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "11786989bf17115e5a3ee20483707017ff9c742c77cdcdb668eab3b7b595c83b"
+  },
+  {
+   "nct": "NCT05424835",
+   "method": "live_baseline",
+   "probability": 0.8313376435952182,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "77364a9455a724977311732efc2c2442e37bbf5c0b52f5767ee24c46f1219230"
+  },
+  {
+   "nct": "NCT05456256",
+   "method": "live_baseline",
+   "probability": 0.3714218253528129,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "7ca52b48c1cb275d7c3a6289f4e9a0aec2ebbd705459086f11a3601d5ac77142"
+  },
+  {
+   "nct": "NCT05456425",
+   "method": "live_baseline",
+   "probability": 0.7579474854509871,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "5ec81773b0ed91452b65c22dd51fda21a090d6782a9ef5b38525074532c0742b"
+  },
+  {
+   "nct": "NCT05462587",
+   "method": "live_baseline",
+   "probability": 0.7381756492014372,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "669f5065929163ed7ec732bf6fa0900054164a95c91055d64c3a07bad5e78ff0"
+  },
+  {
+   "nct": "NCT05464784",
+   "method": "live_baseline",
+   "probability": 0.3689149874740548,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "5f3cef60502eaa439685f0148c40656f323f721cb4c441ee905011f2c082fc50"
+  },
+  {
+   "nct": "NCT05468697",
+   "method": "live_baseline",
+   "probability": 0.6046757779798274,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "858714052d852feb048de411ce6d941c796891220478d274e3c6e8823e65c984"
+  },
+  {
+   "nct": "NCT05477576",
+   "method": "live_baseline",
+   "probability": 0.7926005629049456,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "127256ecd46a03d78abac7d1c0b7ce606a5e960ba18f73f99176e3886576cb97"
+  },
+  {
+   "nct": "NCT05486104",
+   "method": "live_baseline",
+   "probability": 0.5091149597905662,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "7eb18cfd806758483ca8f271f6371d138bdea38f0e655856666feefdd0904375"
+  },
+  {
+   "nct": "NCT05500222",
+   "method": "live_baseline",
+   "probability": 0.6056998271093027,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "cae7fa28deb408ae6a543563d1537ce3a406c93a6d24cbddca0d389b920cb82f"
+  },
+  {
+   "nct": "NCT05503264",
+   "method": "live_baseline",
+   "probability": 0.7885143140919795,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "8d6ca33d7f149390ce23e4216dcf5a5dabe58c8833446ca545ababbd42d84647"
+  },
+  {
+   "nct": "NCT05519085",
+   "method": "live_baseline",
+   "probability": 0.7844631609090478,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "05ec487a64eea2bcd61e004de7890b509d42f23ca130b5989dbfc81b436d9ce2"
+  },
+  {
+   "nct": "NCT05540860",
+   "method": "live_baseline",
+   "probability": 0.694548144774714,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "aea56e7b42beb80df156c70e0c64d2502d58c2998711a1c0a1207a5a77a69ff1"
+  },
+  {
+   "nct": "NCT05555862",
+   "method": "live_baseline",
+   "probability": 0.3899708630961533,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "fd123a68b4794895e95a3e472c60952b5bbe192410a356a2df5c8494659460de"
+  },
+  {
+   "nct": "NCT05557448",
+   "method": "live_baseline",
+   "probability": 0.3165358478178145,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "2b8cb730d90fc189090ef500bfdc644cd7918563104ee3ff155242fa579bbe5c"
+  },
+  {
+   "nct": "NCT05563844",
+   "method": "live_baseline",
+   "probability": 0.5403101284640578,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "1530fc89e8656bccf82749894b43f5bf4c65c266b3c977225c90d2efe84b430a"
+  },
+  {
+   "nct": "NCT05608291",
+   "method": "live_baseline",
+   "probability": 0.7499248819243444,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "17614f08c0f69da601cef22b589818b2a25aa63e68cafa7e53012583b436299c"
+  },
+  {
+   "nct": "NCT05608681",
+   "method": "live_baseline",
+   "probability": 0.9264498614540415,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "79fe132f684b899dc309ee55e04c59228f434fd0199102a7a59330650574c4f3"
+  },
+  {
+   "nct": "NCT05609968",
+   "method": "live_baseline",
+   "probability": 0.6532472023094266,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "76e33eb5cea3ccbef8849725917d6b10bddb5eb5373c83dd2d46967d8902de3d"
+  },
+  {
+   "nct": "NCT05626712",
+   "method": "live_baseline",
+   "probability": 0.28515648759350115,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "53cfec1f49ae72fa2ed6865f6f95073ca81f8fa440e56e947a23c3ebf5de9551"
+  },
+  {
+   "nct": "NCT05631262",
+   "method": "live_baseline",
+   "probability": 0.7644758265727606,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "0396ebfd329f4f08983e0be717ac95f4afcd9db9886e92fab0745da065176afe"
+  },
+  {
+   "nct": "NCT05645692",
+   "method": "live_baseline",
+   "probability": 0.5116983455807673,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "7df287c73fc000c271641de757a363d4ec5c746bee2c50639dd4bed2d7821f0a"
+  },
+  {
+   "nct": "NCT05653453",
+   "method": "live_baseline",
+   "probability": 0.7429227995916725,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "3512b6b09d26d0b0128030be2c2e9de09e0eb4eebfcc92f6fb7e2d09d6b5bf74"
+  },
+  {
+   "nct": "NCT05654454",
+   "method": "live_baseline",
+   "probability": 0.9244443532991513,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "e2606be80feab932bdc9ea3cef8ab7d1aae2e19b73f8069caad53f8556bce68b"
+  },
+  {
+   "nct": "NCT05658575",
+   "method": "live_baseline",
+   "probability": 0.6938592137452186,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "caa8ed1ea396bf63742b7737507c36e24923a1c6a05016b2d62130f778070ee3"
+  },
+  {
+   "nct": "NCT05672576",
+   "method": "live_baseline",
+   "probability": 0.699037473369946,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "88af8a405a14fe38d223b91313493469a30eab2ef906ac17f8ca982fea377cdf"
+  },
+  {
+   "nct": "NCT05678673",
+   "method": "live_baseline",
+   "probability": 0.6865958958637114,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "68e7e2d8f97d27a478d046847e4ed8ee34fe1d66b12bb357deed242929fa23d7"
+  },
+  {
+   "nct": "NCT05682443",
+   "method": "live_baseline",
+   "probability": 0.506894414852048,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "5d27589abbe7e731c6bd038b021b02194d07576b148be299ec95a4f7d0309ce2"
+  },
+  {
+   "nct": "NCT05686642",
+   "method": "live_baseline",
+   "probability": 0.5267804002527553,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "8ceab2065d45f1651f1b8fa25b968f84f1cbef991563c3b44e0d3d2fc8ae816f"
+  },
+  {
+   "nct": "NCT05692180",
+   "method": "live_baseline",
+   "probability": 0.6789053001771609,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "c953656a788d8995852486809237afa7b3067f520cadf870208a2a30091c8d55"
+  },
+  {
+   "nct": "NCT05727176",
+   "method": "live_baseline",
+   "probability": 0.5474585361441137,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "e369c23ae431fc5d0d4f54035c04d5c3b26c750c71c156fff70a60f4cebbeb02"
+  },
+  {
+   "nct": "NCT05748873",
+   "method": "live_baseline",
+   "probability": 0.6840011440182087,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "e5701fd4e62d3deb1c803ac945d41c161b28ad29e86d2dbe196b1eafff282a4a"
+  },
+  {
+   "nct": "NCT05751928",
+   "method": "live_baseline",
+   "probability": 0.6067902846642622,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "193aba59654304e9569b75381a2cff96911d5cbedb5f2328111dfa53c826b531"
+  },
+  {
+   "nct": "NCT05757102",
+   "method": "live_baseline",
+   "probability": 0.6868898350817936,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "54b5bfdc2e1605ee40ab163d2859ac9f04b62c5edd9f70afb7e51f7270a4d345"
+  },
+  {
+   "nct": "NCT05757869",
+   "method": "live_baseline",
+   "probability": 0.6979776118627569,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "5e3fc395f2378163f1e8e61698abe1831c7be3b7f13748dcb0fdf242d4fff41b"
+  },
+  {
+   "nct": "NCT05762107",
+   "method": "live_baseline",
+   "probability": 0.5733542849558348,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "97ccaf2d79553a6950464383caef1dcc5f7da98852b300f5c3180cb4ffe31165"
+  },
+  {
+   "nct": "NCT05771584",
+   "method": "live_baseline",
+   "probability": 0.5946116409390304,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "fa4463e303b9b4b6e64d777c755c29d359635d0deb33ba0c8e05d1b3ad82ea58"
+  },
+  {
+   "nct": "NCT05776277",
+   "method": "live_baseline",
+   "probability": 0.5379366457148521,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "192831ffdf80cc5a85bef56ca028cfbe0f621ecbe6d39a158230bd8706ba608b"
+  },
+  {
+   "nct": "NCT05778188",
+   "method": "live_baseline",
+   "probability": 0.6868009373804393,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "16fc47a9b58363dcfb97a2b59914e5c4ceadc1e011c55a116eb7235b1f536916"
+  },
+  {
+   "nct": "NCT05780567",
+   "method": "live_baseline",
+   "probability": 0.7888299552232299,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "a10183d97f178b94ca8b18a4e94afde9598a3f01a8bee6a3b8d8db99594827f3"
+  },
+  {
+   "nct": "NCT05821478",
+   "method": "live_baseline",
+   "probability": 0.6255693138983447,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "3f83cf7fe1a1a367da1af1dc454b85488ca047750002c9820680a8c8521f6086"
+  },
+  {
+   "nct": "NCT05849298",
+   "method": "live_baseline",
+   "probability": 0.534237165357747,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "ea808e01eb2235975cdc33266cb11d15cf8976e85cb36e857ea38617fa8599c4"
+  },
+  {
+   "nct": "NCT05860465",
+   "method": "live_baseline",
+   "probability": 0.7677088121583211,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "ae624525f66e4863301ac9b90283bffaf67ae5562a88bf5b277e9900a1173334"
+  },
+  {
+   "nct": "NCT05877963",
+   "method": "live_baseline",
+   "probability": 0.7776759011134171,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "723d8618b0570e75c28cdf74c167b1c921ae4969089f252a7ce2f77d74bfa570"
+  },
+  {
+   "nct": "NCT05884255",
+   "method": "live_baseline",
+   "probability": 0.7331143128543162,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "2b0b498065c485fdec2db3b4e84d3a5c6421d604b14fb066b706715f51df7779"
+  },
+  {
+   "nct": "NCT05890729",
+   "method": "live_baseline",
+   "probability": 0.5544672350823174,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "e9b6faa61306220e2a3c910fbd72448af5a0d6491c8dadc6039d9f67df6bd489"
+  },
+  {
+   "nct": "NCT05906992",
+   "method": "live_baseline",
+   "probability": 0.6220537430313983,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "b0db7c437f08582a78b8a2f188129f4172da94843f5728b387be9c6188d7f052"
+  },
+  {
+   "nct": "NCT05909397",
+   "method": "live_baseline",
+   "probability": 0.664581549724187,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "86eab8ef6ad2b64eb53e2bdfe981b2ec427f991c827d862f3e87ffac21f96a5a"
+  },
+  {
+   "nct": "NCT05910528",
+   "method": "live_baseline",
+   "probability": 0.4727209369573416,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "faea694be9f35b5e35c6bc5af65ec02937eea1d68a07682e695298160e0d6df7"
+  },
+  {
+   "nct": "NCT05911295",
+   "method": "live_baseline",
+   "probability": 0.6899746357847143,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "66058fb8ba4c3c504367d0757e3e50434f3ce212c9e134783a2b2415dc7b6aa9"
+  },
+  {
+   "nct": "NCT05913752",
+   "method": "live_baseline",
+   "probability": 0.5146797192944462,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "2a525b938bc9888052cb50c6496e0f9bc9e58704be925f1d0cfa640af5b3856f"
+  },
+  {
+   "nct": "NCT05922878",
+   "method": "live_baseline",
+   "probability": 0.45913842179237013,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "1189ad7715df568add1fb5c051acd8dcfc4cdebd301919ff721044ef89508834"
+  },
+  {
+   "nct": "NCT05925803",
+   "method": "live_baseline",
+   "probability": 0.6944407097390181,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "fc3e9774dfa83289687fd67d3ec910929d39f87a42fac5eb02ebafc00fe7df5b"
+  },
+  {
+   "nct": "NCT05944224",
+   "method": "live_baseline",
+   "probability": 0.6053669748128526,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "9fdb578b2fc4b02e126cfd4b7fbf8ed227b498731bfa22ff61a0bb574864103b"
+  },
+  {
+   "nct": "NCT05948475",
+   "method": "live_baseline",
+   "probability": 0.7373920186697001,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "e5e6227d7b491f454458c14a7a2cd1e10f991650ac69544da0737e51b4e74cde"
+  },
+  {
+   "nct": "NCT05952206",
+   "method": "live_baseline",
+   "probability": 0.9429958026567775,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "1619f9b7796052805458e74f3af4af2da593525969a5c1af2c539633437fbb2e"
+  },
+  {
+   "nct": "NCT05972473",
+   "method": "live_baseline",
+   "probability": 0.55773382189308,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "af146132fd58680820708dccbb5a556f65ed7b9268e02c49817b52e4faccb4f9"
+  },
+  {
+   "nct": "NCT05987332",
+   "method": "live_baseline",
+   "probability": 0.7459257154039497,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "40647f8d88f4ee0445078aa18d07fb43a08714952d39b4e9b8e46bb95d8cec13"
+  },
+  {
+   "nct": "NCT05987358",
+   "method": "live_baseline",
+   "probability": 0.7630648202138524,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "dc6ade67b33103b7f51bb30fb022dfb18951a2b0cef535c8ae698299fffdd9cd"
+  },
+  {
+   "nct": "NCT06000956",
+   "method": "live_baseline",
+   "probability": 0.7474102725468078,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "39ef1dd382954fe62fcd35baea02285ebf2fdd114510bde23012716c691f7cb8"
+  },
+  {
+   "nct": "NCT06008119",
+   "method": "live_baseline",
+   "probability": 0.7297274343310874,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "ac8d8794b897f721fef58a4fba8a390017905fb3c48642e06b95d7d145701f01"
+  },
+  {
+   "nct": "NCT06029972",
+   "method": "live_baseline",
+   "probability": 0.5257089525577319,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "f311fe91567fdf9ac6ab75454d75a33402fd767447aa439c17fb3bb46aff35f5"
+  },
+  {
+   "nct": "NCT06032195",
+   "method": "live_baseline",
+   "probability": 0.31650470055973107,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "bb80c534b66715c2c281d1e393a33667719f7c2e5d6fc4ff061a73d4bc62f370"
+  },
+  {
+   "nct": "NCT06046222",
+   "method": "live_baseline",
+   "probability": 0.3705304605522209,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "61c6402cd79f33ed3e9321d2a8c5e81d1fc13ad49b49d27fcd41df7f2bf5d5de"
+  },
+  {
+   "nct": "NCT06052267",
+   "method": "live_baseline",
+   "probability": 0.7297935723740709,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "78a8762e5853b6405f9679e28b5d81788dae2576f27c6c95cebe09a14d9bbe51"
+  },
+  {
+   "nct": "NCT06053242",
+   "method": "live_baseline",
+   "probability": 0.6193755694477434,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "a2807d56c9f1d0475ec03e34673c238a7fdf113d3222bb636101b11ed076f264"
+  },
+  {
+   "nct": "NCT06062810",
+   "method": "live_baseline",
+   "probability": 0.9373451664579688,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "659792fe75da7e0b7eb092644fcde10b1e633a84b90524e9af21171aa134fc1e"
+  },
+  {
+   "nct": "NCT06075264",
+   "method": "live_baseline",
+   "probability": 0.2948326731136841,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "a9784ac7d9179dd017bc77fed55f7116def467d67f683f98195578a47962f813"
+  },
+  {
+   "nct": "NCT06080789",
+   "method": "live_baseline",
+   "probability": 0.43335793832579417,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "8cd6d44fb40fd4ed83302b9108596c58fad377ad0d9a980acc8610327e07ad9b"
+  },
+  {
+   "nct": "NCT06081959",
+   "method": "live_baseline",
+   "probability": 0.6887980543413681,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "e04797adba4f2868a9b6613c4ea408fc3f130aa4ef8c58039a2e217553ef9e31"
+  },
+  {
+   "nct": "NCT06087835",
+   "method": "live_baseline",
+   "probability": 0.6666241409516349,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "290fecc9be41230d8463c4f8a50dab0569d5c06ee7f4727bd0b2e7de16492796"
+  },
+  {
+   "nct": "NCT06094179",
+   "method": "live_baseline",
+   "probability": 0.5480622702924406,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "4d36b1b1da43d4272b774d0176e2939b6d30b302e5209e9dc3922f71d5ef0636"
+  },
+  {
+   "nct": "NCT06104566",
+   "method": "live_baseline",
+   "probability": 0.7124558182670898,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "0d5fe43e8e91337039ac25caec7ff499d24e5adc08e6d31cdf7c680952dddd02"
+  },
+  {
+   "nct": "NCT06107413",
+   "method": "live_baseline",
+   "probability": 0.8348479189878153,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "ab7c08e08281c503503b85e0d38e715fb4551b5cb8cfe78995db91b2fa1cd048"
+  },
+  {
+   "nct": "NCT06109272",
+   "method": "live_baseline",
+   "probability": 0.8595524467516936,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "4995912cef00e591926df7ad078f9d2fbb77fbf6255e095c968e4ff86c7e0da5"
+  },
+  {
+   "nct": "NCT06118281",
+   "method": "live_baseline",
+   "probability": 0.776657161269291,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "e80e7f6b4caf128784c61ce589d31621fe7c9492d193ec141d8e4a3b4df23d2e"
+  },
+  {
+   "nct": "NCT06122779",
+   "method": "live_baseline",
+   "probability": 0.45379397609104993,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "beb2a2440e620b1d118e1f186ab97c42da695af227a330cc079bf9e23c627f3c"
+  },
+  {
+   "nct": "NCT06125327",
+   "method": "live_baseline",
+   "probability": 0.7398084198210856,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "2c848acc4cb0abcfcf8a87ecfc3ce30f907e242043b3db6ba4b434ad0e555732"
+  },
+  {
+   "nct": "NCT06126224",
+   "method": "live_baseline",
+   "probability": 0.7003404151583948,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "d03f4618ffc8c5038400dc1b8601170832f2db2bac6523e8293c861c16b93527"
+  },
+  {
+   "nct": "NCT06129175",
+   "method": "live_baseline",
+   "probability": 0.5243016549730203,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "ad6f06986b6c61a2155f775a63da8c392d2c8278b0f139664a47e22ecc2aa180"
+  },
+  {
+   "nct": "NCT06132893",
+   "method": "live_baseline",
+   "probability": 0.8404409540306474,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "b2fe4ede853f7e9d16261cacfc0b7c1e74c9cd791bf2e527ab90dedc3a85a53a"
+  },
+  {
+   "nct": "NCT06138743",
+   "method": "live_baseline",
+   "probability": 0.5750480026705923,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "85766d6ae0c781cad5fb0dddb5aed97e8edc9fa3484b5e54798ff3198e39e40a"
+  },
+  {
+   "nct": "NCT06140836",
+   "method": "live_baseline",
+   "probability": 0.6799495721496733,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "a39378403b7cb113e0007a3ead208bdd8f0764283590fdab679dd8e1b8c689c2"
+  },
+  {
+   "nct": "NCT06151574",
+   "method": "live_baseline",
+   "probability": 0.6904642616050328,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "bd4eac0fb75afe04640c5dcdd067475dbdbcceed960eea74f6505120742ceb1d"
+  },
+  {
+   "nct": "NCT06151964",
+   "method": "live_baseline",
+   "probability": 0.9411061885225896,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "0e44367b5a13f0d95469c767ae26ec6c3aeabe3d51ff464fd7c730d1e5be9652"
+  },
+  {
+   "nct": "NCT06157827",
+   "method": "live_baseline",
+   "probability": 0.38098640322759364,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "4bdd4d50a78122b69192dbfb2dec54a585dc9804ff215bbde5b4c57876537ca0"
+  },
+  {
+   "nct": "NCT06177041",
+   "method": "live_baseline",
+   "probability": 0.7745874734083562,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "37113a85cefdadb975f895fd2521cffb0dbe6bb7b117a3f6bd37df38932f88c2"
+  },
+  {
+   "nct": "NCT06185764",
+   "method": "live_baseline",
+   "probability": 0.5676966342917936,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "ed9f9ae15b1ddea9c7bb280af64be565907ac3b791eca4f6c72098718c7903a9"
+  },
+  {
+   "nct": "NCT06194734",
+   "method": "live_baseline",
+   "probability": 0.7424181301145079,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "145f58482f97b9d7245a3d9d21f322058f08ec7b2b37ae1d1a73ff9bb8ebb701"
+  },
+  {
+   "nct": "NCT06197568",
+   "method": "live_baseline",
+   "probability": 0.44011665130736816,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "894508d53564787ed740bef6acbe0cdde2f7469f27e66c3e0c4d393410dd36f1"
+  },
+  {
+   "nct": "NCT06206564",
+   "method": "live_baseline",
+   "probability": 0.3714186735563248,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "27e163d55d61c01bf560802c4ec5030edfd8cf3c927df27d698f3f8798ce5b12"
+  },
+  {
+   "nct": "NCT06206733",
+   "method": "live_baseline",
+   "probability": 0.7339392840955707,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "efe87bd397aadb6042c05d4c523a646a15f029ca446590872037fa00804ef09d"
+  },
+  {
+   "nct": "NCT06212999",
+   "method": "live_baseline",
+   "probability": 0.8323761336029785,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "4080f04285c361949a255b4bb7107ef8b56b27f009efce3077c05f59f851f15c"
+  },
+  {
+   "nct": "NCT06220773",
+   "method": "live_baseline",
+   "probability": 0.7988057672064587,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "b3661b22ded3497fb06f0a0b61369b7cf13e1605007cdf8644e5156ceb5ca5c6"
+  },
+  {
+   "nct": "NCT06221748",
+   "method": "live_baseline",
+   "probability": 0.8434438123963077,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "4c8d95a407c7a4461319ce13410fa84912ca058081218b7eccf641516f788a22"
+  },
+  {
+   "nct": "NCT06233461",
+   "method": "live_baseline",
+   "probability": 0.585440165681036,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "2a9e307577cdc6f2e37781c11b15ffd72b260f1a84bec3b2ff2afce44c51c2d8"
+  },
+  {
+   "nct": "NCT06238843",
+   "method": "live_baseline",
+   "probability": 0.6915008647561073,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "8552b3897c2f6530cccb21ac32c5103262dc004295e58fe68b48fd16859ba500"
+  },
+  {
+   "nct": "NCT06241781",
+   "method": "live_baseline",
+   "probability": 0.23835890290762812,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "73ef68f9c528db9cc672c0e19b6c2ce1c70c67ea5346f597ead2f9b727862c92"
+  },
+  {
+   "nct": "NCT06260163",
+   "method": "live_baseline",
+   "probability": 0.8586024342346922,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "68379fe6fbb8fbc156c932140f6c6e4bd669de2684d61e5eb1e55dbad69b686f"
+  },
+  {
+   "nct": "NCT06265727",
+   "method": "live_baseline",
+   "probability": 0.9731958762260353,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "3ef327ced845cf82307ededd3ce2cc0e67fd224dea626c0cce2b2a1ded27eeac"
+  },
+  {
+   "nct": "NCT06268886",
+   "method": "live_baseline",
+   "probability": 0.4653161490573103,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "b7ac472475e1346820921674a7c485747e32d4948f61c3dad47cdf87f2884bb2"
+  },
+  {
+   "nct": "NCT06269705",
+   "method": "live_baseline",
+   "probability": 0.7470060697947899,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "5808ea513441e289b585b6cde8b8787699a425f22222d460efe2cbf345be6cdb"
+  },
+  {
+   "nct": "NCT06279741",
+   "method": "live_baseline",
+   "probability": 0.3741651008760503,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "0e1ceec9635b17cb42a9931de3b442f15c5c1f9d318e070fc41b496b3d6e630f"
+  },
+  {
+   "nct": "NCT06281119",
+   "method": "live_baseline",
+   "probability": 0.7362028914275458,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "bbaa8731fdc06fbda73d1b3dc5fc621759247cb9d67fe51f6aa38cddca78fd88"
+  },
+  {
+   "nct": "NCT06284265",
+   "method": "live_baseline",
+   "probability": 0.7476032391929898,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "a9ba411c3fb51022b57722aadc223c6a0db9a40a6f532453b261de004448753f"
+  },
+  {
+   "nct": "NCT06302491",
+   "method": "live_baseline",
+   "probability": 0.572173752586657,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "af408560f98d1c129addb00b1585612196673e84c61ab7295d39705d19d00960"
+  },
+  {
+   "nct": "NCT06304103",
+   "method": "live_baseline",
+   "probability": 0.571713064778252,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "c06eb8b2bfaa79a65f8eeaf231a6c082a398507939b33d24060ca893253620ff"
+  },
+  {
+   "nct": "NCT06309485",
+   "method": "live_baseline",
+   "probability": 0.4318328604819654,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "e1c0bcf0586b0014a2fa0f38c010ae6758784aebb8f6a6f3c39eeda58185f2af"
+  },
+  {
+   "nct": "NCT06323213",
+   "method": "live_baseline",
+   "probability": 0.7492501054131706,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "1c3e69ee116a6c2afe63348f95a0e0647c8df7c8bea6382f19c0f95c5110f755"
+  },
+  {
+   "nct": "NCT06328712",
+   "method": "live_baseline",
+   "probability": 0.5161489462574329,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "100156897e7a0684fcce96eb03d45c919fe7aaad186a7e1d8d6821234d2425ac"
+  },
+  {
+   "nct": "NCT06340633",
+   "method": "live_baseline",
+   "probability": 0.4283166387701989,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "5abc84f2f95042abe25cf2780c267736e0e0305a82379e1835aea62fb9686e86"
+  },
+  {
+   "nct": "NCT06349980",
+   "method": "live_baseline",
+   "probability": 0.5473185763632185,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "536b6230fd527bdcdc6c49f4f6cd89f54c99fd06310d243da6d7b28e8638577f"
+  },
+  {
+   "nct": "NCT06361537",
+   "method": "live_baseline",
+   "probability": 0.6824988611192889,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "01bdea71fbfd4e433adfd86198257a954f1e3514bade0c3186abbd447a86c3e0"
+  },
+  {
+   "nct": "NCT06365853",
+   "method": "live_baseline",
+   "probability": 0.5458991678652337,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "345331d868fe56ef9674a5434053266f61bfc4ef8309012441099aa4b936a0c6"
+  },
+  {
+   "nct": "NCT06382129",
+   "method": "live_baseline",
+   "probability": 0.8221622121239079,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "47554a4b42e336ef00fb3ab5fc4a2615a4686678ab1b40298bb59a86dab9dbb4"
+  },
+  {
+   "nct": "NCT06384261",
+   "method": "live_baseline",
+   "probability": 0.44425836705172234,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "9b4ede06f52441ed24369bdb0ed559a8c26a7f22d5cac7d2fc0b79e2a8884ae7"
+  },
+  {
+   "nct": "NCT06388941",
+   "method": "live_baseline",
+   "probability": 0.43910430836154335,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "d10ec5855d799e3261a59a7957e6ebfa9f3141fd9a2cde61088df82795bfe017"
+  },
+  {
+   "nct": "NCT06401044",
+   "method": "live_baseline",
+   "probability": 0.6495637688083337,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "1bf2d5cefa940b5f351fd426256b857eb58e1d73c20cee3f3fe8887e8cff979d"
+  },
+  {
+   "nct": "NCT06402331",
+   "method": "live_baseline",
+   "probability": 0.7885608719953079,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "dcb86676010012f245920680810b11f9dae7606dc1efd33cf5d83ee2c6142a36"
+  },
+  {
+   "nct": "NCT06403267",
+   "method": "live_baseline",
+   "probability": 0.3655334033802628,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "c61c3b152ea360e4aaabf21524cc3945a70c5bc896d01c1a11bb0a156459ef6c"
+  },
+  {
+   "nct": "NCT06413433",
+   "method": "live_baseline",
+   "probability": 0.7968269947552404,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "3efe5bab57827ed8104a9f2a3cb90968bd4e7ac25452a2a9f6ebdba5069437cb"
+  },
+  {
+   "nct": "NCT06413706",
+   "method": "live_baseline",
+   "probability": 0.3618777703692157,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "ac8631717a30cd1bc778cd44be9d8d21775f18ec45efe496f8a81c2721793135"
+  },
+  {
+   "nct": "NCT06414954",
+   "method": "live_baseline",
+   "probability": 0.5146797192944462,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "3196c6ff64aa672e9c2e6546899a3a55c0388e5679c1868489db93c3388faf2e"
+  },
+  {
+   "nct": "NCT06417814",
+   "method": "live_baseline",
+   "probability": 0.8269990978258474,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "d23ed9f57b7d6667902fee526dcc2d6422017928d1caf0b124fce9db0d572416"
+  },
+  {
+   "nct": "NCT06421636",
+   "method": "live_baseline",
+   "probability": 0.683823897558697,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "e8d89bb93122f8ef063f420c76cdd57226e30a11add4519882016afb0e3fd3f4"
+  },
+  {
+   "nct": "NCT06430866",
+   "method": "live_baseline",
+   "probability": 0.665180327304715,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "d91871d0072aba56e94131837a1ad7d86e8167ddbb8012dc459aae986a97080c"
+  },
+  {
+   "nct": "NCT06434610",
+   "method": "live_baseline",
+   "probability": 0.4746083774618889,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "0683e19c575a1e12ae0dd39a8a51f3dca6e2ed95b5f3db7391dfd36c9a68c371"
+  },
+  {
+   "nct": "NCT06447597",
+   "method": "live_baseline",
+   "probability": 0.731633682935881,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "f7df246605286edc2b81738467a06ef645f55def847196536f107dca7e919451"
+  },
+  {
+   "nct": "NCT06456593",
+   "method": "live_baseline",
+   "probability": 0.5284893066877672,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "02f3969ae5f1b7da2478fae521e7f55f5b7454a7f39710b78fe9dca91f661c4e"
+  },
+  {
+   "nct": "NCT06463665",
+   "method": "live_baseline",
+   "probability": 0.4866901693050265,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "dc8a11aba3ce8e5e66be8383adfbaf1c421be7b53fd13d2f712e21981cbd6bbf"
+  },
+  {
+   "nct": "NCT06465563",
+   "method": "live_baseline",
+   "probability": 0.6108860175854122,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "ca20a60dd97603bdddc7138e1eb7c20f8336bbe60d67dc92d897b3fa9c18f440"
+  },
+  {
+   "nct": "NCT06468228",
+   "method": "live_baseline",
+   "probability": 0.941746552797652,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "dbf28619d7582822b42e1ca980581febfcaa1899c73e07f6eaa3a1d37401cfe1"
+  },
+  {
+   "nct": "NCT06470191",
+   "method": "live_baseline",
+   "probability": 0.7048177041392414,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "b5da773be82cb04161056533605ce04f09934bf2494ad66272e3fe6cfbcada9a"
+  },
+  {
+   "nct": "NCT06474806",
+   "method": "live_baseline",
+   "probability": 0.6192530460741915,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "87afd21828d14b46c79192012825b00a1d3e426835f070429f1599a05be44ede"
+  },
+  {
+   "nct": "NCT06479135",
+   "method": "live_baseline",
+   "probability": 0.6515082270341175,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "9bdbe646f67302ffc60dcfc5dcbe89a934169827ac88caea2d3347b3b8e77bb8"
+  },
+  {
+   "nct": "NCT06481306",
+   "method": "live_baseline",
+   "probability": 0.7023221891214978,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "3624e508f74d62c3aae73234e639a60c0a009065b3371bf5fc66e3cc13e17592"
+  },
+  {
+   "nct": "NCT06481891",
+   "method": "live_baseline",
+   "probability": 0.7003404151583948,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "2ea673af047a134f59b92470f8aa05f0ee5043e247136779ab57a6691524f35a"
+  },
+  {
+   "nct": "NCT06495918",
+   "method": "live_baseline",
+   "probability": 0.7629331778079663,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "d3d39f8af221cd574b8ee6c4832ee99fe4e0e803972b81cdd6368bc7e6e1b919"
+  },
+  {
+   "nct": "NCT06496971",
+   "method": "live_baseline",
+   "probability": 0.7101088725195577,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "45ca8f6ce4a0f659c307507d8b281f67b6e994960e60cfc1b349a8b515323124"
+  },
+  {
+   "nct": "NCT06500026",
+   "method": "live_baseline",
+   "probability": 0.8224593874150549,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "0b74a08a2f1d9be19d4a5db682bee1639df08dbb1ba29193fb234ba1f20dc2d4"
+  },
+  {
+   "nct": "NCT06500702",
+   "method": "live_baseline",
+   "probability": 0.5146797192944462,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "75c78f68d22e95c90c74f90c524adbbbae17018337ce60cd4dfae39d894c1250"
+  },
+  {
+   "nct": "NCT06501066",
+   "method": "live_baseline",
+   "probability": 0.3067391690214653,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "b8672cf9d70db91c8203c154e3891cffca9dfd89e6d2269ebf6618afaf8f9682"
+  },
+  {
+   "nct": "NCT06531824",
+   "method": "live_baseline",
+   "probability": 0.784894255395858,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "56457af8ec50ac852b97ff1201f7765fe0d51827f2a4a6bc51e51db148db242f"
+  },
+  {
+   "nct": "NCT06534437",
+   "method": "live_baseline",
+   "probability": 0.38098640322759364,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "7a5135ce53e2f03ebe23036d00893791e1f2f018c283d04846594c2704d1a18f"
+  },
+  {
+   "nct": "NCT06537999",
+   "method": "live_baseline",
+   "probability": 0.43713361597182326,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "9f5421ae51d543814e5a964d4a899e02b6e494e42de0e18df52ac01f87c4171d"
+  },
+  {
+   "nct": "NCT06544616",
+   "method": "live_baseline",
+   "probability": 0.37329880662140746,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "a829ca823f397c1f37de4c5fbbe72746eebb93961ee1ace851b55b9115371cb0"
+  },
+  {
+   "nct": "NCT06547151",
+   "method": "live_baseline",
+   "probability": 0.37823393081949336,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "6df36be0ca177781890d7f20196da7f8e0007238120b2f7ae2f5f8a6ae76ac27"
+  },
+  {
+   "nct": "NCT06551324",
+   "method": "live_baseline",
+   "probability": 0.6949782785888192,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "ab215ef71822484d5a18f6e223dd0a954cb50a91b8ec85a03a639d9a55a8af2e"
+  },
+  {
+   "nct": "NCT06559306",
+   "method": "live_baseline",
+   "probability": 0.8456647411913266,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "6a056390e1f05fc932d8317570ee234c9e9ef723303e7186a24f116b12771f56"
+  },
+  {
+   "nct": "NCT06561607",
+   "method": "live_baseline",
+   "probability": 0.7435762051435879,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "c4b4a36e92279930b651dbd3b8a1403cd231f671078335369379b3c3b208b78d"
+  },
+  {
+   "nct": "NCT06567782",
+   "method": "live_baseline",
+   "probability": 0.24034058974610714,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "3a34690ff90ead36ac076743ffda0304d27556c513075efba178ef94ec7596f9"
+  },
+  {
+   "nct": "NCT06568367",
+   "method": "live_baseline",
+   "probability": 0.79823063346974,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "b7ea02f58e65242591c672c0ab98e11f2fa9fca48dab838b5df5a7c496c25551"
+  },
+  {
+   "nct": "NCT06568627",
+   "method": "live_baseline",
+   "probability": 0.5859624739185094,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "8b01051dee24665acf69ef968dba3cfe5e51f22cbf3d44e45f7213c5b0178182"
+  },
+  {
+   "nct": "NCT06569524",
+   "method": "live_baseline",
+   "probability": 0.49837016663045525,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "d0c2152e73c88d43c8f11c97f4b93684dfe03311a38d1889b49d3f848934e684"
+  },
+  {
+   "nct": "NCT06570291",
+   "method": "live_baseline",
+   "probability": 0.7501531975926623,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "da841c8d005e02908438cafb2a6add2a0f2c4491cf6095c44092a1d6e64cc50e"
+  },
+  {
+   "nct": "NCT06577519",
+   "method": "live_baseline",
+   "probability": 0.7118862208940543,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "96525e3386960de8c83837a2f5b68ac7850b1febcc21f7c830ce9f5680ee3477"
+  },
+  {
+   "nct": "NCT06577935",
+   "method": "live_baseline",
+   "probability": 0.726410129474937,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "4fba79e2ab58d63abc2387ac94af3d9eaf54995c0ce0208f56ea8f3d92301385"
+  },
+  {
+   "nct": "NCT06579287",
+   "method": "live_baseline",
+   "probability": 0.33255168782093875,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "897dae9cec868fc176394fa6bd47d1ac56c29721067a961c1d5f50a89f22f564"
+  },
+  {
+   "nct": "NCT06585787",
+   "method": "live_baseline",
+   "probability": 0.7414279742107505,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "d7635de272cd87b311496f4e266df08ccd4b138f08ac503872b104842cf8289f"
+  },
+  {
+   "nct": "NCT06589986",
+   "method": "live_baseline",
+   "probability": 0.6975178455626306,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "9992286fd2ee14a8ad48b080de1b9a1a039a4db5954a6533512ee4b8d7acbb02"
+  },
+  {
+   "nct": "NCT06592794",
+   "method": "live_baseline",
+   "probability": 0.7317364958290153,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "814039f5068f3324d53d9e18431c342a64caaeb7d6d2ef5f089edcab7458b831"
+  },
+  {
+   "nct": "NCT06596252",
+   "method": "live_baseline",
+   "probability": 0.9308023427226726,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "26333273f97ceb5ab2eda555754c6fe545149137bba54b842d6e69dd2fe33f45"
+  },
+  {
+   "nct": "NCT06601335",
+   "method": "live_baseline",
+   "probability": 0.680253402360214,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "28e6ff571b59fa6c3b2804121fd938d642e97c5ec50a5c862f5e5e6bc9dcdf0b"
+  },
+  {
+   "nct": "NCT06602258",
+   "method": "live_baseline",
+   "probability": 0.6375817104046986,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "4ddb18d9e3b61f93491f787b49d940f68791ef8640bd17cebc048f48d51a74b5"
+  },
+  {
+   "nct": "NCT06602479",
+   "method": "live_baseline",
+   "probability": 0.7707180710651034,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "43c2e9111aad958d521b6c00c38c393c94d5766d7879b0a7980ef6ea125e096b"
+  },
+  {
+   "nct": "NCT06607458",
+   "method": "live_baseline",
+   "probability": 0.3714218253528129,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "5fac9d0d309ac1255e7123fd1450bffc72e2f9982deebe1e11993ca37bc15f1d"
+  },
+  {
+   "nct": "NCT06616974",
+   "method": "live_baseline",
+   "probability": 0.4580946871568214,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "1ccbf8589fb56fe45ba9d553460756c7a96822470843f75830a786ecf6330c1b"
+  },
+  {
+   "nct": "NCT06636682",
+   "method": "live_baseline",
+   "probability": 0.34844381253298884,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "20731ed89679d6b995740d25598f52d34846241c5dbb459f293c998a88747e84"
+  },
+  {
+   "nct": "NCT06641089",
+   "method": "live_baseline",
+   "probability": 0.723193432965026,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "898c8255b9bb6c92e690ca7ef035aeb9a5d9b6ec36c2ddb586608f797558d040"
+  },
+  {
+   "nct": "NCT06641466",
+   "method": "live_baseline",
+   "probability": 0.7720155556519082,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "c44c3b076bf3fbaddf473a3666efa9ddb73683cf7d4a886e2f1c713bf5e0a43a"
+  },
+  {
+   "nct": "NCT06646055",
+   "method": "live_baseline",
+   "probability": 0.6368058671372323,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "b7452901038390b8469786445622a62847ea74b9dc822940d395ce756cc5e3ee"
+  },
+  {
+   "nct": "NCT06660394",
+   "method": "live_baseline",
+   "probability": 0.6807080720052783,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "38c8c6afca36ff4aadc0bc1cdb926dc806df041cef3d17f0123addda577dda65"
+  },
+  {
+   "nct": "NCT06660992",
+   "method": "live_baseline",
+   "probability": 0.752982575340858,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "e1602ccebfd60c918c6f6a552cd7816cd5db334bdd0db3601675f46fa54a82ab"
+  },
+  {
+   "nct": "NCT06664775",
+   "method": "live_baseline",
+   "probability": 0.5476729982077505,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "39ed56ab1e3ba5b4b52a063e9e9c376399880dcfad2fefe09e536a3274d43b98"
+  },
+  {
+   "nct": "NCT06671379",
+   "method": "live_baseline",
+   "probability": 0.7426042910010681,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "8c6735497a8c5041d1cf89f1adfa71d2f54f384a56a1276c156d631bd68ca3cb"
+  },
+  {
+   "nct": "NCT06677229",
+   "method": "live_baseline",
+   "probability": 0.4297573562999452,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "b8607f58b48fc12269776fba221b293053b3e474c22b51ddc871caf21a15c9ad"
+  },
+  {
+   "nct": "NCT06680947",
+   "method": "live_baseline",
+   "probability": 0.522474599154179,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "2f8f7741a2c6513b9bd64818c8646391988f0b8342e46a5a1d6d5391e80e5be8"
+  },
+  {
+   "nct": "NCT06685757",
+   "method": "live_baseline",
+   "probability": 0.6833081861773608,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "7609aa132d2384e706ad2711638a3ed0240d10f191b7004e9702e329ce162140"
+  },
+  {
+   "nct": "NCT06686654",
+   "method": "live_baseline",
+   "probability": 0.9891497496398878,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "0c51dc0d4f636356f952cba8bfbed03614b428c0db519b5bf9b8c99b657d0d54"
+  },
+  {
+   "nct": "NCT06693895",
+   "method": "live_baseline",
+   "probability": 0.6301948865933147,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "5fec8f93f7207bad7e46ce5c8c5b1d0fc22df975fd6f63bb3a2bcb535c75468f"
+  },
+  {
+   "nct": "NCT06696261",
+   "method": "live_baseline",
+   "probability": 0.7454034027549595,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "2ff2fe9a0538c0ca7f07440af450dbe309509f9d92813bede3bbbaf281269cf0"
+  },
+  {
+   "nct": "NCT06699108",
+   "method": "live_baseline",
+   "probability": 0.7734857668678142,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "20c1fca11e8f6f83e7d0fb93e659ec9281c842f2f153b5376766b5b71247ba8a"
+  },
+  {
+   "nct": "NCT06701331",
+   "method": "live_baseline",
+   "probability": 0.9038996222818764,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "a3b0065d931191c488e6cf881843e445c81cee7e2fbe4ad3b5e8db1bd7be81bd"
+  },
+  {
+   "nct": "NCT06707103",
+   "method": "live_baseline",
+   "probability": 0.7383832525635796,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "1121490dafb1164675769af64267dca1e64ad1114d875491c6d752f8e67d0178"
+  },
+  {
+   "nct": "NCT06707883",
+   "method": "live_baseline",
+   "probability": 0.45569834218290817,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "e44940e71b46030a37ead430ff7dba9c18824ec74d5b1c66e011c70de04ed560"
+  },
+  {
+   "nct": "NCT06711900",
+   "method": "live_baseline",
+   "probability": 0.6905837496495625,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "68ef2ede2bab27c819945d3ab454df25fa1798a2790ae14e2a1f48d37cbbd8a4"
+  },
+  {
+   "nct": "NCT06712654",
+   "method": "live_baseline",
+   "probability": 0.8102542363033085,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "7d734d1a32fb1c9c67800d90824e4641c6d3700bf24729d6bfa33b8c611e7cfe"
+  },
+  {
+   "nct": "NCT06721143",
+   "method": "live_baseline",
+   "probability": 0.1629926708627602,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "27edd88388d7b7ca5aa25a751ed3ae738ac6e5ff33ab6090c5abb622ee607350"
+  },
+  {
+   "nct": "NCT06721871",
+   "method": "live_baseline",
+   "probability": 0.9661065372636161,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "57253616c02c7c80d056c724eefca0a4c6088f5b4fe3eb0e56cf1248296b19c2"
+  },
+  {
+   "nct": "NCT06740630",
+   "method": "live_baseline",
+   "probability": 0.804490774849441,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "bbe8cf25184c98aba7413fd69059a0a057c6d8688cba67d62a8cf63750075ede"
+  },
+  {
+   "nct": "NCT06741969",
+   "method": "live_baseline",
+   "probability": 0.7037374260087168,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "4e0ef4a8f498cc3d398035f06a8997c9dc44c67509b19334d2eb6be4edf70cdb"
+  },
+  {
+   "nct": "NCT06747338",
+   "method": "live_baseline",
+   "probability": 0.7431008118274228,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "b0eb8265468f69d6dda07e6b0974164e3a69c548e31746a1e31e382612c72d22"
+  },
+  {
+   "nct": "NCT06752668",
+   "method": "live_baseline",
+   "probability": 0.5775688410999914,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "a85fb9dfa005141a877737e2a24e97b5fa3e72163639e835fc3fe58e82f5a31e"
+  },
+  {
+   "nct": "NCT06754644",
+   "method": "live_baseline",
+   "probability": 0.7092476222224234,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "18601e04065862b3efb351a56c4cabf21e461fdfe574235debcc985d4135ca5e"
+  },
+  {
+   "nct": "NCT06764940",
+   "method": "live_baseline",
+   "probability": 0.6774533384846281,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "cbe209d753699785f58115ce29cdd1cbdaa3c93d63951c0cdfbb96ef855f92f2"
+  },
+  {
+   "nct": "NCT06767527",
+   "method": "live_baseline",
+   "probability": 0.7264922117260421,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "b940b7adaec0e2231c44c890120f1939ff67cd122dde581440e3f5cd90a90a16"
+  },
+  {
+   "nct": "NCT06769048",
+   "method": "live_baseline",
+   "probability": 0.5233218650194317,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "ad5ac2f8fa7dee9637a929f8e34e2a176850174038dcaf47607602b1db8a6195"
+  },
+  {
+   "nct": "NCT06769152",
+   "method": "live_baseline",
+   "probability": 0.6834331536421122,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "f69cc80c0baf51c1f3e3700a868f9c7f53f544c17d30c7b319cecdad6d8a55a4"
+  },
+  {
+   "nct": "NCT06773962",
+   "method": "live_baseline",
+   "probability": 0.3749603877578902,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "04ccdd7f689166f6e3bf485907286fbfc2f19198b7eb630207c3c39678815072"
+  },
+  {
+   "nct": "NCT06775860",
+   "method": "live_baseline",
+   "probability": 0.7508256637788403,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "0303f9b0345f9c127ae9bfb6213608b8606271076569f93ce308ab784ddbb562"
+  },
+  {
+   "nct": "NCT06776432",
+   "method": "live_baseline",
+   "probability": 0.39832142462492043,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "d7a5b17a47d4c4694240ab6be0c766102d1b426e08ab7eab142bad9a6b374eee"
+  },
+  {
+   "nct": "NCT06783647",
+   "method": "live_baseline",
+   "probability": 0.6313239481085589,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "ca4096a0c33b82fd0d43cdf23c7c8db59600416d45515f938338ee5e7e68dc87"
+  },
+  {
+   "nct": "NCT06797297",
+   "method": "live_baseline",
+   "probability": 0.29500617768438125,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "d80b0587c6da213476ecb74580823304a8293462945324ec8b057288c3854fcc"
+  },
+  {
+   "nct": "NCT06799247",
+   "method": "live_baseline",
+   "probability": 0.5922975852747067,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "d5d95ec02f1b0249f8e01b48e58f53b7142171ff4967f7ebe0295046e435d0d6"
+  },
+  {
+   "nct": "NCT06800651",
+   "method": "live_baseline",
+   "probability": 0.44608991830058303,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "d5616ce2838010cdb58c5f8b616c766e2e457de82c9c4d25d1c42c3a1941a957"
+  },
+  {
+   "nct": "NCT06803823",
+   "method": "live_baseline",
+   "probability": 0.44011665130736816,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "f1e6bb2fa5a656ea0f2c7d32d5f69caa5f5ed39cc3df83a4ed71a81754512aa0"
+  },
+  {
+   "nct": "NCT06806137",
+   "method": "live_baseline",
+   "probability": 0.7012723659852605,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "87dfc733a43d412a1e7d221edeb991e0312c98b977721cef97f619700f1c32f2"
+  },
+  {
+   "nct": "NCT06807424",
+   "method": "live_baseline",
+   "probability": 0.7602413475293144,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "1797cb01cba25209bd186a5a8e4705a2ebd51f1b9dbafb9d7e843affc2b193e4"
+  },
+  {
+   "nct": "NCT06812078",
+   "method": "live_baseline",
+   "probability": 0.38107365041907415,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "f6997ea804b0f07f34f7aebe10037e313238044f185bf02b31977fdda1e6999d"
+  },
+  {
+   "nct": "NCT06819826",
+   "method": "live_baseline",
+   "probability": 0.6961804363412487,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "9ed1174684bfeadc085e9bf5638d9b626b52f03f42a543d9092ac53342e7f33b"
+  },
+  {
+   "nct": "NCT06820099",
+   "method": "live_baseline",
+   "probability": 0.4536624098795215,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "9157bfaa5fe5facb76bf5dc1b12724cd12a05cc7c464c1f58b1ded4bcc4e0073"
+  },
+  {
+   "nct": "NCT06832722",
+   "method": "live_baseline",
+   "probability": 0.280889872616647,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "73f805c5640f49a4d3c5eaf2eaf3349e01d6aaf1d65c5c2ae8cb3c4feaa05a7c"
+  },
+  {
+   "nct": "NCT06834932",
+   "method": "live_baseline",
+   "probability": 0.9238037862125623,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "00d9e37dec4450ea8a7a897fcfd54a403adac454837fd096d4921ca0ff423807"
+  },
+  {
+   "nct": "NCT06838000",
+   "method": "live_baseline",
+   "probability": 0.7940647496833327,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "93c36cf95d45288df3ec9c06310a28666a61141b83756b43d7c2682715d687bc"
+  },
+  {
+   "nct": "NCT06839066",
+   "method": "live_baseline",
+   "probability": 0.6068599118182543,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "a3fa567eeb1021199f9954dfdce9d1670c20c197a5f443cf897a5d6c4f065c75"
+  },
+  {
+   "nct": "NCT06842823",
+   "method": "live_baseline",
+   "probability": 0.8647217743363902,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "2155aac7088c46e22743b08a9d65c099c4b6ecb80013573661f552c3f1ece976"
+  },
+  {
+   "nct": "NCT06842966",
+   "method": "live_baseline",
+   "probability": 0.5946126073420325,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "d912a9c1cff79d1b9c84bf5d27fa762897467e4957be5c8d92e70f9d0c94c6a3"
+  },
+  {
+   "nct": "NCT06843018",
+   "method": "live_baseline",
+   "probability": 0.48273385963253057,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "e3d99b6f3f6980132400138515a0443c21d141593196c6b0a72ed7c7f4ca3163"
+  },
+  {
+   "nct": "NCT06848348",
+   "method": "live_baseline",
+   "probability": 0.44562931714902304,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "fa5306eff58827d7aa0e79d88cdf41f78bfbb6e196750f2fc10274b1b5eb2495"
+  },
+  {
+   "nct": "NCT06852768",
+   "method": "live_baseline",
+   "probability": 0.23818799785810846,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "25dd48fa72fb5aea731701fd0846ebb1c03515c0ebce13b3aa4099a15d94a538"
+  },
+  {
+   "nct": "NCT06856577",
+   "method": "live_baseline",
+   "probability": 0.6424877671382282,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "3dfac808f3a3dc8312eda3a556e906a93d0f476f2d26e9b7edf934f54007a8c5"
+  },
+  {
+   "nct": "NCT06858839",
+   "method": "live_baseline",
+   "probability": 0.8210567932325731,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "b02397adad56e0d6bd92e531c78b0da467dd0518a8da32e5e879ae55f04e980a"
+  },
+  {
+   "nct": "NCT06858878",
+   "method": "live_baseline",
+   "probability": 0.8097388528984718,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "bb7df96fec84dc802c59e872e5ee58ce8f2112b6c9e259c2d474da2f90e87964"
+  },
+  {
+   "nct": "NCT06860971",
+   "method": "live_baseline",
+   "probability": 0.7615884214723255,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "22587f31373e72fc36c6b36b4d1403d35241a3647bcf9ae26361921d93ff5a87"
+  },
+  {
+   "nct": "NCT06863701",
+   "method": "live_baseline",
+   "probability": 0.6221460929066112,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "8dd420e4ce8a5d2c6e8afb0535cb44302cab2afd5bd95c38560b63cd4786f369"
+  },
+  {
+   "nct": "NCT06868212",
+   "method": "live_baseline",
+   "probability": 0.7007321270166162,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "d7a2252b8c0da15b7361c28861704758efcde42b1ae6b241a635806cdfd66682"
+  },
+  {
+   "nct": "NCT06873035",
+   "method": "live_baseline",
+   "probability": 0.7197478782814315,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "e655948890b4aa025d028c9de8750511755f578daec4aaad380c6711df038036"
+  },
+  {
+   "nct": "NCT06879717",
+   "method": "live_baseline",
+   "probability": 0.42766591229883155,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "ca3eea3b31dc8e9fe81f9331e97205c25acd43ade2aa7c581ee5f196df28aaf0"
+  },
+  {
+   "nct": "NCT06884293",
+   "method": "live_baseline",
+   "probability": 0.7146701463666626,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "fcce019ebe51009c4daae82927c1a539a4ab447c94b3042f74dd7ec5043d7acd"
+  },
+  {
+   "nct": "NCT06889701",
+   "method": "live_baseline",
+   "probability": 0.5188330547462419,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "666bbdfd191be81b02ce7bcfa162696bf7ac15ddac71e57daff077b20137213a"
+  },
+  {
+   "nct": "NCT06899802",
+   "method": "live_baseline",
+   "probability": 0.3364236270174667,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "807797f8f3d36ad5b0fc25cf812feca7dc80555338b3897ffa8d57bc0531dcc0"
+  },
+  {
+   "nct": "NCT06905210",
+   "method": "live_baseline",
+   "probability": 0.7503890443730756,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "fd6c2ca58b55d7635aa793ef53026f2237e86e1af5a73178e10e5a8df24d5c97"
+  },
+  {
+   "nct": "NCT06907511",
+   "method": "live_baseline",
+   "probability": 0.5816737594959519,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "313230ffa0053ca8a062f6a200c73078820b682276178c802b5715f3d0869557"
+  },
+  {
+   "nct": "NCT06908876",
+   "method": "live_baseline",
+   "probability": 0.3202747832152194,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "7a75e5328f77918486b484fd68ae76909a252a0b547ef47cdc5a702aedce0915"
+  },
+  {
+   "nct": "NCT06912633",
+   "method": "live_baseline",
+   "probability": 0.27355505684165354,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "9beb4eb2f681b791430a50517c269ae4217fc203885e1fbe2d0235bbfede98ad"
+  },
+  {
+   "nct": "NCT06927739",
+   "method": "live_baseline",
+   "probability": 0.6116547516081197,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "08a76e47a9b1abe8179ef03517135c1f0b5aa503478f49f1dfbaaa9129e7eeae"
+  },
+  {
+   "nct": "NCT06937203",
+   "method": "live_baseline",
+   "probability": 0.5233218650194317,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "3e091692a016df9ef3421fa889bb8d2652d918aede261d608c58417dfc194d2e"
+  },
+  {
+   "nct": "NCT06939595",
+   "method": "live_baseline",
+   "probability": 0.6694691932745479,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "f2f7c5907cd331245ca6af91b72018238da3349731da4830a4b70c3a0f153885"
+  },
+  {
+   "nct": "NCT06943820",
+   "method": "live_baseline",
+   "probability": 0.846713339754862,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "67b7f8c097c35b641462a974b614a8a5ad5c7eaef73df5ac53dd0fb75e9f56fe"
+  },
+  {
+   "nct": "NCT06946797",
+   "method": "live_baseline",
+   "probability": 0.5407039092634103,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "a2e9824d896346a3a9683cb1b7970164c2d69f83c5e0f12d97eeb2b0b700ae8d"
+  },
+  {
+   "nct": "NCT06951503",
+   "method": "live_baseline",
+   "probability": 0.6814754517956434,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "8ab82c86e3505276ca1c991087bc746b654fabc205090c0c17bffda880d6c203"
+  },
+  {
+   "nct": "NCT06952699",
+   "method": "live_baseline",
+   "probability": 0.3798513242936002,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "536b20e63426e67c7e13d2edad8b7a86237728ebb1d7073165866926587a4716"
+  },
+  {
+   "nct": "NCT06954961",
+   "method": "live_baseline",
+   "probability": 0.7454775286806453,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "4c637e7061bc1ff0c3acc7a8962cbe8d9266bbec1f883a3b638ffc8f9324671d"
+  },
+  {
+   "nct": "NCT06957080",
+   "method": "live_baseline",
+   "probability": 0.7181733929714414,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "b9c4fd5213bb10ad5db4451b325df421382fc8467393bfaed499952224209b90"
+  },
+  {
+   "nct": "NCT06958536",
+   "method": "live_baseline",
+   "probability": 0.44835589199572573,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "53d584ba81e05ccf79de6cdbe829023a63ddc169b4fe356c9f5fbcf043fcfe34"
+  },
+  {
+   "nct": "NCT06968585",
+   "method": "live_baseline",
+   "probability": 0.6884155125612604,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "8474429aa8daf05462814ab0c51edef932df2e96509fccee7f7993a3a041819b"
+  },
+  {
+   "nct": "NCT06972264",
+   "method": "live_baseline",
+   "probability": 0.8383906788773028,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "4179cff528d0040a3ff07885dae1b8ce7b7a03e8e56cab60cd0bc39611dd597e"
+  },
+  {
+   "nct": "NCT06972446",
+   "method": "live_baseline",
+   "probability": 0.6583519291706192,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "323a6ea9926c1431528f857a1b7231f64b887ca38f3325d8a11fe977046b19f0"
+  },
+  {
+   "nct": "NCT06974851",
+   "method": "live_baseline",
+   "probability": 0.7351065406548054,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "8a11b8b656a30cf428de0acb0b34e85fa7cfa125f9a9db75318c1f18278fde6f"
+  },
+  {
+   "nct": "NCT06975722",
+   "method": "live_baseline",
+   "probability": 0.44922431218987485,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "0ad03cef16179d54b7d818d36347a3f030ba0ae205f306133a8c5d4ab6cbc8da"
+  },
+  {
+   "nct": "NCT06982963",
+   "method": "live_baseline",
+   "probability": 0.299732161132298,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "0f6dfe84fbe74c601be388b8ca9596db48aa5e30c7c19d13c1cf76a257e79a38"
+  },
+  {
+   "nct": "NCT06984627",
+   "method": "live_baseline",
+   "probability": 0.4937237602700473,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "d9dd387e178d816e52fe1c3b66e2585108b29458cda94cb1f34b8210af492e27"
+  },
+  {
+   "nct": "NCT06989918",
+   "method": "live_baseline",
+   "probability": 0.7320757158925518,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "f22e58e5112df723ee4679d8535060adf096b5ba556d0eac0943a631d06b258c"
+  },
+  {
+   "nct": "NCT06991556",
+   "method": "live_baseline",
+   "probability": 0.4469543237847179,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "2438824dea8102db9edf69fc633000f82e40da3789613e58ff39734baa9839c6"
+  },
+  {
+   "nct": "NCT06994650",
+   "method": "live_baseline",
+   "probability": 0.7354345864809946,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "27117e97702c2fa6c568ae6b5000a719d38d20e2614d14a3ed5677e504cb19e6"
+  },
+  {
+   "nct": "NCT06996080",
+   "method": "live_baseline",
+   "probability": 0.7876921359850468,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "79a28180f287a18a97c150ae5bd0cb83d86a400bb51fe32e370a9ec61a38c235"
+  },
+  {
+   "nct": "NCT06999733",
+   "method": "live_baseline",
+   "probability": 0.23961424778336532,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "37b651f28f82e1aa8fb47a16e2504df3e5bc71d0658c1e40d6512ed9ad41cdd8"
+  },
+  {
+   "nct": "NCT07000123",
+   "method": "live_baseline",
+   "probability": 0.7228814207390339,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "51d4f2d38a300b0d6e5129fe61da74c4d61a6e54838cbd44bc27491f2d64c9df"
+  },
+  {
+   "nct": "NCT07000136",
+   "method": "live_baseline",
+   "probability": 0.6996395079659943,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "22586284cde649ddb5be1e944b08f81a0eee6dcb889e20820015e4a9b950350d"
+  },
+  {
+   "nct": "NCT07005180",
+   "method": "live_baseline",
+   "probability": 0.433590652895465,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "30cb8da2f060ec039125b758fad9dfaa91e1655cbae7e2d6180fdfd69d3502cb"
+  },
+  {
+   "nct": "NCT07009171",
+   "method": "live_baseline",
+   "probability": 0.6464974623384299,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "c7eb166e6de0a5bc06760ad20bc2a50725c606777d93fc8a0ea2ba072b00c782"
+  },
+  {
+   "nct": "NCT07010471",
+   "method": "live_baseline",
+   "probability": 0.7419962519438902,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "d5bba39f09df92839db2bfebd280de1dcf5b8590da28ac9c1d1f5d5cf0b5d3e0"
+  },
+  {
+   "nct": "NCT07015905",
+   "method": "live_baseline",
+   "probability": 0.7772697469662353,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "d3aea9572408b46a55216712394a1b4a7135500177bcc1c8e5831e0326af02c4"
+  },
+  {
+   "nct": "NCT07016750",
+   "method": "live_baseline",
+   "probability": 0.5625151175306694,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "20bc21893e9aedef6a70f3e478b001ffcbbe753a931da234da084492b23fffea"
+  },
+  {
+   "nct": "NCT07017777",
+   "method": "live_baseline",
+   "probability": 0.6830407226544505,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "3ee2aaeaf7fb050146fbff3d8c27ba2c4ac5044b09b2ef16bea979b5ca602376"
+  },
+  {
+   "nct": "NCT07019675",
+   "method": "live_baseline",
+   "probability": 0.6211375246103366,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "f22970762ae07469a5100ad7f6493d66b9d249b699694233f67a54e108e3629f"
+  },
+  {
+   "nct": "NCT07023614",
+   "method": "live_baseline",
+   "probability": 0.3887369509341829,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "65c4a572bd2a6da06a4dea373d97e2ce61f606c885293effdcb5e18f551bca39"
+  },
+  {
+   "nct": "NCT07027345",
+   "method": "live_baseline",
+   "probability": 0.32301859385324455,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "7e96438553b132c25aa49a613941e250060c293cc5eef930b72d5ca4142cccbc"
+  },
+  {
+   "nct": "NCT07029711",
+   "method": "live_baseline",
+   "probability": 0.8331198327223781,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "88bd445b27b3c68628204cd559d0f3706ebf9708cfa535cacf2f2492b3dec0eb"
+  },
+  {
+   "nct": "NCT07037277",
+   "method": "live_baseline",
+   "probability": 0.6696515453844184,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "9b97273c035f403e228470fb72648f787e0b93a6067747f8b41708422346f12a"
+  },
+  {
+   "nct": "NCT07038382",
+   "method": "live_baseline",
+   "probability": 0.48155032509334833,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "1902ff7380302d8967555b8da480e4658c4f8a7e86a2e2bdbcaec551c9675cf3"
+  },
+  {
+   "nct": "NCT07057622",
+   "method": "live_baseline",
+   "probability": 0.7028140340837907,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "e6731f1c15d310d5a0bb4d9744c31f1dd2297be3e2cda5a3f4925e8aaa57148d"
+  },
+  {
+   "nct": "NCT07060456",
+   "method": "live_baseline",
+   "probability": 0.792854547491067,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "168887b740e67effdb9b0a768f95d21adeec4d8ae2a7b8b1994196d13fcb30df"
+  },
+  {
+   "nct": "NCT07062978",
+   "method": "live_baseline",
+   "probability": 0.6958461541797653,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "adb96ef24bd5d39890c46ed0740c2c2c69a85251d6ca0c2022b1bfed4b93418a"
+  },
+  {
+   "nct": "NCT07073417",
+   "method": "live_baseline",
+   "probability": 0.4057605360064984,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "4bd49941fcd20248d846513e38748dff34e85bf3893595c98aa40f3be87801f8"
+  },
+  {
+   "nct": "NCT07074977",
+   "method": "live_baseline",
+   "probability": 0.43153932482202273,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "c2c2735d19a52ebbc2db4b2a4de205a15bbb238dfc557a5d8c7bc54333703a9c"
+  },
+  {
+   "nct": "NCT07076199",
+   "method": "live_baseline",
+   "probability": 0.7220304584314193,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "c9b08e9318617b199c9b30b594f6abd28fb81998155496122b48574491bf5ad5"
+  },
+  {
+   "nct": "NCT07080034",
+   "method": "live_baseline",
+   "probability": 0.4363399331086338,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "b47c62c66819f631afe49360738fb3eb737d9bb464c89bb91e1912a2078bc887"
+  },
+  {
+   "nct": "NCT07082114",
+   "method": "live_baseline",
+   "probability": 0.8088908956836287,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "814bb9dbdad5990bbed764d044a4ef877c5eccd9b5c5433465a21f66968ff0f2"
+  },
+  {
+   "nct": "NCT07087158",
+   "method": "live_baseline",
+   "probability": 0.41511779916529756,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "bbd9ba90c3b5d7bbd95344d4d673b6153e7acfd00ba15656c513f36535bfb29a"
+  },
+  {
+   "nct": "NCT07089186",
+   "method": "live_baseline",
+   "probability": 0.6798503479371345,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "2f2aa1e985ddd3e7b0b7f6201ba9bf329c004c371a69e009d5da4c0833888602"
+  },
+  {
+   "nct": "NCT07090759",
+   "method": "live_baseline",
+   "probability": 0.7502824701628649,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "4649cea4258a99c4318c5319f805d8f6cc3e7bdb9807501e02a8b28566e32b79"
+  },
+  {
+   "nct": "NCT07093476",
+   "method": "live_baseline",
+   "probability": 0.7020946104580507,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "529a2b45976ebcaae9167ceb3b0f45048fcdf8c170575a7f50474731dc5bead6"
+  },
+  {
+   "nct": "NCT07097701",
+   "method": "live_baseline",
+   "probability": 0.6205774610207626,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "116dec16646bf9af77ba960ef21ca5478f41add6dd38138a1904f33f63ab9bc8"
+  },
+  {
+   "nct": "NCT07102628",
+   "method": "live_baseline",
+   "probability": 0.7440961280235884,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "a785e86efb20c0d66eedf8ea8c1e7436aa9a79436fc5d3a51bc6b6c2991e84fe"
+  },
+  {
+   "nct": "NCT07103148",
+   "method": "live_baseline",
+   "probability": 0.879030694405416,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "768cce739395d48b8696b020d9c1d4c79af3e6235ee82b76d4c30ed2ce0e3f03"
+  },
+  {
+   "nct": "NCT07105488",
+   "method": "live_baseline",
+   "probability": 0.36542410554158766,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "da007b042d20290b58b1a3721c5c8b8fde38e82abcee39c3e56762aa78cae97d"
+  },
+  {
+   "nct": "NCT07106892",
+   "method": "live_baseline",
+   "probability": 0.6046757779798274,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "d4b069b5f1261580e536f82471f7b4d5de116e72688b48f754349c4989d7b0ae"
+  },
+  {
+   "nct": "NCT07113262",
+   "method": "live_baseline",
+   "probability": 0.7323964326658252,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "765d4959bb69c25311bc866d051e664f4f117e4a6164f134dadf94ea7eb41495"
+  },
+  {
+   "nct": "NCT07118241",
+   "method": "live_baseline",
+   "probability": 0.378515537529479,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "239e08dcfe05bc81cf6df09acc14b1866a433b7b70037d0304ba365669fea85e"
+  },
+  {
+   "nct": "NCT07118891",
+   "method": "live_baseline",
+   "probability": 0.6274554574909721,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "9a385b95d0ef4b5d98207fe19d7fb0fe3d1d6131ee80fbab9875ecf8da0171b5"
+  },
+  {
+   "nct": "NCT07121413",
+   "method": "live_baseline",
+   "probability": 0.4309481720660348,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "6b58c8117c33a468baec2e6b70105aa8a155e494a3a05b4f27ad28d350e02796"
+  },
+  {
+   "nct": "NCT07122401",
+   "method": "live_baseline",
+   "probability": 0.7011858989730873,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "6d66f1366625a2c616bc2ddc35be0aa56e91127e05742092bfafbbe412e0a4f8"
+  },
+  {
+   "nct": "NCT07122687",
+   "method": "live_baseline",
+   "probability": 0.4402946418954269,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "4bae374299beee926ce7746fc4a70e79430e915ba614bf53fa48acc7866e7f0d"
+  },
+  {
+   "nct": "NCT07127042",
+   "method": "live_baseline",
+   "probability": 0.4667219196581386,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "6fb424ad94c62f01a309fe4e69301cb557f175d3f576eb5aa12f92cd9338c2c2"
+  },
+  {
+   "nct": "NCT07128550",
+   "method": "live_baseline",
+   "probability": 0.7410741879029198,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "f884d3512626410c927720ebe55367f89f259d52136b163a9927c38b810ad7e4"
+  },
+  {
+   "nct": "NCT07136805",
+   "method": "live_baseline",
+   "probability": 0.688299822009494,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "0ec70d0d2d13b67b92967eadbae7a36646d7bd691759058a6f3f6ead04c7c78e"
+  },
+  {
+   "nct": "NCT07142044",
+   "method": "live_baseline",
+   "probability": 0.4237569992489565,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "f625f90b5e867b6112e80c9ae681bc2ce7c4b80f22a9911ad95be9b9afa5fc1b"
+  },
+  {
+   "nct": "NCT07144345",
+   "method": "live_baseline",
+   "probability": 0.848051454376438,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "3ef440d0b26e072a58368dd2dcb45c50ad6ea4a1a20c9f864e2e037617a19649"
+  },
+  {
+   "nct": "NCT07144852",
+   "method": "live_baseline",
+   "probability": 0.7679585879283325,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "97ce5663261bf05c0acf7a571c4b57e64c8a889c2761c47f0236b2e510f3a88f"
+  },
+  {
+   "nct": "NCT07145333",
+   "method": "live_baseline",
+   "probability": 0.7459043833055645,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "95ab3c75fbc60b84e45d6d4f75c989d9f4ec039fc8581fa5ffb9606c30cf3f67"
+  },
+  {
+   "nct": "NCT07162883",
+   "method": "live_baseline",
+   "probability": 0.8974643009790931,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "f6085c0dd94e14e9857694bcc89ae2d28b5fd2596bf73a013b48dc67e33e05a9"
+  },
+  {
+   "nct": "NCT07169695",
+   "method": "live_baseline",
+   "probability": 0.34344250221288775,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "da305c851af5ca1bf076bad5d9bfa80df81620a98c71564a88919832404ed0fa"
+  },
+  {
+   "nct": "NCT07169851",
+   "method": "live_baseline",
+   "probability": 0.4253432533336844,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "5c5db74b28893b02702bbc1a7decaf5929d463b8e6bbbc0b6c8d4a3d50fe5100"
+  },
+  {
+   "nct": "NCT07170917",
+   "method": "live_baseline",
+   "probability": 0.5282046867957342,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "5b3e1da4a4231bf6ea5b48cf9be4107347e8fbec0915d21afa6d1081178ba76c"
+  },
+  {
+   "nct": "NCT07175428",
+   "method": "live_baseline",
+   "probability": 0.44179641683798726,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "449a5a47c83d6ff70eb234600eb1f303021f4818ddb965ee5e276570797f86f1"
+  },
+  {
+   "nct": "NCT07179640",
+   "method": "live_baseline",
+   "probability": 0.6394221817534472,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "e107e53e1c0bedcb47c999a096100176afcd84dd075247231b3ebc596e28e9eb"
+  },
+  {
+   "nct": "NCT07184632",
+   "method": "live_baseline",
+   "probability": 0.45359619195938,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "68ead5f7ec8a5479f3a8a4f6e207ef31ff0195cf0853ae1f3b28beb2a19c30a9"
+  },
+  {
+   "nct": "NCT07186413",
+   "method": "live_baseline",
+   "probability": 0.7047009746955808,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "6bff2f278cbc53944bc2b0a4276dffab529184de89f0fc57a2e18cfbe45bbe5c"
+  },
+  {
+   "nct": "NCT07194382",
+   "method": "live_baseline",
+   "probability": 0.3475478036775489,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "82ccd052dff1f65e6d6a88de90c78ccf9bb50b0be73f74704fcf0fe696617fa6"
+  },
+  {
+   "nct": "NCT07199569",
+   "method": "live_baseline",
+   "probability": 0.3348204092515412,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "67b2072b0ba2c1ef8b5509f65ec588bb4bb3383eecb1c96e7ad39bd8ad3ca6f2"
+  },
+  {
+   "nct": "NCT07205900",
+   "method": "live_baseline",
+   "probability": 0.4562088395853499,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "1333f6547374c5423d409ec869044f2cb640493180b84776f25bdb2843f7394f"
+  },
+  {
+   "nct": "NCT07207408",
+   "method": "live_baseline",
+   "probability": 0.6803095112366551,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "2520d2180d6c4d2e1fcf3cba3965cd75bcfad78133d58d425c552ce097945c2e"
+  },
+  {
+   "nct": "NCT07214571",
+   "method": "live_baseline",
+   "probability": 0.5201015081440759,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "8000921f831e1427b13d77a1008c2005cabcb74293dfb3e1caadf5c5d258e3c7"
+  },
+  {
+   "nct": "NCT07215273",
+   "method": "live_baseline",
+   "probability": 0.32144338734937367,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "b6729182ab4049c8942698e3536e8dc6ec022418d1a9f6fb5c50ad84d419476b"
+  },
+  {
+   "nct": "NCT07215702",
+   "method": "live_baseline",
+   "probability": 0.38468372457356814,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "3ef60e4622a8f89b4ebd18b42f984f4c2ad7690dd034242542b5ebb12af1ed98"
+  },
+  {
+   "nct": "NCT07218523",
+   "method": "live_baseline",
+   "probability": 0.6504626301351488,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "a39a0730b0ff890d93166c5283ab2c68769609be4cf186b3aacba898e63e6668"
+  },
+  {
+   "nct": "NCT07219615",
+   "method": "live_baseline",
+   "probability": 0.45877988720216384,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "f5edf4d204b1ea83df03f4455424fc9cc0e977a850773e3f23245db91e9f00b6"
+  },
+  {
+   "nct": "NCT07221578",
+   "method": "live_baseline",
+   "probability": 0.7003404151583948,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "38b34a17b54d45981d8387e4e0c3400cf7ff0478e05f6c7b44006e31c00c55bc"
+  },
+  {
+   "nct": "NCT07222917",
+   "method": "live_baseline",
+   "probability": 0.45346287358788673,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "65387fd4e7a36665d45eda13189d043467e623d3671b10612176b1e93994e891"
+  },
+  {
+   "nct": "NCT07223229",
+   "method": "live_baseline",
+   "probability": 0.28421531584391985,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "46af21b62fdfe0cadae8189327efe0635256feefc2102eefbb978f6029e028d2"
+  },
+  {
+   "nct": "NCT07223840",
+   "method": "live_baseline",
+   "probability": 0.45346287358788673,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "11bfccbbf40bdec6f578b5f5d1c845e3a07a5d5c05b70e48998225fe4976fa6f"
+  },
+  {
+   "nct": "NCT07226258",
+   "method": "live_baseline",
+   "probability": 0.6849606903401567,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "5b83a0cb09d50050091d0c5f793cbb7e4a790d1dbab57618da7452966b97c486"
+  },
+  {
+   "nct": "NCT07226661",
+   "method": "live_baseline",
+   "probability": 0.45398918903635327,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "a225b035ef65da7af4b5027c50152d240a09904f493407a3bdc70d0ed39aefaf"
+  },
+  {
+   "nct": "NCT07228390",
+   "method": "live_baseline",
+   "probability": 0.38513300984397114,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "722a90e8516f503465ec6e7a9d6c3d53c1dfb92a007ebf77c1f0efbdf502c21b"
+  },
+  {
+   "nct": "NCT07229950",
+   "method": "live_baseline",
+   "probability": 0.49946477065613953,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "8ff8593ad43781569a1179b82e183124a51d69a4f96142cc6b511c04b031f476"
+  },
+  {
+   "nct": "NCT07230132",
+   "method": "live_baseline",
+   "probability": 0.7120635130696045,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "617fe68ea99441a11e89787a9415bcdf3ebc066247c54664e9c13924bd180b84"
+  },
+  {
+   "nct": "NCT07231679",
+   "method": "live_baseline",
+   "probability": 0.3807776513440524,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "b87859f160192d4989dbe8bec60a5ea6ce943920451f2c8e7715c93d6e6a83f5"
+  },
+  {
+   "nct": "NCT07243171",
+   "method": "live_baseline",
+   "probability": 0.7502165272013934,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "8459f99fef8ab43911d4f00a22b9f3f48e7b44b024bd29ef1cece1504185c159"
+  },
+  {
+   "nct": "NCT07244263",
+   "method": "live_baseline",
+   "probability": 0.4471137494451493,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "679ee128db8a8415bd4d5f54e649d95f42e6368817ea582625bfab3487af9c85"
+  },
+  {
+   "nct": "NCT07245771",
+   "method": "live_baseline",
+   "probability": 0.40618841185279425,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "977611fde989d00892ed157fde48af704066c90196a74b2cd91a093f2a637d98"
+  },
+  {
+   "nct": "NCT07245953",
+   "method": "live_baseline",
+   "probability": 0.48805645013359755,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "b8dc3306236c1bdb066e6b2b4a1e5e29312667f02172347cc76297e9b7527dfc"
+  },
+  {
+   "nct": "NCT07246889",
+   "method": "live_baseline",
+   "probability": 0.7021449152885084,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "a10b803100b41fc44e5dc2154af5b94c97a1bb429fb58abecac587ec57aa56f9"
+  },
+  {
+   "nct": "NCT07247188",
+   "method": "live_baseline",
+   "probability": 0.6154010341476308,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "935a074294104fd276b42bd7d00b3282272a6164183d41c3044408f036697afc"
+  },
+  {
+   "nct": "NCT07249632",
+   "method": "live_baseline",
+   "probability": 0.7333080932858231,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "0f55c7380dbdbbf090c7a66fc26a5ebeb61d1397d2dd5621e4107ce554658d5e"
+  },
+  {
+   "nct": "NCT07260500",
+   "method": "live_baseline",
+   "probability": 0.46146643754817634,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "969188c40fa016c42f235b648bb576b97f8d4306abb9ce973e3b72bf09d00113"
+  },
+  {
+   "nct": "NCT07260877",
+   "method": "live_baseline",
+   "probability": 0.42103493427360056,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "7c47678ba3c238529efc2a7dd2074d06ad867b53628f371505c235ed14113a75"
+  },
+  {
+   "nct": "NCT07261644",
+   "method": "live_baseline",
+   "probability": 0.7497109380062204,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "537560a1f119eb08c9dfab7e34230f165455a0d12399f5d26d17ccc90dc56740"
+  },
+  {
+   "nct": "NCT07265349",
+   "method": "live_baseline",
+   "probability": 0.634640533343735,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "cb2c8388edafd8b605c9375126e92b8d0fc3d8f6f3fb2a6bee6b758ef982e8b1"
+  },
+  {
+   "nct": "NCT07280858",
+   "method": "live_baseline",
+   "probability": 0.7660510999142204,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "1591251194a7875d2048364a3d04554cbe6f98211f8a60a2a4a6059c6b83de6c"
+  },
+  {
+   "nct": "NCT07285070",
+   "method": "live_baseline",
+   "probability": 0.3627984039563118,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "038228bbff1b4ae374a25007cc7b01a706b82ebc7cb606c0c4d1ec8ecafc94a7"
+  },
+  {
+   "nct": "NCT07285291",
+   "method": "live_baseline",
+   "probability": 0.7311739906814798,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "cc380d99b3bc817433b5ef63f42ed6cd5542a6330b28c9c9d4dda13dd914244c"
+  },
+  {
+   "nct": "NCT07287202",
+   "method": "live_baseline",
+   "probability": 0.47925489724631204,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "8a5f5c7327bdb9af4f853575c401117f804159dc72172884bd1ae9fe1d41b7cb"
+  },
+  {
+   "nct": "NCT07297797",
+   "method": "live_baseline",
+   "probability": 0.6424869038685022,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "ff118456be0301d5d45f8c281837327c06a87734d21a6f107b15246d4e164dad"
+  },
+  {
+   "nct": "NCT07298395",
+   "method": "live_baseline",
+   "probability": 0.4423830208876356,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "b5bd0256b53d6aa891fb641add5ae127c83f675c1012e8d634f03c54acece8d3"
+  },
+  {
+   "nct": "NCT07301255",
+   "method": "live_baseline",
+   "probability": 0.3719815465201288,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "c84c8fefa05c3c8cce488158f5d9dd8565706996dbb52e7b95fc2fc91ae98434"
+  },
+  {
+   "nct": "NCT07323784",
+   "method": "live_baseline",
+   "probability": 0.44166504756766706,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "7368be86095063d9db671e9f99051040f8b1264ab22deb9ac3bbc5df8cb822d2"
+  },
+  {
+   "nct": "NCT07363720",
+   "method": "live_baseline",
+   "probability": 0.7309370769113033,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "5acc3bcf1ee0cd4450027d707cfce8beb0fd4a2742f3f4a7d5b2505dbf427d79"
+  },
+  {
+   "nct": "NCT07365462",
+   "method": "live_baseline",
+   "probability": 0.44166504756766706,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "c13175fe637fd9c4a0d4ac8938d4d78305f18a1cd404d67a5f8b0a14ea807859"
+  },
+  {
+   "nct": "NCT07365904",
+   "method": "live_baseline",
+   "probability": 0.5094487870856294,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "f0cbe3dd5983e70ac8a266ee9de85dea4978f294b5a144666f87e73eb17efec9"
+  },
+  {
+   "nct": "NCT07371650",
+   "method": "live_baseline",
+   "probability": 0.46705536955813,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "e326efab6a01f73734c3e710e581243d243e5ac864e016868167035b49c15213"
+  },
+  {
+   "nct": "NCT07371793",
+   "method": "live_baseline",
+   "probability": 0.366698456592669,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "d6b80e02d7418d48552082052dd852ccabd71c2df1a9879fb753fdb5835a4289"
+  },
+  {
+   "nct": "NCT07382167",
+   "method": "live_baseline",
+   "probability": 0.8413493291329548,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "9a351013b833c0c708647618d669b049aad06fb9e0ad13cbaf14f4d6f520b691"
+  },
+  {
+   "nct": "NCT07385287",
+   "method": "live_baseline",
+   "probability": 0.4310383748823674,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "79bd9a6783a0747ba91e824507446c69f15d025304e2c773ff2486784c852583"
+  },
+  {
+   "nct": "NCT07388680",
+   "method": "live_baseline",
+   "probability": 0.7927885749478487,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "62074950f02af7f719aa373fe4d6d6176730fca7ea6e1539456accc2e3432283"
+  },
+  {
+   "nct": "NCT07391241",
+   "method": "live_baseline",
+   "probability": 0.5580271593004876,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "b7fd33d3ecdfcee7f8b0541c0a533b187fcd07e22b30e65b8b3048fcd107dda8"
+  },
+  {
+   "nct": "NCT07393334",
+   "method": "live_baseline",
+   "probability": 0.36740717478150786,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "d7efe842828cc01b9e91f1dcfc0dd36a726176059e4ca5d5d0c72023dcef1f27"
+  },
+  {
+   "nct": "NCT07395687",
+   "method": "live_baseline",
+   "probability": 0.9105389904240567,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "33f794c0a6f4551a673f458302e4d37610dfe41c493921eb17608f4573b405fc"
+  },
+  {
+   "nct": "NCT07395986",
+   "method": "live_baseline",
+   "probability": 0.40610823135462676,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "4ee6b858ee7e4eefae6ec9b11716415630c4f6a71110aa5c181b66dae6ac92c2"
+  },
+  {
+   "nct": "NCT07397325",
+   "method": "live_baseline",
+   "probability": 0.39170402364057905,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "e9af3bd3bd17cc4d62615d43567c1aede1dea51ada1c9743fe605512c801fbd4"
+  },
+  {
+   "nct": "NCT07402369",
+   "method": "live_baseline",
+   "probability": 0.5813123448468609,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "8e15d9b37a2f332cce2fade08c5bc2ac2a4fefadd82f286d89bdfb330df5f50f"
+  },
+  {
+   "nct": "NCT07408024",
+   "method": "live_baseline",
+   "probability": 0.5580271593004876,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "02eedd8c65881a5dd47e8da6ca9d71936d6cf223a5c9fef33eed15b0f61da3a0"
+  },
+  {
+   "nct": "NCT07413094",
+   "method": "live_baseline",
+   "probability": 0.46526787498789446,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "6ddfbe0e694cb0b38333179186b4fd71aed7831b5a75139b0246a35546c8dcb6"
+  },
+  {
+   "nct": "NCT07413549",
+   "method": "live_baseline",
+   "probability": 0.40136892876910985,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "85081ed9922c017d725981fb208e49781501f1d7af54016feb9f4f1c9c1db782"
+  },
+  {
+   "nct": "NCT07415252",
+   "method": "live_baseline",
+   "probability": 0.8232188722582996,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "1f64f10604f0e8cbfe2bb29dadf478beda8d16ce81db19db4d06ee0f71b54678"
+  },
+  {
+   "nct": "NCT07424144",
+   "method": "live_baseline",
+   "probability": 0.7187083121827258,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "7cf86b44fbdbb88c1cca58dbe10a1ae992293a084d559334d5203f424e710b3e"
+  },
+  {
+   "nct": "NCT07437547",
+   "method": "live_baseline",
+   "probability": 0.43667410238996357,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "4980dfedc98af7d157537c7eb860031985fc2062c0e4ed45131a30871661ed70"
+  },
+  {
+   "nct": "NCT07437560",
+   "method": "live_baseline",
+   "probability": 0.3745049845311327,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "5826a36d1d7a3844dc52973a277fe773d14c668b4f60844ef2fa2616a083f361"
+  },
+  {
+   "nct": "NCT07437586",
+   "method": "live_baseline",
+   "probability": 0.4265514820629196,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "c8ad968c28724f99cd2c8047521aae85b6cb087cd50e32fae4d6212cca22f619"
+  },
+  {
+   "nct": "NCT07439848",
+   "method": "live_baseline",
+   "probability": 0.2887037385437785,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "a312aaf1736e4e0e02c54aea1bf28d8d1a9a27bec6b144d92e9a0dfe3eb49f23"
+  },
+  {
+   "nct": "NCT07443202",
+   "method": "live_baseline",
+   "probability": 0.5021967946780335,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "2da1a4ba36fb6b251cb8faa27728f7b6bd5c817f3d0323179e121d5aaf2e2053"
+  },
+  {
+   "nct": "NCT07443696",
+   "method": "live_baseline",
+   "probability": 0.32889421885415393,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "bb8afd2c0332c2ad01400d9cf7494556b043315eff3140817db4f717f5091457"
+  },
+  {
+   "nct": "NCT07446439",
+   "method": "live_baseline",
+   "probability": 0.6929786075467482,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "a26575cee54c906bb983d1b15a22fb3575c43a7c33842a5c3226e05cafede008"
+  },
+  {
+   "nct": "NCT07472725",
+   "method": "live_baseline",
+   "probability": 0.5104157940466474,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "bbc63df40f4815e4b4f33feee8bd6ee2056f46663f7df1eeda3b71f8cfff8d4b"
+  },
+  {
+   "nct": "NCT07477704",
+   "method": "live_baseline",
+   "probability": 0.6638945864678302,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "531a8ad1349d6d506677318d1adedd558db42d60e963ee1ba3b06cbbb7278b33"
+  },
+  {
+   "nct": "NCT07478744",
+   "method": "live_baseline",
+   "probability": 0.42103493427360056,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "214c25e54b02260f7412eefaea7f43c341a1fdf52d21b35d5bd70fb286ecc3ed"
+  },
+  {
+   "nct": "NCT07481604",
+   "method": "live_baseline",
+   "probability": 0.25638248700938715,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "7d11331438be4287156fb52972b86e3ddb6a958bd4b9a4b60059d22ffab52c75"
+  },
+  {
+   "nct": "NCT07481734",
+   "method": "live_baseline",
+   "probability": 0.45096333522358084,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "4b7f90051940052a0aea56becd53f65f5bf051cbc011adf8e27ae4dda47bb1df"
+  },
+  {
+   "nct": "NCT07481747",
+   "method": "live_baseline",
+   "probability": 0.8475363176841334,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "44ab60364db52c96a04c5dd578371954d320031a596d923039299301100f90f9"
+  },
+  {
+   "nct": "NCT07482657",
+   "method": "live_baseline",
+   "probability": 0.38738199091544484,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "082eb9163a21d90fcd9e0a626065cfb6bca6939a03caf045b277b2dfc3f14109"
+  },
+  {
+   "nct": "NCT07486960",
+   "method": "live_baseline",
+   "probability": 0.5222919884092757,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "be54ad52c7790eaacccde036c8c10d452fdd98009cbffd3b2b0c32c6a03385ae"
+  },
+  {
+   "nct": "NCT07487363",
+   "method": "live_baseline",
+   "probability": 0.5284003284244458,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "87789ec98a73576a63e149c20ba816118ce0e40e3f3384f1b04670ffdf14c0f0"
+  },
+  {
+   "nct": "NCT07488897",
+   "method": "live_baseline",
+   "probability": 0.43875103093328954,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "ebac01619a9a2d9963ab4c084e6264f89d08335ea4e26d3f6aae7c0b1a69c176"
+  },
+  {
+   "nct": "NCT07489612",
+   "method": "live_baseline",
+   "probability": 0.5925401943236317,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "a63839aa71504eb055519543f44023de4af80236a07ce99c165ba7f9ea741315"
+  },
+  {
+   "nct": "NCT07491458",
+   "method": "live_baseline",
+   "probability": 0.5260446384636351,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "f41aa112d8e69d19986c6e70ab59f6ab0bf14638341d1180cdca52d0d2b458bb"
+  },
+  {
+   "nct": "NCT07493265",
+   "method": "live_baseline",
+   "probability": 0.572173752586657,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "618d3bed0ca585cc3fbbf2efbb1aa3bae05297042b0a6325f857cc2cbb60e36c"
+  },
+  {
+   "nct": "NCT07494409",
+   "method": "live_baseline",
+   "probability": 0.7089024627679944,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "618c7cc5b4a2047618f461e5df16dfdc703a595cb290a6e17901e34756395a41"
+  },
+  {
+   "nct": "NCT07496450",
+   "method": "live_baseline",
+   "probability": 0.7044950410261933,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "6331998c62423b34df9f3ecd22d8f2763baaae0983437505a65e48052bcce619"
+  },
+  {
+   "nct": "NCT07499674",
+   "method": "live_baseline",
+   "probability": 0.797897725562227,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "f9181f9aaaac2791e1ed53fe393210528cea5dcff73b36a2e1a6a7fe98791c8d"
+  },
+  {
+   "nct": "NCT07500506",
+   "method": "live_baseline",
+   "probability": 0.7971580498172233,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "7c63fae88289696892da9f995d930856d07059f239b8a1f168cc7f39f7a44d81"
+  },
+  {
+   "nct": "NCT07503886",
+   "method": "live_baseline",
+   "probability": 0.46285971276737786,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "fea8a23a9cca32025e5b90d710627771ad0a1db3834871218d1f922e5d2e257e"
+  },
+  {
+   "nct": "NCT07505004",
+   "method": "live_baseline",
+   "probability": 0.7973655358401279,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "94303c3818108993d5390a1afe0a724ad66ef2b18afb471eaa795931c64dfb03"
+  },
+  {
+   "nct": "NCT07505745",
+   "method": "live_baseline",
+   "probability": 0.3842200321631864,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "9b150c9131853142f481a402aa5942b3949acf648db04b71934c2d3ed59ac933"
+  },
+  {
+   "nct": "NCT07505836",
+   "method": "live_baseline",
+   "probability": 0.9080760450716312,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "7f6239dd0d99c3f916aabbe7fe8b09815745d277735d9dfb38a4cfafabf441f0"
+  },
+  {
+   "nct": "NCT07511361",
+   "method": "live_baseline",
+   "probability": 0.3864027792012255,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "799554fe1aaca696f79189dd55261999ad2e74ff72116a1648f6967bf2389267"
+  },
+  {
+   "nct": "NCT07521137",
+   "method": "live_baseline",
+   "probability": 0.42680295198075796,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "912a6a9d4a0033bab121276d17c3cf7d377f1896c0bf07f9382d9b642cac7d4e"
+  },
+  {
+   "nct": "NCT07521631",
+   "method": "live_baseline",
+   "probability": 0.5546981483604985,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "46d89f71516f5d4a05389932bd2946a090c0047de544a68f85da3b2aad7e282b"
+  },
+  {
+   "nct": "NCT07531043",
+   "method": "live_baseline",
+   "probability": 0.7408572636838714,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "84d4219bf730ae2e9bafa299a4ead1d3ad8417d013ba9cc3c35cf5f4a79191c8"
+  },
+  {
+   "nct": "NCT07533786",
+   "method": "live_baseline",
+   "probability": 0.5457145885276806,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "2a5f9c204f2ac6261ab4258921304bce14a6ef655769b66ef4e844c1a8838587"
+  },
+  {
+   "nct": "NCT07543796",
+   "method": "live_baseline",
+   "probability": 0.5457145885276806,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "fdb1fea6e32f58654029f3c33a86fb3373f9883c12abe16a0f4a62577cb4e10f"
+  },
+  {
+   "nct": "NCT07547228",
+   "method": "live_baseline",
+   "probability": 0.2887037385437785,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "27e0ec0f1dfd462ffecc86c2c253c79ab499e7f2295f93e9948ffbe1326150da"
+  },
+  {
+   "nct": "NCT07547813",
+   "method": "live_baseline",
+   "probability": 0.43153932482202273,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "492846c48c10d997aaea50ae9bcbb3cc3ec2c981f368625d405f2b1170ef4a12"
+  },
+  {
+   "nct": "NCT07548632",
+   "method": "live_baseline",
+   "probability": 0.7366597358971326,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "06e84e66198b69ac4d2ab5339ac89ceef763b5d93b66e02d5908406c47a86393"
+  },
+  {
+   "nct": "NCT07552012",
+   "method": "live_baseline",
+   "probability": 0.4967801004578528,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "5d85c87a2fae13180c05c0055f06dd80b1da71755c08305d0e14402f99a444f1"
+  },
+  {
+   "nct": "NCT07565506",
+   "method": "live_baseline",
+   "probability": 0.5434698745858033,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "c6eece95c4e29d603b4f05fd6ed642649aaaad3bbe477cd2e7cec1a15feef64d"
+  },
+  {
+   "nct": "NCT07568730",
+   "method": "live_baseline",
+   "probability": 0.43265561883200526,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "3d825ec8d9821792b181f67402097807bc3184ee417805b65724d5657d370ab8"
+  },
+  {
+   "nct": "NCT07572396",
+   "method": "live_baseline",
+   "probability": 0.4643716631441112,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "da37eb1b302dcd782852858ca4e3374cd5bf2638f22a7f12ad9a5e5be76bf1c7"
+  },
+  {
+   "nct": "NCT07576608",
+   "method": "live_baseline",
+   "probability": 0.5612210101301132,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "d5db885355935b752a0d7534e5c1f832a2cbefe66cd88c2502b23d57f0b2a7e7"
+  },
+  {
+   "nct": "NCT07576868",
+   "method": "live_baseline",
+   "probability": 0.7938853973533218,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "63caaa21812ebc2c48492a117f10f5a3f101b9e659c88057075e1c473242e3f5"
+  },
+  {
+   "nct": "NCT07579741",
+   "method": "live_baseline",
+   "probability": 0.6895046401270463,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "f9c150b8c4879d50ca3071b6f2edaaf7905dffabfe174c5e0441034ce8dd185e"
+  },
+  {
+   "nct": "NCT07580716",
+   "method": "live_baseline",
+   "probability": 0.39013363071830676,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "61c5723397b5a50abbbfb5e1ae0c46901dcdf5c9c3b948335de488de407b9746"
+  },
+  {
+   "nct": "NCT07598383",
+   "method": "live_baseline",
+   "probability": 0.5813123448468609,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "ab750923a80fbf13cb6d06347fe2069ec289ba1d4c0a2a326fa245d9e6903d9e"
+  },
+  {
+   "nct": "NCT07600736",
+   "method": "live_baseline",
+   "probability": 0.5638323028590428,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "b78977151d8161703cd2ffc0e6785b8d80de2b4f9974192497faf8e38ab361ed"
+  },
+  {
+   "nct": "NCT07600983",
+   "method": "live_baseline",
+   "probability": 0.9963976678805341,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "132693b72e0509d37131ebd1f4649d9c2a73e5dc0ec86f8b3c42dc99e80a7ec5"
+  },
+  {
+   "nct": "NCT07614958",
+   "method": "live_baseline",
+   "probability": 0.7012451592411162,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "b7545d135dd1a1a01f005a4d65c489c36618cd43fc2d0669200671d87e861f60"
+  },
+  {
+   "nct": "NCT07641634",
+   "method": "live_baseline",
+   "probability": 0.4981821603868621,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "f8422a9f99568aad50fb1dc69beb14db0397d2ba95585b3c419c90e79acddede"
+  },
+  {
+   "nct": "NCT07644832",
+   "method": "live_baseline",
+   "probability": 0.574438801224178,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "b0acde29f46d9549b7bd4e22d37e97d0df58dc33f86dd0e600b65b986dc07370"
+  },
+  {
+   "nct": "NCT07645248",
+   "method": "live_baseline",
+   "probability": 0.7726399200397807,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "dea6596708c25b7cc47b626acc07a37a7f587d85d847b79a92ae9d74b5ea628d"
+  },
+  {
+   "nct": "NCT07645924",
+   "method": "live_baseline",
+   "probability": 0.8099982861159903,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "9d082fa4cc05bbbd6bac1bde31a6bcd6311fe973250c3b16632cc618d26aab19"
+  },
+  {
+   "nct": "NCT07653100",
+   "method": "live_baseline",
+   "probability": 0.678633961375884,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "68a85a08ed80e7376b342954541b89987b0ed19f88d5cadbe0cded9eac471a9b"
+  },
+  {
+   "nct": "NCT07656727",
+   "method": "live_baseline",
+   "probability": 0.5242854976504816,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "5b8939ad5873ab3c464e5c6f9052a863d6d0648b0d3b5e71d6d65d3173fb099d"
+  },
+  {
+   "nct": "NCT07658560",
+   "method": "live_baseline",
+   "probability": 0.6535276500421631,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "9bb9228d922c890701617bb4be89cf3729bb8eb318d695d282a3646ab082821f"
+  },
+  {
+   "nct": "NCT07672236",
+   "method": "live_baseline",
+   "probability": 0.7286006250534592,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "df47f4c37e538b7170672ef5cbc5726a99af68d96cedbf3f01e306b2053e10d3"
+  },
+  {
+   "nct": "NCT07672561",
+   "method": "live_baseline",
+   "probability": 0.746452236349106,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "34782bb1a6e11a36151b61817287989d2d775059d089f0460284b375853096e3"
+  },
+  {
+   "nct": "NCT07673029",
+   "method": "live_baseline",
+   "probability": 0.7713029653405536,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "50589aa1d419c9163d6f3ac54db499f2809d8a412d9520bbb6772294c7132278"
+  },
+  {
+   "nct": "NCT07678931",
+   "method": "live_baseline",
+   "probability": 0.5931726490416763,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "0643391377598b2406b2b7823652f2c53b75990f34489356f461f52f96692343"
+  },
+  {
+   "nct": "NCT07688772",
+   "method": "live_baseline",
+   "probability": 0.7403450542011972,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "da3b9ce624c79b545454fff58ab7a8bc7929c1a7f387810c3152348548e983e0"
+  },
+  {
+   "nct": "NCT07694375",
+   "method": "live_baseline",
+   "probability": 0.45191247479064744,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "de869d485f1f271e3e6e12c8f9e6805a0050238a5c9bb6fb3f3b8d356f4c9224"
+  },
+  {
+   "nct": "NCT07709897",
+   "method": "live_baseline",
+   "probability": 0.5246384415610317,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "8d7a85490013149d2b1a093bdb4225dfc73178a97ca079e5769e33da87ef4268"
+  },
+  {
+   "nct": "NCT07712523",
+   "method": "live_baseline",
+   "probability": 0.5887351618528295,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "fcfcde64388deb8fa88fbdfb2fbedbc1e2794a21a113b750f3e82e03f58076c1"
+  },
+  {
+   "nct": "NCT07719530",
+   "method": "live_baseline",
+   "probability": 0.48805645013359755,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "aff53fe7cd0f0f8e74868f053c8a736c07dc5bf0062c46a7b36e428b892a4db8"
+  },
+  {
+   "nct": "NCT07724340",
+   "method": "live_baseline",
+   "probability": 0.5164101649256346,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "67d86d9eed0258b0262f8bec08bb32dac4e9b581426b1e0b7e74113ceb9e2390"
+  },
+  {
+   "nct": "NCT07743008",
+   "method": "live_baseline",
+   "probability": 0.2526298615483828,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "29986c79a0c01dceac9733f02b115019b3a2b682ed1532552f16e4836393ce23"
+  },
+  {
+   "nct": "NCT07746726",
+   "method": "live_baseline",
+   "probability": 0.6976312344517862,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "ecbdbee49306af9114221a0e922e2d76387147c917f7f36853e1e305e946beb2"
+  },
+  {
+   "nct": "NCT07767513",
+   "method": "live_baseline",
+   "probability": 0.48805645013359755,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "f7952003970e6a38f472eb75dc0d76f43860060c73cef7559eebe4234c94e975"
+  },
+  {
+   "nct": "NCT07811908",
+   "method": "live_baseline",
+   "probability": 0.4013510812841657,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "0eac42118c0e838cea290e8c7a0b8f41ecbc7b195c0621c4399fd9a6d68a5606"
+  },
+  {
+   "nct": "NCT07832552",
+   "method": "live_baseline",
+   "probability": 0.7418165427441301,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "8accb5322dd2b080afe733ea324503cd6c7bf5aed6007257c0c2c82f8e432dea"
+  },
+  {
+   "nct": "NCT07842991",
+   "method": "live_baseline",
+   "probability": 0.7413709642754976,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "e2a6fdcd660283aa648008b59aa92c7a23130aa157fb420ccc7d841f1a25cee6"
+  },
+  {
+   "nct": "NCT07873463",
+   "method": "live_baseline",
+   "probability": 0.48646945275994097,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "fd23e0a504256899253e20c2137feafb101007fffd3c5047db67b1a89018abf9"
+  },
+  {
+   "nct": "NCT07889284",
+   "method": "live_baseline",
+   "probability": 0.6953030717139244,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "2e4062ab9e97c0b78edfd009f12f9c72275b9f1f192eae4a7cafcfd01f7e8f0d"
+  },
+  {
+   "nct": "NCT07937462",
+   "method": "live_baseline",
+   "probability": 0.789317405583314,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "3f7a65b781f68b249a16f4079433b73dc5ea0d8f2553fb77796acd6e2ced1aba"
+  },
+  {
+   "nct": "NCT07940075",
+   "method": "live_baseline",
+   "probability": 0.47507675313380726,
+   "model": "logistic-v1(n=825)",
+   "madeAt": "2026-11-23T15:43:25.201Z",
+   "leaf": "c9f8dea19de4582529b96862911f0761ee441c592e9717f423cf6d3ae8457c23"
+  }
+ ]
+}
