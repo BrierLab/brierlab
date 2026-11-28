@@ -3,7 +3,7 @@
 // Usage: node src/site.mjs <seal-name>      (run from the repo root)
 // Writes site/data.js and copies the sealed file to site/sealed/.
 import { copyFileSync, existsSync, mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
-import { earlyList, heldList, releaseDue, released } from "./batches.mjs";
+import { batchNames, earlyList, heldList, releaseDue, released } from "./batches.mjs";
 import { resultIsPublic } from "./briefs.mjs";
 import { FORECASTERS, readRequested, scoreLive } from "./outcomes.mjs";
 
@@ -19,6 +19,12 @@ const rows = (path) =>
     : [];
 const byNct = (list) => new Map(list.filter((r) => !r.error).map((r) => [r.nct, r]));
 
+// A later batch whose holders-first window has passed is released first, so
+// everything below sees it as public.
+const justReleased = releaseDue();
+if (justReleased.length) console.log(`released: ${justReleased.join(", ")}`);
+const laterNames = batchNames();
+
 const seal = JSON.parse(readFileSync(`data/sealed/${sealName}.json`, "utf8"));
 const sealed = new Set(seal.forecasts.map((f) => `${f.nct} ${f.method}`));
 const leafOf = new Map(seal.forecasts.map((f) => [`${f.nct} ${f.method}`, f.leaf]));
@@ -27,7 +33,8 @@ const researched = byNct(rows("data/live_researched_results.jsonl"));
 const briefs = byNct(rows("data/research_results.jsonl"));
 
 // The learned model (src/train.mjs): its latest sealed forecasts and its test results.
-const mlSealName = readdirSync("data/sealed").filter((f) => f.endsWith("-ml.json")).sort().at(-1)?.replace(/\.json$/, "");
+// The first record's learned-model seal; a later batch's own (<batch>-ml) is read with that batch.
+const mlSealName = readdirSync("data/sealed").filter((f) => f.endsWith("-ml.json") && !laterNames.has(f.replace(/-ml\.json$/, ""))).sort().at(-1)?.replace(/\.json$/, "");
 const mlSeal = mlSealName ? JSON.parse(readFileSync(`data/sealed/${mlSealName}.json`, "utf8")) : null;
 const learned = new Map((mlSeal?.forecasts ?? []).map((f) => [f.nct, f.probability]));
 const evalPath = "data/model/eval.json";
@@ -68,13 +75,12 @@ for (const c of rows("data/live_cases.jsonl")) {
 // Later batches (src/batches.mjs). A batch whose holders-first window has
 // passed is released here and joins the record; each of its trials has a
 // forecast from the registry record alone, sealed in that batch's own file.
-const justReleased = releaseDue();
-if (justReleased.length) console.log(`released: ${justReleased.join(", ")}`);
 const more = [];
 const statusAtSeal = new Map();
 for (const b of released()) {
   const leaves = new Map(b.seal.forecasts.map((f) => [`${f.nct} ${f.method}`, f.leaf]));
   const made = byNct(rows(b.results));
+  const learnedHere = new Map((b.learned?.forecasts ?? []).map((f) => [f.nct, f.probability]));
   let count = 0;
   for (const c of rows(b.cases)) {
     const f = made.get(c.nct);
@@ -89,7 +95,7 @@ for (const b of released()) {
       enrollment: c.enrollment,
       base: f.probability,
       researched: null,
-      learned: null,
+      learned: learnedHere.get(c.nct) ?? null,
       rationale: f.rationale,
       sources: 0,
       state: f.recalls_result ? "public" : "unscreened",
@@ -270,7 +276,7 @@ const log = [
   ...heldList().map((h) => ({
     date: h.sealedAt.slice(0, 10),
     kind: "sealed",
-    text: `${h.count} more forecasts were sealed, for trials due after the first record ends. Their fingerprint is ${h.root} and was sent to OpenTimestamps the same day. The forecasts themselves are not published yet; when they are, anyone can check them against this fingerprint.`,
+    text: `${h.count} more forecasts were sealed, for trials due after the first record ends. Their fingerprint is ${h.root} and was sent to OpenTimestamps the same day. The learned model and the baseline forecast the same trials and were sealed the same way. The forecasts themselves are not published yet; when they are, anyone can check them against these fingerprints.`,
   })),
   {
     date: "2026-11-28",
@@ -327,11 +333,11 @@ mkdirSync("site/sealed", { recursive: true });
   writeFileSync("site/watchlist.json", JSON.stringify(trials.map((t) => ({ nct: t.nct, status: atSeal.get(t.nct) ?? null, state: t.state, inLedger: !!t.outcome }))));
 }
 copyFileSync(`data/sealed/${sealName}.json`, `site/sealed/${sealName}.json`);
-for (const b of more) for (const ext of [".json", ".root", ".root.ots"]) if (existsSync(`data/sealed/${b.name}${ext}`)) copyFileSync(`data/sealed/${b.name}${ext}`, `site/sealed/${b.name}${ext}`);
+for (const b of more) for (const tag of ["", "-ml", "-baseline"]) for (const ext of [".json", ".root", ".root.ots"]) if (existsSync(`data/sealed/${b.name}${tag}${ext}`)) copyFileSync(`data/sealed/${b.name}${tag}${ext}`, `site/sealed/${b.name}${tag}${ext}`);
 // A held batch's fingerprint and timestamp proof are public; its forecasts are not.
-for (const h of heldList()) for (const ext of [".root", ".root.ots"]) if (existsSync(`data/sealed/${h.name}${ext}`)) copyFileSync(`data/sealed/${h.name}${ext}`, `site/sealed/${h.name}${ext}`);
+for (const h of heldList()) for (const tag of ["", "-ml", "-baseline"]) for (const ext of [".root", ".root.ots"]) if (existsSync(`data/sealed/${h.name}${tag}${ext}`)) copyFileSync(`data/sealed/${h.name}${tag}${ext}`, `site/sealed/${h.name}${tag}${ext}`);
 // A batch still in its window must never sit in the public folder under its sealed name.
-for (const e of [...earlyList(), ...heldList()]) if (existsSync(`site/sealed/${e.name}.json`)) throw new Error(`${e.name} is still in its window but its sealed file is in site/sealed`);
+for (const e of [...earlyList(), ...heldList()]) if (["", "-ml", "-baseline"].some((tag) => existsSync(`site/sealed/${e.name}${tag}.json`))) throw new Error(`${e.name} is still in its window but its sealed file is in site/sealed`);
 if (mlSealName) copyFileSync(`data/sealed/${mlSealName}.json`, `site/sealed/${mlSealName}.json`);
 if (stamp.state !== "none") {
   copyFileSync(`data/sealed/${sealName}.root`, `site/sealed/${sealName}.root`);

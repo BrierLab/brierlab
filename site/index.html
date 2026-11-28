@@ -770,7 +770,7 @@ footer p { margin: 0 0 8px; max-width: 60em; }
     }
     // The trials a visitor can still ask for a report on get their own view.
     const canAsk = OD.ready && (OD.perDay > 0 || OD.token);
-    $("n-open").textContent = D.trials.filter((t) => t.state === "unscreened" && !t.outcome && !t.report).length;
+    $("n-open").textContent = D.trials.filter((t) => t.state === "unscreened" && !t.outcome && !t.report && !t.pending).length;
     $("b-open").hidden = !canAsk;
   }
   async function loadReports() {
@@ -1017,31 +1017,32 @@ footer p { margin: 0 0 8px; max-width: 60em; }
     return box;
   }
 
-  // Forecast batches in their holders-first window (early.json).
+  // Forecast batches in their holders-first window (early.json). Once a
+  // window has passed, the batch is laid into the record table here straight
+  // away; the next site build makes that permanent and adds it to the checks.
+  function joinRecord(batch) {
+    const have = new Set(D.trials.map((t) => t.nct));
+    for (const t of batch.trials) {
+      if (have.has(t.nct)) continue;
+      D.trials.push({ nct: t.nct, title: t.title, sponsor: t.sponsor, phase: t.phase, due: t.due, enrollment: t.enrollment, base: t.probability, researched: null, learned: t.learned ?? null, rationale: t.rationale, sources: 0, state: t.state ?? "unscreened", leaf: t.leaf, batch: batch.name, pending: true });
+    }
+    D.trials.sort((a, b) => (a.due < b.due ? -1 : a.due > b.due ? 1 : a.nct < b.nct ? -1 : 1));
+    $("s-trials").textContent = D.trials.length;
+    $("n-all").textContent = D.trials.length;
+    $("s-sealed").textContent = sealedTotal + batch.trials.length;
+    draw();
+  }
   async function loadEarly() {
     const list = await fetch("/early.json").then((r) => (r.ok ? r.json() : [])).catch(() => []);
     const box = $("early");
     for (const b of list) {
-      const opens = Date.parse(b.opensAt);
-      const isOpen = opens <= Date.now();
+      const isOpen = Date.parse(b.opensAt) <= Date.now();
       const body = el("div");
-      const show = async () => {
+      const get = async () => {
         const res = await fetch(`/early/${b.name}.json`, wallet.pass ? { headers: { authorization: `Bearer ${wallet.pass}` } } : {});
         if (!res.ok) throw new Error(await said(res, "This batch could not be loaded."));
-        const batch = await res.json();
-        body.replaceChildren(
-          el("table", {}, batch.trials.map((t) =>
-            el("tr", {}, [
-              el("td", {}, [el("b", { textContent: pct(t.probability) })]),
-              el("td", {}, [t.title, el("br"), el("small", { textContent: `${t.nct} · ${t.sponsor} · ${t.phase} · due ${day(t.due)}` })]),
-            ]),
-          )),
-        );
+        return res.json();
       };
-      const line = el("p", {}, [
-        el("b", { textContent: `${b.count} new forecasts, sealed ${day(b.sealedAt.slice(0, 10))}. ` }),
-        isOpen ? "Now open to everyone." : `Open to everyone on ${day(b.opensAt.slice(0, 10))}.` + (OD.token ? ` Wallets holding ${OD.token.holdMin.toLocaleString()} ${OD.token.symbol} can read them now.` : ""),
-      ]);
       const note = el("small", {}, [
         `Fingerprint of the batch: ${b.root}. `,
         el("a", { href: `sealed/${b.name}.root`, download: "", textContent: "Fingerprint file" }),
@@ -1049,14 +1050,42 @@ footer p { margin: 0 0 8px; max-width: 60em; }
         el("a", { href: `sealed/${b.name}.root.ots`, download: "", textContent: "timestamp proof" }),
         ".",
       ]);
-      box.append(line, note);
-      if (isOpen || OD.token) {
-        const go = el("button", { type: "button", className: "btn small", textContent: isOpen ? "Show the forecasts" : "Sign in with a wallet to read them" });
+      if (isOpen) {
+        try {
+          joinRecord(await get());
+          box.append(el("p", {}, [el("b", { textContent: `${b.count} forecasts sealed ${day(b.sealedAt.slice(0, 10))} are now open to everyone. ` }), "They are in the table below under All trials."]), note);
+          box.hidden = false;
+        } catch {}
+        continue;
+      }
+      box.append(
+        el("p", {}, [
+          el("b", { textContent: `${b.count} new forecasts, sealed ${day(b.sealedAt.slice(0, 10))}. ` }),
+          `Open to everyone on ${day(b.opensAt.slice(0, 10))}.` + (OD.token ? ` Wallets holding ${OD.token.holdMin.toLocaleString()} ${OD.token.symbol} can read them now.` : ""),
+        ]),
+        note,
+      );
+      if (OD.token) {
+        const go = el("button", { type: "button", className: "btn small", textContent: "Sign in with a wallet to read them" });
         go.addEventListener("click", async () => {
           go.disabled = true;
           try {
-            if (!isOpen) await connect();
-            await show();
+            await connect();
+            const batch = await get();
+            body.replaceChildren(
+              el("table", {}, batch.trials.map((t) =>
+                el("tr", {}, [
+                  el("td", {}, [el("b", { textContent: pct(t.probability) })]),
+                  el("td", {}, [
+                    t.title,
+                    el("br"),
+                    el("small", { textContent: `${t.nct} · ${t.sponsor} · ${t.phase} · due ${day(t.due)}` + (t.learned != null ? ` · learned model ${pct(t.learned)}` : "") }),
+                    el("br"),
+                    el("small", { textContent: t.rationale }),
+                  ]),
+                ]),
+              )),
+            );
             go.remove();
           } catch (e) {
             go.disabled = false;
@@ -1077,7 +1106,7 @@ footer p { margin: 0 0 8px; max-width: 60em; }
     const q = query.trim().toLowerCase();
     const list = D.trials.filter(
       (t) =>
-        (view === "all" || (view === "reported" ? !!t.outcome : view === "open" ? t.nct === open || (t.state === "unscreened" && !t.outcome && !t.report) : t.state === "screened")) &&
+        (view === "all" || (view === "reported" ? !!t.outcome : view === "open" ? t.nct === open || (t.state === "unscreened" && !t.outcome && !t.report && !t.pending) : t.state === "screened")) &&
         (!q || `${t.title} ${t.sponsor} ${t.nct}`.toLowerCase().includes(q)),
     );
     const body = $("rows");
@@ -1130,7 +1159,7 @@ footer p { margin: 0 0 8px; max-width: 60em; }
                 t.outcome.counted ? "" : `. Not scored: ${t.outcome.why}.`,
               ]),
             );
-          } else if (t.state === "unscreened" && OD.ready && (OD.perDay > 0 || OD.token)) kids.push(askBlock(t));
+          } else if (t.state === "unscreened" && !t.pending && OD.ready && (OD.perDay > 0 || OD.token)) kids.push(askBlock(t));
         }
         body.append(el("tr", { className: "detail" }, el("td", { colSpan: 5 }, kids)));
       }

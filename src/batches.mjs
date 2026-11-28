@@ -14,6 +14,9 @@ const HELD = "data/held";
 const OUT = "data/batches";
 const LIST = "site/early.json";
 const FILES = ["cases.jsonl", "live_results.jsonl"];
+// The learned model's and the baseline's forecasts for the same trials, each
+// sealed in its own file (<name>-ml, <name>-baseline). Optional.
+const EXTRA = [["ml", "live_ml_results.jsonl"], ["baseline", "live_baseline_results.jsonl"]];
 const dirs = (root) => (existsSync(root) ? readdirSync(root, { withFileTypes: true }).filter((d) => d.isDirectory()).map((d) => d.name).sort() : []);
 const json = (path) => JSON.parse(readFileSync(path, "utf8"));
 
@@ -25,6 +28,11 @@ export function hold(name) {
   mkdirSync(`${HELD}/${name}`, { recursive: true });
   for (const f of FILES) if (existsSync(`${OUT}/${name}/${f}`)) renameSync(`${OUT}/${name}/${f}`, `${HELD}/${name}/${f}`);
   if (existsSync(`data/sealed/${name}.json`)) renameSync(`data/sealed/${name}.json`, `${HELD}/${name}/seal.json`);
+  for (const [tag, file] of EXTRA) {
+    if (existsSync(`${OUT}/${name}/${file}`)) renameSync(`${OUT}/${name}/${file}`, `${HELD}/${name}/${file}`);
+    if (existsSync(`data/sealed/${name}-${tag}.json`)) renameSync(`data/sealed/${name}-${tag}.json`, `${HELD}/${name}/seal-${tag}.json`);
+    rmSync(`site/sealed/${name}-${tag}.json`, { force: true });
+  }
   rmSync(`${HELD}/${name}/window.json`, { force: true });
   rmSync(`site/early/${name}.json`, { force: true });
   rmSync(`site/sealed/${name}.json`, { force: true });
@@ -40,6 +48,10 @@ export function releaseDue(now = Date.now()) {
     mkdirSync(`${OUT}/${name}`, { recursive: true });
     for (const f of FILES) renameSync(`${HELD}/${name}/${f}`, `${OUT}/${name}/${f}`);
     renameSync(`${HELD}/${name}/seal.json`, `data/sealed/${name}.json`);
+    for (const [tag, file] of EXTRA) {
+      if (existsSync(`${HELD}/${name}/${file}`)) renameSync(`${HELD}/${name}/${file}`, `${OUT}/${name}/${file}`);
+      if (existsSync(`${HELD}/${name}/seal-${tag}.json`)) renameSync(`${HELD}/${name}/seal-${tag}.json`, `data/sealed/${name}-${tag}.json`);
+    }
     rmSync(`${HELD}/${name}`, { recursive: true, force: true });
     rmSync(`site/early/${name}.json`, { force: true });
     saveEarlyList(earlyList().filter((x) => x.name !== name));
@@ -52,11 +64,26 @@ export function releaseDue(now = Date.now()) {
 export function released() {
   return dirs(OUT)
     .filter((name) => existsSync(`data/sealed/${name}.json`) && FILES.every((f) => existsSync(`${OUT}/${name}/${f}`)))
-    .map((name) => ({ name, seal: json(`data/sealed/${name}.json`), cases: `${OUT}/${name}/cases.jsonl`, results: `${OUT}/${name}/live_results.jsonl` }))
+    .map((name) => ({
+      name,
+      seal: json(`data/sealed/${name}.json`),
+      cases: `${OUT}/${name}/cases.jsonl`,
+      results: `${OUT}/${name}/live_results.jsonl`,
+      learned: existsSync(`data/sealed/${name}-ml.json`) ? json(`data/sealed/${name}-ml.json`) : null,
+    }))
     .sort((a, b) => (a.seal.sealedAt < b.seal.sealedAt ? -1 : 1));
 }
 
-export const heldBatch = (name) => ({ seal: json(`${HELD}/${name}/seal.json`), cases: `${HELD}/${name}/cases.jsonl`, dir: `${HELD}/${name}` });
+export const heldBatch = (name) => ({
+  seal: json(`${HELD}/${name}/seal.json`),
+  learned: existsSync(`${HELD}/${name}/seal-ml.json`) ? json(`${HELD}/${name}/seal-ml.json`) : null,
+  cases: `${HELD}/${name}/cases.jsonl`,
+  results: `${HELD}/${name}/live_results.jsonl`,
+  dir: `${HELD}/${name}`,
+});
+// The sealed sets that belong to later batches, held or released: <name>,
+// <name>-ml and <name>-baseline for every batch name.
+export const batchNames = () => new Set([...dirs(HELD), ...dirs(OUT)]);
 
 // Sealed batches that are not public yet, with what may be said about them:
 // the fingerprint, the size and the sealing time.

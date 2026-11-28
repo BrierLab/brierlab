@@ -3,6 +3,8 @@
 //                             recent trials, then a learning curve
 //   node src/train.mjs fit    train on every resolved trial and forecast the live ones
 //   node src/train.mjs precedents   for each live trial, the past trials the saved model treats most like it
+//   node src/train.mjs predict <raw.jsonl> <out.jsonl>   forecast a new batch of open trials with the saved
+//                             model, without retraining it or touching the first record's files
 //   node src/train.mjs features   write the live trials' inputs, so the site can rerun the model in the browser
 // Training data: data/history_raw.jsonl (src/history.mjs). Every trial is
 // described only by what was public before it read out.
@@ -13,8 +15,8 @@ import { fit, importance, predict, rng } from "./gbm.mjs";
 import { AFTER_THE_FACT, TrackRecord, designFeatures, keys, readText, staticFeatures, textKeys, time } from "./mlfeatures.mjs";
 
 const mode = process.argv[2];
-if (!["eval", "fit", "features", "precedents"].includes(mode)) {
-  console.error("usage: node src/train.mjs eval|fit|features|precedents");
+if (!["eval", "fit", "features", "precedents", "predict"].includes(mode)) {
+  console.error("usage: node src/train.mjs eval|fit|features|precedents|predict <raw.jsonl> <out.jsonl>");
   process.exit(1);
 }
 const DAY = 86_400_000;
@@ -340,6 +342,24 @@ if (mode === "eval") {
     JSON.stringify({ ranAt: new Date().toISOString(), version: VERSION, trainedOn: pool.length, features: names.length, chosen, walkAll: { n: tested, skill: meanSkill, auc: meanAuc, brier: pooled, logistic: meanLogistic }, walk: walk.map((f) => ({ from: f.from, train: f.train, test: f.test, logistic: f.logistic, boosted: f.settings[ranked[0][0]] })), heldOut, curve, importance: imp }, null, 1),
   );
   console.log("\nwrote data/model/eval.json");
+}
+
+if (mode === "predict") {
+  const [rawPath, outPath] = process.argv.slice(3);
+  if (!rawPath || !outPath) throw new Error("usage: node src/train.mjs predict <raw.jsonl> <out.jsonl>");
+  const saved = JSON.parse(readFileSync(`data/model/${VERSION}.json`, "utf8"));
+  const now = Date.now();
+  const fresh = lines(rawPath).map((s) => ({ ...row(s.protocolSection, null, "live", meshOf(s)), known: now }));
+  const resolved = [...history, ...held.map((r) => ({ ...r }))];
+  addTrackRecords([...resolved, ...fresh], resolved, now);
+  names = saved.features;
+  const missing = names.filter((n) => !(n in fresh[0].x));
+  if (missing.length) throw new Error(`the saved model expects inputs this code no longer makes: ${missing.join(", ")}`);
+  const madeAt = new Date().toISOString();
+  const ps = fresh.map((r) => predict(saved, vec(r)));
+  writeFileSync(outPath, fresh.map((r, i) => JSON.stringify({ nct: r.nct, probability: ps[i], model: saved.version, madeAt })).join("\n") + "\n");
+  console.log(`${saved.version}: forecast ${fresh.length} trials, mean ${(ps.reduce((s, v) => s + v, 0) / ps.length).toFixed(3)}, range ${Math.min(...ps).toFixed(2)} to ${Math.max(...ps).toFixed(2)}`);
+  process.exit(0);
 }
 
 if (mode === "fit" || mode === "features" || mode === "precedents") {

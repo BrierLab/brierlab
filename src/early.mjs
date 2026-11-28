@@ -22,11 +22,28 @@ if (mode === "hold") {
 const days = Number(daysArg ?? 7);
 const b = heldBatch(name);
 const cases = new Map(readFileSync(b.cases, "utf8").split("\n").filter(Boolean).map((l) => JSON.parse(l)).map((x) => [x.nct, x]));
+const made = new Map(readFileSync(b.results, "utf8").split("\n").filter(Boolean).map((l) => JSON.parse(l)).map((x) => [x.nct, x]));
+const learned = new Map((b.learned?.forecasts ?? []).map((f) => [f.nct, f.probability]));
 const trials = b.seal.forecasts
-  .filter((f) => cases.has(f.nct))
+  .filter((f) => cases.has(f.nct) && made.has(f.nct))
   .map((f) => {
     const x = cases.get(f.nct);
-    return { nct: f.nct, title: x.title, sponsor: x.sponsor, phase: "Phase " + x.phase.replaceAll("PHASE", ""), due: x.primaryCompletion, method: f.method, probability: f.probability, leaf: f.leaf };
+    const m = made.get(f.nct);
+    return {
+      nct: f.nct,
+      title: x.title,
+      sponsor: x.sponsor,
+      phase: "Phase " + x.phase.replaceAll("PHASE", ""),
+      due: x.primaryCompletion,
+      enrollment: x.enrollment,
+      method: f.method,
+      probability: f.probability,
+      learned: learned.get(f.nct) ?? null,
+      rationale: m.rationale,
+      // A trial the forecaster believes has already reported is shown but never counted.
+      state: m.recalls_result ? "public" : "unscreened",
+      leaf: f.leaf,
+    };
   })
   .sort((p, q) => (p.due < q.due ? -1 : 1));
 const openedAt = new Date().toISOString();

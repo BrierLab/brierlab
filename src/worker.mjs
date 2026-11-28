@@ -46,6 +46,22 @@ async function watch(request, env) {
   return out;
 }
 
+// A path with every disguise removed: percent-encoding (even doubled),
+// back slashes, repeated slashes, "/./" and capitals.
+export function cleanPath(pathname) {
+  let clean = pathname;
+  for (let i = 0; i < 3; i++) {
+    try {
+      const next = decodeURIComponent(clean);
+      if (next === clean) break;
+      clean = next;
+    } catch {
+      break;
+    }
+  }
+  return clean.replace(/\\/g, "/").replace(/\/+/g, "/").replace(/\/\.(?=\/)/g, "").toLowerCase();
+}
+
 const fresh = { headers: { "cache-control": "no-store" } };
 
 async function routes(request, env, ctx, url) {
@@ -115,17 +131,7 @@ export default {
     // reach that folder (encoded letters, doubled or back slashes, capitals)
     // is treated as a request for it, so nothing there is ever served as a
     // plain file.
-    let clean = url.pathname;
-    for (let i = 0; i < 3; i++) {
-      try {
-        const next = decodeURIComponent(clean);
-        if (next === clean) break;
-        clean = next;
-      } catch {
-        break;
-      }
-    }
-    clean = clean.replace(/\\/g, "/").replace(/\/+/g, "/").replace(/\/\.(?=\/)/g, "").toLowerCase();
+    const clean = cleanPath(url.pathname);
     const held = clean.includes("/early/") || clean.startsWith("early/") || clean.includes("..");
     if (held) url.pathname = clean.includes("..") ? "/early/refused" : clean.slice(clean.indexOf("/early/"));
     if (url.pathname.startsWith("/api/") || held) {
