@@ -8,13 +8,20 @@
 // a person or an assistant finds it, and `add` records it with the link and
 // the sentence that decides it, so anyone can check the call.
 import { appendFileSync, readFileSync, writeFileSync } from "node:fs";
+import { released } from "./batches.mjs";
 import { ruleLabel } from "./features.mjs";
 import { FORECASTERS, LEDGER, VERDICTS, readLedger, scoreLive } from "./outcomes.mjs";
 
 const [mode, ...args] = process.argv.slice(2);
 const lines = (path) => readFileSync(path, "utf8").split("\n").filter(Boolean).map((l) => JSON.parse(l));
-const cases = lines("data/live_cases.jsonl");
-const sealedAt = new Map(lines("data/live_raw.jsonl").map((s) => [s.protocolSection.identificationModule.nctId, s.protocolSection.statusModule ?? {}]));
+// Every public trial: the first record plus each released batch. A later
+// batch's status at sealing comes from its cases file.
+const later = released().flatMap((b) => lines(b.cases));
+const cases = [...lines("data/live_cases.jsonl"), ...later];
+const sealedAt = new Map([
+  ...later.map((c) => [c.nct, { overallStatus: c.status, primaryCompletionDateStruct: { date: c.primaryCompletion } }]),
+  ...lines("data/live_raw.jsonl").map((s) => [s.protocolSection.identificationModule.nctId, s.protocolSection.statusModule ?? {}]),
+]);
 
 if (mode === "check") {
   const ids = cases.map((c) => c.nct);

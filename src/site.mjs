@@ -3,6 +3,7 @@
 // Usage: node src/site.mjs <seal-name>      (run from the repo root)
 // Writes site/data.js and copies the sealed file to site/sealed/.
 import { copyFileSync, existsSync, mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
+import { earlyList, heldList, releaseDue, released } from "./batches.mjs";
 import { resultIsPublic } from "./briefs.mjs";
 import { FORECASTERS, readRequested, scoreLive } from "./outcomes.mjs";
 
@@ -64,6 +65,42 @@ for (const c of rows("data/live_cases.jsonl")) {
     leaf: leafOf.get(`${c.nct} ${r ? "live_researched" : "live"}`) ?? null,
   });
 }
+// Later batches (src/batches.mjs). A batch whose holders-first window has
+// passed is released here and joins the record; each of its trials has a
+// forecast from the registry record alone, sealed in that batch's own file.
+const justReleased = releaseDue();
+if (justReleased.length) console.log(`released: ${justReleased.join(", ")}`);
+const more = [];
+const statusAtSeal = new Map();
+for (const b of released()) {
+  const leaves = new Map(b.seal.forecasts.map((f) => [`${f.nct} ${f.method}`, f.leaf]));
+  const made = byNct(rows(b.results));
+  let count = 0;
+  for (const c of rows(b.cases)) {
+    const f = made.get(c.nct);
+    if (!f || !leaves.has(`${c.nct} live`) || trials.some((t) => t.nct === c.nct)) continue;
+    statusAtSeal.set(c.nct, c.status ?? null);
+    trials.push({
+      nct: c.nct,
+      title: c.title,
+      sponsor: c.sponsor,
+      phase: phaseName(c.phase),
+      due: c.primaryCompletion,
+      enrollment: c.enrollment,
+      base: f.probability,
+      researched: null,
+      learned: null,
+      rationale: f.rationale,
+      sources: 0,
+      state: f.recalls_result ? "public" : "unscreened",
+      leaf: leaves.get(`${c.nct} live`),
+      batch: b.name,
+    });
+    count++;
+  }
+  more.push({ name: b.name, root: b.seal.root, count: b.seal.count, trials: count, sealedAt: b.seal.sealedAt });
+}
+
 // Evidence reports made on request since sealing (src/pull.mjs copies them
 // from the live site). One that produced a forecast becomes the trial's
 // published forecast. One that found the result already out changes nothing
@@ -230,6 +267,11 @@ const log = [
         },
       ]
     : []),
+  ...heldList().map((h) => ({
+    date: h.sealedAt.slice(0, 10),
+    kind: "sealed",
+    text: `${h.count} more forecasts were sealed, for trials due after the first record ends. Their fingerprint is ${h.root} and was sent to OpenTimestamps the same day. The forecasts themselves are not published yet; when they are, anyone can check them against this fingerprint.`,
+  })),
   {
     date: "2026-11-28",
     kind: "finding",
@@ -268,6 +310,10 @@ const data = {
     table: Object.entries(live.table).map(([who, t]) => ({ name: FORECASTERS[who], ...t })),
   },
   // The learned model: how many past trials it was trained on and where its sealed forecasts are.
+  // Batches sealed after the first record, each with its own sealed file.
+  more: more.map((b) => ({ ...b, stamp: existsSync(`data/sealed/${b.name}.root.ots`) ? (readFileSync(`data/sealed/${b.name}.root.ots`).includes(BITCOIN_TAG) ? "confirmed" : "pending") : "none" })),
+  // The last planned finish date among the trials shown.
+  lastDue: trials.reduce((m, t) => (t.due > m ? t.due : m), ""),
   learned: test && mlSeal ? { trainedOn: Number(/n=(\d+)/.exec(mlSeal.forecasts[0].model)?.[1] ?? test.trainedOn), seal: mlSealName, root: mlSeal.root, count: mlSeal.count } : null,
   log,
   trials,
@@ -277,10 +323,15 @@ mkdirSync("site/sealed", { recursive: true });
 // What the live registry check (src/worker.mjs, /api/watch) compares against:
 // each sealed trial's status when it was sealed, and whether we have read its outcome.
 {
-  const atSeal = new Map(rows("data/live_raw.jsonl").map((s) => [s.protocolSection.identificationModule.nctId, s.protocolSection.statusModule?.overallStatus ?? null]));
+  const atSeal = new Map([...statusAtSeal, ...rows("data/live_raw.jsonl").map((s) => [s.protocolSection.identificationModule.nctId, s.protocolSection.statusModule?.overallStatus ?? null])]);
   writeFileSync("site/watchlist.json", JSON.stringify(trials.map((t) => ({ nct: t.nct, status: atSeal.get(t.nct) ?? null, state: t.state, inLedger: !!t.outcome }))));
 }
 copyFileSync(`data/sealed/${sealName}.json`, `site/sealed/${sealName}.json`);
+for (const b of more) for (const ext of [".json", ".root", ".root.ots"]) if (existsSync(`data/sealed/${b.name}${ext}`)) copyFileSync(`data/sealed/${b.name}${ext}`, `site/sealed/${b.name}${ext}`);
+// A held batch's fingerprint and timestamp proof are public; its forecasts are not.
+for (const h of heldList()) for (const ext of [".root", ".root.ots"]) if (existsSync(`data/sealed/${h.name}${ext}`)) copyFileSync(`data/sealed/${h.name}${ext}`, `site/sealed/${h.name}${ext}`);
+// A batch still in its window must never sit in the public folder under its sealed name.
+for (const e of [...earlyList(), ...heldList()]) if (existsSync(`site/sealed/${e.name}.json`)) throw new Error(`${e.name} is still in its window but its sealed file is in site/sealed`);
 if (mlSealName) copyFileSync(`data/sealed/${mlSealName}.json`, `site/sealed/${mlSealName}.json`);
 if (stamp.state !== "none") {
   copyFileSync(`data/sealed/${sealName}.root`, `site/sealed/${sealName}.root`);

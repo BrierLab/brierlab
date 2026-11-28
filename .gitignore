@@ -17,3 +17,9 @@ data/top/
 site/early/
 # Local helper scripts and test files.
 .local/
+# A batch that is still in its holders-first window: its forecasts stay out of
+# the repository until the window closes (src/early.mjs). Raw pulls never go in.
+data/batches/*/raw.jsonl
+data/batches/*/*_batch.json
+# Sealed batches that are not public yet.
+data/held/

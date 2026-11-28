@@ -111,7 +111,24 @@ export default {
         return Response.json({ error: "The registry did not answer. The page shows our last saved check instead." }, { status: 502, headers: { "cache-control": "no-store" } });
       }
     }
-    if (url.pathname.startsWith("/api/") || url.pathname.startsWith("/early/")) {
+    // Held forecasts live under /early/. Any spelling of a path that could
+    // reach that folder (encoded letters, doubled or back slashes, capitals)
+    // is treated as a request for it, so nothing there is ever served as a
+    // plain file.
+    let clean = url.pathname;
+    for (let i = 0; i < 3; i++) {
+      try {
+        const next = decodeURIComponent(clean);
+        if (next === clean) break;
+        clean = next;
+      } catch {
+        break;
+      }
+    }
+    clean = clean.replace(/\\/g, "/").replace(/\/+/g, "/").replace(/\/\.(?=\/)/g, "").toLowerCase();
+    const held = clean.includes("/early/") || clean.startsWith("early/") || clean.includes("..");
+    if (held) url.pathname = clean.includes("..") ? "/early/refused" : clean.slice(clean.indexOf("/early/"));
+    if (url.pathname.startsWith("/api/") || held) {
       try {
         return (await routes(request, env, ctx, url)) ?? Response.json({ error: "Nothing here." }, { status: 404 });
       } catch (e) {

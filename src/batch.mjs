@@ -203,8 +203,11 @@ if (syncCount > 0) {
   process.exit(0);
 }
 
-const idPath = `data/${taskName}_batch.json`;
-const outPath = `data/${taskName}_results.jsonl`;
+// A later batch keeps its files beside its cases (data/batches/<seal-name>/),
+// so a new run never touches the first record's files.
+const outDir = casesPath.startsWith("data/batches/") ? casesPath.slice(0, casesPath.lastIndexOf("/")) : "data";
+const idPath = `${outDir}/${taskName}_batch.json`;
+const outPath = `${outDir}/${taskName}_results.jsonl`;
 
 // Research runs as direct calls, four at a time, appending each brief as it
 // lands. Trials that already have a row are skipped, so it can be rerun.

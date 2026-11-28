@@ -1,5 +1,5 @@
 {
- "checkedAt": "2026-11-27T17:47:45.892Z",
+ "checkedAt": "2026-11-28T15:28:46.872Z",
  "trials": 505,
  "pastFinish": [
   {
@@ -66,6 +66,16 @@
    "nct": "NCT03981796",
    "finish": "2026-11-26",
    "status": "ACTIVE_NOT_RECRUITING"
+  },
+  {
+   "nct": "NCT07103148",
+   "finish": "2026-11-28",
+   "status": "ACTIVE_NOT_RECRUITING"
+  },
+  {
+   "nct": "NCT06660992",
+   "finish": "2026-11-28",
+   "status": "RECRUITING"
   }
  ],
  "resultsPosted": [],

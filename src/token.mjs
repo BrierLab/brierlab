@@ -14,6 +14,14 @@ const hex = (bytes) => [...bytes].map((b) => b.toString(16).padStart(2, "0")).jo
 const unhex = (s) => Uint8Array.from(s.replace(/^0x/, "").match(/../g) ?? [], (b) => parseInt(b, 16));
 const isAddress = (s) => typeof s === "string" && /^0x[0-9a-fA-F]{40}$/.test(s);
 
+// Public facts about the chains a token can live on: what a wallet needs to
+// add the chain, and where a visitor can look a transaction up. The public
+// endpoint is only ever handed to wallets; the worker reads through RPC_URL.
+const CHAINS = {
+  4663: { name: "Robinhood Chain", rpc: "https://rpc.mainnet.chain.robinhood.com", explorer: "https://robinhoodchain.blockscout.com", coin: "ETH" },
+  31337: { name: "Local test chain", rpc: "http://127.0.0.1:8545", explorer: "", coin: "ETH" },
+};
+
 export class Refused extends Error {
   constructor(message, status = 400) {
     super(message);
@@ -56,6 +64,7 @@ export async function tokenInfo(env) {
     reportPrice: Number(env.REPORT_PRICE),
     holdMin: Number(env.HOLD_MIN),
     burn: BURN,
+    chain: CHAINS[Number(env.TOKEN_CHAIN_ID)] ?? null,
   };
 }
 

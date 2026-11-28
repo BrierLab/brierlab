@@ -255,10 +255,13 @@ tr.detail small { color: var(--mute); font-size: 13px; }
 tr.detail small.seal-line { display: block; margin-top: 8px; font-family: var(--mono); font-size: 11.5px; overflow-wrap: anywhere; }
 .early { margin: 18px 0; padding: 14px 16px; border: 1px solid var(--ink); border-radius: 8px; background: var(--panel); display: grid; gap: 10px; font-size: 14.5px; }
 .early[hidden] { display: none; }
+#m-token-text a { color: inherit; overflow-wrap: anywhere; }
 /* The table can be wider than a phone; a trial's notes stay inside what is visible. */
 tr.detail td > * { max-width: min(54em, calc(100cqw - 44px)); }
 tr.detail td > small { display: block; }
 .early p { margin: 0; }
+.early small { overflow-wrap: anywhere; }
+.early small a { color: inherit; }
 .early table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
 .early td { padding: 6px 12px 6px 0; border-top: 1px solid var(--soft); vertical-align: top; text-align: left; }
 .early td:first-child { width: 4em; font-family: var(--mono); }
@@ -465,7 +468,7 @@ footer p { margin: 0 0 8px; max-width: 60em; }
     <div class="wrap">
       <div class="sec-head">
         <h2>Every forecast, <em>on the record.</em></h2>
-        <p>Industry drug trials due to finish by the end of February 2027. <span id="rec-status">None has been scored yet, because none had reported when the record was sealed.</span></p>
+        <p><span id="rec-scope">Industry drug trials due to finish by the end of February 2027.</span> <span id="rec-status">None has been scored yet, because none had reported when the record was sealed.</span></p>
       </div>
       <div class="ledger">
         <div class="stats">
@@ -535,6 +538,10 @@ footer p { margin: 0 0 8px; max-width: 60em; }
         <div class="row" id="m-request-row" hidden>
           <div><h3>Evidence on request</h3><p>Any visitor can ask for an evidence report on a trial that has only a record-based forecast. We search for earlier results, forecast again with what we find, and record that forecast's fingerprint with an outside timestamp the moment it is made. A report counts toward the score only if it was made at least a day before the result was reported.</p></div>
           <div class="fig"><span id="m-request">0</span><small>a day, free</small></div>
+        </div>
+        <div class="row" id="m-token-row" hidden>
+          <div><h3>What the token does</h3><p id="m-token-text"></p></div>
+          <div class="fig" id="m-token-fig"></div>
         </div>
         <div class="row" id="m-learned-row" hidden>
           <div><h3>A model that learns</h3><p>A second forecaster is trained on past trials whose results are in the public registry. It is retrained by hand as more are posted, and each version is sealed separately and scored the same way.</p></div>
@@ -653,7 +660,13 @@ footer p { margin: 0 0 8px; max-width: 60em; }
     D.trials[0];
 
   const n = (s) => D.trials.filter((t) => t.state === s).length;
-  $("s-sealed").textContent = D.seal.count;
+  // Batches sealed after the first record add to the totals.
+  const sealedTotal = D.seal.count + (D.more ?? []).reduce((s, b) => s + b.count, 0);
+  $("s-sealed").textContent = sealedTotal;
+  if (D.lastDue) {
+    const [y, m] = D.lastDue.split("-").map(Number);
+    $("rec-scope").textContent = `Industry drug trials due to finish by the end of ${new Date(Date.UTC(y, m - 1, 1)).toLocaleDateString("en-GB", { month: "long", year: "numeric", timeZone: "UTC" })}.`;
+  }
   $("s-trials").textContent = D.trials.length;
   $("s-scored").textContent = D.scored;
   if (D.results?.checkedAt) {
@@ -710,6 +723,13 @@ footer p { margin: 0 0 8px; max-width: 60em; }
           ? `Submitted to OpenTimestamps on ${day}. Waiting to be written into a Bitcoin block. Download the ${files}.`
           : "Pending. Until it is stamped, the sealing date is our own claim.";
   }
+  // Later batches are sealed in their own files, listed under the first.
+  for (const b of D.more ?? []) {
+    const proof = b.stamp === "none" ? "" : ` and <a href="sealed/${b.name}.root.ots" download>proof</a> (${b.stamp === "confirmed" ? "in the Bitcoin blockchain" : "waiting for a Bitcoin block"})`;
+    const line = el("div", { className: "root-line plain" }, [el("b", { textContent: `Batch sealed ${day(b.sealedAt.slice(0, 10))}` }), el("span")]);
+    line.lastChild.innerHTML = `${b.count} forecasts, fingerprint ${b.root}. <a href="sealed/${b.name}.json" download>Sealed file</a>, <a href="sealed/${b.name}.root" download>fingerprint file</a>${proof}. To check it, put its file name in the two scripts below.`;
+    $("stamp").closest(".root-line").after(line);
+  }
   $("download").href = `sealed/${D.seal.name}.json`;
   $("download").setAttribute("download", "");
 
@@ -736,6 +756,17 @@ footer p { margin: 0 0 8px; max-width: 60em; }
     if (OD.perDay > 0) {
       $("m-request").textContent = OD.perDay;
       $("m-request-row").hidden = false;
+    }
+    if (OD.token) {
+      const k = OD.token;
+      const where = k.chain?.explorer;
+      $("m-token-text").replaceChildren(
+        `Burn ${k.reportPrice.toLocaleString()} ${k.symbol} to commission an evidence report on any open trial, with no daily limit. Hold ${k.holdMin.toLocaleString()} ${k.symbol} in a wallet to read each new batch of forecasts for its first days, before it opens to everyone. Every batch's fingerprint is public from the moment it is sealed, so early access never changes what was forecast. Token on ${k.chain?.name ?? "chain " + k.chainId}: `,
+        where ? el("a", { href: `${where}/token/${k.address}`, target: "_blank", rel: "noopener", textContent: k.address }) : k.address,
+        ".",
+      );
+      $("m-token-fig").textContent = k.symbol;
+      $("m-token-row").hidden = false;
     }
     // The trials a visitor can still ask for a report on get their own view.
     const canAsk = OD.ready && (OD.perDay > 0 || OD.token);
@@ -792,7 +823,19 @@ footer p { margin: 0 0 8px; max-width: 60em; }
     if (!eth) throw new Error("No wallet was found in this browser. Install a wallet extension and reload the page.");
     const [address] = await eth.request({ method: "eth_requestAccounts" });
     const chain = "0x" + OD.token.chainId.toString(16);
-    if ((await eth.request({ method: "eth_chainId" })) !== chain) await eth.request({ method: "wallet_switchEthereumChain", params: [{ chainId: chain }] });
+    if ((await eth.request({ method: "eth_chainId" })) !== chain) {
+      try {
+        await eth.request({ method: "wallet_switchEthereumChain", params: [{ chainId: chain }] });
+      } catch (e) {
+        // 4902: the wallet does not know this chain yet, so offer to add it.
+        const c = OD.token.chain;
+        if (e?.code !== 4902 || !c) throw new Error(`Switch your wallet to ${c?.name ?? "the token's chain"} and try again.`);
+        await eth.request({
+          method: "wallet_addEthereumChain",
+          params: [{ chainId: chain, chainName: c.name, rpcUrls: [c.rpc], nativeCurrency: { name: c.coin, symbol: c.coin, decimals: 18 }, ...(c.explorer ? { blockExplorerUrls: [c.explorer] } : {}) }],
+        });
+      }
+    }
     if (!wallet.pass || wallet.address !== address.toLowerCase()) {
       const asked = await sendJson("/api/signin", { address });
       if (!asked.ok) throw new Error(await said(asked, "Sign-in could not start."));
@@ -911,6 +954,15 @@ footer p { margin: 0 0 8px; max-width: 60em; }
       );
     }
     out.push(el("details", { className: "brief" }, [el("summary", { textContent: "Read the evidence brief" }), el("div", {}, rich(r.brief))]));
+    if (r.paid && r.paid.tx) {
+      const where = OD.token?.chain?.explorer;
+      out.push(
+        el("small", { className: "seal-line" }, [
+          `Paid for by burning ${Number(r.paid.amount).toLocaleString()} ${r.paid.symbol}. `,
+          where ? el("a", { href: `${where}/tx/${r.paid.tx}`, target: "_blank", rel: "noopener", textContent: "Burn transaction" }) : `Transaction ${r.paid.tx}`,
+        ]),
+      );
+    }
     if (r.leaf) {
       out.push(
         el("small", { className: "seal-line" }, [
@@ -990,7 +1042,13 @@ footer p { margin: 0 0 8px; max-width: 60em; }
         el("b", { textContent: `${b.count} new forecasts, sealed ${day(b.sealedAt.slice(0, 10))}. ` }),
         isOpen ? "Now open to everyone." : `Open to everyone on ${day(b.opensAt.slice(0, 10))}.` + (OD.token ? ` Wallets holding ${OD.token.holdMin.toLocaleString()} ${OD.token.symbol} can read them now.` : ""),
       ]);
-      const note = el("small", { textContent: `Fingerprint of the batch: ${b.root}` });
+      const note = el("small", {}, [
+        `Fingerprint of the batch: ${b.root}. `,
+        el("a", { href: `sealed/${b.name}.root`, download: "", textContent: "Fingerprint file" }),
+        " and ",
+        el("a", { href: `sealed/${b.name}.root.ots`, download: "", textContent: "timestamp proof" }),
+        ".",
+      ]);
       box.append(line, note);
       if (isOpen || OD.token) {
         const go = el("button", { type: "button", className: "btn small", textContent: isOpen ? "Show the forecasts" : "Sign in with a wallet to read them" });
@@ -1130,7 +1188,7 @@ footer p { margin: 0 0 8px; max-width: 60em; }
     tick();
     setInterval(tick, 1000);
   }
-  $("h-sealed").textContent = D.seal.count;
+  $("h-sealed").textContent = D.seal.count + (D.more ?? []).reduce((s, b) => s + b.count, 0);
   $("h-trials").textContent = D.trials.length;
   $("h-scored").textContent = D.scored;
 
