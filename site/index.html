@@ -1019,7 +1019,7 @@ footer p { margin: 0 0 8px; max-width: 60em; }
     const q = query.trim().toLowerCase();
     const list = D.trials.filter(
       (t) =>
-        (view === "all" || (view === "reported" ? !!t.outcome : view === "open" ? t.state === "unscreened" && !t.outcome && !t.report : t.state === "screened")) &&
+        (view === "all" || (view === "reported" ? !!t.outcome : view === "open" ? t.nct === open || (t.state === "unscreened" && !t.outcome && !t.report) : t.state === "screened")) &&
         (!q || `${t.title} ${t.sponsor} ${t.nct}`.toLowerCase().includes(q)),
     );
     const body = $("rows");

@@ -235,7 +235,7 @@ const log = [
     kind: "finding",
     text:
       "Anyone can now ask for an evidence report on a trial that has only a record-based forecast. We search for earlier results, forecast again with what we find, and send that forecast's fingerprint to OpenTimestamps the moment it is made. A few are free each day." +
-      (requested.length ? ` ${requested.length} ${requested.length === 1 ? "has" : "have"} been made so far; the first two were requested by us while testing.` : ""),
+      (requested.length ? ` ${requested.length} ${requested.length === 1 ? "has" : "have"} been made so far; the first three were requested by us while testing.` : ""),
   },
   {
     date: "Open",
