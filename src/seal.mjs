@@ -8,6 +8,7 @@
 // (the 32 raw bytes of the root, the file to timestamp).
 import { createHash } from "node:crypto";
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { leafText } from "./record.mjs";
 
 const [name, ...paths] = process.argv.slice(2);
 if (!name || !paths.length) {
@@ -16,11 +17,6 @@ if (!name || !paths.length) {
 }
 
 const sha256 = (data) => createHash("sha256").update(data).digest();
-
-// The exact text that is hashed for one forecast. Field order is fixed, so
-// the same forecast always produces the same hash.
-export const leafText = (f) =>
-  JSON.stringify({ nct: f.nct, method: f.method, probability: f.probability, model: f.model, madeAt: f.madeAt });
 
 const forecasts = [];
 for (const path of paths) {

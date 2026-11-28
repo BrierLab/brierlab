@@ -200,7 +200,7 @@ section { padding: clamp(56px, 7vw, 96px) 0; border-top: 1px solid var(--ink); }
 .search { background: var(--bench); border: 1px solid var(--rule); border-radius: 6px; color: var(--ink); font: 400 14px/1 var(--sans); padding: 0 14px; height: 38px; width: 300px; max-width: 100%; outline: none; }
 .search:focus { border-color: var(--ink); background: var(--panel); }
 .search::placeholder { color: var(--mute); }
-.scroller { max-height: 620px; overflow-y: auto; scrollbar-width: thin; scrollbar-color: var(--rule) transparent; }
+.scroller { container-type: inline-size; max-height: 620px; overflow-y: auto; scrollbar-width: thin; scrollbar-color: var(--rule) transparent; }
 table { width: 100%; border-collapse: collapse; }
 th { position: sticky; top: 0; background: var(--panel); text-align: left; font: 400 10.5px/1 var(--mono); color: var(--mute); text-transform: uppercase; letter-spacing: 0.06em; padding: 13px 12px; border-bottom: 1px solid var(--ink); z-index: 1; }
 td { padding: 13px 12px; border-bottom: 1px solid var(--soft); vertical-align: middle; font-size: 15px; }
@@ -231,6 +231,37 @@ tr.detail small.outcome a { color: inherit; }
 tr.detail td { background: var(--bench); text-align: left; padding: 16px 22px 20px; font-size: 14.5px; line-height: 1.55; }
 tr.detail p { margin: 0 0 8px; max-width: 54em; }
 tr.detail small { color: var(--mute); font-size: 13px; }
+.ask { margin-top: 14px; padding: 14px 16px; background: var(--panel); border: 1px solid var(--ink); border-radius: 8px; max-width: 54em; display: grid; gap: 10px; }
+.ask b { font-size: 15px; }
+.ask p { margin: 0; max-width: none; color: var(--mute); font-size: 13.5px; }
+.ask p.err { color: var(--ink); border-left: 3px solid var(--rhod); padding-left: 10px; }
+.ask .acts { display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: center; }
+.ask .acts small { font-family: var(--mono); font-size: 11.5px; }
+.od-steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 7px; font-size: 13.5px; }
+.od-steps li { display: flex; align-items: center; gap: 9px; color: var(--mute); }
+.od-steps li::before { content: ""; width: 9px; height: 9px; border-radius: 50%; border: 1px solid var(--ink); background: var(--panel); flex: none; }
+.od-steps li.done { color: var(--ink); }
+.od-steps li.done::before { background: var(--fluo); }
+.od-steps li.now { color: var(--ink); font-weight: 600; }
+.od-steps li.now::before { background: var(--amber); animation: step-now 1s steps(2) infinite; }
+@keyframes step-now { 50% { opacity: 0.25; } }
+@media (prefers-reduced-motion: reduce) { .od-steps li.now::before { animation: none; } }
+.brief { margin-top: 10px; max-width: 54em; }
+.brief summary { cursor: pointer; font-weight: 600; font-size: 13.5px; }
+.brief > div { margin-top: 8px; font-size: 13.5px; }
+.brief p, .brief ul { margin: 0 0 8px; }
+.brief ul { padding-left: 18px; }
+.brief a, .seal-line a { color: inherit; overflow-wrap: anywhere; }
+tr.detail small.seal-line { display: block; margin-top: 8px; font-family: var(--mono); font-size: 11.5px; overflow-wrap: anywhere; }
+.early { margin: 18px 0; padding: 14px 16px; border: 1px solid var(--ink); border-radius: 8px; background: var(--panel); display: grid; gap: 10px; font-size: 14.5px; }
+.early[hidden] { display: none; }
+/* The table can be wider than a phone; a trial's notes stay inside what is visible. */
+tr.detail td > * { max-width: min(54em, calc(100cqw - 44px)); }
+tr.detail td > small { display: block; }
+.early p { margin: 0; }
+.early table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+.early td { padding: 6px 12px 6px 0; border-top: 1px solid var(--soft); vertical-align: top; text-align: left; }
+.early td:first-child { width: 4em; font-family: var(--mono); }
 .empty { padding: 40px 24px; color: var(--mute); text-align: center; }
 .ledger-foot { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 12px 22px; font-size: 13.5px; color: var(--mute); border-top: 1px solid var(--rule); flex-wrap: wrap; }
 .ledger-foot span:first-child { display: inline-flex; align-items: center; gap: 10px; }
@@ -301,6 +332,12 @@ footer p { margin: 0 0 8px; max-width: 60em; }
   .readout dl { grid-template-columns: 1fr 1fr; }
   .readout dl div:last-child { grid-column: 1 / -1; border-top: 1px solid var(--rule); }
   .readout dl div:nth-child(2) { border-right: 0; }
+}
+@media (max-width: 620px) {
+  .seg { display: grid; grid-template-columns: 1fr 1fr; width: 100%; }
+  .seg button + button { border-left: 0; }
+  .seg button:nth-child(even) { border-left: 1px solid var(--ink); }
+  .seg button:nth-child(n + 3) { border-top: 1px solid var(--ink); }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .led.wait { animation: none; } }
 </style>
@@ -436,6 +473,7 @@ footer p { margin: 0 0 8px; max-width: 60em; }
           <div class="stat"><span>Trials covered</span><b id="s-trials">0</b></div>
           <div class="stat"><span>Scored so far</span><b id="s-scored">0</b></div>
         </div>
+        <div class="early" id="early" hidden></div>
         <div class="results" id="results" hidden>
           <table>
             <thead><tr><th>Forecaster</th><th>Trials scored</th><th>Brier score</th><th>Leaned the right way</th></tr></thead>
@@ -447,6 +485,7 @@ footer p { margin: 0 0 8px; max-width: 60em; }
           <div class="seg" role="group" aria-label="Which trials to show">
             <button type="button" data-view="screened" aria-pressed="true">Evidence-backed <span id="n-screened"></span></button>
             <button type="button" data-view="all" aria-pressed="false">All trials <span id="n-all"></span></button>
+            <button type="button" data-view="open" aria-pressed="false" id="b-open" hidden>Request evidence <span id="n-open"></span></button>
             <button type="button" data-view="reported" aria-pressed="false" id="b-reported" hidden>Reported <span id="n-reported"></span></button>
           </div>
           <input class="search" id="search" type="search" placeholder="Search drug, sponsor or NCT number" aria-label="Search trials">
@@ -492,6 +531,10 @@ footer p { margin: 0 0 8px; max-width: 60em; }
         <div class="row">
           <div><h3>With an evidence brief</h3><p>The trials closest to reporting get a second forecast, made with a sourced brief on earlier results for the drug and its class.</p></div>
           <div class="fig"><span class="lit" id="m-screened">0</span><small>trials</small></div>
+        </div>
+        <div class="row" id="m-request-row" hidden>
+          <div><h3>Evidence on request</h3><p>Any visitor can ask for an evidence report on a trial that has only a record-based forecast. We search for earlier results, forecast again with what we find, and record that forecast's fingerprint with an outside timestamp the moment it is made. A report counts toward the score only if it was made at least a day before the result was reported.</p></div>
+          <div class="fig"><span id="m-request">0</span><small>a day, free</small></div>
         </div>
         <div class="row" id="m-learned-row" hidden>
           <div><h3>A model that learns</h3><p>A second forecaster is trained on past trials whose results are in the public registry. It is retrained by hand as more are posted, and each version is sealed separately and scored the same way.</p></div>
@@ -604,7 +647,8 @@ footer p { margin: 0 0 8px; max-width: 60em; }
   // whose outcome is least certain.
   const pick =
     D.trials
-      .filter((t) => t.state === "screened")
+      // A report made on request has its own fingerprint, outside the sealed file.
+      .filter((t) => t.state === "screened" && !t.report)
       .sort((a, b) => Math.abs(headline(a) - 0.5) - Math.abs(headline(b) - 0.5) || (a.due < b.due ? -1 : 1))[0] ??
     D.trials[0];
 
@@ -669,6 +713,304 @@ footer p { margin: 0 0 8px; max-width: 60em; }
   $("download").href = `sealed/${D.seal.name}.json`;
   $("download").setAttribute("download", "");
 
+  // Reports made on request (/api/reports). The live list is laid over the
+  // sealed record: a trial with a finished report shows that forecast.
+  let OD = { perDay: 0, left: 0, reports: {}, token: null, ready: false };
+  const fullReports = new Map();
+  const askedFor = new Set();
+  let job = null; // the report being written from this tab: { nct, step, error }
+  function layReports() {
+    for (const t of D.trials) {
+      const r = OD.reports[t.nct];
+      if (!r) continue;
+      t.report = r;
+      if (r.status === "forecast") {
+        t.researched = r.probability;
+        t.sources = r.sources;
+        t.state = "screened";
+      }
+    }
+    $("n-screened").textContent = n("screened");
+    $("m-screened").textContent = n("screened");
+    $("m-public").textContent = n("public");
+    if (OD.perDay > 0) {
+      $("m-request").textContent = OD.perDay;
+      $("m-request-row").hidden = false;
+    }
+    // The trials a visitor can still ask for a report on get their own view.
+    const canAsk = OD.ready && (OD.perDay > 0 || OD.token);
+    $("n-open").textContent = D.trials.filter((t) => t.state === "unscreened" && !t.outcome && !t.report).length;
+    $("b-open").hidden = !canAsk;
+  }
+  async function loadReports() {
+    try {
+      const res = await fetch("/api/reports");
+      if (!res.ok) return;
+      OD = { ...(await res.json()), ready: true };
+      layReports();
+      draw();
+    } catch {}
+  }
+
+  // An evidence brief is plain text with a few marks: **bold**, [name](link)
+  // and dash lists. Only those are turned into elements; nothing is trusted
+  // as markup, and only http links become links.
+  function rich(text) {
+    const out = document.createDocumentFragment();
+    const inline = (node, s) => {
+      const re = /\*\*(.+?)\*\*|\[([^\]]+)\]\((https?:\/\/(?:[^\s()]|\([^\s()]*\))+)\)/g;
+      let at = 0, m;
+      while ((m = re.exec(s))) {
+        node.append(s.slice(at, m.index));
+        node.append(m[1] != null ? el("b", { textContent: m[1] }) : el("a", { href: m[3], target: "_blank", rel: "noopener nofollow", textContent: m[2] }));
+        at = re.lastIndex;
+      }
+      node.append(s.slice(at));
+      return node;
+    };
+    let list = null;
+    for (const line of text.split("\n")) {
+      const bullet = line.match(/^\s*[-*]\s+(.*)$/);
+      if (bullet) {
+        if (!list) out.append((list = el("ul")));
+        list.append(inline(el("li"), bullet[1]));
+      } else {
+        list = null;
+        if (line.trim()) out.append(inline(el("p"), line.replace(/^#+\s*/, "")));
+      }
+    }
+    return out;
+  }
+
+  // A wallet, used only when a token exists (OD.token is set by the server).
+  const wallet = { address: null, pass: null, balance: null, holder: false };
+  const sendJson = (path, body, pass) =>
+    fetch(path, { method: "POST", headers: { "content-type": "application/json", ...(pass ? { authorization: `Bearer ${pass}` } : {}) }, body: JSON.stringify(body) });
+  const said = async (res, fallback) => (await res.json().catch(() => ({}))).error || fallback;
+  async function connect() {
+    const eth = window.ethereum;
+    if (!eth) throw new Error("No wallet was found in this browser. Install a wallet extension and reload the page.");
+    const [address] = await eth.request({ method: "eth_requestAccounts" });
+    const chain = "0x" + OD.token.chainId.toString(16);
+    if ((await eth.request({ method: "eth_chainId" })) !== chain) await eth.request({ method: "wallet_switchEthereumChain", params: [{ chainId: chain }] });
+    if (!wallet.pass || wallet.address !== address.toLowerCase()) {
+      const asked = await sendJson("/api/signin", { address });
+      if (!asked.ok) throw new Error(await said(asked, "Sign-in could not start."));
+      const { text, expires } = await asked.json();
+      const hexText = "0x" + [...new TextEncoder().encode(text)].map((b) => b.toString(16).padStart(2, "0")).join("");
+      const signature = await eth.request({ method: "personal_sign", params: [hexText, address] });
+      const made = await sendJson("/api/session", { address, expires, signature });
+      if (!made.ok) throw new Error(await said(made, "Sign-in failed."));
+      Object.assign(wallet, await made.json());
+    }
+    const me = await fetch("/api/me", { headers: { authorization: `Bearer ${wallet.pass}` } });
+    if (me.ok) Object.assign(wallet, await me.json());
+    return wallet;
+  }
+  // A burn that has not yet produced a report is remembered in this browser,
+  // so a closed tab or a failed report does not lose it.
+  const unspent = {
+    get: () => { try { return localStorage.getItem("bl-burn"); } catch { return null; } },
+    set: (tx) => { try { tx ? localStorage.setItem("bl-burn", tx) : localStorage.removeItem("bl-burn"); } catch {} },
+  };
+  async function burn() {
+    const k = OD.token;
+    const amount = (BigInt(Math.round(k.reportPrice * 1e6)) * 10n ** BigInt(k.decimals)) / 1000000n;
+    const data = "0xa9059cbb" + k.burn.slice(2).padStart(64, "0") + amount.toString(16).padStart(64, "0");
+    const tx = await window.ethereum.request({ method: "eth_sendTransaction", params: [{ from: wallet.address, to: k.address, data }] });
+    unspent.set(tx);
+    return tx;
+  }
+
+  const STEPS = [
+    ["wallet", "Waiting for your wallet"],
+    ["record", "Reading the registry record"],
+    ["research", "Searching for earlier results"],
+    ["forecast", "Forecasting with the evidence"],
+    ["seal", "Recording the fingerprint"],
+  ];
+  async function request(t, withToken) {
+    job = { nct: t.nct, step: withToken ? "wallet" : "record", error: null, token: !!withToken };
+    draw();
+    try {
+      let tx = null;
+      if (withToken) {
+        await connect();
+        tx = unspent.get() ?? (await burn());
+        job.step = "record";
+        draw();
+      }
+      let res;
+      for (let tries = 0; ; tries++) {
+        res = await sendJson("/api/report", { nct: t.nct, ...(tx ? { tx } : {}) }, tx ? wallet.pass : null);
+        // 425: the chain has not confirmed the burn yet. Ask again shortly.
+        if (res.status !== 425 || tries >= 30) break;
+        await new Promise((r) => setTimeout(r, 3000));
+      }
+      if (!res.ok || !res.body) throw new Error(await said(res, "The request did not go through. Try again."));
+      const reader = res.body.getReader();
+      const decode = new TextDecoder();
+      let buffer = "", finished = false;
+      for (;;) {
+        const { value, done } = await reader.read();
+        if (done) break;
+        buffer += decode.decode(value, { stream: true });
+        for (let cut; (cut = buffer.indexOf("\n")) >= 0; ) {
+          const line = buffer.slice(0, cut).trim();
+          buffer = buffer.slice(cut + 1);
+          if (!line) continue;
+          const m = JSON.parse(line);
+          if (m.error) throw new Error(m.error);
+          if (m.step) { job.step = m.step; draw(); }
+          if (m.done) { fullReports.set(t.nct, m.report); finished = true; }
+        }
+      }
+      if (!finished) throw new Error("The connection dropped before the report finished. Reload the page in a few minutes to see whether it was saved.");
+      if (tx) unspent.set(null);
+      job = null;
+    } catch (e) {
+      job = { nct: t.nct, step: null, error: e?.message || "Something went wrong. Try again." };
+    }
+    draw();
+    loadReports();
+  }
+
+  function reportBlock(t) {
+    const r = fullReports.get(t.nct);
+    if (!r) {
+      if (!askedFor.has(t.nct)) {
+        askedFor.add(t.nct);
+        fetch(`/api/report/${t.nct}`)
+          .then((res) => (res.ok ? res.json() : null))
+          .then((j) => {
+            // If the report cannot be loaded, fall back to the sealed forecast.
+            if (j) fullReports.set(t.nct, j);
+            else delete t.report;
+            draw();
+          })
+          .catch(() => { delete t.report; draw(); });
+      }
+      return [el("p", { textContent: "Loading the evidence report." })];
+    }
+    const made = day(r.madeAt.slice(0, 10));
+    const out = [];
+    if (r.status === "forecast") {
+      const notes = [`Awaiting readout. From the record alone: ${pct(t.base)}. With an evidence report made on request on ${made} (${r.sources.length} sources): ${pct(r.probability)}.`];
+      if (t.learned != null) notes.push(`Learned model: ${pct(t.learned)}.`);
+      if (t.enrollment) notes.push(`${t.enrollment.toLocaleString()} participants planned.`);
+      out.push(el("p", { textContent: r.rationale }), el("small", { textContent: notes.join(" ") }));
+    } else {
+      // The search found the trial's result. The sealed forecast stands and
+      // is scored once the result is read into the ledger.
+      const notes = [status(t) + "."];
+      if (t.learned != null) notes.push(`Learned model: ${pct(t.learned)}.`);
+      out.push(
+        el("p", { textContent: t.rationale }),
+        el("small", { textContent: notes.join(" ") }),
+        el("small", { className: "outcome", textContent: `An evidence report requested on ${made} found that this trial's result may already be public. The sealed forecast above stands, and no new forecast was made. The result is waiting to be read into the record.` }),
+      );
+    }
+    out.push(el("details", { className: "brief" }, [el("summary", { textContent: "Read the evidence brief" }), el("div", {}, rich(r.brief))]));
+    if (r.leaf) {
+      out.push(
+        el("small", { className: "seal-line" }, [
+          `Fingerprint ${r.leaf}. `,
+          el("a", { href: `/api/report/${t.nct}.txt`, textContent: "Sealed text" }),
+          ...(r.stamped ? [" and ", el("a", { href: `/api/report/${t.nct}.ots`, textContent: "OpenTimestamps proof" }), ", which completes once Bitcoin confirms it."] : ["."]),
+        ]),
+      );
+    }
+    return out;
+  }
+  function askBlock(t) {
+    const box = el("div", { className: "ask" });
+    if (job && job.nct === t.nct && !job.error) {
+      const steps = STEPS.filter((s) => s[0] !== "wallet" || job.token);
+      const at = steps.findIndex((s) => s[0] === job.step);
+      box.setAttribute("role", "status");
+      box.append(
+        el("b", { textContent: "Writing the evidence report. It takes about a minute; keep this page open." }),
+        el("ol", { className: "od-steps" }, steps.map((s, i) => el("li", { className: i < at ? "done" : i === at ? "now" : "", textContent: s[1] }))),
+      );
+      return box;
+    }
+    box.append(
+      el("b", { textContent: "This forecast was made from the registry record alone." }),
+      el("p", { textContent: "Request an evidence report and we search for earlier results on this drug and its class, forecast again with what we find, and record the new forecast's fingerprint with an outside timestamp. It takes about a minute, and the report is public." }),
+    );
+    if (job && job.nct === t.nct && job.error) box.append(el("p", { className: "err", textContent: job.error }));
+    const busy = !!job && !job.error;
+    if (OD.perDay > 0) {
+      const free = el("button", { type: "button", className: "btn small solid", textContent: "Request an evidence report", disabled: busy || OD.left < 1 });
+      free.addEventListener("click", () => request(t, false));
+      box.append(
+        el("div", { className: "acts" }, [
+          free,
+          el("small", { textContent: OD.left > 0 ? `${OD.left} of ${OD.perDay} free reports left today, one per visitor` : `Today's ${OD.perDay} free reports are used. The count resets at midnight UTC.` }),
+        ]),
+      );
+    }
+    if (OD.token) {
+      const k = OD.token;
+      const held = unspent.get();
+      const pay = el("button", { type: "button", className: "btn small", textContent: held ? "Use your unspent burn for this report" : `Burn ${k.reportPrice.toLocaleString()} ${k.symbol} for this report`, disabled: busy });
+      pay.addEventListener("click", () => request(t, true));
+      box.append(
+        el("div", { className: "acts" }, [
+          pay,
+          el("small", { textContent: held ? "A burn from this browser has not produced a report yet." : `No daily limit. The ${k.symbol} is sent to the burn address and cannot be recovered.` }),
+        ]),
+      );
+    }
+    return box;
+  }
+
+  // Forecast batches in their holders-first window (early.json).
+  async function loadEarly() {
+    const list = await fetch("/early.json").then((r) => (r.ok ? r.json() : [])).catch(() => []);
+    const box = $("early");
+    for (const b of list) {
+      const opens = Date.parse(b.opensAt);
+      const isOpen = opens <= Date.now();
+      const body = el("div");
+      const show = async () => {
+        const res = await fetch(`/early/${b.name}.json`, wallet.pass ? { headers: { authorization: `Bearer ${wallet.pass}` } } : {});
+        if (!res.ok) throw new Error(await said(res, "This batch could not be loaded."));
+        const batch = await res.json();
+        body.replaceChildren(
+          el("table", {}, batch.trials.map((t) =>
+            el("tr", {}, [
+              el("td", {}, [el("b", { textContent: pct(t.probability) })]),
+              el("td", {}, [t.title, el("br"), el("small", { textContent: `${t.nct} · ${t.sponsor} · ${t.phase} · due ${day(t.due)}` })]),
+            ]),
+          )),
+        );
+      };
+      const line = el("p", {}, [
+        el("b", { textContent: `${b.count} new forecasts, sealed ${day(b.sealedAt.slice(0, 10))}. ` }),
+        isOpen ? "Now open to everyone." : `Open to everyone on ${day(b.opensAt.slice(0, 10))}.` + (OD.token ? ` Wallets holding ${OD.token.holdMin.toLocaleString()} ${OD.token.symbol} can read them now.` : ""),
+      ]);
+      const note = el("small", { textContent: `Fingerprint of the batch: ${b.root}` });
+      box.append(line, note);
+      if (isOpen || OD.token) {
+        const go = el("button", { type: "button", className: "btn small", textContent: isOpen ? "Show the forecasts" : "Sign in with a wallet to read them" });
+        go.addEventListener("click", async () => {
+          go.disabled = true;
+          try {
+            if (!isOpen) await connect();
+            await show();
+            go.remove();
+          } catch (e) {
+            go.disabled = false;
+            body.replaceChildren(el("p", { textContent: e?.message || "That did not work. Try again." }));
+          }
+        });
+        box.append(el("div", {}, go), body);
+      }
+      box.hidden = false;
+    }
+  }
+
   // The record table.
   let view = "screened";
   let query = "";
@@ -677,7 +1019,7 @@ footer p { margin: 0 0 8px; max-width: 60em; }
     const q = query.trim().toLowerCase();
     const list = D.trials.filter(
       (t) =>
-        (view === "all" || (view === "reported" ? !!t.outcome : t.state === "screened")) &&
+        (view === "all" || (view === "reported" ? !!t.outcome : view === "open" ? t.state === "unscreened" && !t.outcome && !t.report : t.state === "screened")) &&
         (!q || `${t.title} ${t.sponsor} ${t.nct}`.toLowerCase().includes(q)),
     );
     const body = $("rows");
@@ -712,27 +1054,27 @@ footer p { margin: 0 0 8px; max-width: 60em; }
       });
       body.append(row);
       if (open === t.nct) {
-        const notes = [status(t) + "."];
-        if (t.researched != null && t.base != null) {
-          notes.push(`From the record alone: ${pct(t.base)}. With the evidence brief (${t.sources} sources): ${pct(t.researched)}.`);
+        const kids = [];
+        if (t.report && !t.outcome) kids.push(...reportBlock(t));
+        else {
+          const notes = [status(t) + "."];
+          if (t.researched != null && t.base != null) {
+            notes.push(`From the record alone: ${pct(t.base)}. With the evidence brief (${t.sources} sources): ${pct(t.researched)}.`);
+          }
+          if (t.learned != null) notes.push(`Learned model: ${pct(t.learned)}.`);
+          if (t.enrollment) notes.push(`${t.enrollment.toLocaleString()} participants planned.`);
+          kids.push(el("p", { textContent: t.rationale }), el("small", { textContent: notes.join(" ") }));
+          if (t.outcome) {
+            kids.push(
+              el("small", { className: "outcome" }, [
+                `Result reported ${day(t.outcome.reportedOn)}: ${t.outcome.quote} `,
+                el("a", { href: t.outcome.source, target: "_blank", rel: "noopener", textContent: "Source" }),
+                t.outcome.counted ? "" : `. Not scored: ${t.outcome.why}.`,
+              ]),
+            );
+          } else if (t.state === "unscreened" && OD.ready && (OD.perDay > 0 || OD.token)) kids.push(askBlock(t));
         }
-        if (t.learned != null) notes.push(`Learned model: ${pct(t.learned)}.`);
-        if (t.enrollment) notes.push(`${t.enrollment.toLocaleString()} participants planned.`);
-        body.append(
-          el("tr", { className: "detail" }, el("td", { colSpan: 5 }, [
-            el("p", { textContent: t.rationale }),
-            el("small", { textContent: notes.join(" ") }),
-            ...(t.outcome
-              ? [
-                  el("small", { className: "outcome" }, [
-                    `Result reported ${day(t.outcome.reportedOn)}: ${t.outcome.quote} `,
-                    el("a", { href: t.outcome.source, target: "_blank", rel: "noopener", textContent: "Source" }),
-                    t.outcome.counted ? "" : `. Not scored: ${t.outcome.why}.`,
-                  ]),
-                ]
-              : []),
-          ])),
-        );
+        body.append(el("tr", { className: "detail" }, el("td", { colSpan: 5 }, kids)));
       }
     }
     $("empty").hidden = list.length > 0;
@@ -753,6 +1095,7 @@ footer p { margin: 0 0 8px; max-width: 60em; }
     draw();
   });
   draw();
+  loadReports().then(loadEarly);
 
   // Lab notebook entries.
   const KIND = { sealed: "Sealed", finding: "Finding", negative: "Did not work", open: "Still open" };

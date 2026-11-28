@@ -4,7 +4,7 @@
 // Writes site/data.js and copies the sealed file to site/sealed/.
 import { copyFileSync, existsSync, mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
 import { resultIsPublic } from "./briefs.mjs";
-import { FORECASTERS, scoreLive } from "./outcomes.mjs";
+import { FORECASTERS, readRequested, scoreLive } from "./outcomes.mjs";
 
 const [sealName] = process.argv.slice(2);
 if (!sealName) {
@@ -63,6 +63,17 @@ for (const c of rows("data/live_cases.jsonl")) {
     // The sealed hash of the forecast the site shows for this trial.
     leaf: leafOf.get(`${c.nct} ${r ? "live_researched" : "live"}`) ?? null,
   });
+}
+// Evidence reports made on request since sealing (src/pull.mjs copies them
+// from the live site). One that produced a forecast becomes the trial's
+// published forecast. One that found the result already out changes nothing
+// here: the sealed forecast stands until the result is read into the ledger.
+const requested = readRequested();
+for (const r of requested) {
+  const t = trials.find((x) => x.nct === r.nct);
+  if (!t) continue;
+  t.report = { status: r.status, probability: r.probability ?? null, madeAt: r.madeAt, leaf: r.leaf ?? null, sources: r.sources.length, paid: !!r.paid, stamped: existsSync(`data/on_demand/${r.nct}.txt.ots`) };
+  if (r.status === "forecast" && t.state === "unscreened") Object.assign(t, { researched: r.probability, sources: r.sources.length, state: "screened", leaf: r.leaf });
 }
 trials.sort((a, b) => (a.due < b.due ? -1 : a.due > b.due ? 1 : a.nct < b.nct ? -1 : 1));
 
@@ -220,6 +231,13 @@ const log = [
       ]
     : []),
   {
+    date: "2026-11-28",
+    kind: "finding",
+    text:
+      "Anyone can now ask for an evidence report on a trial that has only a record-based forecast. We search for earlier results, forecast again with what we find, and send that forecast's fingerprint to OpenTimestamps the moment it is made. A few are free each day." +
+      (requested.length ? ` ${requested.length} ${requested.length === 1 ? "has" : "have"} been made so far; the first two were requested by us while testing.` : ""),
+  },
+  {
     date: "Open",
     kind: "open",
     text:
@@ -260,7 +278,7 @@ mkdirSync("site/sealed", { recursive: true });
 // each sealed trial's status when it was sealed, and whether we have read its outcome.
 {
   const atSeal = new Map(rows("data/live_raw.jsonl").map((s) => [s.protocolSection.identificationModule.nctId, s.protocolSection.statusModule?.overallStatus ?? null]));
-  writeFileSync("site/watchlist.json", JSON.stringify(trials.map((t) => ({ nct: t.nct, status: atSeal.get(t.nct) ?? null, inLedger: !!t.outcome }))));
+  writeFileSync("site/watchlist.json", JSON.stringify(trials.map((t) => ({ nct: t.nct, status: atSeal.get(t.nct) ?? null, state: t.state, inLedger: !!t.outcome }))));
 }
 copyFileSync(`data/sealed/${sealName}.json`, `site/sealed/${sealName}.json`);
 if (mlSealName) copyFileSync(`data/sealed/${mlSealName}.json`, `site/sealed/${mlSealName}.json`);

@@ -5,6 +5,11 @@
   "workers_dev": false,
   "preview_urls": false,
   "assets": { "directory": "./site", "binding": "ASSETS", "not_found_handling": "404-page", "run_worker_first": true },
+  // Free reports a day across all visitors. Token settings are added here only
+  // once a real token address exists; without one the wallet routes are off.
+  "vars": { "DAILY_FREE": "3" },
+  "observability": { "enabled": true },
+  "kv_namespaces": [{ "binding": "REPORTS", "id": "b146f230ed274f8b834896ff68e13e6c" }],
   "routes": [
     { "pattern": "brierlab.com", "custom_domain": true },
     { "pattern": "www.brierlab.com", "custom_domain": true }

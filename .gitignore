@@ -11,3 +11,9 @@ data/*_batch.json
 data/top/
 # Backups the timestamp tool leaves behind when it upgrades a proof.
 *.bak
+# Local worker settings and secrets.
+.dev.vars
+# Forecast batches still in their holders-first window.
+site/early/
+# Local helper scripts and test files.
+.local/

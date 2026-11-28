@@ -8,6 +8,7 @@
 // planned completion date, since both are public today.
 import { readFileSync, writeFileSync } from "node:fs";
 import { features, ruleLabel } from "./features.mjs";
+import { forecastInput as buildInput } from "./record.mjs";
 
 const [rawPath, outPath, mode] = process.argv.slice(2);
 if (!rawPath || !outPath || (mode && mode !== "live")) {
@@ -15,66 +16,13 @@ if (!rawPath || !outPath || (mode && mode !== "live")) {
   process.exit(1);
 }
 const live = mode === "live";
+const forecastInput = (p) => buildInput(p, live);
 
 // A primary-results block larger than this is skipped rather than cut down,
 // because a grader reading a truncated record could grade it wrong.
 const MAX_LABEL_CHARS = 60_000;
 
 const studies = readFileSync(rawPath, "utf8").split("\n").filter(Boolean).map((l) => JSON.parse(l));
-
-function forecastInput(p) {
-  const id = p.identificationModule ?? {};
-  const sponsor = p.sponsorCollaboratorsModule ?? {};
-  const design = p.designModule ?? {};
-  const desc = p.descriptionModule ?? {};
-  const arms = p.armsInterventionsModule ?? {};
-  const outcomes = p.outcomesModule ?? {};
-  const elig = p.eligibilityModule ?? {};
-  const locations = p.contactsLocationsModule?.locations ?? [];
-  const countries = [...new Set(locations.map((l) => l.country).filter(Boolean))];
-
-  // Deliberately left out: overall status, why-stopped, completion dates,
-  // results dates, and references. Each can reveal how the trial ended.
-  const record = {
-    nctId: id.nctId,
-    briefTitle: id.briefTitle,
-    officialTitle: id.officialTitle,
-    leadSponsor: sponsor.leadSponsor,
-    collaborators: sponsor.collaborators,
-    startDate: p.statusModule?.startDateStruct?.date,
-    firstRegistered: p.statusModule?.studyFirstSubmitDate,
-    hasDataMonitoringCommittee: p.oversightModule?.oversightHasDmc,
-    conditions: p.conditionsModule?.conditions,
-    keywords: p.conditionsModule?.keywords,
-    phases: design.phases,
-    design: design.designInfo,
-    enrollment: design.enrollmentInfo?.count,
-    briefSummary: desc.briefSummary,
-    detailedDescription: desc.detailedDescription,
-    arms: arms.armGroups,
-    interventions: arms.interventions,
-    primaryOutcomes: outcomes.primaryOutcomes,
-    secondaryOutcomes: outcomes.secondaryOutcomes,
-    eligibility: {
-      criteria: elig.eligibilityCriteria,
-      healthyVolunteers: elig.healthyVolunteers,
-      sex: elig.sex,
-      minimumAge: elig.minimumAge,
-      maximumAge: elig.maximumAge,
-    },
-    siteCount: locations.length,
-    countries,
-    ...(live
-      ? {
-          overallStatus: p.statusModule?.overallStatus,
-          enrollmentType: design.enrollmentInfo?.type,
-          plannedPrimaryCompletion: p.statusModule?.primaryCompletionDateStruct?.date,
-          recordLastUpdated: p.statusModule?.lastUpdatePostDateStruct?.date,
-        }
-      : {}),
-  };
-  return JSON.stringify(record, null, 1);
-}
 
 const counts = { total: studies.length, noPrimaryPValue: 0, tooLarge: 0, kept: 0 };
 const lines = [];

@@ -11,11 +11,19 @@
 //   4. Each forecaster is scored on its latest forecast sealed at least one
 //      full day before the result was reported. A forecaster with no such
 //      seal for a trial is not scored on that trial.
+//   5. An evidence report made on request (data/on_demand_results.jsonl) is
+//      a published forecast like any other: if it was made at least one full
+//      day before the result was reported, it is the forecast that is scored
+//      for that trial, because it is the latest one.
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 
 export const LEDGER = "data/outcomes.jsonl";
 export const VERDICTS = ["met", "not_met", "void"];
 const DAY = 86_400_000;
+
+const ON_REQUEST = "data/on_demand_results.jsonl";
+export const readRequested = () =>
+  existsSync(ON_REQUEST) ? readFileSync(ON_REQUEST, "utf8").split("\n").filter(Boolean).map((l) => JSON.parse(l)) : [];
 
 export const readLedger = () =>
   existsSync(LEDGER) ? readFileSync(LEDGER, "utf8").split("\n").filter(Boolean).map((l) => JSON.parse(l)) : [];
@@ -42,6 +50,7 @@ export const FORECASTERS = { headline: "Published forecast", learned: "Learned m
 // publicAtSeal: the trials rule 3 excludes.
 export function scoreLive(publicAtSeal = new Set()) {
   const all = seals();
+  const requested = new Map(readRequested().filter((r) => r.status === "forecast").map((r) => [r.nct, r]));
   const resolved = [];
   for (const o of readLedger()) {
     const row = { ...o, counted: false, forecasts: {} };
@@ -53,6 +62,8 @@ export function scoreLive(publicAtSeal = new Set()) {
         const set = all.filter((s) => s.who === who && s.at + DAY <= reported && forecastIn(s, o.nct) != null).at(-1);
         if (set) row.forecasts[who] = { p: forecastIn(set, o.nct), seal: set.name };
       }
+      const asked = requested.get(o.nct);
+      if (asked && Date.parse(asked.madeAt) + DAY <= reported) row.forecasts.headline = { p: asked.probability, seal: "on request" };
       row.counted = row.forecasts.headline != null;
       if (!row.counted) row.why = "reported before the forecast was sealed";
     }
